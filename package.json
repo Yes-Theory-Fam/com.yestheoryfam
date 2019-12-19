@@ -11,9 +11,9 @@
   },
   "scripts": {
     "test": "test",
-    "start": "webpack-dev-server --open",
-    "create": "webpack",
-    "deploy:prod": "rsync -avzhe ssh --progress ./public/* ubuntu@yestheoryfam.com:~/com.yestheoryfam"
+    "start": "webpack-dev-server --open --config webpack.prod.js",
+    "build": "webpack --mode production --config webpack.prod.js",
+    "deploy:prod": "rsync -avzhe 'ssh -i ~/.ssh/ytf.pem' --progress ./dist/* ubuntu@yestheoryfam.com:/home/ubuntu/com.yestheoryfam"
   },
   "repository": {
     "type": "git",
@@ -42,12 +42,16 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.3.2",
     "html-webpack-plugin": "^3.2.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "react-hot-loader": "^4.12.18",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.3",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
   }
 }

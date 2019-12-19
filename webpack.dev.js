@@ -1,5 +1,19 @@
+const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const htmlWebpackPlugin = new HtmlWebpackPlugin({
+    template: path.join(__dirname, "examples/src/index.html"),
+    filename: "./index.html"
+});
+
+
+
 module.exports = {
-    mode: "production",
+    optimization: {
+        splitChunks: {
+            // include all types of chunks
+            chunks: 'all'
+        }
+    },
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
@@ -10,6 +24,7 @@ module.exports = {
     },
 
     module: {
+
         rules: [
             {
                 test: /\.ts(x?)$/,
@@ -28,13 +43,4 @@ module.exports = {
             }
         ]
     },
-
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
-    }
 };
