@@ -12,7 +12,8 @@
   "scripts": {
     "test": "test",
     "start": "webpack-dev-server --open",
-    "create": "webpack"
+    "create": "webpack",
+    "deploy:prod": "rsync -avzhe ssh --progress ./public/* ubuntu@yestheoryfam.com:~/com.yestheoryfam"
   },
   "repository": {
     "type": "git",
