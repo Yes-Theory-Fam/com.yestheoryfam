@@ -50,7 +50,11 @@ module.exports = {
                 enforce: "pre",
                 test: /\.js$/,
                 loader: "source-map-loader"
-            }
+            },
+            {
+                test: /\.s?css$/,
+                loader: ['style-loader', 'css-loader', 'sass-loader']
+            },
         ]
     },
     plugins: [
