@@ -1,46 +1,11 @@
-const path = require('path');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const htmlWebpackPlugin = new HtmlWebpackPlugin({
-    template: path.join(__dirname, "examples/src/index.html"),
-    filename: "./index.html"
-});
+const merge = require('webpack-merge');
+const config = require('./webpack.dev.js');
 
-
-
-module.exports = {
-    optimization: {
-        splitChunks: {
-            // include all types of chunks
-            chunks: 'all'
-        }
-    },
-
-    // Enable sourcemaps for debugging webpack's output.
+module.exports = merge(config, {
+    // set webpack to production mode; minifies bundles and other smart stuff
+    mode: "production",
+    // remove devServer config even though it's not really relevant in production
+    devServer: undefined,
+    // use more efficient source map for production
     devtool: "source-map",
-
-    resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx", ".js"]
-    },
-
-    module: {
-        
-        rules: [
-            {
-                test: /\.ts(x?)$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: "ts-loader"
-                    }
-                ]
-            },
-            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            {
-                enforce: "pre",
-                test: /\.js$/,
-                loader: "source-map-loader"
-            }
-        ]
-    },
-};
+});
