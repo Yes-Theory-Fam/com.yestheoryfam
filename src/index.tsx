@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Landing } from "./components/Landing";
-
-if (module.hot){
-    module.hot.accept()
-  }
+import Landing from "./components/Landing";
 
 ReactDOM.render(
-    <Landing compiler="TypeScript" framework="React" />,
-    document.getElementById("example")
+  <Landing compiler="TypeScript" framework="React" />,
+  document.getElementById("example")
 );
+
+if (module.hot){
+  module.hot.accept()
+}

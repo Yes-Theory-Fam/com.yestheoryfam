@@ -23,6 +23,11 @@ module.exports = {
         inline:true,
     },
 
+    entry: [
+        'react-hot-loader/patch',
+        './src/index',
+    ],
+
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js"]
