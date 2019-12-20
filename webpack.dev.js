@@ -8,6 +8,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 
 
 module.exports = {
+    mode: "development",
     optimization: {
         splitChunks: {
             // include all types of chunks
@@ -16,7 +17,7 @@ module.exports = {
     },
 
     // Enable sourcemaps for debugging webpack's output.
-    devtool: "source-map",
+    devtool: "inline-source-map",
     devServer: {
         hot: true,
         inline:true,
