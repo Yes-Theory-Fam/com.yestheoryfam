@@ -23,6 +23,11 @@ module.exports = {
         inline:true,
     },
 
+    entry: [
+        'react-hot-loader/patch',
+        './src/index',
+    ],
+
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx", ".js"]
@@ -45,7 +50,11 @@ module.exports = {
                 enforce: "pre",
                 test: /\.js$/,
                 loader: "source-map-loader"
-            }
+            },
+            {
+                test: /\.s?css$/,
+                loader: ['style-loader', 'css-loader', 'sass-loader']
+            },
         ]
     },
     plugins: [

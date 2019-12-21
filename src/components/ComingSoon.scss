@@ -1,0 +1,121 @@
+$yesTheoryBlue: rgb(51, 144, 255);
+$backgroundColor: $yesTheoryBlue;
+$barColor: lighten($backgroundColor, 12);
+$textColor: #cf33ff;
+
+.comingSoon {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    max-width: 100%;
+    height: 100%;
+
+    background-color: $backgroundColor;
+
+    &--cool {
+        margin: 2rem auto;
+        background-color: #33ffa3;
+        // background-image: url("https://avatars1.githubusercontent.com/u/33829929?s=460&v=4");
+        // background-repeat: no-repeat;
+
+        height: 75vh;
+        width: 90vw;
+
+        // animation properties
+        clip-path: polygon(50% 0%, 0 40%, 100% 100%);
+        transform: rotateX(0deg);
+        transform: rotateY(0deg);
+
+        animation: salmon 8s infinite;
+        
+    }
+    @keyframes salmon {
+        0% {
+            clip-path: polygon(10% 0%, 0 90%, 100% 100%);
+        }
+        33% {
+            clip-path: polygon(90% 0%, 0 10%, 50% 40%);
+            transform: rotateX(160deg);
+            transform: rotateY(160deg);
+        }
+        66% {
+            clip-path: polygon(30% 0%, 0 70%, 60% 35%);
+            transform: rotateX(10deg);
+            transform: rotateY(10deg);
+        }
+        100% {
+            clip-path: polygon(10% 0%, 0 90%, 100% 100%);
+        }
+    }
+
+    &--progress {
+        margin: 1rem auto 0 auto; 
+        width: 90%;
+        max-width: 780px;
+
+        > p {
+            margin-top: 0.5rem;
+        }
+        
+        &--container {
+            height: 1rem;
+            border: 1px solid $barColor;
+            border-radius: 2px;
+        }
+        
+        
+        &--bar {
+            background-color: $barColor;
+            height: 100%;
+            width: 65%;
+            display: block;
+
+            animation: progress--bar--go 20s;
+            animation-timing-function: ease-in-out;
+            
+            @keyframes progress--bar--go {
+                0% {
+                    width: 0%;
+                }
+
+                10% {
+                    width: 65%;
+                }
+
+                85% {
+                    width: 65%;
+                }
+
+                95% {
+                    width: 35%;
+                }
+
+                100% {
+                    width: 65%;
+                }
+            }  
+        }
+    }
+
+    &--text {
+        color: #ff8133;
+        font-size: 28px;
+
+        animation: reveal-text 5s;
+        animation-timing-function: ease-out;
+
+        @keyframes reveal-text {
+            0% {
+                color: $backgroundColor;
+            }
+            
+            85% {
+                color: $backgroundColor;
+            }
+
+            100% {
+                color: #ff8133;
+            }
+        }
+    }
+}
