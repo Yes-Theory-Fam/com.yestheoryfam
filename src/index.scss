@@ -1,0 +1,15 @@
+body, p, div {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    min-width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    max-width: 780px;
+}
+
+#example {
+    height: 100%;
+}
