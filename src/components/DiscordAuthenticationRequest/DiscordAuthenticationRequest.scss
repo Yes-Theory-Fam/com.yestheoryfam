@@ -1,0 +1,15 @@
+$yesTheoryBlue: rgb(51, 144, 255);
+$backgroundColor: $yesTheoryBlue;
+
+.discordAuth {
+    padding: 1rem;
+    max-width: 100%;
+    height: 100vh;
+    max-height: calc(100vh - 2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $backgroundColor;
+}
