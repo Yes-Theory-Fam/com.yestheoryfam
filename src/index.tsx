@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom";
 import "./reset.css";
 import "./index.scss";
 
-import Landing from "./components/Landing";
+import Landing from "./components/Landing/Landing";
 
 ReactDOM.render(
   <Landing compiler="TypeScript" framework="React" />,
