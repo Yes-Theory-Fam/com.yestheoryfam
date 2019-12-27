@@ -14,37 +14,35 @@ $textColor: #cf33ff;
 
     &--cool {
         margin: 2rem auto;
-        background-color: #33ffa3;
-        // background-image: url("https://avatars1.githubusercontent.com/u/33829929?s=460&v=4");
-        // background-repeat: no-repeat;
+        background-color: transparent;
+        background-image: url("https://cdn.discordapp.com/attachments/477136006361907210/655751431466385428/image0.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
 
         height: 75vh;
         width: 90vw;
 
         // animation properties
-        clip-path: polygon(50% 0%, 0 40%, 100% 100%);
-        transform: rotateX(0deg);
-        transform: rotateY(0deg);
-
+        clip-path: polygon(50% 0%, 0 40%, 100% 100%, 25% 33%);
+  
         animation: salmon 8s infinite;
-        
     }
     @keyframes salmon {
         0% {
-            clip-path: polygon(10% 0%, 0 90%, 100% 100%);
+            clip-path: polygon(0 0, 0 0, 100% 100%, 100% 100%)
         }
-        33% {
-            clip-path: polygon(90% 0%, 0 10%, 50% 40%);
-            transform: rotateX(160deg);
-            transform: rotateY(160deg);
+        25% {
+            clip-path: polygon(0 0, 100% 0, 0 100%, 100% 100%)
         }
-        66% {
-            clip-path: polygon(30% 0%, 0 70%, 60% 35%);
-            transform: rotateX(10deg);
-            transform: rotateY(10deg);
+        50% {
+            clip-path: polygon(0 0, 0 100%, 100% 0, 100% 100%);
+        }
+        75% {
+            clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
         }
         100% {
-            clip-path: polygon(10% 0%, 0 90%, 100% 100%);
+            clip-path: polygon(0 0, 100% 100%, 100% 100%, 0% 0%);
         }
     }
 
