@@ -6,7 +6,8 @@ const DiscordAuthenticationCallback = () => {
     const toEntries = (arr: Array<Array<string>>) => Object.assign({}, ...Array.from(arr, ([k, v]) => ({[k]: v}) ));
     const cookies = toEntries(document.cookie.split("; ").map(c => c.split("=")));
     const storedState = cookies["auth_state"];
-    const sentState = new URLSearchParams(window.location.hash).get("state");
+    const params = new URLSearchParams(window.location.hash);
+    const sentState = params.get("state");
 
     if (storedState !== sentState) {
         alert("That's bad. Shouldn't have happened. Should also have a better error message than just an alert, really.");
@@ -14,7 +15,14 @@ const DiscordAuthenticationCallback = () => {
 
     document.cookie = "auth_state=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 
-    window.location.href = "/";
+    window.location.href = "/", 3000;
+
+    fetch("https://discordapp.com/api/v6/users/@me", {
+        method: "GET",
+        headers: {
+            'Authorization': 'Bearer ' + params.get("access_token"),
+        },
+    }).then((response: Response) => response.json()).then(console.log);
 
     return (
         <div className="discordAuth">
