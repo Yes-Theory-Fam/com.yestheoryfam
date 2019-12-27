@@ -15,9 +15,15 @@ module.exports = {
         }
     },
 
+    output: {
+        publicPath: "/",
+    },
+    
     // Enable sourcemaps for debugging webpack's output.
     devtool: "inline-source-map",
+    
     devServer: {
+        historyApiFallback: true,
         hot: true,
         inline:true,
     },
