@@ -24,12 +24,19 @@ const loadingMessages = [
     "Seeking discomfort",
     "Saying yes to waiting a bit longer for more website content",
     "Making up some excuse for why this doesn't finish loading",
-]
+];
+
+const imageUrls = [
+    "https://cdn.discordapp.com/attachments/477136006361907210/655751431466385428/image0.jpg",
+    "https://cdn.discordapp.com/attachments/477136006361907210/646003485430513695/image1.png",
+    "https://cdn.discordapp.com/attachments/477136006361907210/645305704126873632/IMG-20191115-WA0088.jpg",
+    "https://cdn.discordapp.com/attachments/477136006361907210/643030622830592030/20191109_234349.jpg",
+];
 
 let loadingMessageInterval: number = -1;
 
 const ComingSoon = () => {
-    const [loadingMessage, setLoadingMessage] = useState('Loading website content')
+    const [loadingMessage, setLoadingMessage] = useState('Loading website content');
 
     useEffect(() => {
         loadingMessageInterval = window.setInterval(() => {
@@ -38,8 +45,11 @@ const ComingSoon = () => {
 
         // Cleanup of effect
         return () => clearInterval(loadingMessageInterval);
-    })
+    });
 
+    const [imageUrl, setImageUrl] = useState('https://cdn.discordapp.com/attachments/477136006361907210/655751431466385428/image0.jpg');
+    const url = `url(${imageUrl})`;
+    
     return (
         <div className="comingSoon">
             <header>
@@ -58,7 +68,7 @@ const ComingSoon = () => {
                         This website is still under construction. Check back later.
                     </p>
                 </div>
-                <div className="comingSoon--cool"></div>
+                <div className="comingSoon--cool" style={{backgroundImage: url}} onAnimationIteration={() => setImageUrl(imageUrls[getRandomInt(0, imageUrls.length)])}></div>
             </section>
         </div>
     )
