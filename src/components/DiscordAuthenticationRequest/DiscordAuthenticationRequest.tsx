@@ -12,7 +12,7 @@ const DiscordAuth = () => {
 
     const constructedLink = `https://discordapp.com/oauth2/authorize?response_type=token&client_id=${clientId}&state=${randomState}&scope=${scope}&redirect_uri=${redirectUri}`;
 
-    document.cookie = "auth_state=" + randomState + ";path=/";
+    localStorage.setItem("auth_state", randomState);
 
     window.location.href = constructedLink;
 
