@@ -1,5 +1,4 @@
-$yesTheoryBlue: rgb(51, 144, 255);
-$backgroundColor: $yesTheoryBlue;
+@use '../../common';
 
 .discordAuth {
     padding: 1rem;
@@ -11,5 +10,5 @@ $backgroundColor: $yesTheoryBlue;
     justify-content: center;
     align-items: center;
 
-    background-color: $backgroundColor;
+    background-color: common.$backgroundColor;
 }

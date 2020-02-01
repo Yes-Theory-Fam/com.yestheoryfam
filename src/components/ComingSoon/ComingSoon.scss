@@ -1,6 +1,6 @@
-$yesTheoryBlue: rgb(51, 144, 255);
-$backgroundColor: $yesTheoryBlue;
-$barColor: lighten($backgroundColor, 12);
+@use '../../common';
+
+$barColor: lighten(common.$backgroundColor, 12);
 $textColor: #cf33ff;
 
 .comingSoon {
@@ -10,7 +10,7 @@ $textColor: #cf33ff;
     max-width: 100%;
     height: 100%;
 
-    background-color: $backgroundColor;
+    background-color: common.$backgroundColor;
 
     &--cool {
         margin: 2rem auto;
@@ -104,11 +104,11 @@ $textColor: #cf33ff;
 
         @keyframes reveal-text {
             0% {
-                color: $backgroundColor;
+                color: common.$backgroundColor;
             }
             
             85% {
-                color: $backgroundColor;
+                color: common.$backgroundColor;
             }
 
             100% {
