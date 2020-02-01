@@ -1,4 +1,5 @@
 import * as React from 'react';
+import '../Redirect.scss';
 import { Link, useHistory } from 'react-router-dom';
 
 const DiscordAuthenticationCallback = () => {

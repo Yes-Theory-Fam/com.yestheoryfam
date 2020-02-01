@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './DiscordAuthenticationRequest.scss';
+import '../Redirect.scss';
 import { Link } from 'react-router-dom';
 import { randomString } from '../../utils';
 
