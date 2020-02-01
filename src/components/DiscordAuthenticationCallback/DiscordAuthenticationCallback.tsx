@@ -1,6 +1,6 @@
 import * as React from 'react';
-import '../Redirect.scss';
-import { Link, useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import RedirectNotice from '../RedirectNotice/RedirectNotice';
 
 const DiscordAuthenticationCallback = () => {
     const storedState = localStorage.getItem("auth_state");
@@ -13,19 +13,12 @@ const DiscordAuthenticationCallback = () => {
 
     if (storedState !== sentState) {
         console.error("Stored state did not equal the one sent by discord. User won't be authenticated!");
-        return <RedirectNotice />
+        return <RedirectNotice url="/"/>
     }
 
     // Use the token to do auth here.
 
-    return <RedirectNotice />;
+    return <RedirectNotice url="/"/>;
 };
-
-const RedirectNotice = () => {
-    return <div className="discordAuth">
-        <p>You should have been redirected to the main page already!</p>
-        <p>Click <Link to="/">here</Link> to get there.</p>
-    </div>
-}
 
 export default DiscordAuthenticationCallback;

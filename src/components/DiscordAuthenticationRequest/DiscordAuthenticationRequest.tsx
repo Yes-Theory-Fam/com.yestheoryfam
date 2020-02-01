@@ -1,7 +1,6 @@
 import * as React from 'react';
-import '../Redirect.scss';
-import { Link } from 'react-router-dom';
 import { randomString } from '../../utils';
+import RedirectNotice from '../RedirectNotice/RedirectNotice';
 
 const DiscordAuth = () => {
     const clientId = process.env.REACT_APP_DISCORD_CLIENT_ID;
@@ -16,12 +15,7 @@ const DiscordAuth = () => {
 
     window.location.href = constructedLink;
 
-    return (
-        <div className="discordAuth">
-            <p>You should have been redirected by now.</p>
-            <p>Click <Link to={constructedLink}>here</Link> to authenticate with Discord!</p>
-        </div>
-    );
+    return <RedirectNotice url={constructedLink}/>;
 }
 
 export default DiscordAuth;
