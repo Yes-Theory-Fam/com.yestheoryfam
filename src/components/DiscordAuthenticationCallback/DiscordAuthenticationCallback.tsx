@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const DiscordAuthenticationCallback = () => {
     // https://stackoverflow.com/a/43682482/6707985
@@ -14,7 +14,8 @@ const DiscordAuthenticationCallback = () => {
 
     localStorage.removeItem("auth_state");
 
-    window.location.href = "/";
+    const history = useHistory();
+    history.push("/");
 
     return (
         <div className="discordAuth">
