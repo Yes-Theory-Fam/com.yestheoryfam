@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 
 import "./ComingSoon.scss"
+import NavBar from "./NavBar/NavBar";
 
 // This is how real men code: stealing code from the internet
 function getRandomInt(min: number, max: number) {
@@ -52,6 +53,7 @@ const ComingSoon = () => {
     
     return (
         <div className="comingSoon">
+            <NavBar />
             <header>
                 <h1>Coming Soon!</h1>
             </header>

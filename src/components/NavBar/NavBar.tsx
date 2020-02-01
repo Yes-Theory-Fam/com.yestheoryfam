@@ -33,7 +33,7 @@ const NavBar: React.FC = () => {
             <Link href="/" text="GROUPCHATS"/>
             <Link href="/" text="ABOUT"/>
             <Link href="/" text="CONTACT"/>
-            <CircularAvatar />
+            <DiscordLoginButton />
         </div>
     </div>
 };
