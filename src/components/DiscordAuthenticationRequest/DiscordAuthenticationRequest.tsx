@@ -13,7 +13,7 @@ const DiscordAuth = () => {
 
     localStorage.setItem("auth_state", randomState);
 
-    window.location.href = constructedLink;
+    window.location.assign(constructedLink);
 
     return <RedirectNotice url={constructedLink}/>;
 }
