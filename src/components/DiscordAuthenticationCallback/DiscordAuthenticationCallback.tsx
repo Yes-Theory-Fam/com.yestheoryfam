@@ -1,35 +1,24 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import RedirectNotice from '../RedirectNotice/RedirectNotice';
 
 const DiscordAuthenticationCallback = () => {
-    // https://stackoverflow.com/a/43682482/6707985
-    const toEntries = (arr: Array<Array<string>>) => Object.assign({}, ...Array.from(arr, ([k, v]) => ({[k]: v}) ));
-    const cookies = toEntries(document.cookie.split("; ").map(c => c.split("=")));
-    const storedState = cookies["auth_state"];
-    const params = new URLSearchParams(window.location.hash);
-    const sentState = params.get("state");
+    const storedState = localStorage.getItem("auth_state");
+    const sentState = new URLSearchParams(window.location.hash).get("state");
+
+    localStorage.removeItem("auth_state");
+
+    const history = useHistory();
+    history.push("/");
 
     if (storedState !== sentState) {
-        alert("That's bad. Shouldn't have happened. Should also have a better error message than just an alert, really.");
+        console.error("Stored state did not equal the one sent by discord. User won't be authenticated!");
+        return <RedirectNotice url="/"/>
     }
 
-    document.cookie = "auth_state=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    // Use the token to do auth here.
 
-    window.location.href = "/", 3000;
-
-    fetch("https://discordapp.com/api/v6/users/@me", {
-        method: "GET",
-        headers: {
-            'Authorization': 'Bearer ' + params.get("access_token"),
-        },
-    }).then((response: Response) => response.json()).then(console.log);
-
-    return (
-        <div className="discordAuth">
-            <p>You should have been redirected to the main page already!</p>
-            <p>Click <Link to="/">here</Link> to get there.</p>
-        </div>
-    );
+    return <RedirectNotice url="/"/>;
 };
 
 export default DiscordAuthenticationCallback;
