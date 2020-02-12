@@ -4,8 +4,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
     template: path.join(__dirname, "./index.html"),
     filename: "./index.html"
 });
-
-
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     mode: "development",
@@ -16,9 +15,15 @@ module.exports = {
         }
     },
 
+    output: {
+        publicPath: "/",
+    },
+    
     // Enable sourcemaps for debugging webpack's output.
     devtool: "inline-source-map",
+    
     devServer: {
+        historyApiFallback: true,
         hot: true,
         inline:true,
     },
@@ -59,5 +64,6 @@ module.exports = {
     },
     plugins: [
         htmlWebpackPlugin,
+        new Dotenv(),
     ]
 };

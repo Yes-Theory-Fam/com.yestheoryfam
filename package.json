@@ -34,7 +34,8 @@
   "homepage": "https://github.com/jamie-legg/com.yestheoryfam#readme",
   "dependencies": {
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
@@ -42,13 +43,15 @@
     "@babel/preset-react": "^7.7.4",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
+    "@types/react-router-dom": "^5.1.3",
     "@types/webpack-env": "^1.14.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.3.2",
+    "dotenv-webpack": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.13.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "react-hot-loader": "^4.12.18",
+    "sass": "^1.25.0",
     "sass-loader": "^8.0.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.1",
