@@ -1,0 +1,81 @@
+@use '../../common';
+// For the big boi YES
+@import url("https://fonts.googleapis.com/css?family=Roboto:900&display=swap");
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  font-size: 150px;
+}
+
+.yes-background {
+  z-index: 100;
+  position: fixed;
+  text-align: center;
+  font-size: 673px;
+  color: common.$yesTheoryBlue;
+  font-weight: 900;
+}
+
+.clouds-background {
+  z-index: 200;
+  position: absolute;
+}
+
+.mountain {
+  z-index: 300;
+  position: fixed;
+  left: -100px;
+  background-image: url("../../assets/piqsels.com-id-sqodj.png");
+}
+
+div.content {
+  z-index: 400;
+  position: absolute;
+  flex-direction: column;
+  height: unset;
+}
+
+.clouds-front {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.coming-soon {
+  background: white;
+  height: 100vh;
+  font-size: 70px;
+  color: black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cloud {
+  position: absolute;
+}
+
+.big-front {
+  bottom: -310px;
+  left: 120px;
+  width: 90vw;
+}
+
+.bot-front {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.big-back {
+  bottom: -175px;
+  left: -300px;
+  width: 75vw;
+}
