@@ -3,7 +3,7 @@ import './NavBar.scss';
 import DiscordLogo from "../../assets/Discord-Logo-White.svg";
 
 const isLoggedIn = false;
-const showLoginButton = true;
+const showLoginButton = false;
 
 const Logo: React.FC = () => {
     return <a href="/" id="nav-bar-logo">YESTHEORY<b>FAM</b></a>
