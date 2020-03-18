@@ -8,11 +8,12 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect,
 } from "react-router-dom";
 
-import Landing from "./components/Landing/Landing";
 import DiscordAuthenticationRequest from "./components/DiscordAuthenticationRequest/DiscordAuthenticationRequest";
 import DiscordAuthenticationCallback from "./components/DiscordAuthenticationCallback/DiscordAuthenticationCallback";
+import Home from "./pages/home/Home";
 
 ReactDOM.render(
     <Router>
@@ -23,9 +24,10 @@ ReactDOM.render(
             <Route path="/oauth/redirect">
                 <DiscordAuthenticationCallback />
             </Route>
-            <Route path="/">
-                <Landing compiler="TypeScript" framework="React" />
+            <Route path="/home">
+                <Home />
             </Route>
+            <Redirect path="/" to="/home"/>
         </Switch>
     </Router>,
     document.getElementById("example")
