@@ -1,5 +1,9 @@
 import * as React from 'react';
 import './NavBar.scss';
+import DiscordLogo from "../../assets/Discord-Logo-White.svg";
+
+const isLoggedIn = false;
+const showLoginButton = true;
 
 const Logo: React.FC = () => {
     return <a href="/" id="nav-bar-logo">YESTHEORY<b>FAM</b></a>
@@ -10,32 +14,44 @@ const Link: React.FC<{href: string, text: string}> = ({href, text}: {href: strin
 }
 
 const DiscordLoginButton: React.FC = () => {
-    return <a className="discord-login" href="/auth/discord">DISCORD LOGIN</a>;
+    const LogoContainer = () => <div className="discord-logo"><DiscordLogo /></div>;
+
+    return <div className="discord-login-container">
+        <a className="discord-login" href="/auth/discord">
+            <LogoContainer />
+            LOGIN VIA DISCORD
+        </a>
+    </div>;
 }
 
 const CircularAvatar: React.FC = () => {
-    return <img
-        src="https://mirrors.creativecommons.org/presskit/icons/nc-jp.png" //Just some random thing that worked
-        height="48"
-        width="48"
-        style={{borderRadius: 50}}
-    />
-}
+  return (
+      <div
+        className="avatar-container"
+      >
+        <img
+          className="circle-avatar"
+          src="https://mirrors.creativecommons.org/presskit/icons/nc-jp.png" //Just some random thing that worked
+          height="26"
+          width="26"
+        />
+        Username
+      </div>
+    // </div>
+  );
+};
 
-const NavBar: React.FC = () => {
-    return <div id="nav-bar">
-        <Logo />
-        <div id="nav-links">
-            <Link href="/" text="HOME"/>
-            <Link href="/" text="BLOG"/>
-            <Link href="/" text="MEETUPS"/>
-            <Link href="/" text="PHOTOWALL"/>
-            <Link href="/" text="GROUPCHATS"/>
-            <Link href="/" text="ABOUT"/>
-            <Link href="/" text="CONTACT"/>
-            <DiscordLoginButton />
-        </div>
-    </div>
+const NavBar: React.FC<{fixed: boolean}> = ({fixed}) => {
+  const pages = ["home", "blog", "meetups", "photowall", "groupchats", "about", "contact"];
+
+  return <div id="nav-bar" className={fixed ? "fixed" : ""}>
+      <Logo />
+      <div id="nav-links">
+          {pages.map(page => <Link href={`/${page}`} text={page.toUpperCase()} />)}
+          {showLoginButton && <DiscordLoginButton />}
+          {isLoggedIn && <CircularAvatar />}
+      </div>
+  </div>
 };
 
 export default NavBar;
