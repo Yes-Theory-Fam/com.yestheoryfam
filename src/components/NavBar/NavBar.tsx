@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './NavBar.scss';
 import DiscordLogo from "../../assets/Discord-Logo-White.svg";
+import { NavLink } from 'react-router-dom';
 
 const isLoggedIn = false;
 const showLoginButton = false;
@@ -44,10 +45,12 @@ const CircularAvatar: React.FC = () => {
 const NavBar: React.FC<{fixed: boolean}> = ({fixed}) => {
   const pages = ["home", "blog", "meetups", "photowall", "groupchats", "about", "contact"];
 
+  const pageToNavLink = (page: string) => <NavLink to={`/${page}`} activeClassName="current">{page.toUpperCase()}</NavLink>;
+
   return <div id="nav-bar" className={fixed ? "fixed" : ""}>
       <Logo />
       <div id="nav-links">
-          {pages.map(page => <Link href={`/${page}`} text={page.toUpperCase()} />)}
+          {pages.map(pageToNavLink)}
           {showLoginButton && <DiscordLoginButton />}
           {isLoggedIn && <CircularAvatar />}
       </div>
