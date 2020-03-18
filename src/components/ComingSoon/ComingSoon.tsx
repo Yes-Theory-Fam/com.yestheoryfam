@@ -53,7 +53,7 @@ const ComingSoon = () => {
     
     return (
         <div className="comingSoon">
-            <NavBar />
+            <NavBar fixed={false}/>
             <header>
                 <h1>Coming Soon!</h1>
             </header>
