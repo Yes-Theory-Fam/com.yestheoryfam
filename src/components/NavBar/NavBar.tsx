@@ -1,27 +1,23 @@
 import * as React from 'react';
 import './NavBar.scss';
 import DiscordLogo from "../../assets/Discord-Logo-White.svg";
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const isLoggedIn = false;
 const showLoginButton = false;
 
 const Logo: React.FC = () => {
-    return <a href="/" id="nav-bar-logo">YESTHEORY<b>FAM</b></a>
-}
-
-const Link: React.FC<{href: string, text: string}> = ({href, text}: {href: string, text: string}) => {
-    return <a href={href}>{text}</a>
+    return <Link to="/" id="nav-bar-logo">YESTHEORY<b>FAM</b></Link>
 }
 
 const DiscordLoginButton: React.FC = () => {
     const LogoContainer = () => <div className="discord-logo"><DiscordLogo /></div>;
-
+    
     return <div className="discord-login-container">
-        <a className="discord-login" href="/auth/discord">
+        <Link className="discord-login" to="/auth/discord">
             <LogoContainer />
             LOGIN VIA DISCORD
-        </a>
+        </Link>
     </div>;
 }
 
@@ -38,7 +34,6 @@ const CircularAvatar: React.FC = () => {
         />
         Username
       </div>
-    // </div>
   );
 };
 
