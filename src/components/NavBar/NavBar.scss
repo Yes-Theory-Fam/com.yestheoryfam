@@ -1,0 +1,78 @@
+@use '../../common';
+
+#nav-bar {
+    background-color: white;
+    align-items: baseline;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    padding: 25px 60px;
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100vw - 120px); // Until I find something more reasonable
+    z-index: 1000;
+}
+
+#nav-bar-logo {
+    flex: 35;
+    font-size: 18px;
+}
+
+#nav-bar a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#nav-links {
+    align-items: center;
+    display: flex;
+    flex: 65;
+    flex-direction: row;
+    font-size: 14px;
+    justify-content: space-evenly;
+}
+
+#nav-bar .discord-login {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 10px;
+    border: none;
+    background-color: common.$yesTheoryBlue;
+    border-radius: 50px;
+
+    color: white;
+}
+
+.discord-logo {
+    height: 25px;
+    width: 25px;
+}
+
+.avatar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.circle-avatar {
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+div {
+    color: black;
+}
+
+.current {
+    padding-top: 11px;
+    padding-bottom: 9px;
+    border-bottom: common.$yesTheoryBlue solid 2px;
+}

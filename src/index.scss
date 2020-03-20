@@ -1,6 +1,14 @@
+html {
+    scrollbar-width: none;
+}
+
 body, p, div {
-    color: #fff;
     font-family: 'Roboto', sans-serif;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar, p::-webkit-scrollbar, div::-webkit-scrollbar {
+    display: none;
 }
 
 body {
