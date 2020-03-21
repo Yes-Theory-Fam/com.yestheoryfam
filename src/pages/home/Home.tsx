@@ -5,10 +5,11 @@ import cloudBot from "../../assets/cloudBot.png";
 import NavBar from "../../components/NavBar/NavBar";
 import ExpandForMore from "../../assets/expand-for-more-yt-blue.svg";
 import HomeEntry from "../../components/HomeEntry/HomeEntry";
+import Footer from "../../components/Footer/Footer";
 
 const Content: React.FC = () => {
   return (
-    <div style={{ zIndex: 500, width: "100%", background: "white", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly" }}>
+    <div style={{ zIndex: 0, width: "100%", background: "white", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly" }}>
       <HomeEntry
         headerBlackText="Discover"
         headerBlueText="empowering stories"
@@ -60,6 +61,7 @@ const Home: React.FC = () => {
             </div>
           </div>
           <Content />
+          <Footer />
         </div>
       </div>
     </>

@@ -10,7 +10,6 @@
   align-items: center;
   top: 0;
   left: 0;
-  font-size: 150px;
 }
 
 .yes-background {
@@ -97,4 +96,8 @@ div.content {
   padding-top: 9px;
   height: 15px;
   width: 15px;
+}
+
+.footer {
+  z-index: 0;
 }
