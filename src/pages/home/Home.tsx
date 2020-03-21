@@ -9,7 +9,7 @@ import Footer from "../../components/Footer/Footer";
 
 const Content: React.FC = () => {
   return (
-    <div style={{ zIndex: 0, width: "100%", background: "white", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly" }}>
+    <div className="entries">
       <HomeEntry
         headerBlackText="Discover"
         headerBlueText="empowering stories"
