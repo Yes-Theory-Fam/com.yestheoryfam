@@ -9,7 +9,7 @@ import Footer from "../../components/Footer/Footer";
 
 const Content: React.FC = () => {
   return (
-    <div className="entries">
+    <div className="home-entries">
       <HomeEntry
         headerBlackText="Discover"
         headerBlueText="empowering stories"
