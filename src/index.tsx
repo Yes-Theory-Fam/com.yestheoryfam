@@ -14,6 +14,7 @@ import {
 import DiscordAuthenticationRequest from "./components/DiscordAuthenticationRequest/DiscordAuthenticationRequest";
 import DiscordAuthenticationCallback from "./components/DiscordAuthenticationCallback/DiscordAuthenticationCallback";
 import Home from "./pages/home/Home";
+import BlogOverview from "./pages/BlogOverview/BlogOverview";
 
 ReactDOM.render(
   <Router>
@@ -26,6 +27,9 @@ ReactDOM.render(
       </Route>
       <Route path="/home">
         <Home />
+      </Route>
+      <Route path="/blog">
+        <BlogOverview />
       </Route>
       <Redirect path="/" to="/home" />
     </Switch>

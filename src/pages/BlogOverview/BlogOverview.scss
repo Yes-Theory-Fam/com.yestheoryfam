@@ -1,0 +1,137 @@
+@use '../../common';
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap");
+
+.overview-header {
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 50px;
+  font-size: 100px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.overview-header-blue {
+    display: inline;
+    color: common.$yesTheoryBlue;
+}
+
+.featured-image {
+  flex: 1;
+  border-radius: 20px;
+  box-shadow: 15px 15px 60px #0067ff40;
+}
+
+.read-more-button {
+  background-color: white;
+  border-color: common.$yesTheoryBlue;
+  border-radius: 27px;
+  border-style: solid;
+  border-width: 1px;
+  color: common.$yesTheoryBlue;
+  font-size: 16px;
+  height: 53px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  width: 260px;
+}
+
+.text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left: 150px;
+  padding-right: 50px;
+}
+
+.featured-article {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 100px;
+}
+
+.featured-content {
+  width: 82%;
+  font-size: 16px;
+}
+
+.latest-article {
+  font-weight: 900;
+  font-size: 22px;
+  color: common.$yesTheoryBlue;
+  padding-bottom: 10px;
+}
+
+.remark {
+  font-size: 14px;
+  color: #0f0f0f;
+}
+
+.featured-title {
+  font-size: 36px;
+  color: common.$yesTheoryBlue;
+  font-weight: 900;
+}
+
+.other-articles {
+  display: flex;
+  flex-direction: column;
+}
+
+.other-articles-header {
+  color: common.$yesTheoryBlue;
+  font-weight: 900;
+  padding-bottom: 15px;
+}
+
+.other-articles-row {
+  height: 475px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.other-article-tile {
+  height: 100%;
+  width: 31%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.other-article-tile-image {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.other-article-tile-title {
+  font-size: 25px;
+  color: common.$yesTheoryBlue;
+  font-weight: 500;
+}
+
+.blog-overview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.articles {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+.other-article-tile::after {
+  content: "";
+  border-bottom: 1px solid #707070;
+  opacity: 0.24;
+  height: 1px;
+  width: 95%;
+  align-self: center;
+}
