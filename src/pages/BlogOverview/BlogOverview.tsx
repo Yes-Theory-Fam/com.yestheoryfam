@@ -41,7 +41,7 @@ const FeaturedArticle: React.FC<IBlogProps> = ({
           className="featured-image"
           src="https://via.placeholder.com/605x433.png?text=Placeholder+for+Image"
         />
-        <div className="text-content">
+        <div className="featured-text-content">
           <Remark author={author} time={time} />
           <Title title={title} />
           <div className="featured-content">{content}</div>
