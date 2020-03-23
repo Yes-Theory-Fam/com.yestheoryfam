@@ -28,7 +28,7 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({
     >
       <img
         style={{ flex: 1 }}
-        src="https://via.placeholder.com/674.png?text=Placeholder+for+Image"
+        src={`https://picsum.photos/674/674?a=${headerBlackText}`}
       />
       <div
         style={{
