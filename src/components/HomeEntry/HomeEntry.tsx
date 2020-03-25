@@ -16,6 +16,30 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({
   children
 }) => {
   return (
+    <div
+      style={{
+        height: 674,
+        width: "80%",
+        display: "flex",
+        flexDirection: imageSide === "left" ? "row" : "row-reverse",
+        justifyContent: "space-between",
+        alignItems: "center"
+      }}
+    >
+      <img
+        style={{ flex: 1 }}
+        src={`https://picsum.photos/674/674?a=${headerBlackText}`}
+      />
+      <div
+        style={{
+          height: "70%",
+          marginInlineStart: 35,
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between"
+        }}
+      >
     <div className={`entry ${imageSide === "left" ? "row" : "row-reverse"}`}>
       <img src="https://via.placeholder.com/674.png?text=Placeholder+for+Image" />
       <div className="text-content">
