@@ -39,7 +39,7 @@ const FeaturedArticle: React.FC<IBlogProps> = ({
       >
         <img
           className="featured-image"
-          src="https://via.placeholder.com/605x433.png?text=Placeholder+for+Image"
+          src="https://picsum.photos/605/433?a=featured-article"
         />
         <div className="featured-text-content">
           <Remark author={author} time={time} />
@@ -104,7 +104,7 @@ const OtherArticleTile: React.FC<IBlogProps & { id: string }> = ({
     <div className="other-article-tile">
       <img
         className="other-article-tile-image"
-        src="https://via.placeholder.com/398x260.png?text=Placeholder+for+Image"
+        src={`https://picsum.photos/398/260?a=${id}`}
       />
       <Remark author={author} time={time} />
       <div className="other-article-tile-title">{title}</div>
