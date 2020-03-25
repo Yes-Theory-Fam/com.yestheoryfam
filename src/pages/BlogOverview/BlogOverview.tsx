@@ -16,8 +16,8 @@ interface IBlogProps {
 
 const BlogOverviewHeader: React.FC = () => {
   return (
-    <div className="overview-header">
-      Experience <div className="overview-header-blue">empowering stories</div>
+    <div className="page-header overview-header">
+      Experience <div className="inline-blue">empowering stories</div>
     </div>
   );
 };
@@ -29,7 +29,7 @@ const FeaturedArticle: React.FC<IBlogProps> = ({
   content
 }) => {
   return (
-    <div className="featured-article">
+    <div className="featured-article column">
       <div className="latest-article">Latest article</div>
       <div
         style={{
@@ -41,11 +41,11 @@ const FeaturedArticle: React.FC<IBlogProps> = ({
           className="featured-image"
           src="https://via.placeholder.com/605x433.png?text=Placeholder+for+Image"
         />
-        <div className="featured-text-content">
+        <div className="featured-text-content column">
           <Remark author={author} time={time} />
           <Title title={title} />
           <div className="featured-content">{content}</div>
-          <Link to="/" className="read-more-button">
+          <Link to="/" className="button">
             READ POST
           </Link>
         </div>
@@ -71,7 +71,7 @@ const Title: React.FC<{ title: string }> = ({ title }) => {
 
 const OtherArticles: React.FC<{ blogs: Array<IBlogProps> }> = ({ blogs }) => {
   return (
-    <div className="other-articles">
+    <div className="column">
       <div className="other-articles-header">Other articles</div>
       {arrayToChunks(blogs, 3).map((chunk, index) => (
         <OtherArticlesRow blogs={chunk} rowIndex={index} />
@@ -85,7 +85,7 @@ const OtherArticlesRow: React.FC<{
   rowIndex: number;
 }> = ({ blogs, rowIndex }) => {
   return (
-    <div className="other-articles-row">
+    <div className="other-articles-row row">
       {blogs.map((blog, index) => (
         <OtherArticleTile {...blog} id={`article-${rowIndex}-${index}`} />
       ))}
@@ -101,7 +101,7 @@ const OtherArticleTile: React.FC<IBlogProps & { id: string }> = ({
   id
 }) => {
   return (
-    <div className="other-article-tile">
+    <div className="other-article-tile column">
       <img
         className="other-article-tile-image"
         src="https://via.placeholder.com/398x260.png?text=Placeholder+for+Image"
@@ -117,9 +117,9 @@ const BlogOverview: React.FC = () => {
   return (
     <>
       <NavBar fixed={false} />
-      <div className="blog-overview">
+      <div className="column-center">
         <BlogOverviewHeader />
-        <div className="articles">
+        <div className="articles column">
           <FeaturedArticle
             author="Carola S."
             time={7}

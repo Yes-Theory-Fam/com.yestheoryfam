@@ -1,28 +1,84 @@
+@use 'common';
+
 html {
-    scrollbar-width: none;
+  scrollbar-width: none;
 }
 
-body, p, div {
-    font-family: 'Roboto', sans-serif;
-    -ms-overflow-style: none;
+body,
+p,
+div {
+  font-family: "Roboto", sans-serif;
+  -ms-overflow-style: none;
 }
 
-body::-webkit-scrollbar, p::-webkit-scrollbar, div::-webkit-scrollbar {
-    display: none;
+body::-webkit-scrollbar,
+p::-webkit-scrollbar,
+div::-webkit-scrollbar {
+  display: none;
 }
 
 body {
-    min-width: 100%;
-    min-height: 100vh;
-    height: 100%;
-    max-width: 780px;
+  min-width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  max-width: 780px;
 }
 
 #example {
-    height: 100%;
+  height: 100%;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  border-radius: 20px;
+}
+
+.page-header {
+  font-size: 100px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.inline-blue {
+  display: inline;
+  color: common.$yesTheoryBlue;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.row-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+
+  &-center {
+    @extend .column;
+    align-items: center;
+  }
+}
+
+.button {
+  @extend .centered-content;
+  background-color: white;
+  border: common.$yesTheoryBlue 1px solid;
+  border-radius: 27px;
+
+  color: common.$yesTheoryBlue;
+  font-size: 16px;
+
+  height: 53px;
+  width: 260px;
+
+  text-decoration: none;
 }

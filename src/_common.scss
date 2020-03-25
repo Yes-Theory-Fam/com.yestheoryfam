@@ -1,2 +1,8 @@
 $yesTheoryBlue: rgb(1, 102, 255);
 $backgroundColor: $yesTheoryBlue;
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

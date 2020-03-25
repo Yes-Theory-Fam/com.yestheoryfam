@@ -9,7 +9,7 @@ import Footer from "../../components/Footer/Footer";
 
 const Content: React.FC = () => {
   return (
-    <div className="home-entries">
+    <div className="home-entries column-center">
       <HomeEntry
         headerBlackText="Discover"
         headerBlueText="empowering stories"
@@ -63,13 +63,13 @@ const Home: React.FC = () => {
           <img src={cloudBig} className="cloud big-back" />
         </div>
         <div className="container mountain" />
-        <div className="container content">
+        <div className="container content column">
           <div className="clouds-front">
             <img src={cloudBot} className="cloud bot-front" />
             <img src={cloudBot} className="cloud bot-front" />
             <img src={cloudBig} className="cloud big-front" />
             <img src={cloudBig} className="cloud big-front" />
-            <div className="scroll-for-more">
+            <div className="scroll-for-more column-center">
               SCROLL FOR MORE
               <div className="expand-container">
                 <ExpandForMore />
