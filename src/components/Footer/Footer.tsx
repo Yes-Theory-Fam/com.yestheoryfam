@@ -6,11 +6,9 @@ import { Link } from "react-router-dom";
 
 const Footer: React.FC<{}> = () => {
   return (
-    <div className="footer">
+    <div className="footer column-center">
       <Logo />
-      <div
-        className="links"
-      >
+      <div className="links row">
         <Link to="/">Discord</Link>
         <Link to="/">Contact</Link>
         <Link to="/">Press</Link>
