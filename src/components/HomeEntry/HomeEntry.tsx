@@ -40,21 +40,24 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({
           justifyContent: "space-between"
         }}
       >
-    <div className={`entry ${imageSide === "left" ? "row" : "row-reverse"}`}>
-      <img src="https://via.placeholder.com/674.png?text=Placeholder+for+Image" />
-      <div className="text-content">
-        <EntryHeader
-          headerBlackText={headerBlackText}
-          headerBlueText={headerBlueText}
-        />
-        <div className="summary">{children}</div>
-        <Link to="/" className="read-more">
-          READ MORE
+        <div className={`entry ${imageSide === "left" ? "row" : "row-reverse"}`}>
+          <img src="https://via.placeholder.com/674.png?text=Placeholder+for+Image" />
+          <div className="text-content">
+            <EntryHeader
+              headerBlackText={headerBlackText}
+              headerBlueText={headerBlueText}
+            />
+            <div className="summary">{children}</div>
+            <Link to="/" className="read-more">
+              READ MORE
         </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
+
 
 const EntryHeader: React.FC<{
   headerBlackText: string;
