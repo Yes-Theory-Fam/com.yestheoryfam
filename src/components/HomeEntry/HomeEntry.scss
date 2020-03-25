@@ -37,16 +37,16 @@
 }
 
 .entry img {
-    flex: 1;
-    border-radius: 20px;
-  }
+  flex: 1;
+  border-radius: 20px;
+}
   
-  .entry.row img {
-      box-shadow: 15px 15px 60px #0054ff40;
-  }
-  .entry.row-reverse img {
-      box-shadow: -15px 15px 60px #0054ff40;
-  }
+.entry.row img {
+    box-shadow: 15px 15px 60px #0054ff40;
+}
+.entry.row-reverse img {
+    box-shadow: -15px 15px 60px #0054ff40;
+}
 
 .row-reverse {
   flex-direction: row-reverse;
