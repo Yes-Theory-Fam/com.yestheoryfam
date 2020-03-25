@@ -35,6 +35,7 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({
   );
 };
 
+
 const EntryHeader: React.FC<{
   headerBlackText: string;
   headerBlueText: string;
