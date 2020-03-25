@@ -66,7 +66,10 @@ module.exports = {
             },
             {
                 test: /\.png$/,
-                loader: 'url-loader'
+                loader: 'url-loader',
+                options: {
+                    limit: 8192,
+                }
             }
         ]
     },

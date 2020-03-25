@@ -16,53 +16,15 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({
   children
 }) => {
   return (
-    <div
-      style={{
-        height: 674,
-        width: "80%",
-        display: "flex",
-        flexDirection: imageSide === "left" ? "row" : "row-reverse",
-        justifyContent: "space-between",
-        alignItems: "center"
-      }}
-    >
-      <img
-        style={{ flex: 1 }}
-        src="https://via.placeholder.com/674.png?text=Placeholder+for+Image"
-      />
-      <div
-        style={{
-          height: "70%",
-          marginInlineStart: 35,
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between"
-        }}
-      >
+    <div className={`entry ${imageSide === "left" ? "row" : "row-reverse"}`}>
+      <img src="https://via.placeholder.com/674.png?text=Placeholder+for+Image" />
+      <div className="text-content">
         <EntryHeader
           headerBlackText={headerBlackText}
           headerBlueText={headerBlueText}
         />
-        <div style={{ fontSize: 16, color: "black", width: "70%" }}>{children}</div>
-        <Link
-          to="/"
-          style={{
-            backgroundColor: "white",
-            borderColor: "blue",
-            borderRadius: 27,
-            borderStyle: "solid",
-            borderWidth: 2,
-            color: "blue",
-            fontSize: 16,
-            height: 53,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textDecoration: "none",
-            width: 297
-          }}
-        >
+        <div className="summary">{children}</div>
+        <Link to="/" className="read-more">
           READ MORE
         </Link>
       </div>
@@ -77,14 +39,7 @@ const EntryHeader: React.FC<{
   return (
     <div className="header">
       {headerBlackText + " "}
-      <div
-        style={{
-          display: "inline",
-          color: "blue"
-        }}
-      >
-        {headerBlueText}
-      </div>
+      <div className="blue-header">{headerBlueText}</div>
     </div>
   );
 };

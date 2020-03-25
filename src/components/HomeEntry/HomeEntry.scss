@@ -1,6 +1,72 @@
 @use '../../common';
 
 .header {
-    font-size: 64px;
-    font-weight: bold;
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.blue-header {
+    display: inline;
+    color: common.$yesTheoryBlue;
+}
+
+.read-more {
+  background-color: white;
+  border-color: common.$yesTheoryBlue;
+  border-radius: 27px;
+  border-style: solid;
+  border-width: 1px;
+  color: common.$yesTheoryBlue;
+  font-size: 16px;
+  height: 53px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  width: 260px;
+}
+
+.entry {
+  height: 674px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
+
+.entry img {
+    flex: 1;
+    border-radius: 20px;
+  }
+  
+  .entry.row img {
+      box-shadow: 15px 15px 60px #0054ff40;
+  }
+  .entry.row-reverse img {
+      box-shadow: -15px 15px 60px #0054ff40;
+  }
+
+.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.text-content {
+  height: 70%;
+  margin-inline-start: 35px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.summary {
+  font-size: 16px;
+  color: black;
+  width: 70%;
 }

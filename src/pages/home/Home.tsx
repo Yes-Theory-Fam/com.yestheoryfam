@@ -5,10 +5,11 @@ import cloudBot from "../../assets/cloudBot.png";
 import NavBar from "../../components/NavBar/NavBar";
 import ExpandForMore from "../../assets/expand-for-more-yt-blue.svg";
 import HomeEntry from "../../components/HomeEntry/HomeEntry";
+import Footer from "../../components/Footer/Footer";
 
 const Content: React.FC = () => {
   return (
-    <div style={{ zIndex: 500, width: "100%", background: "white", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly" }}>
+    <div className="home-entries">
       <HomeEntry
         headerBlackText="Discover"
         headerBlueText="empowering stories"
@@ -18,18 +19,34 @@ const Content: React.FC = () => {
           We believe in authentic, fulfilling and life changing experiences.
           Therefore, <b>we want to share stories that matter</b> with the world
           as motivational examples of what can be achieved.
-        </p><br />
+        </p>
+        <br />
         <p>
           Read about the fulfilling experiences other YesFam members had, or
           join and share your own with the world.
         </p>
       </HomeEntry>
       <HomeEntry
-      headerBlackText="Find closest"
-      headerBlueText="meetups"
-      imageSide="right">
+        headerBlackText="Find closest"
+        headerBlueText="meetups"
+        imageSide="right"
+      >
         <p>
-          Wondering how to get involved in this amazing community? We are organising amazing events in many different countries. These events are called <b>FiYESta</b>. Click the button below to find out when the next even will be happening.
+          Wondering how to get involved in this amazing community? We are
+          organising amazing events in many different countries. These events
+          are called <b>FiYESta</b>. Click the button below to find out when the
+          next even will be happening.
+        </p>
+      </HomeEntry>
+      <HomeEntry
+        headerBlackText="Share your experience on the"
+        headerBlueText="photowall"
+        imageSide="left"
+      >
+        <p>
+          Become a part of the story by sharing your photographs from the last
+          event on our photowall. The more people can see it, the more people
+          will get involved the next time. Make the FOMO be real!
         </p>
       </HomeEntry>
     </div>
@@ -60,6 +77,7 @@ const Home: React.FC = () => {
             </div>
           </div>
           <Content />
+          <Footer />
         </div>
       </div>
     </>

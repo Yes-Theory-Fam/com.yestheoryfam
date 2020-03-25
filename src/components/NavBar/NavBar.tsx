@@ -2,13 +2,10 @@ import * as React from 'react';
 import './NavBar.scss';
 import DiscordLogo from "../../assets/Discord-Logo-White.svg";
 import { NavLink, Link } from 'react-router-dom';
+import Logo from '../Logo/Logo';
 
 const isLoggedIn = false;
 const showLoginButton = false;
-
-const Logo: React.FC = () => {
-    return <Link to="/" id="nav-bar-logo">YESTHEORY<b>FAM</b></Link>
-}
 
 const DiscordLoginButton: React.FC = () => {
     const LogoContainer = () => <div className="discord-logo"><DiscordLogo /></div>;
