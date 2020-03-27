@@ -1,0 +1,56 @@
+@use '../../common';
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap");
+
+.meetups-search {
+  border: none;
+  border-bottom: 1px solid common.$yesTheoryBlue;
+  height: 30px;
+  width: 30%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 7px;
+  font-size: 16px;
+}
+
+.icon-constraint {
+  height: 18px;
+  width: 18px;
+  display: inline-block;
+  padding-right: 9px;
+}
+
+.meetups-heading {
+  padding-bottom: 190px;
+}
+
+.meetups-list {
+  width: 75%;
+  padding-top: 135px;
+}
+
+.meetups-row {
+  height: 475px;
+  padding-bottom: 50px;
+  justify-content: space-between;
+}
+
+.meetups-tile {
+  height: 100%;
+  width: 31%;
+  justify-content: space-between;
+}
+
+.meetups-tile-image {
+  width: 100%;
+  height: auto;
+}
+
+.meetups-tile-title {
+  font-size: 25px;
+  font-weight: 500;
+  color: common.$yesTheoryBlue;
+}
+
+.meetups {
+  padding-top: 200px;
+}
