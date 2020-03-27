@@ -15,6 +15,7 @@ import DiscordAuthenticationRequest from "./components/DiscordAuthenticationRequ
 import DiscordAuthenticationCallback from "./components/DiscordAuthenticationCallback/DiscordAuthenticationCallback";
 import Home from "./pages/home/Home";
 import BlogOverview from "./pages/BlogOverview/BlogOverview";
+import Meetups from "./pages/meetups/Meetups";
 
 ReactDOM.render(
   <Router>
@@ -30,6 +31,9 @@ ReactDOM.render(
       </Route>
       <Route path="/blog">
         <BlogOverview />
+      </Route>
+      <Route path="/meetups">
+        <Meetups />
       </Route>
       <Redirect path="/" to="/home" />
     </Switch>
