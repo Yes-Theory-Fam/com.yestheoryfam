@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/jamie-legg/com.yestheoryfam#readme",
   "dependencies": {
+    "date-fns": "^2.11.1",
     "react": "^16.12.0",
     "react-clamp-lines": "^3.0.2",
     "react-dom": "^16.12.0",
