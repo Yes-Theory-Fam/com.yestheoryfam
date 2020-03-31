@@ -56,26 +56,27 @@ const MeetupList: React.FC<{ meetups: Array<IMeetupProps> }> = ({
 const MeetupRow: React.FC<{ meetups: Array<IMeetupProps> }> = ({ meetups }) => {
   return (
     <div className="meetups-row row">
-      {meetups.map(meetup => (
-        <MeetupTile {...meetup} />
+      {meetups.map((meetup, index) => (
+        <MeetupTile {...meetup} last={index === meetups.length - 1}/>
       ))}
     </div>
   );
 };
 
-const MeetupTile: React.FC<IMeetupProps> = ({
+const MeetupTile: React.FC<IMeetupProps & {last: boolean}> = ({
   title,
   description,
   dateStart,
   dateEnd,
-  limit
+  limit,
+  last
 }) => {
   const start = new Date(dateStart);
   const end = new Date(dateEnd);
   const dateFormat = "do' of 'LLLL";
 
   return (
-    <div className="meetups-tile column">
+    <div className={`meetups-tile${last ? "-last" : ""} column`}>
       <img
         className="meetups-tile-image"
         src={`https://picsum.photos/398/260?a=${title}`}
