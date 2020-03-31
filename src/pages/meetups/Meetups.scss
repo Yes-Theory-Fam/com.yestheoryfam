@@ -1,15 +1,25 @@
 @use '../../common';
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap");
 
+.meetups-search-container {
+  width: 100%;
+}
+
+.meetups-search:focus {
+  border-bottom: 1px solid common.$yesTheoryBlue;
+}
+
 .meetups-search {
   border: none;
-  border-bottom: 1px solid common.$yesTheoryBlue;
+  border-bottom: 1px solid #8C8C8C;
   height: 30px;
   width: 30%;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 7px;
   font-size: 16px;
+  position: relative;
+  left: 10px;
 }
 
 .meetups-heading {
@@ -54,6 +64,11 @@
   padding-top: 200px;
 }
 
+.search-bar-icon {
+  position: relative;
+  right: 10px;
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -62,3 +77,7 @@
   padding-right: 5px;
 }
 
+.meetups-no-content {
+  height: 150px;
+  color: #707070;
+}

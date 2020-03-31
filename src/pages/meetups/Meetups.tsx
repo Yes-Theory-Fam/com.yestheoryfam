@@ -1,5 +1,5 @@
 import * as React from "react";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
@@ -9,7 +9,7 @@ import {
   IoMdSearch,
   IoMdClose,
   IoIosPeople,
-  IoMdCalendar,
+  IoMdCalendar
 } from "react-icons/io";
 
 import "./Meetups.scss";
@@ -32,13 +32,47 @@ const Header: React.FC = () => {
   );
 };
 
-const SearchBar: React.FC = () => {
+const SearchBar: React.FC<{
+  setSearch: (newSearch: string) => void;
+  hasInput: boolean;
+}> = ({ setSearch, hasInput }) => {
+  const searchBar = React.useRef<HTMLInputElement | null>(null);
+
+  const [hasFocus, setFocus] = React.useState(false);
+
+  const clearSearch = () => {
+    if (searchBar.current) {
+      searchBar.current.value = "";
+      setSearch("");
+    }
+  };
+
+  const iconColor = hasFocus ? YES_THEORY_BLUE : "#8C8C8C";
+  const iconProps = { color: iconColor, size: 20 };
+
   return (
-    <input
-      className="meetups-search"
-      type="text"
-      placeholder="Discover events near you..."
-    />
+    <div className="centered-content meetups-search-container">
+      <input
+        ref={searchBar}
+        onBlur={() => setFocus(false)}
+        onFocus={() => setFocus(true)}
+        onInput={ev => setSearch((ev.target as HTMLInputElement).value)}
+        className="meetups-search"
+        type="text"
+        placeholder="Discover events near you..."
+      />
+      <div className={"search-bar-icon"}>
+        {hasInput ? (
+          <IoMdClose
+            onClick={clearSearch}
+            className="pointer search-bar-icon"
+            {...iconProps}
+          />
+        ) : (
+          <IoMdSearch className="search-bar-icon" {...iconProps} />
+        )}
+      </div>
+    </div>
   );
 };
 
@@ -59,13 +93,13 @@ const MeetupRow: React.FC<{ meetups: Array<IMeetupProps> }> = ({ meetups }) => {
   return (
     <div className="meetups-row row">
       {meetups.map((meetup, index) => (
-        <MeetupTile {...meetup} last={index === meetups.length - 1}/>
+        <MeetupTile {...meetup} last={index === meetups.length - 1} />
       ))}
     </div>
   );
 };
 
-const MeetupTile: React.FC<IMeetupProps & {last: boolean}> = ({
+const MeetupTile: React.FC<IMeetupProps & { last: boolean }> = ({
   title,
   description,
   dateStart,
@@ -100,13 +134,27 @@ const MeetupTile: React.FC<IMeetupProps & {last: boolean}> = ({
 };
 
 const Meetups: React.FC = () => {
+  const [search, setSearch] = React.useState("");
+  const filter = search.toLowerCase();
+  const filteredMeetups = meetups.filter(
+    ({ title, description }) =>
+      title.toLowerCase().includes(filter) ||
+      description.toLowerCase().includes(filter)
+  );
+
   return (
     <>
       <NavBar fixed={false} />
       <div className="meetups column-center">
         <Header />
-        <SearchBar />
-        <MeetupList meetups={meetups} />
+        <SearchBar setSearch={setSearch} hasInput={search !== ""} />
+        {filteredMeetups.length > 0 ? (
+          <MeetupList meetups={filteredMeetups} />
+        ) : (
+          <div className="centered-content meetups-no-content">
+            No meetups found
+          </div>
+        )}
       </div>
       <Footer />
     </>
