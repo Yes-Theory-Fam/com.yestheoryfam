@@ -3,7 +3,8 @@ import "./Home.scss";
 import cloudBig from "../../assets/cloudBig.png";
 import cloudBot from "../../assets/cloudBot.png";
 import NavBar from "../../components/NavBar/NavBar";
-import ExpandForMore from "../../assets/expand-for-more-yt-blue.svg";
+import { IoIosArrowDown } from "react-icons/io";
+
 import HomeEntry from "../../components/HomeEntry/HomeEntry";
 import Footer from "../../components/Footer/Footer";
 
@@ -72,7 +73,7 @@ const Home: React.FC = () => {
             <div className="scroll-for-more column-center">
               SCROLL FOR MORE
               <div className="expand-container">
-                <ExpandForMore />
+                <IoIosArrowDown size={20} />
               </div>
             </div>
           </div>

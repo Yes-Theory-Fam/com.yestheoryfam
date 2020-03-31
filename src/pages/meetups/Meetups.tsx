@@ -5,10 +5,16 @@ import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import { arrayToChunks } from "../../utils";
 
-import PeopleIcon from "../../assets/people-icon-blue.svg";
-import CalendarIcon from "../../assets/breeze-icons-calendar.svg";
+import {
+  IoMdSearch,
+  IoMdClose,
+  IoIosPeople,
+  IoMdCalendar,
+} from "react-icons/io";
 
 import "./Meetups.scss";
+
+const YES_THEORY_BLUE = "rgb(1, 102, 255)";
 
 interface IMeetupProps {
   title: string;
@@ -17,10 +23,6 @@ interface IMeetupProps {
   dateEnd: number;
   limit: number;
 }
-
-const IconConstraint: React.FC = ({ children }) => {
-  return <div className="icon-constraint">{children}</div>;
-};
 
 const Header: React.FC = () => {
   return (
@@ -84,18 +86,14 @@ const MeetupTile: React.FC<IMeetupProps & {last: boolean}> = ({
       <div className="meetups-tile-title">{title}</div>
       {description}
       <div className="row">
-        <IconConstraint>
-          <CalendarIcon />
-        </IconConstraint>
+        <IoMdCalendar size={18} color={YES_THEORY_BLUE} className="info-icon" />
         {`${format(start, dateFormat)} - ${format(end, dateFormat)}`}
         {/*TODO: Cases like 1th 2th and 3th */}
       </div>
 
       <div className="row">
-        <IconConstraint>
-          <PeopleIcon />
-        </IconConstraint>
-        {` ${limit} limit`}
+        <IoIosPeople size={18} color={YES_THEORY_BLUE} className="info-icon" />
+        {`${limit} limit`}
       </div>
     </div>
   );
