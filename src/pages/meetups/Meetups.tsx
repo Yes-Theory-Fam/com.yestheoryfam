@@ -1,4 +1,5 @@
 import * as React from "react";
+import { format } from 'date-fns';
 
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
@@ -69,16 +70,9 @@ const MeetupTile: React.FC<IMeetupProps> = ({
   dateEnd,
   limit
 }) => {
-  const format = new Intl.DateTimeFormat("en", {
-    month: "long",
-    day: "numeric"
-  });
-  const [{ value: startMonth }, , { value: startDay }] = format.formatToParts(
-    dateStart
-  );
-  const [{ value: endMonth }, , { value: endDay }] = format.formatToParts(
-    dateEnd
-  );
+  const start = new Date(dateStart);
+  const end = new Date(dateEnd);
+  const dateFormat = "do' of 'LLLL";
 
   return (
     <div className="meetups-tile column">
@@ -88,16 +82,14 @@ const MeetupTile: React.FC<IMeetupProps> = ({
       />
       <div className="meetups-tile-title">{title}</div>
       {description}
-      {/* Row dates*/}
       <div className="row">
         <IconConstraint>
           <CalendarIcon />
         </IconConstraint>
-        {`${startDay}th of ${startMonth} - ${endDay}th of ${endMonth}`}
+        {`${format(start, dateFormat)} - ${format(end, dateFormat)}`}
         {/*TODO: Cases like 1th 2th and 3th */}
       </div>
 
-      {/* Row limit*/}
       <div className="row">
         <IconConstraint>
           <PeopleIcon />
