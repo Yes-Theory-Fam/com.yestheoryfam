@@ -87,21 +87,22 @@ const OtherArticlesRow: React.FC<{
   return (
     <div className="other-articles-row row">
       {blogs.map((blog, index) => (
-        <OtherArticleTile {...blog} id={`article-${rowIndex}-${index}`} />
+        <OtherArticleTile {...blog} id={`article-${rowIndex}-${index}`} last={index === blogs.length - 1}/>
       ))}
     </div>
   );
 };
 
-const OtherArticleTile: React.FC<IBlogProps & { id: string }> = ({
+const OtherArticleTile: React.FC<IBlogProps & { id: string, last: boolean }> = ({
   author,
   time,
   title,
   content,
-  id
+  id,
+  last,
 }) => {
   return (
-    <div className="other-article-tile column">
+    <div className={`other-article-tile${last ? "-last" : ""} column`}>
       <img
         className="other-article-tile-image"
         src="https://via.placeholder.com/398x260.png?text=Placeholder+for+Image"

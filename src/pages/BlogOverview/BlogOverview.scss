@@ -57,13 +57,20 @@
 .other-articles-row {
   height: 475px;
   padding-bottom: 50px;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .other-article-tile {
   height: 100%;
   width: 31%;
   justify-content: space-between;
+  margin-right: 3.5%;
+
+  &-last {
+    @extend .other-article-tile;
+
+    margin-right: 0;
+  }
 }
 
 .other-article-tile-image {
