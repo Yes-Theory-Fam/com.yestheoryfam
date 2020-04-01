@@ -4,11 +4,11 @@ import layouts from "../../components/PhotoWallLayouts";
 import { randomInt } from "../../utils";
 
 import "./PhotoWall.scss";
-import { Orientation, PhotoProps } from '../../components/PhotoWallLayouts/PhotoWallLayoutTypes';
+import { PhotoProps } from "../../components/PhotoWallLayouts/PhotoWallLayoutTypes";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 
-import ExpandForMore from '../../assets/expand-for-more-yt-blue.svg';
+import ExpandForMore from "../../assets/expand-for-more-yt-blue.svg";
 
 const InitialContent: React.FC<{}> = () => {
   return (
@@ -47,11 +47,11 @@ const PhotoWall: React.FC<{}> = () => {
         <div className="column-center photo-wall-top">
           <InitialContent />
           <div className="scroll-for-more column-center">
-              SEE ALL PHOTOS
-              <div className="expand-container">
-                <ExpandForMore />
-              </div>
+            SEE ALL PHOTOS
+            <div className="expand-container">
+              <ExpandForMore />
             </div>
+          </div>
         </div>
 
         <div className="photo-wall-list">
@@ -103,7 +103,10 @@ const getNextBuiltLayout = async (
   // Skip checking orientation when all images are squared anyway.
   // We also fill up the orientation key with value square because it doesn't matter but is required for the signature.
   if (horizontalImages === 0 && verticalImages === 0) {
-    const mockProps: Array<PhotoProps> = pickedImages.map(image => ({orientation: "square", src: image}));
+    const mockProps: Array<PhotoProps> = pickedImages.map(image => ({
+      orientation: "square",
+      src: image
+    }));
     return <LayoutComponent images={mockProps} />;
   }
 
@@ -114,11 +117,11 @@ const getNextBuiltLayout = async (
   );
 
   const pickedHorizontal = photoProps.filter(
-    ({orientation}) => orientation === "horizontal"
+    ({ orientation }) => orientation === "horizontal"
   ).length;
 
   const pickedVertical = photoProps.filter(
-    ({orientation}) => orientation === "vertical"
+    ({ orientation }) => orientation === "vertical"
   ).length;
 
   if (
@@ -145,9 +148,14 @@ const getOrientation = (url: string): Promise<PhotoProps> => {
         const height = this.naturalHeight;
         const width = this.naturalWidth;
 
-        if (height === width) return resolve({src: url, orientation: "square"});
-        if (height > width) return resolve({src: url, orientation: "vertical"});
-        if (height < width) return resolve({src: url, orientation: "horizontal"});
+        if (height === width)
+          return resolve({ src: url, orientation: "square" });
+        if (height > width)
+          return resolve({ src: url, orientation: "vertical" });
+        if (height < width)
+          return resolve({ src: url, orientation: "horizontal" });
+
+        console.log(`height: ${height} - width: ${width} - url: ${url}`);
       });
 
       img.src = url;
