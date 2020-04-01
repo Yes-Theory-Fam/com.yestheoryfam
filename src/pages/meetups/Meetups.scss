@@ -1,67 +1,72 @@
 @use '../../common';
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap");
 
-.meetups-search-container {
-  width: 100%;
-}
-
-.meetups-search:focus {
-  border-bottom: 1px solid common.$yesTheoryBlue;
-}
-
-.meetups-search {
-  border: none;
-  border-bottom: 1px solid #8C8C8C;
-  height: 30px;
-  width: 30%;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 7px;
-  font-size: 16px;
-  position: relative;
-  left: 10px;
-}
-
-.meetups-heading {
-  padding-bottom: 190px;
-}
-
-.meetups-list {
-  width: 75%;
-  padding-top: 135px;
-}
-
-.meetups-row {
-  height: 475px;
-  padding-bottom: 50px;
-  justify-content: flex-start;
-}
-
-.meetups-tile {
-  height: 100%;
-  width: 31%;
-  justify-content: space-between;
-  margin-right: 3.5%;
-
-  &-last {
-    @extend .meetups-tile;
-    margin-right: 0;
-  }
-}
-
-.meetups-tile-image {
-  width: 100%;
-  height: auto;
-}
-
-.meetups-tile-title {
-  font-size: 25px;
-  font-weight: 500;
-  color: common.$yesTheoryBlue;
-}
-
 .meetups {
   padding-top: 200px;
+
+  &-search {
+    border: none;
+    border-bottom: 1px solid #8c8c8c;
+    height: 30px;
+    width: 30%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 7px;
+    font-size: 16px;
+    position: relative;
+    left: 10px;
+
+    &:focus {
+      border-bottom: 1px solid common.$yesTheoryBlue;
+    }
+
+    &-container {
+      width: 100%;
+    }
+  }
+
+  &-heading {
+    padding-bottom: 190px;
+  }
+
+  &-list {
+    width: 75%;
+    padding-top: 135px;
+  }
+
+  &-row {
+    height: 475px;
+    padding-bottom: 50px;
+    justify-content: flex-start;
+  }
+
+  &-tile {
+    height: 100%;
+    width: 31%;
+    justify-content: space-between;
+    margin-right: 3.5%;
+
+    &-last {
+      @extend .meetups-tile;
+      margin-right: 0;
+    }
+
+    &-image {
+      width: 100%;
+      height: auto;
+    }
+
+    &-title {
+      font-size: 25px;
+      font-weight: 500;
+      color: common.$yesTheoryBlue;
+    }
+  }
+
+  &-no-content {
+    height: 150px;
+    color: #707070;
+  }
 }
 
 .search-bar-icon {
@@ -76,8 +81,4 @@
 .info-icon {
   padding-right: 5px;
 }
-
-.meetups-no-content {
-  height: 150px;
-  color: #707070;
-}
+ 
