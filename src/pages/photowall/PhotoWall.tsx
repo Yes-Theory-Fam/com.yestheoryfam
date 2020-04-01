@@ -4,6 +4,8 @@ import layouts from "../../components/PhotoWallLayouts";
 import { randomInt } from "../../utils";
 
 import "./PhotoWall.scss";
+import "react-image-lightbox/style.css";
+
 import { PhotoProps } from "../../components/PhotoWallLayouts/PhotoWallLayoutTypes";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
