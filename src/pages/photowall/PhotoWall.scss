@@ -46,10 +46,6 @@
   justify-content: space-between;
 }
 
-.photo-wall-list {
-  width: 75%;
-}
-
 .scroll-for-more {
   position: absolute;
   width: 100vw;
@@ -58,4 +54,26 @@
   color: common.$yesTheoryBlue;
   z-index: 500;
   font-size: 14px;
+}
+
+.photo-wall {
+  &-top {
+    height: 100vh;
+    justify-content: space-evenly;
+
+    &-content {
+      height: 360px;
+      justify-content: space-between;
+    }
+  
+    &-text {
+      width: 40%;
+      text-align: center;
+    }
+  }
+
+  &-list {
+    width: 75%;
+    padding-top: 173px;
+  }
 }

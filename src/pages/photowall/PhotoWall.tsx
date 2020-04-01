@@ -12,14 +12,11 @@ import ExpandForMore from '../../assets/expand-for-more-yt-blue.svg';
 
 const InitialContent: React.FC<{}> = () => {
   return (
-    <div
-      className="column-center"
-      style={{ height: 360, justifyContent: "space-between" }}
-    >
+    <div className="column-center photo-wall-top-content">
       <div className="page-header">
         PHOTO<div className="inline-blue">WALL</div>
       </div>
-      <div style={{ width: "40%", textAlign: "center" }}>
+      <div className="photo-wall-top-text">
         Become a part of the story by sharing your photographs from the last
         event on our photowall. The more people can see it, the more people will
         get involved next time. Make the FOMO be real!
@@ -47,7 +44,7 @@ const PhotoWall: React.FC<{}> = () => {
     <>
       <NavBar fixed />
       <div className="column-center">
-        <div className="column-center" style={{height: "100vh", justifyContent: "space-evenly"}}>
+        <div className="column-center photo-wall-top">
           <InitialContent />
           <div className="scroll-for-more column-center">
               SEE ALL PHOTOS
@@ -57,7 +54,6 @@ const PhotoWall: React.FC<{}> = () => {
             </div>
         </div>
 
-        <div style={{ height: 150, backgroundColor: "white" }} />
         <div className="photo-wall-list">
           <div className="column">{builtLayouts}</div>
         </div>
