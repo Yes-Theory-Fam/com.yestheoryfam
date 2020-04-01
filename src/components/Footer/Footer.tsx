@@ -8,13 +8,13 @@ const Footer: React.FC<{}> = () => {
   return (
     <div className="footer column-center">
       <Logo />
-      <div className="links row">
+      <div className="footer-links row">
         <Link to="/">Discord</Link>
         <Link to="/">Contact</Link>
         <Link to="/">Press</Link>
         <Link to="/">Too Easy</Link>
       </div>
-      <div className="copyright">
+      <div className="footer-copyright">
         &#169; {new Date().getFullYear()} YESTHEORYFAM
       </div>
     </div>

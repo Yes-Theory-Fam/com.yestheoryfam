@@ -56,9 +56,9 @@ const NavBar: React.FC<{ fixed: boolean }> = ({ fixed }) => {
   );
 
   return (
-    <div id="nav-bar" className={`row ${fixed ? "fixed" : ""}`}>
+    <div className={`nav-bar row ${fixed ? "fixed" : ""}`}>
       <Logo />
-      <div id="nav-links" className="row">
+      <div className="row nav-bar-links">
         {pages.map(pageToNavLink)}
         {showLoginButton && <DiscordLoginButton />}
         {isLoggedIn && <CircularAvatar />}
