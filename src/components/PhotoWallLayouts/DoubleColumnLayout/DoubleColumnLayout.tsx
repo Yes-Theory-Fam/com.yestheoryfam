@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PhotoWrapper from '../PhotoWrapper/PhotoWrapper';
-import { PhotoWallLayoutProps, LayoutProps, Orientation } from '../PhotoWallLayoutTypes';
+import { PhotoWallLayoutProps, LayoutProps } from '../PhotoWallLayoutTypes';
 import {splitImages} from "../../../utils";
 
 const DoubleColumnLayout: React.FC<LayoutProps> = ({images}) => {
