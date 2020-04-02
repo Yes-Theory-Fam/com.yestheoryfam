@@ -9,7 +9,7 @@ interface LayoutProps {
 }
 
 interface PhotoProps {
-    src: string;
+    src: string | undefined;
     orientation: Orientation;
 }
 

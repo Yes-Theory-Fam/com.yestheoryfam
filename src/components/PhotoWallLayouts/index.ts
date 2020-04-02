@@ -14,4 +14,4 @@ const layouts: Array<{ LayoutComponent: React.FC<LayoutProps>, props: PhotoWallL
 
 export default layouts;
 
-export { PhotoWallLayoutProps };
+export { PhotoWallLayoutProps, OneFourLayout };

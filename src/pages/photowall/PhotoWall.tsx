@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import layouts from "../../components/PhotoWallLayouts";
+import layouts, { OneFourLayout } from "../../components/PhotoWallLayouts";
 import { randomInt } from "../../utils";
 
 import "./PhotoWall.scss";
@@ -75,13 +75,12 @@ const getNextBuiltLayout = async (
   console.log("Filtered layouts: ");
   console.log(availableLayouts);
 
+  // Using that layout makes it easy to get a proper end to the list based on how the layout is structured
+  // It also doesn't cause chaos or strange alignments because all of the images end up roughly square in the final layout anyway
   if (availableLayouts.length === 0) {
-    console.log(
-      "Houston, we have a problem! (clearing the array to avoid infinite loop)"
-    );
+    const restLayout = <OneFourLayout images={images.map(src => ({src, orientation: "square"}))} />;
     images.length = 0;
-
-    return;
+    return restLayout;
   }
 
   const choice = randomInt(0, availableLayouts.length);
@@ -162,14 +161,14 @@ const getOrientation = (url: string): Promise<PhotoProps> => {
 
       img.src = url;
 
-      setTimeout(() => reject(`Timeout loading image with URL ${url}!`), 2000);
+      // setTimeout(() => reject(`Timeout loading image with URL ${url}!`), 2000);
     }
   );
 
   return orientationPromise;
 };
 
-const randomImages = Array(40)
+const randomImages = Array(27)
   .fill(undefined)
   .map(
     () => `https://picsum.photos/${randomInt(260, 900)}/${randomInt(260, 900)}`
