@@ -78,7 +78,11 @@ const getNextBuiltLayout = async (
   // Using that layout makes it easy to get a proper end to the list based on how the layout is structured
   // It also doesn't cause chaos or strange alignments because all of the images end up roughly square in the final layout anyway
   if (availableLayouts.length === 0) {
-    const restLayout = <OneFourLayout images={images.map(src => ({src, orientation: "square"}))} />;
+    const restLayout = (
+      <OneFourLayout
+        images={images.map(src => ({ src, orientation: "square" }))}
+      />
+    );
     images.length = 0;
     return restLayout;
   }
@@ -132,10 +136,20 @@ const getNextBuiltLayout = async (
     return <LayoutComponent images={photoProps} />;
   }
 
-  //Lazy ass way to put the images back to where they came from in case the layout did not fit
-  images.unshift(...pickedImages);
+  const availableOrientationLayouts = availableLayouts
+    .filter(({ props }) => props.horizontalImages <= pickedHorizontal)
+    .filter(({ props }) => props.verticalImages <= pickedVertical);
 
-  return <></>;
+  // I don't think this should ever happen with the current set of layouts. But better be safe than sorry.
+  if (availableOrientationLayouts.length === 0) {
+    images.unshift(...pickedImages);
+    return <></>;
+  }
+
+  const orientationChoice = randomInt(0, availableOrientationLayouts.length);
+  const orientationLayout = availableOrientationLayouts[orientationChoice];
+
+  return <orientationLayout.LayoutComponent images={photoProps} />
 };
 
 // Data-use-wise I probably shouldn't just discard those loaded images.
@@ -175,9 +189,9 @@ const randomImages = Array(27)
   );
 
 // const randomImages = [
+//   "https://i.picsum.photos/id/425/431/619.jpg",
 //   "https://i.picsum.photos/id/856/697/434.jpg",
 //   "https://i.picsum.photos/id/409/393/621.jpg",
-//   "https://i.picsum.photos/id/425/431/619.jpg",
 //   "https://i.picsum.photos/id/551/806/760.jpg",
 // ];
 
