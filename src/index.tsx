@@ -17,9 +17,11 @@ import Home from "./pages/home/Home";
 import BlogOverview from "./pages/BlogOverview/BlogOverview";
 import Meetups from "./pages/meetups/Meetups";
 import MeetupDetails from "./pages/MeetupDetails/MeetupDetails";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 ReactDOM.render(
   <Router>
+    <ScrollToTop />
     <Switch>
       <Route path="/auth/discord">
         <DiscordAuthenticationRequest />
