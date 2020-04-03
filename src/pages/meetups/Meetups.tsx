@@ -14,6 +14,7 @@ import {
 } from "react-icons/io";
 
 import "./Meetups.scss";
+import { Link } from "react-router-dom";
 
 const YES_THEORY_BLUE = "rgb(1, 102, 255)";
 
@@ -92,20 +93,25 @@ const MeetupRow: React.FC<{ meetups: Array<IMeetupProps> }> = ({ meetups }) => {
   );
 };
 
-const MeetupTile: React.FC<IMeetupProps & { last: boolean }> = ({
-  title,
-  description,
-  dateStart,
-  dateEnd,
-  limit,
-  last
-}) => {
+const MeetupTile: React.FC<IMeetupProps & { last: boolean }> = (props) => {
+  const {last, children, ...meetupProps} = props;
+  const {
+    title,
+    description,
+    dateStart,
+    dateEnd,
+    limit,
+  } = meetupProps;
+
   const start = new Date(dateStart);
   const end = new Date(dateEnd);
   const dateFormat = "do' of 'LLLL";
 
   return (
-    <div className={`meetups-tile${last ? "-last" : ""} column`}>
+    <Link
+      to={{pathname: "/meetups/0", state: meetupProps}}
+      className={`meetups-tile${last ? "-last" : ""} column`}
+    >
       <img
         className="meetups-tile-image"
         src={`https://picsum.photos/398/260?a=${title}`}
@@ -122,7 +128,7 @@ const MeetupTile: React.FC<IMeetupProps & { last: boolean }> = ({
         <IoIosPeople size={18} color={YES_THEORY_BLUE} className="info-icon" />
         {`${limit} limit`}
       </div>
-    </div>
+    </Link>
   );
 };
 
