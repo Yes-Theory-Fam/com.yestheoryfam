@@ -111,7 +111,14 @@ const MeetupDetails: React.FC<RouteComponentProps<
   {},
   IMeetupProps
 >> = ({ location, match }) => {
-  const { title, description, dateStart, dateEnd, limit } = location?.state;
+  const {
+    title,
+    description,
+    dateStart,
+    dateEnd,
+    limit,
+    details
+  } = location?.state;
 
   const { id } = match.params;
   console.log(id);
@@ -127,7 +134,7 @@ const MeetupDetails: React.FC<RouteComponentProps<
           dateStart={dateStart}
           dateEnd={dateEnd}
           limit={limit}
-          details={lorem}
+          details={details}
         />
         <BackToMeetups />
       </div>
