@@ -5,6 +5,7 @@ interface IMeetupProps {
   dateEnd: number;
   limit: number;
   details: Array<string>;
+  imageSource: string;
 }
 
 export default IMeetupProps;

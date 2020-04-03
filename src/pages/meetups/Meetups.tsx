@@ -93,6 +93,12 @@ const MeetupRow: React.FC<{ meetups: Array<IMeetupProps> }> = ({ meetups }) => {
   );
 };
 
+const TileImage: React.FC<{imageSource: string}> = ({imageSource}) => {
+  return <div className="meetups-tile-image">
+    <img src={imageSource} alt="" />
+  </div>
+}
+
 const MeetupTile: React.FC<IMeetupProps & { last: boolean }> = (props) => {
   const {last, children, ...meetupProps} = props;
   const {
@@ -101,6 +107,7 @@ const MeetupTile: React.FC<IMeetupProps & { last: boolean }> = (props) => {
     dateStart,
     dateEnd,
     limit,
+    imageSource
   } = meetupProps;
 
   const start = new Date(dateStart);
@@ -112,10 +119,7 @@ const MeetupTile: React.FC<IMeetupProps & { last: boolean }> = (props) => {
       to={{pathname: "/meetups/0", state: meetupProps}}
       className={`meetups-tile${last ? "-last" : ""} column`}
     >
-      <img
-        className="meetups-tile-image"
-        src={`https://picsum.photos/398/260?a=${title}`}
-      />
+      <TileImage imageSource={imageSource} />
       <div className="meetups-tile-title">{title}</div>
       {description}
       <div className="row">
@@ -168,7 +172,8 @@ const meetups: Array<IMeetupProps> = [
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
-    details: [""]
+    details: [""],
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
@@ -177,7 +182,8 @@ const meetups: Array<IMeetupProps> = [
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
-    details: [""]
+    details: [""],
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
   },
   {
     title: "FiYESta Bali 2020",
@@ -186,7 +192,8 @@ const meetups: Array<IMeetupProps> = [
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
-    details: [""]
+    details: [""],
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
@@ -195,7 +202,8 @@ const meetups: Array<IMeetupProps> = [
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
-    details: [""]
+    details: [""],
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
   },
   {
     title: "FiYESta Croatia",
@@ -204,7 +212,8 @@ const meetups: Array<IMeetupProps> = [
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
-    details: [""]
+    details: [""],
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
@@ -213,7 +222,8 @@ const meetups: Array<IMeetupProps> = [
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
-    details: [""]
+    details: [""],
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
   },
   {
     title: "FiYESta Bali 2020",
@@ -222,16 +232,9 @@ const meetups: Array<IMeetupProps> = [
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
-    details: [""]
+    details: [""],
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
   }
-  // {
-  //   title: "FiYESta Croatia",
-  //   description:
-  //     "Four days in Zagreb with a day trip to Plitvice Lakes and lots more exploring around Croatia.",
-  //   dateStart: Date.now(),
-  //   dateEnd: Date.now(),
-  //   limit: 45
-  // },
 ];
 
 export default Meetups;

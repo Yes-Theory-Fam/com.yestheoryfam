@@ -64,12 +64,13 @@ const MoreInformation: React.FC<{
   dateEnd: number;
   limit: number;
   details: Array<string>;
-}> = ({ dateStart, dateEnd, limit, details }) => {
+  image: string;
+}> = ({ dateStart, dateEnd, limit, details, image }) => {
   const dateFormat = "do' of 'LLLL";
 
   return (
     <div className="row meetup-details-more-information">
-      <img src="https://picsum.photos/519/503/" alt="" />
+      <img src={image} alt="" />
       <div className="column text-content">
         <div className="section-header">More information</div>
         <div className="row">
@@ -117,7 +118,8 @@ const MeetupDetails: React.FC<RouteComponentProps<
     dateStart,
     dateEnd,
     limit,
-    details
+    details,
+    imageSource
   } = location?.state;
 
   const { id } = match.params;
@@ -135,6 +137,7 @@ const MeetupDetails: React.FC<RouteComponentProps<
           dateEnd={dateEnd}
           limit={limit}
           details={details}
+          image={imageSource}
         />
         <BackToMeetups />
       </div>
