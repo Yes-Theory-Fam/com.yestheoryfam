@@ -1,6 +1,6 @@
 import * as React from "react";
 import NavBar from "../../components/NavBar/NavBar";
-import steps, { lorem } from "./copy";
+import steps from "./copy";
 import Footer from "../../components/Footer/Footer";
 import IMeetupProps from "../../types/Meetups";
 
@@ -45,7 +45,7 @@ const HowToJoin: React.FC = () => {
   );
 };
 
-const HowToJoinCard: React.FC<{ stepIndex: number; content: string }> = ({
+const HowToJoinCard: React.FC<{ stepIndex: number; content: React.ReactNode }> = ({
   stepIndex,
   content
 }) => {
