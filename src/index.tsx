@@ -16,6 +16,7 @@ import DiscordAuthenticationCallback from "./components/DiscordAuthenticationCal
 import Home from "./pages/home/Home";
 import BlogOverview from "./pages/BlogOverview/BlogOverview";
 import Meetups from "./pages/meetups/Meetups";
+import MeetupDetails from "./pages/MeetupDetails/MeetupDetails";
 
 ReactDOM.render(
   <Router>
@@ -32,9 +33,17 @@ ReactDOM.render(
       <Route path="/blog">
         <BlogOverview />
       </Route>
-      <Route path="/meetups">
-        <Meetups />
-      </Route>
+      <Route
+        path="/meetups"
+        render={({ match: { url } }) => (
+          <>
+            <Route path={`${url}/:id`} component={MeetupDetails} />
+            <Route path={`${url}/`} exact>
+              <Meetups />
+            </Route>
+          </>
+        )}
+      ></Route>
       <Redirect path="/" to="/home" />
     </Switch>
   </Router>,

@@ -1,0 +1,73 @@
+@use '../../common';
+
+.meetup-details {
+  padding-top: 150px;
+  color: #474747c9;
+
+  &-description {
+    width: 27%;
+    text-align: center;
+    line-height: 25px;
+    padding: 30px 0;
+  }
+
+  &-how-to-join {
+    text-align: center;
+    width: 80%;
+
+    &-header {
+      color: common.$yesTheoryBlue;
+      font-weight: 600;
+      font-size: 24px;
+      margin-bottom: 56px;
+    }
+
+    &-card {
+      text-align: start;
+      border-radius: 20px;
+      box-shadow: 15px 15px 60px #0067ff29;
+      padding: 19px 50px;
+      margin-bottom: 70px;
+
+      color: #474747c9;
+      font-size: 16px;
+      line-height: 24px;
+
+      max-width: 450px;
+
+      &-header {
+        color: common.$yesTheoryBlue;
+        opacity: 0.79;
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &-more-information {
+    width: 80%;
+    justify-content: space-between;
+    margin-bottom: 36px;
+
+    & img {
+      flex: 1;
+      box-shadow: 15px 15px 60px #0067FF40;
+    }
+
+    & .section-header {
+      font-weight: bold;
+      font-size: 24px;
+      color: common.$yesTheoryBlue;
+    }
+
+    & .text-content {
+      margin-inline-start: 100px;
+      flex: 1;
+      justify-content: space-evenly;
+    }
+  }
+
+  &-back-button {
+    margin-bottom: 100px;
+  }
+}
