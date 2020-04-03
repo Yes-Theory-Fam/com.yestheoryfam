@@ -3,6 +3,7 @@ import { format } from "date-fns";
 
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
+import IMeetupProps from '../../types/Meetups';
 import { arrayToChunks } from "../../utils";
 
 import {
@@ -15,14 +16,6 @@ import {
 import "./Meetups.scss";
 
 const YES_THEORY_BLUE = "rgb(1, 102, 255)";
-
-interface IMeetupProps {
-  title: string;
-  description: string;
-  dateStart: number;
-  dateEnd: number;
-  limit: number;
-}
 
 const Header: React.FC = () => {
   return (
