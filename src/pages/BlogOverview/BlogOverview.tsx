@@ -69,7 +69,7 @@ const OtherArticles: React.FC<{ blogs: Array<IBlogProps> }> = ({ blogs }) => {
     <div className="column">
       <div className="blog-overview-section-header">Other articles</div>
       {arrayToChunks(blogs, 3).map((chunk, index) => (
-        <OtherArticlesRow blogs={chunk} rowIndex={index} />
+        <OtherArticlesRow blogs={chunk} rowIndex={index} key={index}/>
       ))}
     </div>
   );
@@ -82,7 +82,7 @@ const OtherArticlesRow: React.FC<{
   return (
     <div className="other-article-row row">
       {blogs.map((blog, index) => (
-        <OtherArticleTile {...blog} id={`article-${rowIndex}-${index}`} last={index === blogs.length - 1}/>
+        <OtherArticleTile {...blog} id={`article-${rowIndex}-${index}`} last={index === blogs.length - 1} key={index}/>
       ))}
     </div>
   );

@@ -38,7 +38,7 @@ const HowToJoin: React.FC = () => {
         style={{ flexWrap: "wrap", justifyContent: "space-evenly" }}
       >
         {steps.map((step, index) => (
-          <HowToJoinCard content={step} stepIndex={index + 1} />
+          <HowToJoinCard content={step} stepIndex={index + 1} key={index} />
         ))}
       </div>
     </div>
@@ -90,8 +90,8 @@ const MoreInformation: React.FC<{
           />
           {`${limit} limit`}
         </div>
-        {details.map(paragraph => (
-          <p>{paragraph}</p>
+        {details.map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
         ))}
       </div>
     </div>
