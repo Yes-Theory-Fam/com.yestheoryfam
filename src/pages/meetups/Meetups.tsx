@@ -167,7 +167,8 @@ const meetups: Array<IMeetupProps> = [
       "Four days in Zagreb with a day trip to Plitvice Lakes and lots more exploring around Croatia.",
     dateStart: Date.now(),
     dateEnd: Date.now(),
-    limit: 45
+    limit: 45,
+    details: [""]
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
@@ -175,7 +176,8 @@ const meetups: Array<IMeetupProps> = [
       "Staying in a group room of the Generator Hostel, celebrating James' birthday just like last time!",
     dateStart: Date.now(),
     dateEnd: Date.now(),
-    limit: 45
+    limit: 45,
+    details: [""]
   },
   {
     title: "FiYESta Bali 2020",
@@ -183,7 +185,8 @@ const meetups: Array<IMeetupProps> = [
       "A 10-day trip to explore Bali, Indonesia and stay in one of the exclusive villas in the Canggu area.",
     dateStart: Date.now(),
     dateEnd: Date.now(),
-    limit: 45
+    limit: 45,
+    details: [""]
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
@@ -191,7 +194,8 @@ const meetups: Array<IMeetupProps> = [
       "Staying in a group room of the Generator Hostel, celebrating James' birthday just like last time!",
     dateStart: Date.now(),
     dateEnd: Date.now(),
-    limit: 45
+    limit: 45,
+    details: [""]
   },
   {
     title: "FiYESta Croatia",
@@ -199,7 +203,8 @@ const meetups: Array<IMeetupProps> = [
       "Four days in Zagreb with a day trip to Plitvice Lakes and lots more exploring around Croatia.",
     dateStart: Date.now(),
     dateEnd: Date.now(),
-    limit: 45
+    limit: 45,
+    details: [""]
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
@@ -207,7 +212,8 @@ const meetups: Array<IMeetupProps> = [
       "Staying in a group room of the Generator Hostel, celebrating James' birthday just like last time!",
     dateStart: Date.now(),
     dateEnd: Date.now(),
-    limit: 45
+    limit: 45,
+    details: [""]
   },
   {
     title: "FiYESta Bali 2020",
@@ -215,7 +221,8 @@ const meetups: Array<IMeetupProps> = [
       "A 10-day trip to explore Bali, Indonesia and stay in one of the exclusive villas in the Canggu area.",
     dateStart: Date.now(),
     dateEnd: Date.now(),
-    limit: 45
+    limit: 45,
+    details: [""]
   }
   // {
   //   title: "FiYESta Croatia",
