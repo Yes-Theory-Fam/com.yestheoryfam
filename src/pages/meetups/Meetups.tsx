@@ -76,8 +76,8 @@ const MeetupList: React.FC<{ meetups: Array<IMeetupProps> }> = ({
   const chunks = arrayToChunks(meetups, 3);
   return (
     <div className="meetups-list column">
-      {chunks.map(chunk => (
-        <MeetupRow meetups={chunk} />
+      {chunks.map((chunk, index) => (
+        <MeetupRow meetups={chunk} key={index} />
       ))}
     </div>
   );
@@ -87,7 +87,7 @@ const MeetupRow: React.FC<{ meetups: Array<IMeetupProps> }> = ({ meetups }) => {
   return (
     <div className="meetups-row row">
       {meetups.map((meetup, index) => (
-        <MeetupTile {...meetup} last={index === meetups.length - 1} />
+        <MeetupTile {...meetup} last={index === meetups.length - 1} key={index}/>
       ))}
     </div>
   );
