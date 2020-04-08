@@ -22,13 +22,22 @@
       margin-bottom: 56px;
     }
 
+    &-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 1fr;
+      row-gap: 70px;
+      column-gap: 54px;
+      
+      margin-bottom: 70px;
+    }
+
     &-card {
       text-align: start;
       border-radius: 20px;
       box-shadow: 15px 15px 60px #0067ff29;
       padding: 19px 50px;
-      margin-bottom: 70px;
-
+    
       color: #474747c9;
       font-size: 16px;
       line-height: 24px;

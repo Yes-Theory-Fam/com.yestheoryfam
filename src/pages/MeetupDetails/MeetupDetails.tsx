@@ -34,7 +34,7 @@ const HowToJoin: React.FC = () => {
     <div className="meetup-details-how-to-join column-center">
       <div className="meetup-details-how-to-join-header">How to join?</div>
       <div
-        className="row"
+        className="meetup-details-how-to-join-cards"
         style={{ flexWrap: "wrap", justifyContent: "space-evenly" }}
       >
         {steps.map((step, index) => (
