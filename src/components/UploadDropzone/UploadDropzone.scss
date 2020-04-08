@@ -3,9 +3,8 @@
 .upload {
   &-close-button {
     border-radius: 30px;
-    height: 45px;
-    width: 45px;
-    font-size: 25px;
+    height: 46px;
+    width: 46px;
     border: 1px solid common.$yesTheoryBlue;
     align-self: flex-end;
     margin-top: 40px;
@@ -59,9 +58,8 @@
     &-icon {
       height: 45px;
       width: 45px;
-      background-color: black;
       opacity: 0.54;
-      color: white;
+      color: black;
       margin-bottom: 10px;
     }
 

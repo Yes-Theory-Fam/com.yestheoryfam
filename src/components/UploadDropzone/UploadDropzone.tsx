@@ -16,6 +16,7 @@ import "react-dropzone-uploader/dist/styles.css";
 import "./UploadDropzone.scss";
 
 import { TransitionStatus } from "react-transition-group/Transition";
+import { IoMdCloudUpload, IoMdClose } from 'react-icons/io';
 
 const target = "https://httpbin.org/post";
 
@@ -120,7 +121,7 @@ const YESSES = [
 const CloseButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
     <div className="centered-content upload-close-button" onClick={onClick}>
-      X {/* TODO Use the correct icon here */}
+      <IoMdClose size={22} />
     </div>
   );
 };
@@ -284,7 +285,7 @@ const InputContent: React.FC<{ rejected: boolean }> = ({ rejected }) => {
 
   return (
     <div className="column-center upload-input">
-      <div className="centered-content upload-input-icon">icon</div>
+      <div className="centered-content upload-input-icon"><IoMdCloudUpload size={45} /> </div>
       <div>
         Drag file here or{" "}
         <div className="inline-blue upload-input-browse">browse locally</div>

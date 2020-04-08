@@ -11,7 +11,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import UploadDropzone from "../../components/UploadDropzone/UploadDropzone";
 
-import ExpandForMore from "../../assets/expand-for-more-yt-blue.svg";
+import { IoIosArrowDown } from 'react-icons/io';
 
 const UploadModal: React.FC<{onClose: () => void}> = ({onClose}) => {
   return (
@@ -69,7 +69,7 @@ const PhotoWall: React.FC<{}> = () => {
           <div className="scroll-for-more column-center">
             SEE ALL PHOTOS
             <div className="expand-container">
-              <ExpandForMore />
+              <IoIosArrowDown size={20} />
             </div>
           </div>
         </div>
