@@ -10,6 +10,7 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
 import DiscordAuthenticationRequest from "./components/DiscordAuthenticationRequest/DiscordAuthenticationRequest";
 import DiscordAuthenticationCallback from "./components/DiscordAuthenticationCallback/DiscordAuthenticationCallback";
@@ -20,6 +21,7 @@ import PhotoWall from "./pages/photowall/PhotoWall";
 
 ReactDOM.render(
   <Router>
+    <ToastContainer />
     <Switch>
       <Route path="/auth/discord">
         <DiscordAuthenticationRequest />

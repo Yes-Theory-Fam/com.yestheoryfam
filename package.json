@@ -39,6 +39,7 @@
     "react-dropzone-uploader": "^2.11.0",
     "react-image-lightbox": "^5.1.1",
     "react-router-dom": "^5.1.2",
+    "react-toastify": "^5.5.0",
     "react-transition-group": "^4.3.0"
   },
   "devDependencies": {

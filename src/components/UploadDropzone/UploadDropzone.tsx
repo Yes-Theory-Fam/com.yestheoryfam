@@ -5,12 +5,15 @@ import Dropzone, {
   StatusValue,
 } from "react-dropzone-uploader";
 import { CSSTransition } from "react-transition-group";
+import { toast } from "react-toastify";
 
 import { randomInt } from "../../utils";
 
-import "./UploadDropzone.scss";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+
+// Keep in this order; our stylesheet needs to be applied last
 import "react-dropzone-uploader/dist/styles.css";
+import "./UploadDropzone.scss";
 
 import { TransitionStatus } from "react-transition-group/Transition";
 
@@ -114,10 +117,12 @@ const YESSES = [
   "etiam",
 ];
 
-const CloseButton: React.FC<{onClick: () => void}> = ({onClick}) => {
-  return <div className="centered-content upload-close-button" onClick={onClick}>
-    X {/* TODO Use the correct icon here */}
-  </div>
+const CloseButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
+  return (
+    <div className="centered-content upload-close-button" onClick={onClick}>
+      X {/* TODO Use the correct icon here */}
+    </div>
+  );
 };
 
 const AnimatedYes: React.FC<{
@@ -171,7 +176,10 @@ const AnimatedYes: React.FC<{
   return (
     <CSSTransition in={inProp} timeout={2500}>
       {(state) => (
-        <div style={{ ...defaultStyle, ...transitionStyles[state] }} className="upload-fountain-yes">
+        <div
+          style={{ ...defaultStyle, ...transitionStyles[state] }}
+          className="upload-fountain-yes"
+        >
           {yesContent}
         </div>
       )}
@@ -230,11 +238,7 @@ const YesFountain: React.FC = () => {
     return () => clearInterval(intervalId);
   });
 
-  return (
-    <div className="column-center upload-fountain">
-      {activeWords}
-    </div>
-  );
+  return <div className="column-center upload-fountain">{activeWords}</div>;
 };
 
 const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
@@ -280,26 +284,29 @@ const InputContent: React.FC<{ rejected: boolean }> = ({ rejected }) => {
 
   return (
     <div className="column-center upload-input">
-      <div className="centered-content upload-input-icon">
-        icon
-      </div>
+      <div className="centered-content upload-input-icon">icon</div>
       <div>
         Drag file here or{" "}
-        <div className="inline-blue upload-input-browse">
-          browse locally
-        </div>
+        <div className="inline-blue upload-input-browse">browse locally</div>
       </div>
     </div>
   );
 };
 
-const FullModal: React.FC<{onClose: () => void}> = ({onClose}) => {
+const FullModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const handleChangeStatus = (
     { meta, remove }: IFileWithMeta,
     status: StatusValue
   ) => {
     if (status === "headers_received") {
-      remove();
+      toast.success(`${meta.name} uploaded!`, {
+        position: "top-right",
+        autoClose: 3000,
+        closeOnClick: true,
+        draggable: false,
+      });
+
+      setTimeout(() => remove(), 3000);
     } else if (status === "aborted") {
       console.log(`${meta.name} failed to upload!`);
     }
@@ -310,9 +317,7 @@ const FullModal: React.FC<{onClose: () => void}> = ({onClose}) => {
   return (
     <div style={{ height: "100%", width: "100%" }} className="column-center">
       <CloseButton onClick={onClose} />
-      <div className="upload-header">
-        Please upload your photo
-      </div>
+      <div className="upload-header">Please upload your photo</div>
 
       <Dropzone
         accept="image/*"
@@ -323,7 +328,10 @@ const FullModal: React.FC<{onClose: () => void}> = ({onClose}) => {
         inputContent={(_, extra) => <InputContent rejected={extra.reject} />}
         PreviewComponent={(args) => <Preview {...args} Fountain={Fountain} />}
         onChangeStatus={handleChangeStatus}
-        addClassNames={{dropzone: "upload-dropzone", dropzoneReject: "upload-dropzone-reject"}}
+        addClassNames={{
+          dropzone: "upload-dropzone",
+          dropzoneReject: "upload-dropzone-reject",
+        }}
       />
     </div>
   );
