@@ -1,10 +1,5 @@
 @use '../../common';
 
-.header {
-  font-size: 64px;
-  font-weight: bold;
-}
-
 .entry {
   height: 674px;
   width: 80%;
@@ -12,28 +7,34 @@
   align-items: center;
   padding-top: 150px;
   padding-bottom: 150px;
-}
 
-.entry img {
-  flex: 1;
-}
-  
-.entry.row img {
+  &-header {
+    font-size: 64px;
+    font-weight: bold;
+  }
+
+  & img {
+    flex: 1;
+  }
+
+  &.row img {
     box-shadow: 15px 15px 60px #0054ff40;
-}
-.entry.row-reverse img {
+  }
+
+  &.row-reverse img {
     box-shadow: -15px 15px 60px #0054ff40;
-}
+  }
 
-.text-content {
-  height: 70%;
-  margin-inline-start: 35px;
-  flex: 1;
-  justify-content: space-between;
-}
+  &-text-content {
+    height: 70%;
+    margin-inline-start: 35px;
+    flex: 1;
+    justify-content: space-between;
+  }
 
-.summary {
-  font-size: 16px;
-  color: black;
-  width: 70%;
+  &-summary {
+    font-size: 16px;
+    color: black;
+    width: 70%;
+  }
 }

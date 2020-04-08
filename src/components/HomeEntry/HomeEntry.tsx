@@ -18,12 +18,12 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({
   return (
     <div className={`entry ${imageSide === "left" ? "row" : "row-reverse"}`}>
       <img src={`https://picsum.photos/674/674?a=${headerBlackText}`} />
-      <div className="text-content column">
+      <div className="entry-text-content column">
         <EntryHeader
           headerBlackText={headerBlackText}
           headerBlueText={headerBlueText}
         />
-        <div className="summary">{children}</div>
+        <div className="entry-summary">{children}</div>
         <Link to="/" className="button">
           READ MORE
         </Link>
@@ -37,7 +37,7 @@ const EntryHeader: React.FC<{
   headerBlueText: string;
 }> = ({ headerBlackText, headerBlueText }) => {
   return (
-    <div className="header">
+    <div className="entry-header">
       {headerBlackText + " "}
       <div className="inline-blue">{headerBlueText}</div>
     </div>

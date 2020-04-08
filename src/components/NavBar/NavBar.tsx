@@ -38,6 +38,7 @@ const CircularAvatar: React.FC = () => {
   );
 };
 
+
 const NavBar: React.FC<{ fixed: boolean, classNames?: string }> = ({ fixed, classNames }) => {
   const pages = [
     "home",
@@ -50,7 +51,7 @@ const NavBar: React.FC<{ fixed: boolean, classNames?: string }> = ({ fixed, clas
   ];
 
   const pageToNavLink = (page: string) => (
-    <NavLink to={`/${page}`} activeClassName="current">
+    <NavLink to={`/${page}`} activeClassName="current" key={page}>
       {page.toUpperCase()}
     </NavLink>
   );
@@ -58,7 +59,7 @@ const NavBar: React.FC<{ fixed: boolean, classNames?: string }> = ({ fixed, clas
   return (
     <div id="nav-bar" className={`row ${fixed ? "fixed" : ""} ${classNames || ""}`}>
       <Logo />
-      <div id="nav-links" className="row">
+      <div className="nav-bar-links row">
         {pages.map(pageToNavLink)}
         {showLoginButton && <DiscordLoginButton />}
         {isLoggedIn && <CircularAvatar />}
