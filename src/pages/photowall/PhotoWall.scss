@@ -1,0 +1,112 @@
+@use '../../common';
+
+.layout-row {
+  max-height: 560px;
+  padding-bottom: 2vh;
+}
+
+.h-33 {
+  height: 32.5%;
+}
+
+.h-66 {
+  height: 65.5%;
+}
+
+.h-50 {
+  height: 49%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.w-25 {
+  width: 24.5%;
+}
+
+.w-33 {
+  width: 32.5%;
+}
+
+.w-50 {
+  width: 49%;
+}
+
+.w-66 {
+  width: 65.5%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.column,
+.row {
+  justify-content: space-between;
+}
+
+.blur {
+  filter: blur(2px);
+  overflow: hidden;
+}
+
+.photo-wall {
+  &-top {
+
+    height: 100vh;
+    justify-content: space-between;
+    
+    & .scroll-for-more {
+      width: 100vw;
+      margin-bottom: 20px;
+      color: common.$yesTheoryBlue;
+      z-index: 500;
+      font-size: 14px;
+    }
+
+    &-content {
+      height: 360px;
+      justify-content: space-between;
+    }
+  
+    &-text {
+      width: 40%;
+      text-align: center;
+    }
+  }
+
+  &-list {
+    width: 75%;
+    padding-top: 173px;
+  }
+
+  &-upload-modal {
+    z-index: 1;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-dropzone {
+      // I might want to make this cleaner.
+      // But for now this works to keep the box shadow away from the navbar
+      // that would otherwise eat the shadow.
+      position: relative;
+      top: 30px;
+    
+      background: white;
+
+      width: 70%;
+      border-radius: 20px;
+      box-shadow: 0 3px 60px #0067FF29;
+    }
+  }
+}

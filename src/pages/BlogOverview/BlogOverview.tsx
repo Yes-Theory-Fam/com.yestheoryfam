@@ -30,7 +30,7 @@ const FeaturedArticle: React.FC<IBlogProps> = ({
 }) => {
   return (
     <div className="featured-article column">
-      <div className="blog-overview-section-header">Latest article</div> {/* TODO: CSS CLASS */}
+      <div className="blog-overview-section-header">Latest article</div>
       <div className="row">
         <img
           className="featured-image"

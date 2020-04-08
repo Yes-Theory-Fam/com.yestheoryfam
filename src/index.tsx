@@ -10,17 +10,21 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
 import DiscordAuthenticationRequest from "./components/DiscordAuthenticationRequest/DiscordAuthenticationRequest";
 import DiscordAuthenticationCallback from "./components/DiscordAuthenticationCallback/DiscordAuthenticationCallback";
 import Home from "./pages/home/Home";
 import BlogOverview from "./pages/BlogOverview/BlogOverview";
 import Meetups from "./pages/meetups/Meetups";
+import PhotoWall from "./pages/photowall/PhotoWall";
 import MeetupDetails from "./pages/MeetupDetails/MeetupDetails";
+
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 ReactDOM.render(
   <Router>
+    <ToastContainer />
     <ScrollToTop />
     <Switch>
       <Route path="/auth/discord">
@@ -34,6 +38,9 @@ ReactDOM.render(
       </Route>
       <Route path="/blog">
         <BlogOverview />
+      </Route>
+      <Route path="/photowall">
+        <PhotoWall />
       </Route>
       <Route
         path="/meetups"

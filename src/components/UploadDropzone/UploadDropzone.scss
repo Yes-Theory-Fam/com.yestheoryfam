@@ -1,0 +1,96 @@
+@use '../../common';
+
+.upload {
+  &-close-button {
+    border-radius: 30px;
+    height: 45px;
+    width: 45px;
+    font-size: 25px;
+    border: 1px solid common.$yesTheoryBlue;
+    align-self: flex-end;
+    margin-top: 40px;
+    margin-inline-end: 58px;
+    cursor: pointer;
+    color: common.$yesTheoryBlue;
+  }
+
+  &-progress {
+    width: 190px;
+    height: 3px;
+
+    &-bar {
+      display: inline;
+      animation: width 200ms;
+
+      &.blue {
+        background-color: common.$yesTheoryBlue;
+      }
+
+      &.gray {
+        background-color: gray;
+      }
+    }
+  }
+
+  &-preview {
+    justify-content: space-evenly;
+    height: 100%;
+  }
+
+  &-fountain {
+    height: 400px;
+    width: 400px;
+    justify-content: flex-end;
+
+    &-yes {
+      position: absolute;
+      color: common.$yesTheoryBlue;
+      font-weight: 900;
+    }
+  }
+
+  &-input {
+    &-rejected {
+      color: red;
+    }
+
+    color: #2a2a2a;
+
+    &-icon {
+      height: 45px;
+      width: 45px;
+      background-color: black;
+      opacity: 0.54;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    &-browse {
+      text-decoration: underline;
+      text-decoration-color: common.$yesTheoryBlue;
+    }
+  }
+
+  &-header {
+    color: #2a2a2a;
+    opacity: 0.71;
+    font-size: 36px;
+    line-height: 43px;
+    padding-bottom: 40px;
+  }
+
+  &-dropzone {
+    width: 70%;
+    height: 485px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    border-color: common.$yesTheoryBlue;
+    border-style: dashed;
+    overflow: unset;
+
+    &-reject {
+      border-color: red;
+      background-color: #DAA;
+    }
+  }
+}
