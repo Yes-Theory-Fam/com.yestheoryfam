@@ -47,12 +47,7 @@
 }
 
 .photo-wall {
-
-  & .column,
-  & .row {
-    justify-content: space-between;
-  }
-  
+ 
   &-top {
 
     height: 100vh;
@@ -80,6 +75,11 @@
   &-list {
     width: 75%;
     padding-top: 173px;
+
+    & .column,
+    & .row {
+      justify-content: space-between;
+    }
   }
 
   &-upload-modal {
