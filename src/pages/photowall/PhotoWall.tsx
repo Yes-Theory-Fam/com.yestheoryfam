@@ -9,10 +9,23 @@ import "react-image-lightbox/style.css";
 import { PhotoProps } from "../../components/PhotoWallLayouts/PhotoWallLayoutTypes";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
+import UploadDropzone from "../../components/UploadDropzone/UploadDropzone";
 
 import ExpandForMore from "../../assets/expand-for-more-yt-blue.svg";
 
-const InitialContent: React.FC<{}> = () => {
+const UploadModal: React.FC<{onClose: () => void}> = ({onClose}) => {
+  return (
+    <div className="photo-wall-upload-modal">
+      <div className="photo-wall-upload-modal-dropzone">
+        <UploadDropzone onClose={onClose}/>
+      </div>
+    </div>
+  );
+};
+
+const InitialContent: React.FC<{ onButtonClick: () => void }> = ({
+  onButtonClick,
+}) => {
   return (
     <div className="column-center photo-wall-top-content">
       <div className="page-header">
@@ -23,7 +36,9 @@ const InitialContent: React.FC<{}> = () => {
         event on our photowall. The more people can see it, the more people will
         get involved next time. Make the FOMO be real!
       </div>
-      <button className="button">BE PART OF THE STORY</button>
+      <button className="button" onClick={onButtonClick}>
+        BE PART OF THE STORY
+      </button>
     </div>
   );
 };
@@ -31,23 +46,26 @@ const InitialContent: React.FC<{}> = () => {
 const PhotoWall: React.FC<{}> = () => {
   // This should be temporary until state management is done properly. I am just pretty sure I need a state here to handle loading of the images.
   const [builtLayouts, setLayouts] = React.useState<Array<React.ReactNode>>([]);
+  const [showModal, setShowModal] = React.useState(false);
 
   if (randomImages.length > 0) {
     getNextBuiltLayout(randomImages)
-      .then(newLayout => {
+      .then((newLayout) => {
         const newLayouts: Array<React.ReactNode> = Array.from(builtLayouts);
         newLayouts.push(newLayout);
         return newLayouts;
       })
-      .then(newLayouts => setLayouts(newLayouts));
+      .then((newLayouts) => setLayouts(newLayouts));
   }
 
   return (
     <>
-      <NavBar fixed />
-      <div className="column-center">
+      <NavBar fixed classNames={showModal ? "blur" : ""}/>
+      {showModal && <UploadModal onClose={() => setShowModal(false)} />}
+      <div className={`column-center ${showModal ? "blur" : ""}`}>
         <div className="column-center photo-wall-top">
-          <InitialContent />
+          <div></div>{/* div required here to have space-between sort everything out */}
+          <InitialContent onButtonClick={() => setShowModal(true)} />
           <div className="scroll-for-more column-center">
             SEE ALL PHOTOS
             <div className="expand-container">
@@ -80,7 +98,7 @@ const getNextBuiltLayout = async (
   if (availableLayouts.length === 0) {
     const restLayout = (
       <OneFourLayout
-        images={images.map(src => ({ src, orientation: "square" }))}
+        images={images.map((src) => ({ src, orientation: "square" }))}
       />
     );
     images.length = 0;
@@ -108,9 +126,9 @@ const getNextBuiltLayout = async (
   // Skip checking orientation when all images are squared anyway.
   // We also fill up the orientation key with value square because it doesn't matter but is required for the signature.
   if (horizontalImages === 0 && verticalImages === 0) {
-    const mockProps: Array<PhotoProps> = pickedImages.map(image => ({
+    const mockProps: Array<PhotoProps> = pickedImages.map((image) => ({
       orientation: "square",
-      src: image
+      src: image,
     }));
     return <LayoutComponent images={mockProps} />;
   }
@@ -118,7 +136,7 @@ const getNextBuiltLayout = async (
   console.log(`Loading orientations for ${pickedImages.length} images...`);
 
   const photoProps = await Promise.all(
-    pickedImages.map(img => getOrientation(img))
+    pickedImages.map((img) => getOrientation(img))
   );
 
   const pickedHorizontal = photoProps.filter(
@@ -149,7 +167,7 @@ const getNextBuiltLayout = async (
   const orientationChoice = randomInt(0, availableOrientationLayouts.length);
   const orientationLayout = availableOrientationLayouts[orientationChoice];
 
-  return <orientationLayout.LayoutComponent images={photoProps} />
+  return <orientationLayout.LayoutComponent images={photoProps} />;
 };
 
 // Data-use-wise I probably shouldn't just discard those loaded images.
@@ -159,7 +177,7 @@ const getOrientation = (url: string): Promise<PhotoProps> => {
     (resolve, reject) => {
       const img = new Image();
 
-      img.addEventListener("load", function() {
+      img.addEventListener("load", function () {
         const height = this.naturalHeight;
         const width = this.naturalWidth;
 
