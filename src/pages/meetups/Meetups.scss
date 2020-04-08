@@ -52,8 +52,8 @@
     }
 
     &-image {
-      width: 398px;
-      height: 260px;
+      width: 100%;
+      height: 55%; // Not ideal; "fixing" this will be done when this is restructured for mobile.
 
       & img {
         width: 100%;
