@@ -57,7 +57,7 @@ const NavBar: React.FC<{ fixed: boolean, classNames?: string }> = ({ fixed, clas
   );
 
   return (
-    <div id="nav-bar" className={`row ${fixed ? "fixed" : ""} ${classNames || ""}`}>
+    <div className={`row nav-bar ${fixed ? "fixed" : ""} ${classNames || ""}`}>
       <Logo />
       <div className="nav-bar-links row">
         {pages.map(pageToNavLink)}

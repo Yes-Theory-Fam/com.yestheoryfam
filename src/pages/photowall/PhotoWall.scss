@@ -41,17 +41,18 @@
   width: 100%;
 }
 
-.column,
-.row {
-  justify-content: space-between;
-}
-
 .blur {
   filter: blur(2px);
   overflow: hidden;
 }
 
 .photo-wall {
+
+  & .column,
+  & .row {
+    justify-content: space-between;
+  }
+  
   &-top {
 
     height: 100vh;
