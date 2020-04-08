@@ -38,7 +38,7 @@ const CircularAvatar: React.FC = () => {
   );
 };
 
-const NavBar: React.FC<{ fixed: boolean }> = ({ fixed }) => {
+const NavBar: React.FC<{ fixed: boolean, classNames?: string }> = ({ fixed, classNames }) => {
   const pages = [
     "home",
     "blog",
@@ -56,7 +56,7 @@ const NavBar: React.FC<{ fixed: boolean }> = ({ fixed }) => {
   );
 
   return (
-    <div id="nav-bar" className={`row ${fixed ? "fixed" : ""}`}>
+    <div id="nav-bar" className={`row ${fixed ? "fixed" : ""} ${classNames || ""}`}>
       <Logo />
       <div id="nav-links" className="row">
         {pages.map(pageToNavLink)}
