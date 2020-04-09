@@ -155,6 +155,7 @@ const getNextBuiltLayout = async (
   }
 
   const availableOrientationLayouts = availableLayouts
+    .filter(({ props }) => props.totalImages === pickedImages.length)
     .filter(({ props }) => props.horizontalImages <= pickedHorizontal)
     .filter(({ props }) => props.verticalImages <= pickedVertical);
 
