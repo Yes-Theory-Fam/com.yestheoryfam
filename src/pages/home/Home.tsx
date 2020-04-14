@@ -17,25 +17,25 @@ const Content: React.FC = () => {
         imageSide="left"
       >
         <p>
-          We believe in authentic, fulfilling and life changing experiences.
+          We believe in authentic, fulfilling and life-changing experiences.
           Therefore, <b>we want to share stories that matter</b> with the world
           as motivational examples of what can be achieved.
         </p>
         <br />
         <p>
-          Read about the fulfilling experiences other YesFam members had, or
+          Read about the heart-warming experiences other YesFam members had, or
           join and share your own with the world.
         </p>
       </HomeEntry>
       <HomeEntry
-        headerBlackText="Find closest"
+        headerBlackText="Find the closest"
         headerBlueText="meetups"
         imageSide="right"
       >
         <p>
           Wondering how to get involved in this amazing community? We are
           organising amazing events in many different countries. These events
-          are called <b>FiYESta</b>. Click the button below to find out when the
+          are called <b>FiYEStas</b>. Click the button below to find out when the
           next even will be happening.
         </p>
       </HomeEntry>
@@ -45,9 +45,9 @@ const Content: React.FC = () => {
         imageSide="left"
       >
         <p>
-          Become a part of the story by sharing your photographs from the last
-          event on our photowall. The more people can see it, the more people
-          will get involved the next time. Make the FOMO be real!
+          Become part of the story by sharing your photographs from the last
+          event on our photowall. The more people see it, the more people
+          will want to get involved the next time. Let the FOMO be real!
         </p>
       </HomeEntry>
     </div>
