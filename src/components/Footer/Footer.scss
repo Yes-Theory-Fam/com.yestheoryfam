@@ -8,9 +8,20 @@
   background-color: white;
 
   &-links {
-    padding: 50px;
+    height: 100px;
+    padding: 20px;
     justify-content: space-between;
-    width: 33%;
+    align-items: center;
+
+    @include common.tablet-specific {
+      width: 50%;
+      flex-direction: row;
+    }
+
+    @include common.desktop-specific {
+      width: 33%;
+      flex-direction: row;
+    }
   }
 
   &-copyright {

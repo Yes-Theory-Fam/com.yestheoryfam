@@ -1,6 +1,21 @@
 $yesTheoryBlue: rgb(1, 102, 255);
 $backgroundColor: $yesTheoryBlue;
 
+$desktopBreakpoint: 1024px;
+$tabletBreakpoint: 640px;
+
+@mixin desktop-specific {
+  @media screen and (min-width: $desktopBreakpoint) {
+    @content;
+  }
+}
+
+@mixin tablet-specific {
+  @media screen and (min-width: $tabletBreakpoint) and (max-width: $desktopBreakpoint) {
+    @content;
+  }
+}
+
 .centered-content {
   display: flex;
   justify-content: center;
