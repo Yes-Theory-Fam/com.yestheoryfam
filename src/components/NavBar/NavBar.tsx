@@ -8,6 +8,8 @@ import CloseBurgerOnNav from "../CloseBurgerOnNav/CloseBurgerOnNav";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import pages, { NavPage } from "./pages";
 
+import { BUDDY_PROJECT_MODE } from '../../config';
+
 const isLoggedIn = false;
 const showLoginButton = true;
 
@@ -84,40 +86,25 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
     return <div className="nav-bar-links-newpill centered-content">NEW</div>;
   };
 
-  const pages = [
-    "home",
-    "buddyproject",
-    "blog",
-    "meetups",
-    "photowall",
-    "groupchats",
-    "about",
-    "contact",
-  ];
+  const renderedPages: Array<NavPage> = BUDDY_PROJECT_MODE ? [{display: "buddy project", isNew: true, path: "buddyproject"}] : pages;
 
-  const pageToNavLink = (page: string) => (
-    <NavLink
-      to={`/${page}`}
-      activeClassName="current"
-      key={page}
-      className="nav-bar-links-link"
-    >
-      {page.toUpperCase()}
+  const pageToNavLink = (page: NavPage) => (
+    <NavLink to={`/${page.path}`} activeClassName="current" key={page.path} className="row nav-bar-links-link">
+      {page.display.toUpperCase()}
+      {page.isNew && <NewPill />}
     </NavLink>
   );
 
-  const userNav = [];
+  const userNav = renderedPages.map(pageToNavLink);
   if (isLoggedIn) userNav.push(<CircularAvatar />);
   if (showLoginButton) userNav.push(<DiscordLoginButton />);
-
-  const nav = [...pages.map(pageToNavLink), ...userNav];
 
   return (
     <div className={`row nav-bar ${fixed ? "fixed" : ""} ${classNames || ""}`}>
       <Logo />
-      <NavContent className="nav-bar-links" children={nav} />
+      <NavContent className="nav-bar-links" children={userNav} />
       <HamburgerNav
-        children={nav}
+        children={userNav}
         open={hamburgerOpen}
         onCloseButton={() => setHamburgerOpen(false)}
         onOpenButton={() => setHamburgerOpen(true)}

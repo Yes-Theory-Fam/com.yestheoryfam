@@ -21,6 +21,8 @@ import MeetupDetails from "./pages/MeetupDetails/MeetupDetails";
 import { UserContext } from "./UserContext";
 import Groupchats from "./pages/Groupchats/Groupchats";
 import BuddyProject from "./pages/BuddyProject/BuddyProject";
+import WorkInProgress from "./pages/WorkInProgress/WorkInProgress";
+import { BUDDY_PROJECT_MODE } from "./config";
 
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import axios from "axios";
@@ -69,9 +71,10 @@ const App = () => {
             exact
             component={DiscordAuthenticationCallback}
           />
+          <Route path="/buddyproject" exact component={BuddyProject} />
+          { BUDDY_PROJECT_MODE && <Route path="/" component={WorkInProgress} /> }
           <Route path="/blog" exact component={BlogOverview} />
           <Route path="/photowall" exact component={PhotoWall} />
-          <Route path="/buddyproject" exact component={BuddyProject} />
           <Route path="/groupchats" exact component={Groupchats} />
           <Route
             path="/meetups"

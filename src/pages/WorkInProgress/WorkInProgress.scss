@@ -1,0 +1,12 @@
+@use '../../common';
+
+.wip {
+  height: 100vh;
+  justify-content: space-between;
+
+  &-content {
+    margin-top: 50px;
+    justify-content: space-evenly;
+    height: 100%;
+  }
+}

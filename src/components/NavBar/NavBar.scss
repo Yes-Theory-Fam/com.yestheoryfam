@@ -73,14 +73,15 @@
 
     align-items: center;
     font-size: 14px;
-    justify-content: space-evenly;
+    justify-content: flex-end;
 
     @include common.desktop-specific {
       display: flex;
     }
 
     &-link {
-      margin-right: 4vw;
+      align-items: center;
+      margin-right: 20px;
     }
 
     &-newpill {
