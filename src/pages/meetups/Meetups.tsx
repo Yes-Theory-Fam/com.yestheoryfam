@@ -4,15 +4,11 @@ import { format } from "date-fns";
 
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import IMeetupProps from '../../types/Meetups';
+import IMeetupProps from "../../types/Meetups";
 import { arrayToChunks } from "../../utils";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
-import {
-  IoMdSearch,
-  IoMdClose,
-  IoIosPeople,
-  IoMdCalendar
-} from "react-icons/io";
+import { IoIosPeople, IoMdCalendar } from "react-icons/io";
 
 import "./Meetups.scss";
 import { Link } from "react-router-dom";
@@ -27,52 +23,8 @@ const Header: React.FC = () => {
   );
 };
 
-const SearchBar: React.FC<{
-  setSearch: (newSearch: string) => void;
-  hasInput: boolean;
-}> = ({ setSearch, hasInput }) => {
-  const searchBar = React.useRef<HTMLInputElement | null>(null);
-
-  const [hasFocus, setFocus] = React.useState(false);
-
-  const clearSearch = () => {
-    if (searchBar.current) {
-      searchBar.current.value = "";
-      setSearch("");
-    }
-  };
-
-  const iconColor = hasFocus ? YES_THEORY_BLUE : "#8C8C8C";
-  const iconProps = { color: iconColor, size: 20 };
-
-  return (
-    <div className="centered-content meetups-search-container">
-      <input
-        ref={searchBar}
-        onBlur={() => setFocus(false)}
-        onFocus={() => setFocus(true)}
-        onInput={ev => setSearch((ev.target as HTMLInputElement).value)}
-        className="meetups-search"
-        type="text"
-        placeholder="Discover events near you..."
-      />
-      <div className={"search-bar-icon"}>
-        {hasInput ? (
-          <IoMdClose
-            onClick={clearSearch}
-            className="pointer search-bar-icon"
-            {...iconProps}
-          />
-        ) : (
-          <IoMdSearch className="search-bar-icon" {...iconProps} />
-        )}
-      </div>
-    </div>
-  );
-};
-
 const MeetupList: React.FC<{ meetups: Array<IMeetupProps> }> = ({
-  meetups
+  meetups,
 }) => {
   const chunks = arrayToChunks(meetups, 3);
   return (
@@ -88,27 +40,33 @@ const MeetupRow: React.FC<{ meetups: Array<IMeetupProps> }> = ({ meetups }) => {
   return (
     <div className="meetups-row row">
       {meetups.map((meetup, index) => (
-        <MeetupTile {...meetup} last={index === meetups.length - 1} key={index}/>
+        <MeetupTile
+          {...meetup}
+          last={index === meetups.length - 1}
+          key={index}
+        />
       ))}
     </div>
   );
 };
 
-const TileImage: React.FC<{imageSource: string}> = ({imageSource}) => {
-  return <div className="meetups-tile-image">
-    <img src={imageSource} alt="" />
-  </div>
-}
+const TileImage: React.FC<{ imageSource: string }> = ({ imageSource }) => {
+  return (
+    <div className="meetups-tile-image">
+      <img src={imageSource} alt="" />
+    </div>
+  );
+};
 
 const MeetupTile: React.FC<IMeetupProps & { last: boolean }> = (props) => {
-  const {last, children, ...meetupProps} = props;
+  const { last, children, ...meetupProps } = props;
   const {
     title,
     description,
     dateStart,
     dateEnd,
     limit,
-    imageSource
+    imageSource,
   } = meetupProps;
 
   const start = new Date(dateStart);
@@ -117,7 +75,7 @@ const MeetupTile: React.FC<IMeetupProps & { last: boolean }> = (props) => {
 
   return (
     <Link
-      to={{pathname: "/meetups/0", state: meetupProps}}
+      to={{ pathname: "/meetups/0", state: meetupProps }}
       className={`meetups-tile${last ? "-last" : ""} column`}
     >
       <TileImage imageSource={imageSource} />
@@ -151,7 +109,13 @@ const Meetups: React.FC = () => {
       <NavBar fixed={false} />
       <div className="meetups column-center">
         <Header />
-        <SearchBar setSearch={setSearch} hasInput={search !== ""} />
+        <SearchBar
+          setSearch={setSearch}
+          hasInput={search !== ""}
+          placeholder="Discover events near you..."
+          containerClassName="meetups-search-container"
+          searchBarClassName=""
+        />
         {filteredMeetups.length > 0 ? (
           <MeetupList meetups={filteredMeetups} />
         ) : (
@@ -174,7 +138,7 @@ const meetups: Array<IMeetupProps> = [
     dateEnd: Date.now(),
     limit: 45,
     details: [""],
-    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`,
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
@@ -184,7 +148,7 @@ const meetups: Array<IMeetupProps> = [
     dateEnd: Date.now(),
     limit: 45,
     details: [""],
-    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`,
   },
   {
     title: "FiYESta Bali 2020",
@@ -194,7 +158,7 @@ const meetups: Array<IMeetupProps> = [
     dateEnd: Date.now(),
     limit: 45,
     details: [""],
-    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`,
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
@@ -204,7 +168,7 @@ const meetups: Array<IMeetupProps> = [
     dateEnd: Date.now(),
     limit: 45,
     details: [""],
-    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`,
   },
   {
     title: "FiYESta Croatia",
@@ -214,7 +178,7 @@ const meetups: Array<IMeetupProps> = [
     dateEnd: Date.now(),
     limit: 45,
     details: [""],
-    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`,
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
@@ -224,7 +188,7 @@ const meetups: Array<IMeetupProps> = [
     dateEnd: Date.now(),
     limit: 45,
     details: [""],
-    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`,
   },
   {
     title: "FiYESta Bali 2020",
@@ -234,8 +198,8 @@ const meetups: Array<IMeetupProps> = [
     dateEnd: Date.now(),
     limit: 45,
     details: [""],
-    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`
-  }
+    imageSource: `https://picsum.photos/520/503?a=${Math.random()}`,
+  },
 ];
 
 export default Meetups;

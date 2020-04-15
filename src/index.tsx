@@ -19,6 +19,7 @@ import BlogOverview from "./pages/BlogOverview/BlogOverview";
 import Meetups from "./pages/meetups/Meetups";
 import PhotoWall from "./pages/photowall/PhotoWall";
 import MeetupDetails from "./pages/MeetupDetails/MeetupDetails";
+import Groupchats from "./pages/Groupchats/Groupchats";
 
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
@@ -27,32 +28,21 @@ ReactDOM.render(
     <ToastContainer />
     <ScrollToTop />
     <Switch>
-      <Route path="/auth/discord">
-        <DiscordAuthenticationRequest />
-      </Route>
-      <Route path="/oauth/redirect">
-        <DiscordAuthenticationCallback />
-      </Route>
-      <Route path="/home">
-        <Home />
-      </Route>
-      <Route path="/blog">
-        <BlogOverview />
-      </Route>
-      <Route path="/photowall">
-        <PhotoWall />
-      </Route>
+      <Route path="/auth/discord" component={DiscordAuthenticationRequest} />
+      <Route path="/oauth/redirect" component={DiscordAuthenticationCallback} />
+      <Route path="/home" component={Home} />
+      <Route path="/blog" component={BlogOverview} />
+      <Route path="/photowall" component={PhotoWall} />
       <Route
         path="/meetups"
         render={({ match: { url } }) => (
           <>
             <Route path={`${url}/:id`} component={MeetupDetails} />
-            <Route path={`${url}/`} exact>
-              <Meetups />
-            </Route>
+            <Route path={`${url}/`} exact component={Meetups} />
           </>
         )}
-      ></Route>
+      />
+      <Route path="/groupchats" component={Groupchats} />
       <Redirect path="/" to="/home" />
     </Switch>
   </Router>,
