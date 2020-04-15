@@ -82,6 +82,18 @@
     &-link {
       margin-right: 4vw;
     }
+
+    &-newpill {
+      padding: 0 5px;
+      margin-left: 5px;
+      color: white;
+
+      border-radius: 10px;
+      height: 14px;
+      background-color: common.$complementary;
+
+      font-size: 10px;
+    }
   }
 
   & .discord-login {

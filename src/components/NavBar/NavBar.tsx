@@ -6,6 +6,7 @@ import Logo from "../Logo/Logo";
 import { UserContext } from "../../UserContext";
 import CloseBurgerOnNav from "../CloseBurgerOnNav/CloseBurgerOnNav";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
+import pages, { NavPage } from "./pages";
 
 const isLoggedIn = false;
 const showLoginButton = true;
@@ -79,6 +80,9 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
 }) => {
   const { user, setUser } = React.useContext(UserContext);
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
+  const NewPill: React.FC = () => {
+    return <div className="nav-bar-links-newpill centered-content">NEW</div>;
+  };
 
   const pages = [
     "home",
