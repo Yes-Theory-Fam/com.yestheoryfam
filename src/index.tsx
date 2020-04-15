@@ -19,6 +19,7 @@ import BlogOverview from "./pages/BlogOverview/BlogOverview";
 import Meetups from "./pages/meetups/Meetups";
 import PhotoWall from "./pages/photowall/PhotoWall";
 import MeetupDetails from "./pages/MeetupDetails/MeetupDetails";
+import Groupchats from "./pages/Groupchats/Groupchats";
 
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
@@ -41,6 +42,7 @@ ReactDOM.render(
           </>
         )}
       />
+      <Route path="/groupchats" component={Groupchats} />
       <Redirect path="/" to="/home" />
     </Switch>
   </Router>,
