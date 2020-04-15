@@ -1,0 +1,62 @@
+@use '../../common';
+
+
+
+
+.buddy-project {
+ 
+    
+
+  
+    &-text {
+        margin-top:40px;
+      width: 500px;
+      font-size: 50px;
+      text-align: center;
+    }
+
+    &-entry {
+        margin-top:40px;
+        width:400px;
+        font-size:40px;
+    }
+  
+  &-list {
+    width: 75%;
+    padding-top: 173px;
+
+    & .column,
+    & .row {
+      justify-content: space-between;
+    }
+  }
+
+  &-upload-modal {
+    z-index: 1;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-dropzone {
+      // I might want to make this cleaner.
+      // But for now this works to keep the box shadow away from the navbar
+      // that would otherwise eat the shadow.
+      position: relative;
+      top: 30px;
+    
+      background: white;
+
+      width: 70%;
+      border-radius: 20px;
+      box-shadow: 0 3px 60px #0067FF29;
+    }
+  }
+}

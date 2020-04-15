@@ -8,7 +8,7 @@ import CloseBurgerOnNav from "../CloseBurgerOnNav/CloseBurgerOnNav";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 
 const isLoggedIn = false;
-const showLoginButton = false;
+const showLoginButton = true;
 
 const DiscordLoginButton: React.FC = () => {
   const LogoContainer = () => (
@@ -82,6 +82,7 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
 
   const pages = [
     "home",
+    "buddyproject",
     "blog",
     "meetups",
     "photowall",
