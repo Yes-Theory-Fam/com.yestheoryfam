@@ -15,7 +15,9 @@ const WorkInProgress: React.FC = () => {
           <div className="page-header">
             Work in <div className="inline-blue">progress</div>
           </div>
-          {paragraphs}
+          <div className="column-center wip-content-paragraphs">
+            {paragraphs}
+          </div>
         </div>
         <Footer />
       </div>
