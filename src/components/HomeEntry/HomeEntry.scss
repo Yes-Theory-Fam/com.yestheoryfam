@@ -1,20 +1,38 @@
 @use '../../common';
 
 .entry {
-  height: 674px;
   width: 80%;
   justify-content: space-between;
   align-items: center;
-  padding-top: 150px;
-  padding-bottom: 150px;
+  flex-wrap: wrap;
+
+  padding: 50px 0;
+
+  @include common.desktop-specific {
+    // height: 674px;
+    padding: 75px 0;
+  }
 
   &-header {
-    font-size: 64px;
+    font-size: 32px;
     font-weight: bold;
+
+    @include common.tablet-specific {
+      font-size: 64px;
+    }
+
+    @include common.desktop-specific {
+      font-size: 64px;
+    }
   }
 
   & img {
-    flex: 1;
+    width: 100%;
+
+    @include common.desktop-specific {
+      flex: 1;
+      width: unset;
+    }
   }
 
   &.row img {
@@ -27,18 +45,27 @@
 
   &-text-content {
     height: 70%;
-    margin-inline-start: 35px;
     flex: 1;
     justify-content: space-between;
+    margin-top: 30px;
 
     .button {
       max-width: 260px;
+    }
+    
+    @include common.desktop-specific {
+      margin-inline-start: 35px;
     }
   }
 
   &-summary {
     font-size: 16px;
     color: black;
-    width: 70%;
+    
+    margin: 16px 0;
+
+    @include common.desktop-specific {
+      width: 70%;
+    }
   }
 }
