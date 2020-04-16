@@ -3,6 +3,7 @@ import "./NavBar.scss";
 import DiscordLogo from "../../assets/Discord-Logo-White.svg";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
+import { UserContext } from "../../UserContext";
 
 const isLoggedIn = false;
 const showLoginButton = false;
@@ -40,6 +41,10 @@ const CircularAvatar: React.FC = () => {
 
 
 const NavBar: React.FC<{ fixed: boolean, classNames?: string }> = ({ fixed, classNames }) => {
+
+  const {user, setUser} = React.useContext(UserContext)
+
+
   const pages = [
     "home",
     "blog",
