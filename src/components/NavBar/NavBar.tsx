@@ -56,7 +56,7 @@ const NavBar: React.FC<{ fixed: boolean, classNames?: string }> = ({ fixed, clas
   ];
 
   const pageToNavLink = (page: string) => (
-    <NavLink to={`/${page}`} activeClassName="current" key={page}>
+    <NavLink to={`/${page}`} activeClassName="current" key={page} className="nav-bar-links-link">
       {page.toUpperCase()}
     </NavLink>
   );

@@ -7,6 +7,8 @@
   flex: 1;
   padding: 25px 60px;
 
+  justify-content: space-between;
+
   & a {
     color: inherit;
     text-decoration: none;
@@ -14,9 +16,12 @@
 
   &-links {
     align-items: center;
-    flex: 65;
     font-size: 14px;
     justify-content: space-evenly;
+
+    &-link {
+      margin-right: 4vw;
+    }
   }
 
   & .discord-login {
