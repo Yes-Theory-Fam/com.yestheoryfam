@@ -8,10 +8,10 @@ const BuddyModal: React.FC<{onClose: () => void}> = ({onClose}) => {
     return (
       <div className="buddy-project-modal">
         <div style={{ height: "100%", width: "100%" }} className="column-center">
-      <CloseButton onClick={onClose} />
-      <div className="upload-header">Find a stranger, discover a friend.</div>
-    </div>
+          <CloseButton onClick={onClose} />
+          <div className="upload-header">Find a stranger, discover a friend.</div>
         </div>
+      </div>
     );
   };
   
