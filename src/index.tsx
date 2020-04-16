@@ -19,6 +19,7 @@ import Meetups from "./pages/meetups/Meetups";
 import PhotoWall from "./pages/photowall/PhotoWall";
 import MeetupDetails from "./pages/MeetupDetails/MeetupDetails";
 import { UserContext } from "./UserContext";
+import Groupchats from "./pages/Groupchats/Groupchats";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import axios from "axios";
 import IDiscordUser from "./types/User";
@@ -43,11 +44,8 @@ const getInitialUser = async () : Promise<IDiscordUser> => {
   }
 }
 
-
-
 const App = () => {
-
-
+  
   const [ user, setUser ] = React.useState<undefined | IDiscordUser>(undefined);
   getInitialUser().then(setUser);
   
@@ -78,8 +76,6 @@ const App = () => {
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
-
-
 
 if (module.hot) {
   module.hot.accept();
