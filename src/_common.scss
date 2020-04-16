@@ -10,6 +10,12 @@ $tabletBreakpoint: 640px;
   }
 }
 
+@mixin phone-landscape-specific {
+  @media screen and (orientation: landscape) and (max-height: 640px) {
+    @content;
+  }
+}
+
 @mixin tablet-specific {
   @media screen and (min-width: $tabletBreakpoint) and (max-width: $desktopBreakpoint) {
     @content;
