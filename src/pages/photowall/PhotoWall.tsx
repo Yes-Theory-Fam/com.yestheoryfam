@@ -11,13 +11,13 @@ import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import UploadDropzone from "../../components/UploadDropzone/UploadDropzone";
 
-import { IoIosArrowDown } from 'react-icons/io';
+import { IoIosArrowDown } from "react-icons/io";
 
-const UploadModal: React.FC<{onClose: () => void}> = ({onClose}) => {
+const UploadModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return (
     <div className="photo-wall-upload-modal">
       <div className="photo-wall-upload-modal-dropzone">
-        <UploadDropzone onClose={onClose}/>
+        <UploadDropzone onClose={onClose} />
       </div>
     </div>
   );
@@ -36,9 +36,7 @@ const InitialContent: React.FC<{ onButtonClick: () => void }> = ({
         event on our photowall. The more people can see it, the more people will
         get involved next time. Make the FOMO be real!
       </div>
-      <button onClick={onButtonClick}>
-        BE PART OF THE STORY
-      </button>
+      <button onClick={onButtonClick}>BE PART OF THE STORY</button>
     </div>
   );
 };
@@ -60,11 +58,12 @@ const PhotoWall: React.FC<{}> = () => {
 
   return (
     <>
-      <NavBar fixed classNames={showModal ? "blur" : ""}/>
+      <NavBar fixed classNames={showModal ? "blur" : ""} />
       {showModal && <UploadModal onClose={() => setShowModal(false)} />}
       <div className={`column-center ${showModal ? "blur" : ""}`}>
         <div className="column-center photo-wall-top">
-          <div></div>{/* div required here to have space-between sort everything out */}
+          <div></div>
+          {/* div required here to have space-between sort everything out */}
           <InitialContent onButtonClick={() => setShowModal(true)} />
           <div className="scroll-for-more column-center">
             SEE ALL PHOTOS

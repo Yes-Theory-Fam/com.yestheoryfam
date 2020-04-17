@@ -26,7 +26,7 @@ const FeaturedArticle: React.FC<IBlogProps> = ({
   author,
   time,
   title,
-  content
+  content,
 }) => {
   return (
     <div className="featured-article column">
@@ -51,7 +51,7 @@ const FeaturedArticle: React.FC<IBlogProps> = ({
 
 const Remark: React.FC<{ author: string; time: number }> = ({
   author,
-  time
+  time,
 }) => {
   return (
     <div className="blog-overview-remark">
@@ -69,7 +69,7 @@ const OtherArticles: React.FC<{ blogs: Array<IBlogProps> }> = ({ blogs }) => {
     <div className="column">
       <div className="blog-overview-section-header">Other articles</div>
       {arrayToChunks(blogs, 3).map((chunk, index) => (
-        <OtherArticlesRow blogs={chunk} rowIndex={index} key={index}/>
+        <OtherArticlesRow blogs={chunk} rowIndex={index} key={index} />
       ))}
     </div>
   );
@@ -82,20 +82,20 @@ const OtherArticlesRow: React.FC<{
   return (
     <div className="other-article-row row">
       {blogs.map((blog, index) => (
-        <OtherArticleTile {...blog} id={`article-${rowIndex}-${index}`} last={index === blogs.length - 1} key={index}/>
+        <OtherArticleTile
+          {...blog}
+          id={`article-${rowIndex}-${index}`}
+          last={index === blogs.length - 1}
+          key={index}
+        />
       ))}
     </div>
   );
 };
 
-const OtherArticleTile: React.FC<IBlogProps & { id: string, last: boolean }> = ({
-  author,
-  time,
-  title,
-  content,
-  id,
-  last,
-}) => {
+const OtherArticleTile: React.FC<
+  IBlogProps & { id: string; last: boolean }
+> = ({ author, time, title, content, id, last }) => {
   return (
     <div className={`other-article-tile${last ? "-last" : ""} column`}>
       <img
@@ -136,14 +136,14 @@ const otherArticles: Array<IBlogProps> = [
     time: 7,
     content:
       "I'll start- So my name is Cody, I'm 20 years old and live in Brisbane, Australia. I've lived a amazing life so far. I've been overseas twice, skydived twice, and have wonderful family/friends that I love to the moon and back. I have all these things yet my life hasn't been all butterflies and rainbows. ...",
-    title: "How does it feel to meet strangers?"
+    title: "How does it feel to meet strangers?",
   },
   {
     author: "John D.",
     time: 7,
     content:
       "Today I took a pretty big step out of my comfort zone (while of course wearing my seek discomfort t shirt). A couple weeks ago I signed up to be a small group leader for an activity my school does called make the change and today was the training. Most of it wasn’t extremely difficult, but one activity called “if you really knew me” pushed me way out of my comfort zone. Basically you go around the circle and each time you say ...",
-    title: "FiYestas changed my life; they can change yours too!"
+    title: "FiYestas changed my life; they can change yours too!",
   },
   {
     author: "Matinoz S.",
@@ -151,28 +151,28 @@ const otherArticles: Array<IBlogProps> = [
     content:
       "I’ve ever done. ⁣If you would have told me that I would randomly by a flight cross country by myself, and not plan out every step of the trip along the way even a few weeks ago I would have thought you were nuts. In light of this, I decided to roll with the flow and take things as they came up, a really good life lesson that I know has alrea",
     title:
-      "I recently took a trip to San Diego and it was the biggest discomfort"
+      "I recently took a trip to San Diego and it was the biggest discomfort",
   },
   {
     author: "Jamie L.",
     time: 7,
     content:
       'We could finally use this and incorporate in our films and photoshoot. I\'m loving the vibes of this flag and whenever we bring these all around the Philippines- people are always like "Is that some sort of a movement or a cult?"',
-    title: "First ever SEEK DISCOMFORT Flag"
+    title: "First ever SEEK DISCOMFORT Flag",
   },
   {
     author: "Matej P.",
     time: 7,
     content:
       "I'll start- So my name is Cody, I'm 20 years old and live in Brisbane, Australia. I've lived a amazing life so far. I've been overseas twice, skydived twice, and have wonderful family/friends that I love to the moon and back. I have all these things yet my life hasn't been all butterflies and rainbows. ...",
-    title: "How does it feel to meet strangers?"
+    title: "How does it feel to meet strangers?",
   },
   {
     author: "John D.",
     time: 7,
     content:
       "Today I took a pretty big step out of my comfort zone (while of course wearing my seek discomfort t shirt). A couple weeks ago I signed up to be a small group leader for an activity my school does called make the change and today was the training. Most of it wasn’t extremely difficult, but one activity called “if you really knew me” pushed me way out of my comfort zone. Basically you go around the circle and each time you say ...",
-    title: "FiYestas changed my life; they can change yours too!"
+    title: "FiYestas changed my life; they can change yours too!",
   },
   {
     author: "Matinoz S.",
@@ -180,8 +180,8 @@ const otherArticles: Array<IBlogProps> = [
     content:
       "I’ve ever done. ⁣If you would have told me that I would randomly by a flight cross country by myself, and not plan out every step of the trip along the way even a few weeks ago I would have thought you were nuts. In light of this, I decided to roll with the flow and take things as they came up, a really good life lesson that I know has alrea",
     title:
-      "I recently took a trip to San Diego and it was the biggest discomfort"
-  }
+      "I recently took a trip to San Diego and it was the biggest discomfort",
+  },
 ];
 
 export default BlogOverview;
