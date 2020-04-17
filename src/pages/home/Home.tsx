@@ -35,8 +35,8 @@ const Content: React.FC = () => {
         <p>
           Wondering how to get involved in this amazing community? We are
           organising amazing events in many different countries. These events
-          are called <b>FiYEStas</b>. Click the button below to find out when the
-          next even will be happening.
+          are called <b>FiYEStas</b>. Click the button below to find out when
+          the next even will be happening.
         </p>
       </HomeEntry>
       <HomeEntry
@@ -46,8 +46,8 @@ const Content: React.FC = () => {
       >
         <p>
           Become part of the story by sharing your photographs from the last
-          event on our photowall. The more people see it, the more people
-          will want to get involved the next time. Let the FOMO be real!
+          event on our photowall. The more people see it, the more people will
+          want to get involved the next time. Let the FOMO be real!
         </p>
       </HomeEntry>
     </div>
@@ -68,8 +68,18 @@ const Home: React.FC = () => {
           <div className="clouds-front">
             <img src={cloudBot} className="cloud bot-front" />
             <img src={cloudBot} className="cloud bot-front" />
-            <div style={{maxWidth: "100vw", overflow: "hidden"}} className="cloud"><img src={cloudBig} className="cloud-r big-front" /></div>
-            <div style={{maxWidth: "100vw", overflow: "hidden"}} className="cloud"><img src={cloudBig} className="cloud-r big-front" /></div>
+            <div
+              style={{ maxWidth: "100vw", overflow: "hidden" }}
+              className="cloud"
+            >
+              <img src={cloudBig} className="cloud-r big-front" />
+            </div>
+            <div
+              style={{ maxWidth: "100vw", overflow: "hidden" }}
+              className="cloud"
+            >
+              <img src={cloudBig} className="cloud-r big-front" />
+            </div>
             <div className="scroll-for-more column-center">
               SCROLL FOR MORE
               <div className="expand-container">

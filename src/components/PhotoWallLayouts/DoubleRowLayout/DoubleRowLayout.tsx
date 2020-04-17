@@ -1,10 +1,10 @@
 import * as React from "react";
 import { PhotoWallLayoutProps, LayoutProps } from "../PhotoWallLayoutTypes";
 import PhotoWrapper from "../PhotoWrapper/PhotoWrapper";
-import {splitImages} from "../../../utils";
+import { splitImages } from "../../../utils";
 
 const DoubleRowLayout: React.FC<LayoutProps> = ({ images }) => {
-  const [selectedHorizontal,, otherImages] = splitImages(images, 2, 0);
+  const [selectedHorizontal, , otherImages] = splitImages(images, 2, 0);
 
   return (
     <div className="row layout-row">
@@ -27,5 +27,5 @@ export default DoubleRowLayout;
 export const props: PhotoWallLayoutProps = {
   horizontalImages: 2,
   verticalImages: 0,
-  totalImages: 4
+  totalImages: 4,
 };

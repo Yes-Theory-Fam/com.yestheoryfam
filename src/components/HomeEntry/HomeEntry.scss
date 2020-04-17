@@ -51,7 +51,7 @@
     .button {
       max-width: 260px;
     }
-    
+
     @include common.desktop-specific {
       height: 70%;
       margin-inline-start: 35px;
@@ -61,7 +61,7 @@
   &-summary {
     font-size: 16px;
     color: black;
-    
+
     margin: 16px 0;
 
     @include common.desktop-specific {

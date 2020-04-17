@@ -45,10 +45,10 @@ const HowToJoin: React.FC = () => {
   );
 };
 
-const HowToJoinCard: React.FC<{ stepIndex: number; content: React.ReactNode }> = ({
-  stepIndex,
-  content
-}) => {
+const HowToJoinCard: React.FC<{
+  stepIndex: number;
+  content: React.ReactNode;
+}> = ({ stepIndex, content }) => {
   return (
     <div className="meetup-details-how-to-join-card column">
       <div className="meetup-details-how-to-join-card-header">
@@ -119,7 +119,7 @@ const MeetupDetails: React.FC<RouteComponentProps<
     dateEnd,
     limit,
     details,
-    imageSource
+    imageSource,
   } = location?.state;
 
   const { id } = match.params;

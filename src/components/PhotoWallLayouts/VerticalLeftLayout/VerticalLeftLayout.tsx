@@ -2,10 +2,14 @@ import * as React from "react";
 
 import { PhotoWallLayoutProps, LayoutProps } from "../PhotoWallLayoutTypes";
 import PhotoWrapper from "../PhotoWrapper/PhotoWrapper";
-import {splitImages} from "../../../utils";
+import { splitImages } from "../../../utils";
 
 const VerticalLeftLayout: React.FC<LayoutProps> = ({ images }) => {
-  const [[chosenHorizontal], [chosenVertical], otherImages] = splitImages(images, 1, 1);
+  const [[chosenHorizontal], [chosenVertical], otherImages] = splitImages(
+    images,
+    1,
+    1
+  );
 
   return (
     <div className="row layout-row">
@@ -26,5 +30,5 @@ export default VerticalLeftLayout;
 export const props: PhotoWallLayoutProps = {
   horizontalImages: 1,
   verticalImages: 1,
-  totalImages: 4
+  totalImages: 4,
 };
