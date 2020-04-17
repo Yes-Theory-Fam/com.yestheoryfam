@@ -62,14 +62,35 @@ const Signup: React.FC<BuddyProjectSignup> = ({
           {currentSignup === null && (
             <>
               <p>
-                Click this button to sign up for the buddy project and we'll
-                assign you a buddy real soon! (add more details about when etc)
+                An opportunity to get to know a person miles away from you,
+                building a new friendship, and discovering a new way of living,
+                what’s not to like? Click that join button to sign up to the
+                buddy project!
               </p>
               <p>
-                After you've been assigned a buddy, you will be able to see who
-                it is and how to contact them here.
+                Once you do that, you will be asked to join the Yes Theory Fam
+                server (if you’re not already in it). From then on, everything
+                will be happening on Discord. When the sign-up deadline is
+                reached, everyone will be matched with a buddy.
               </p>
-              <p>Feel free to check back on this page for any updates.</p>
+              <p>
+                Yes Bot, our very own bot, will message you on discord with the
+                name of your partner and a set of questions. Your buddy and you
+                will both get a message, and you’ll have to make sure to message
+                each other! You’ll have two different sets of questions, and
+                you’ll each take turns asking a question from your list, and
+                both answering, until there are no more questions left.
+              </p>
+              <p>
+                We hope you enjoy and make a lifelong friend. Don’t forget to
+                update us on how things are going in #buddy-project, on the Yes
+                Theory Fam server, we would absolutely love to hear all about
+                your experience.
+              </p>
+              <p>
+                Be sure to stay around on the server once this event is over, we
+                have many more awesome projects planned for you!
+              </p>
               {error !== "" && <div>Seems like something went wrong! 🤔</div>}
               <form
                 onSubmit={(e) => {
