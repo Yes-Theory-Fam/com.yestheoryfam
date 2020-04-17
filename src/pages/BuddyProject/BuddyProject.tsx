@@ -1,6 +1,6 @@
 import * as React from "react";
 import NavBar from "../../components/NavBar/NavBar";
-import { IoIosArrowDown, IoMdClose } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import {
   initDb,
   buddyProjectSignup,
@@ -12,15 +12,10 @@ import Footer from "../../components/Footer/Footer";
 
 import BuddyProjectLogo from "../../assets/buddyproject_logo.svg";
 
-interface BuddyModal extends BuddyProjectSignup {
-  onClose: () => void;
-}
-
-const BuddyModal: React.FC<BuddyModal> = ({
+const Signup: React.FC<BuddyProjectSignup> = ({
   discordUserId,
   discordUsername,
   displayName,
-  onClose,
 }) => {
   const [error, setError] = React.useState("");
   // This variable starts off as undefined, so that we can initiate a request
@@ -49,9 +44,8 @@ const BuddyModal: React.FC<BuddyModal> = ({
   });
 
   return (
-    <div className="buddy-project-modal">
-      <div style={{ height: "100%", width: "100%" }} className="column-center">
-        <CloseButton onClick={onClose} />
+    <div className="buddy-project-signup">
+      <div className="column-center">
         <div className="upload-header">Find a stranger, discover a friend.</div>
         {/* @ToDo: if not logged in, make 'em log in */}
         <div>
@@ -99,56 +93,29 @@ const BuddyModal: React.FC<BuddyModal> = ({
   );
 };
 
-const InitialContent: React.FC<{ onButtonClick: () => void }> = ({
-  onButtonClick,
-}) => {
-  return (
-    <div className="column-center photo-wall-top-content">
-      <div className="buddy-project-logo">
-        <BuddyProjectLogo />
-      </div>
-      <div className="buddy-project-text">
-        <i>
-          Great things come to those who are willing to risk rejection and put
-          themselves out there.
-        </i>
-      </div>
-      <button className="button buddy-project-entry" onClick={onButtonClick}>
-        GET INVOLVED
-      </button>
+const InitialContent = () => (
+  <div className="column-center photo-wall-top-content">
+    <div className="buddy-project-logo">
+      <BuddyProjectLogo />
     </div>
-  );
-};
-
-const CloseButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
-  return (
-    <div className="centered-content upload-close-button" onClick={onClick}>
-      <IoMdClose size={22} />
+    <div className="buddy-project-text">
+      <i>
+        Great things come to those who are willing to risk rejection and put
+        themselves out there.
+      </i>
     </div>
-  );
-};
+  </div>
+);
 
 const BuddyProject: React.FC<{}> = () => {
-  // This should be temporary until state management is done properly. I am just pretty sure I need a state here to handle loading of the images.
-  const [builtLayouts, setLayouts] = React.useState<Array<React.ReactNode>>([]);
-  const [showModal, setShowModal] = React.useState(false);
-
   return (
     <>
-      <NavBar fixed classNames={showModal ? "blur" : ""} />
-      {showModal && (
-        <BuddyModal
-          onClose={() => setShowModal(false)}
-          discordUsername="YESBOT#0001"
-          displayName="YesBot"
-          discordUserId="614101602046836776"
-        />
-      )}
-      <div className={`column-center ${showModal ? "blur" : ""}`}>
+      <NavBar fixed />
+      <div className="column-center">
         <div className="column-center photo-wall-top">
           <div></div>
           {/* div required here to have space-between sort everything out */}
-          <InitialContent onButtonClick={() => setShowModal(true)} />
+          <InitialContent />
           <div className="scroll-for-more column-center">
             GET INVOLVED
             <div className="expand-container">
@@ -156,13 +123,16 @@ const BuddyProject: React.FC<{}> = () => {
             </div>
           </div>
         </div>
-
-        <div className="photo-wall-list">
-          <div className="column">{builtLayouts}</div>
-        </div>
       </div>
+
+      <Signup
+        discordUsername="YESBOT#0001"
+        displayName="YesBot"
+        discordUserId="614101602046836776"
+      />
       <Footer />
     </>
   );
 };
+
 export default BuddyProject;
