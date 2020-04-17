@@ -104,7 +104,9 @@ const InitialContent: React.FC<{ onButtonClick: () => void }> = ({
 }) => {
   return (
     <div className="column-center photo-wall-top-content">
-      <BuddyProjectLogo />
+      <div className="buddy-project-logo">
+        <BuddyProjectLogo />
+      </div>
       <div className="buddy-project-text">
         <i>
           Great things come to those who are willing to risk rejection and put
