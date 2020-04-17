@@ -44,7 +44,6 @@
   }
 
   &-text-content {
-    height: 70%;
     flex: 1;
     justify-content: space-between;
     margin-top: 30px;
@@ -54,6 +53,7 @@
     }
     
     @include common.desktop-specific {
+      height: 70%;
       margin-inline-start: 35px;
     }
   }
