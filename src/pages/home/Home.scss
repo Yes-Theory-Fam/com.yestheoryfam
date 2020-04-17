@@ -76,22 +76,26 @@ div.content {
   border-radius: 0;
 }
 
+.cloud-r {
+  position: relative;
+  border-radius: 0;
+}
+
 .big-front {
-  bottom: -90vh;
+  bottom: -27vh;
   left: -90vw;
 
   @include common.tablet-specific {
-    bottom: -75vh;
+    bottom: -65vh;
   }
 
   @include common.phone-landscape-specific {
-    bottom: -225vh;
+    bottom: -25vh;
   }
 
   @include common.desktop-specific {
-    bottom: -310px;
-    left: 120px;
-    width: 90vw;
+    bottom: -45vh;
+    left: -30vw;
   }
 }
 
@@ -102,8 +106,9 @@ div.content {
 }
 
 .big-back {
-  left: -250vw;
-  bottom: -95vh;
+  width: 100%;
+  bottom: 15%;
+  left: -10%;
   
   @include common.tablet-specific {
     left: -100vw;

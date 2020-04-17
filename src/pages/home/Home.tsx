@@ -68,8 +68,8 @@ const Home: React.FC = () => {
           <div className="clouds-front">
             <img src={cloudBot} className="cloud bot-front" />
             <img src={cloudBot} className="cloud bot-front" />
-            <img src={cloudBig} className="cloud big-front" />
-            <img src={cloudBig} className="cloud big-front" />
+            <div style={{maxWidth: "100vw", overflow: "hidden"}} className="cloud"><img src={cloudBig} className="cloud-r big-front" /></div>
+            <div style={{maxWidth: "100vw", overflow: "hidden"}} className="cloud"><img src={cloudBig} className="cloud-r big-front" /></div>
             <div className="scroll-for-more column-center">
               SCROLL FOR MORE
               <div className="expand-container">
