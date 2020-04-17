@@ -72,7 +72,7 @@
     width: 31%;
     justify-content: space-between;
     margin-right: 3.5%;
-  
+
     &::after {
       content: "";
       border-bottom: 1px solid #707070;
@@ -84,7 +84,7 @@
 
     &-last {
       @extend .other-article-tile;
-  
+
       margin-right: 0;
     }
 

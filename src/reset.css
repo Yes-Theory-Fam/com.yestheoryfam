@@ -1,4 +1,13 @@
-html, body, header, h1, h2, h3, h4, h5, div, p {
-    padding: 0;
-    margin: 0;
+html,
+body,
+header,
+h1,
+h2,
+h3,
+h4,
+h5,
+div,
+p {
+  padding: 0;
+  margin: 0;
 }

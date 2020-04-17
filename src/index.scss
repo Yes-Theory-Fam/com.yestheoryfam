@@ -70,7 +70,8 @@ img {
   }
 }
 
-button, .button {
+button,
+.button {
   @extend .centered-content;
 
   padding: 10px 44px;

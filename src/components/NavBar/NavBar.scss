@@ -54,7 +54,7 @@
   width: calc(100vw - 40px);
 
   padding: 10px 20px;
-  
+
   justify-content: space-between;
 
   @include common.desktop-specific {
@@ -70,7 +70,7 @@
 
   &-links {
     display: none;
-    
+
     align-items: center;
     font-size: 14px;
     justify-content: space-evenly;
@@ -86,12 +86,12 @@
 
   & .discord-login {
     align-items: center;
-  
+
     padding: 10px;
     border: none;
     background-color: common.$yesTheoryBlue;
     border-radius: 50px;
-  
+
     color: white;
   }
 }

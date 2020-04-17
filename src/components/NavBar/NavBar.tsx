@@ -4,9 +4,8 @@ import DiscordLogo from "../../assets/Discord-Logo-White.svg";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { UserContext } from "../../UserContext";
-import CloseBurgerOnNav from '../CloseBurgerOnNav/CloseBurgerOnNav';
+import CloseBurgerOnNav from "../CloseBurgerOnNav/CloseBurgerOnNav";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
-
 
 const isLoggedIn = false;
 const showLoginButton = true;
@@ -66,7 +65,9 @@ const HamburgerNav: React.FC<{
   onOpenButton: () => void;
 }> = ({ children, open, onCloseButton, onOpenButton }) => {
   if (!open) {
-    return <IoMdMenu size={42} onClick={onOpenButton} className="hamburger-icon" />;
+    return (
+      <IoMdMenu size={42} onClick={onOpenButton} className="hamburger-icon" />
+    );
   }
 
   return (

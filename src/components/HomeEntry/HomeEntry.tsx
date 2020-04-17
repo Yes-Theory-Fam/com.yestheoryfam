@@ -13,7 +13,7 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({
   imageSide,
   headerBlackText,
   headerBlueText,
-  children
+  children,
 }) => {
   return (
     <div className={`entry ${imageSide === "left" ? "row" : "row-reverse"}`}>

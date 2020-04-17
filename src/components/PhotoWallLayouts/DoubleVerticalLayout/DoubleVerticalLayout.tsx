@@ -23,5 +23,5 @@ export default DoubleVerticalLayout;
 export const props: PhotoWallLayoutProps = {
   horizontalImages: 0,
   totalImages: 4,
-  verticalImages: 2
+  verticalImages: 2,
 };

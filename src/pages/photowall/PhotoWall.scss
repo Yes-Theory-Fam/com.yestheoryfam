@@ -47,12 +47,10 @@
 }
 
 .photo-wall {
- 
   &-top {
-
     height: 100vh;
     justify-content: space-between;
-    
+
     & .scroll-for-more {
       width: 100vw;
       margin-bottom: 20px;
@@ -65,7 +63,7 @@
       height: 360px;
       justify-content: space-between;
     }
-  
+
     &-text {
       width: 40%;
       text-align: center;
@@ -102,12 +100,12 @@
       // that would otherwise eat the shadow.
       position: relative;
       top: 30px;
-    
+
       background: white;
 
       width: 70%;
       border-radius: 20px;
-      box-shadow: 0 3px 60px #0067FF29;
+      box-shadow: 0 3px 60px #0067ff29;
     }
   }
 }

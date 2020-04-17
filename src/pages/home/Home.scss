@@ -42,12 +42,12 @@
     position-y: bottom -15vh;
     size: 200% auto;
   }
-  
+
   @include common.tablet-specific {
     background-position-y: bottom -5vh;
     background-size: 150% auto;
   }
-  
+
   @include common.phone-landscape-specific {
     background-position-y: bottom -78vh;
     background-size: 150% auto;
@@ -109,7 +109,7 @@ div.content {
   width: 100%;
   bottom: 15%;
   left: -10%;
-  
+
   @include common.tablet-specific {
     left: -100vw;
     bottom: -50vh;
