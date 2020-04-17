@@ -52,7 +52,7 @@ const App = () => {
   const [user, setUser] = React.useState<undefined | IDiscordUser>(undefined);
   React.useEffect(() => {
     getInitialUser().then(setUser)
-  })
+  }, [setUser])
   
   return (
     <Router>
