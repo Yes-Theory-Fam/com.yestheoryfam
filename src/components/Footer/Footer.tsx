@@ -12,7 +12,9 @@ const Footer: React.FC<{}> = () => {
         <Link to="/">Discord</Link>
         <Link to="/">Contact</Link>
         <Link to="/">Press</Link>
-        <a href="https://seekdiscomfort.com" target="_blank">Seek Discomfort</a>
+        <a href="https://seekdiscomfort.com" target="_blank">
+          Seek Discomfort
+        </a>
       </div>
       <div className="footer-copyright">
         &#169; {new Date().getFullYear()} YESTHEORYFAM

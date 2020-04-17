@@ -8,7 +8,7 @@ import CloseBurgerOnNav from "../CloseBurgerOnNav/CloseBurgerOnNav";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import pages, { NavPage } from "./pages";
 
-import { BUDDY_PROJECT_MODE } from '../../config';
+import { BUDDY_PROJECT_MODE } from "../../config";
 
 const isLoggedIn = false;
 const showLoginButton = true;
@@ -86,10 +86,17 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
     return <div className="nav-bar-links-newpill centered-content">NEW</div>;
   };
 
-  const renderedPages: Array<NavPage> = BUDDY_PROJECT_MODE ? [{display: "buddy project", isNew: true, path: "buddyproject"}] : pages;
+  const renderedPages: Array<NavPage> = BUDDY_PROJECT_MODE
+    ? [{ display: "buddy project", isNew: true, path: "buddyproject" }]
+    : pages;
 
   const pageToNavLink = (page: NavPage) => (
-    <NavLink to={`/${page.path}`} activeClassName="current" key={page.path} className="row nav-bar-links-link">
+    <NavLink
+      to={`/${page.path}`}
+      activeClassName="current"
+      key={page.path}
+      className="row nav-bar-links-link"
+    >
       {page.display.toUpperCase()}
       {page.isNew && <NewPill />}
     </NavLink>

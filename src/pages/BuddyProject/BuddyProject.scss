@@ -1,26 +1,19 @@
 @use '../../common';
 
-
-
-
 .buddy-project {
- 
-    
+  &-text {
+    margin-top: 40px;
+    width: 500px;
+    font-size: 30px;
+    text-align: center;
+  }
 
-  
-    &-text {
-      margin-top:40px;
-      width: 500px;
-      font-size: 30px;
-      text-align: center;
-    }
+  &-entry {
+    margin-top: 40px;
+    width: 400px;
+    font-size: 40px;
+  }
 
-    &-entry {
-        margin-top:40px;
-        width:400px;
-        font-size:40px;
-    }
-  
   &-list {
     width: 75%;
     padding-top: 173px;
@@ -51,12 +44,12 @@
       // that would otherwise eat the shadow.
       position: relative;
       top: 30px;
-    
+
       background: white;
 
       width: 70%;
       border-radius: 20px;
-      box-shadow: 0 3px 60px #0067FF29;
+      box-shadow: 0 3px 60px #0067ff29;
     }
   }
 

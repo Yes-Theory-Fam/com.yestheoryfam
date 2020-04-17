@@ -72,7 +72,7 @@ const App = () => {
             component={DiscordAuthenticationCallback}
           />
           <Route path="/buddyproject" exact component={BuddyProject} />
-          { BUDDY_PROJECT_MODE && <Route path="/" component={WorkInProgress} /> }
+          {BUDDY_PROJECT_MODE && <Route path="/" component={WorkInProgress} />}
           <Route path="/blog" exact component={BlogOverview} />
           <Route path="/photowall" exact component={PhotoWall} />
           <Route path="/groupchats" exact component={Groupchats} />
