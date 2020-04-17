@@ -5,6 +5,11 @@
 }
 
 .buddy-project {
+  &-logo {
+    width: 100%;
+    max-width: 700px;
+  }
+
   &-text {
     margin-top: 40px;
     width: 500px;
