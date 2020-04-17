@@ -1,5 +1,9 @@
 @use '../../common';
 
+.page-header {
+  width: unset;
+}
+
 .buddy-project {
   &-text {
     margin-top: 40px;
