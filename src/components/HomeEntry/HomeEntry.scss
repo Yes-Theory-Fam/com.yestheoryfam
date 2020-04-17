@@ -30,6 +30,10 @@
     margin-inline-start: 35px;
     flex: 1;
     justify-content: space-between;
+
+    .button {
+      max-width: 260px;
+    }
   }
 
   &-summary {

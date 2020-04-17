@@ -42,6 +42,10 @@
     justify-content: space-evenly;
     padding-left: 150px;
     padding-right: 50px;
+
+    button {
+      max-width: 260px;
+    }
   }
 
   &-summary {
