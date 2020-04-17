@@ -33,6 +33,28 @@
     }
   }
 
+  &-signup {
+    height: 100vh;
+
+    header {
+      display: flex;
+      align-items: flex-end;
+
+      > p {
+        margin-left: 1rem;
+        font-style: italic;
+      }
+    }
+
+    * + * {
+      margin-top: 1rem;
+    }
+
+    p {
+      max-width: 30rem;
+    }
+  }
+
   &-upload-modal {
     z-index: 1;
 
@@ -59,25 +81,6 @@
       width: 70%;
       border-radius: 20px;
       box-shadow: 0 3px 60px #0067ff29;
-    }
-  }
-
-  &-modal {
-    header {
-      display: flex;
-      align-items: flex-end;
-
-      > p {
-        margin-left: 1rem;
-      }
-    }
-
-    * + * {
-      margin-top: 1rem;
-    }
-
-    p {
-      max-width: 30rem;
     }
   }
 }
