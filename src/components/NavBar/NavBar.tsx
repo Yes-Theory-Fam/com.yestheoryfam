@@ -4,6 +4,9 @@ import DiscordLogo from "../../assets/Discord-Logo-White.svg";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { UserContext } from "../../UserContext";
+import CloseBurgerOnNav from '../CloseBurgerOnNav/CloseBurgerOnNav';
+import { IoMdClose, IoMdMenu } from "react-icons/io";
+
 
 const isLoggedIn = false;
 const showLoginButton = false;
@@ -39,11 +42,42 @@ const CircularAvatar: React.FC = () => {
   );
 };
 
+const NavContent: React.FC<{ className: string }> = ({
+  className,
+  children,
+}) => {
+  return <div className={className}>{children}</div>;
+};
 
-const NavBar: React.FC<{ fixed: boolean, classNames?: string }> = ({ fixed, classNames }) => {
+const HamburgerNav: React.FC<{
+  open: boolean;
+  onCloseButton: () => void;
+  onOpenButton: () => void;
+}> = ({ children, open, onCloseButton, onOpenButton }) => {
+  if (!open) {
+    return <IoMdMenu size={42} onClick={onOpenButton} className="hamburger-icon" />;
+  }
 
-  const {user, setUser} = React.useContext(UserContext)
+  return (
+    <div className={`hamburger-menu column-center ${open ? "open" : ""}`}>
+      <div className="row hamburger-menu-top">
+        <Logo />
+        <IoMdClose size={24} onClick={onCloseButton} />
+      </div>
+      <NavContent
+        children={children}
+        className="hamburger-menu-links column-center"
+      />
+    </div>
+  );
+};
 
+const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
+  fixed,
+  classNames,
+}) => {
+  const { user, setUser } = React.useContext(UserContext);
+  const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
   const pages = [
     "home",
@@ -52,23 +86,37 @@ const NavBar: React.FC<{ fixed: boolean, classNames?: string }> = ({ fixed, clas
     "photowall",
     "groupchats",
     "about",
-    "contact"
+    "contact",
   ];
 
   const pageToNavLink = (page: string) => (
-    <NavLink to={`/${page}`} activeClassName="current" key={page} className="nav-bar-links-link">
+    <NavLink
+      to={`/${page}`}
+      activeClassName="current"
+      key={page}
+      className="nav-bar-links-link"
+    >
       {page.toUpperCase()}
     </NavLink>
   );
 
+  const userNav = [];
+  if (isLoggedIn) userNav.push(<CircularAvatar />);
+  if (showLoginButton) userNav.push(<DiscordLoginButton />);
+
+  const nav = [...pages.map(pageToNavLink), ...userNav];
+
   return (
     <div className={`row nav-bar ${fixed ? "fixed" : ""} ${classNames || ""}`}>
       <Logo />
-      <div className="nav-bar-links row">
-        {pages.map(pageToNavLink)}
-        {showLoginButton && <DiscordLoginButton />}
-        {isLoggedIn && <CircularAvatar />}
-      </div>
+      <NavContent className="nav-bar-links" children={nav} />
+      <HamburgerNav
+        children={nav}
+        open={hamburgerOpen}
+        onCloseButton={() => setHamburgerOpen(false)}
+        onOpenButton={() => setHamburgerOpen(true)}
+      />
+      <CloseBurgerOnNav closeNav={() => setHamburgerOpen(false)} />
     </div>
   );
 };
