@@ -10,7 +10,7 @@ import {
 import "./BuddyProject.scss";
 import Footer from "../../components/Footer/Footer";
 
-import BuddyProjectLogo from "../../assets/buddyproject_logo";
+import BuddyProjectLogo from "../../assets/buddyproject_logo.svg";
 
 interface BuddyModal extends BuddyProjectSignup {
   onClose: () => void;
@@ -104,7 +104,7 @@ const InitialContent: React.FC<{ onButtonClick: () => void }> = ({
 }) => {
   return (
     <div className="column-center photo-wall-top-content">
-      <BuddyProjectLogo style={{ width: "50%", height: "auto" }} />
+      <BuddyProjectLogo />
       <div className="buddy-project-text">
         <i>
           Great things come to those who are willing to risk rejection and put
