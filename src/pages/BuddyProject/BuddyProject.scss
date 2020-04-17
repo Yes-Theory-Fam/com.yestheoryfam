@@ -59,4 +59,23 @@
       box-shadow: 0 3px 60px #0067FF29;
     }
   }
+
+  &-modal {
+    header {
+      display: flex;
+      align-items: flex-end;
+
+      > p {
+        margin-left: 1rem;
+      }
+    }
+
+    * + * {
+      margin-top: 1rem;
+    }
+
+    p {
+      max-width: 30rem;
+    }
+  }
 }

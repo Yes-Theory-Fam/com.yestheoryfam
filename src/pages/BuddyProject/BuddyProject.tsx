@@ -41,8 +41,10 @@ const BuddyModal: React.FC<BuddyModal> = ({discordUserId, discordUsername, displ
           <div className="upload-header">Find a stranger, discover a friend.</div>
           {/* @ToDo: if not logged in, make 'em log in */}
           <div>
-            <h3>Hi {displayName}!</h3>
-            <p>Or should I call you {discordUsername}?</p>
+            <header>
+              <h3>Hi {displayName}!</h3>
+              <p>Or should I call you {discordUsername}?</p>
+            </header>
             { currentSignup === undefined && <> Hang on a sec... I'm checking if you're already signed up. </>}
             { (currentSignup !== undefined && currentSignup !== null) && <> You're already signed up silly! </> }
             { currentSignup === null &&
