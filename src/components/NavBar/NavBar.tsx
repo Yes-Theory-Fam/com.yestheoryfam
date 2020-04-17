@@ -11,6 +11,7 @@ import pages, { NavPage } from "./pages";
 import { BUDDY_PROJECT_MODE } from "../../config";
 
 const isLoggedIn = false;
+let showLoginButton = true;
 
 const CurrentUser: React.FC = () => {
   const { user } = React.useContext(UserContext);
@@ -93,13 +94,11 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   classNames,
 }) => {
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
-  const [showLoginButton, setShowLoginButton] = React.useState(true);
 
   const { user } = React.useContext(UserContext);
   if (user) {
-    setShowLoginButton(false);
+    showLoginButton = false;
   }
-  
   const NewPill: React.FC = () => {
     return <div className="nav-bar-links-newpill centered-content">NEW</div>;
   };
