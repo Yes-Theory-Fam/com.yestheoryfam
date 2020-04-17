@@ -9,7 +9,18 @@ import { IoMdClose, IoMdMenu } from "react-icons/io";
 
 
 const isLoggedIn = false;
-const showLoginButton = false;
+const showLoginButton = true;
+
+const CurrentUser: React.FC = () => {
+  const {user} = React.useContext(UserContext)
+  const imageUrl = `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}`
+  return (
+    <div className="hamburger-menu-links column-center">
+      <img src={imageUrl}></img>
+      {user?.username}#{user?.discriminator}
+    </div>
+  )
+}
 
 const DiscordLoginButton: React.FC = () => {
   const LogoContainer = () => (
@@ -64,6 +75,7 @@ const HamburgerNav: React.FC<{
         <Logo />
         <IoMdClose size={24} onClick={onCloseButton} />
       </div>
+      <CurrentUser />
       <NavContent
         children={children}
         className="hamburger-menu-links column-center"
@@ -76,7 +88,6 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   fixed,
   classNames,
 }) => {
-  const { user, setUser } = React.useContext(UserContext);
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
   const pages = [

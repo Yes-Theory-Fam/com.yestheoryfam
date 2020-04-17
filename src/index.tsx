@@ -34,9 +34,11 @@ const DiscordApi = () => {
 };
 
 const getInitialUser = async (): Promise<IDiscordUser> => {
-  const { id, username, avatar, discriminator, email } = await DiscordApi().get(
+  const userResponse = await DiscordApi().get(
     "users/@me"
   );
+  const { id, username, avatar, discriminator, email } = userResponse.data;
+  
   return {
     username,
     avatar,
@@ -48,8 +50,10 @@ const getInitialUser = async (): Promise<IDiscordUser> => {
 
 const App = () => {
   const [user, setUser] = React.useState<undefined | IDiscordUser>(undefined);
-  getInitialUser().then(setUser);
-
+  React.useEffect(() => {
+    getInitialUser().then(setUser)
+  })
+  
   return (
     <Router>
       <ToastContainer />
