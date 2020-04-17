@@ -15,12 +15,13 @@ let showLoginButton = true;
 
 const CurrentUser: React.FC = () => {
   const { user } = React.useContext(UserContext);
-  console.log("User: ", user);
   const imageUrl = `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}`;
   return (
-    <div className="hamburger-menu-links column-center">
-      <img src={imageUrl}></img>
-      {user?.username}#{user?.discriminator}
+    <div className="row nav-bar-links-link column-center">
+      <img src={imageUrl} alt={user?.username} className="user-avatar"></img>
+      <span>
+        {user?.username}#{user?.discriminator}
+      </span>
     </div>
   );
 };
@@ -80,7 +81,6 @@ const HamburgerNav: React.FC<{
         <Logo />
         <IoMdClose size={24} onClick={onCloseButton} />
       </div>
-      <CurrentUser />
       <NavContent
         children={children}
         className="hamburger-menu-links column-center"
