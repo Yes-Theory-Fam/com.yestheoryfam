@@ -36,7 +36,7 @@ const InitialContent: React.FC<{ onButtonClick: () => void }> = ({
         event on our photowall. The more people can see it, the more people will
         get involved next time. Make the FOMO be real!
       </div>
-      <button className="button" onClick={onButtonClick}>
+      <button onClick={onButtonClick}>
         BE PART OF THE STORY
       </button>
     </div>
