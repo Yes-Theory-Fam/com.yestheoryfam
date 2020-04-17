@@ -8,7 +8,7 @@ import "./WorkInProgress.scss";
 
 const WorkInProgress: React.FC = () => {
   return (
-    <>
+    <div>
       <NavBar fixed />
       <div className="column-center wip">
         <div className="column-center wip-content">
@@ -21,7 +21,7 @@ const WorkInProgress: React.FC = () => {
         </div>
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 

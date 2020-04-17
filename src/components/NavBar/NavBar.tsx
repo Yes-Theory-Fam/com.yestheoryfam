@@ -15,7 +15,7 @@ const showLoginButton = true;
 
 const DiscordLoginButton: React.FC = () => {
   const LogoContainer = () => (
-    <div className="discord-logo">
+    <div className="discord-logo" key='discord-logo'>
       <DiscordLogo />
     </div>
   );
@@ -104,7 +104,7 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
 
   const userNav = renderedPages.map(pageToNavLink);
   if (isLoggedIn) userNav.push(<CircularAvatar />);
-  if (showLoginButton) userNav.push(<DiscordLoginButton />);
+  if (showLoginButton) userNav.push(<DiscordLoginButton  key='discord-logo'/>);
 
   return (
     <div className={`row nav-bar ${fixed ? "fixed" : ""} ${classNames || ""}`}>
