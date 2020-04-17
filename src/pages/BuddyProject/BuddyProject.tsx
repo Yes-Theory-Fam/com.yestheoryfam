@@ -77,7 +77,7 @@ const BuddyModal: React.FC<BuddyModal> = ({discordUserId, discordUsername, displ
           BUDDY<div className="inline-blue">PROJECT</div>
         </div>
         <div className="buddy-project-text">
-            Great things come to those who are willing to risk rejection and put themselves out there.
+            <i>Great things come to those who are willing to risk rejection and put themselves out there.</i>
         </div>
         <button className="button buddy-project-entry" onClick={onButtonClick}>
           GET INVOLVED
@@ -115,7 +115,7 @@ const BuddyProject: React.FC<{}> = () => {
             <div></div>{/* div required here to have space-between sort everything out */}
             <InitialContent onButtonClick={() => setShowModal(true)} />
             <div className="scroll-for-more column-center">
-              SEE ALL PHOTOS
+              GET INVOLVED
               <div className="expand-container">
                 <IoIosArrowDown size={20} />
               </div>
