@@ -15,6 +15,7 @@ import BuddyProjectLogo from "../../assets/buddyproject_logo.svg";
 import IDiscordUser from "../../types/User";
 
 import { howToJoin, whatNext, howItWorks } from "./copy";
+import CutestBotEver from "../../assets/yesbot-yougotmail_bluetint.png";
 
 enum LOGGED_IN_STATE {
   NOT_LOGGED_IN,
@@ -209,7 +210,9 @@ const SignupProcess: React.FC<{ user: IDiscordUser | undefined }> = ({
     <div className="column buddy-project-process">
       <div className="buddy-project-process-blockone column">
         <SignupWelcome user={user} />
-        <img src="" height="340" width="440" />
+        <div className="buddy-project-process-yesbot centered-content">
+          <img src={CutestBotEver} />
+        </div>
       </div>
       <div className="column buddy-project-process-steps">
         <ProcessStep title="How do I join?" children={howToJoin} />
