@@ -73,16 +73,7 @@
     }
 
     &-welcome {
-      align-items: center;
       margin: 25px 0;
-
-      @include common.tablet-specific {
-        align-items: flex-start;
-      }
-
-      @include common.desktop-specific {
-        align-items: flex-start;
-      }
     }
 
     &-header {
@@ -91,16 +82,12 @@
       font-size: 36px;
       margin-bottom: 15px;
 
-      text-align: center;
-
       @include common.tablet-specific {
         font-size: 64px;
-        text-align: unset;
       }
 
       @include common.desktop-specific {
         font-size: 6vw;
-        text-align: unset;
       }
     }
 
