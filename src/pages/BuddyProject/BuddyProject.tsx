@@ -143,8 +143,6 @@ const BuddyProject: React.FC<{}> = () => {
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
-  const userCtx = React.useContext(UserContext);
-
   return (
     <>
       <NavBar fixed />
@@ -162,7 +160,7 @@ const BuddyProject: React.FC<{}> = () => {
         </div>
 
         <div ref={signupRef} className="buddy-project-bottom column-center">
-          <SignupProcess />
+          <SignupProcess user={user} />
         </div>
       </div>
       <Footer />
@@ -170,8 +168,10 @@ const BuddyProject: React.FC<{}> = () => {
   );
 };
 
-const SignupWelcome: React.FC<{ username?: string }> = ({ username }) => {
-  const hi = (username ? " " : "") + (username ?? "");
+const SignupWelcome: React.FC<{ user: IDiscordUser | undefined }> = ({
+  user,
+}) => {
+  const hi = user ? ` ${user.username}#${user.discriminator}` : "";
 
   return (
     <div className="column buddy-project-process-welcome">
@@ -202,11 +202,13 @@ const ProcessStep: React.FC<{ title: string }> = ({ title, children }) => {
   );
 };
 
-const SignupProcess: React.FC<Partial<BuddyProjectSignup>> = (props) => {
+const SignupProcess: React.FC<{ user: IDiscordUser | undefined }> = ({
+  user,
+}) => {
   return (
     <div className="column buddy-project-process">
       <div className="buddy-project-process-blockone column">
-        <SignupWelcome />
+        <SignupWelcome user={user} />
         <img src="" height="340" width="440" />
       </div>
       <div className="column buddy-project-process-steps">
