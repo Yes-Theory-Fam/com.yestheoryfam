@@ -6,6 +6,8 @@ import Footer from "../../components/Footer/Footer";
 import { paragraphs } from "./copy";
 import "./WorkInProgress.scss";
 
+import CutestBotAround from "../../assets/yesbot-yougotmail.png";
+
 const WorkInProgress: React.FC = () => {
   return (
     <div>
@@ -15,6 +17,7 @@ const WorkInProgress: React.FC = () => {
           <div className="page-header">
             Work in <div className="inline-blue">progress</div>
           </div>
+          <img src={CutestBotAround} />
           <div className="column-center wip-content-paragraphs">
             {paragraphs}
           </div>
