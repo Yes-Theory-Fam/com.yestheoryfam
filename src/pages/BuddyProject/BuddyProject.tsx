@@ -86,7 +86,12 @@ const Signup: React.FC<BuddyProjectSignup> = ({
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                buddyProjectSignup(discordUsername, displayName, discordUserId);
+                buddyProjectSignup(discordUsername, displayName, discordUserId)
+                  .then(() => setSignupState(SIGNED_UP_STATE.SIGNED_UP))
+                  .catch((err) => {
+                    setSignupState(SIGNED_UP_STATE.ERROR);
+                    setError(err);
+                  });
               }}
             >
               <button type="submit" className="button buddy-project-entry">
