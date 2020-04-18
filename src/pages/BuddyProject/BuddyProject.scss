@@ -35,13 +35,19 @@
 
   &-signup {
     height: 100vh;
+    margin-left: 1rem;
+    margin-right: 1rem;
 
     header {
       display: flex;
       align-items: flex-end;
+      flex-wrap: wrap;
+
+      > h3 {
+        margin-right: 1rem;
+      }
 
       > p {
-        margin-left: 1rem;
         font-style: italic;
       }
     }
