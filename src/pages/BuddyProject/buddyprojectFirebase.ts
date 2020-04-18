@@ -10,7 +10,9 @@ function initializeFirebase() {
     projectId: process.env.REACT_APP_FIREBASE_PROJECT,
   };
 
-  firebase.initializeApp(firebaseConfig);
+  !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
+
+  // firebase.initializeApp(firebaseConfig);
   console.log("app ok, firestore next");
 
   _db = firebase.firestore();

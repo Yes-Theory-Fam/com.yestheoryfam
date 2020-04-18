@@ -84,34 +84,34 @@ const Signup: React.FC<{ user: IDiscordUser | undefined }> = ({ user }) => {
       {user === undefined ? (
         <NotLoggedIn />
       ) : (
-        <>
-          <header>
-            <h3>Hi {user.username}!</h3>
-            <p>
-              Or should I call you {`${user.username}#${user.discriminator}`}?
+          <>
+            <header>
+              <h3>Hi {user.username}!</h3>
+              <p>
+                Or should I call you {`${user.username}#${user.discriminator}`}?
             </p>
-          </header>
-          <SignupText signupState={signupState} />
-          {signupState === SIGNED_UP_STATE.NOT_SIGNED_UP && (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                buddyProjectSignup(user.username, user.username, user.id)
-                  .then(() => setSignupState(SIGNED_UP_STATE.SIGNED_UP))
-                  .catch((err) => {
-                    setSignupState(SIGNED_UP_STATE.ERROR);
-                    setError(err);
-                  });
-              }}
-            >
-              <button type="submit" className="self-center">
-                GIVE ME A BUDDY
+            </header>
+            <SignupText signupState={signupState} />
+            {signupState === SIGNED_UP_STATE.NOT_SIGNED_UP && (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  buddyProjectSignup(user.username, user.username, user.id)
+                    .then(() => setSignupState(SIGNED_UP_STATE.SIGNED_UP))
+                    .catch((err) => {
+                      setSignupState(SIGNED_UP_STATE.ERROR);
+                      setError(err);
+                    });
+                }}
+              >
+                <button type="submit" className="self-center">
+                  GIVE ME A BUDDY
               </button>
-            </form>
-          )}
-          {signupState === SIGNED_UP_STATE.ERROR && <p>Error: {error}</p>}
-        </>
-      )}
+              </form>
+            )}
+            {signupState === SIGNED_UP_STATE.ERROR && <p>Error: {error}</p>}
+          </>
+        )}
     </div>
   );
 };
@@ -130,6 +130,9 @@ const InitialContent = () => (
 
 const BuddyProject: React.FC<{}> = () => {
   const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
+  const [bpStatus, setBPStatus] = React.useState(SIGNED_UP_STATE.NOT_SIGNED_UP);
+  const [error, setError] = React.useState("");
+
 
   const { user } = React.useContext(UserContext);
 
@@ -143,6 +146,18 @@ const BuddyProject: React.FC<{}> = () => {
       yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
   };
+
+  React.useEffect(() => {
+    initDb();
+    console.log('User: ', user);
+    buddyProjectSignup(user?.username || '', user?.username || '', user?.id || '')
+      .then(() => setBPStatus(SIGNED_UP_STATE.SIGNED_UP))
+      .catch((err) => {
+        console.log('ERror with Buddy proj: ', err);
+        setBPStatus(SIGNED_UP_STATE.ERROR);
+        setError(err);
+      });
+  }, [user, setBPStatus])
 
   return (
     <>
@@ -161,7 +176,8 @@ const BuddyProject: React.FC<{}> = () => {
         </div>
 
         <div ref={signupRef} className="buddy-project-bottom column-center">
-          <SignupProcess user={user} />
+          {console.log('Signup Process: ', user, bpStatus)}
+          <SignupProcess user={user} bpSignupStatus={bpStatus} />
         </div>
       </div>
       <Footer />
@@ -203,9 +219,38 @@ const ProcessStep: React.FC<{ title: string }> = ({ title, children }) => {
   );
 };
 
-const SignupProcess: React.FC<{ user: IDiscordUser | undefined }> = ({
+const renderButton = (user: IDiscordUser | undefined, bpSignupStatus: SIGNED_UP_STATE) => {
+  switch (bpSignupStatus) {
+    case 1:
+      // SIGNED_UP
+      console.log("We're here!")
+      return (
+        <a className='button inverted self-center disabled'>
+          You've already signed up!
+        </a>
+      )
+    case 3:
+      // NOT_SIGNED_UP
+      // TODO: This should open the modal
+      return (
+        <button onClick={() => console.log('WIP')} className='button inverted self-center'>
+          Sign up!
+        </button>
+      )
+    default:
+      return (
+        <a href='/auth/discord' className='button inverted self-center'>
+          Login with Discord!
+        </a>
+      );
+  }
+}
+
+const SignupProcess: React.FC<{ user: IDiscordUser | undefined, bpSignupStatus: SIGNED_UP_STATE }> = ({
+  bpSignupStatus,
   user,
 }) => {
+
   return (
     <div className="column buddy-project-process">
       <div className="buddy-project-process-blockone column">
@@ -219,7 +264,7 @@ const SignupProcess: React.FC<{ user: IDiscordUser | undefined }> = ({
         <ProcessStep title="What happens next?" children={whatNext} />
         <ProcessStep title="How will it work?" children={howItWorks} />
       </div>
-      <button className="inverted self-center">FIND YOUR BUDDY</button>
+      {renderButton(user, bpSignupStatus)}
     </div>
   );
 };
