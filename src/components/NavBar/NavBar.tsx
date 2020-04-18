@@ -10,6 +10,11 @@ import DiscordLoginButton from "../DiscordLoginButton/DiscordLoginButton";
 
 import { BUDDY_PROJECT_MODE } from "../../config";
 
+const logout = () => {
+  localStorage.clear();
+  window.location.href = "/";
+}
+
 const CurrentUser: React.FC = () => {
   const { user } = React.useContext(UserContext);
   const imageUrl = `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}`;
@@ -23,6 +28,7 @@ const CurrentUser: React.FC = () => {
         width="42"
       />
       {user?.username}#{user?.discriminator}
+      <button className="button logout" onClick={() => logout()}>LOGOUT</button>
     </div>
   );
 };
