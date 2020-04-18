@@ -34,7 +34,7 @@ export async function buddyProjectSignup(
 ) {
   if (_db === null) {
     console.error("The database needs to be initialized first!");
-    return;
+    throw new Error("The database needs to be initialized first!");
   }
 
   // Let's create a b64 of the discord userid (which won't change)
@@ -49,7 +49,7 @@ export async function buddyProjectSignup(
     // User has already signed up, so that looks all good
     // @ToDo: Consider if we should update user info at this point
     console.log("doc exists:", buddyDoc.data());
-    return;
+    return true;
   }
 
   const buddy: BuddyProjectSignup = {
@@ -59,6 +59,7 @@ export async function buddyProjectSignup(
   };
 
   _db.collection("buddyproject").doc(firebaseUserId).set(buddy);
+  return true;
 }
 
 export async function fetchBuddyProjectSignup(
