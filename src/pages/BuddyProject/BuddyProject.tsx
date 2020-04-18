@@ -14,6 +14,8 @@ import Footer from "../../components/Footer/Footer";
 import BuddyProjectLogo from "../../assets/buddyproject_logo.svg";
 import IDiscordUser from "../../types/User";
 
+import { howToJoin, whatNext, howItWorks } from "./copy";
+
 enum LOGGED_IN_STATE {
   NOT_LOGGED_IN,
   LOGGED_IN_NOT_ON_SERVER,
@@ -77,51 +79,44 @@ const Signup: React.FC<{ user: IDiscordUser | undefined }> = ({ user }) => {
   });
 
   return (
-    <div className="buddy-project-signup">
-      <div className="column-center">
-        <div className="upload-header">Find a stranger, discover a friend.</div>
-        {/* @ToDo: if not logged in, make 'em log in */}
-        <div>
-          {user === undefined ? (
-            <NotLoggedIn />
-          ) : (
-            <>
-              <header>
-                <h3>Hi {user.username}!</h3>
-                <p>
-                  Or should I call you{" "}
-                  {`${user.username}#${user.discriminator}`}?
-                </p>
-              </header>
-              <SignupText signupState={signupState} />
-              {signupState === SIGNED_UP_STATE.NOT_SIGNED_UP && (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    buddyProjectSignup(user.username, user.username, user.id)
-                      .then(() => setSignupState(SIGNED_UP_STATE.SIGNED_UP))
-                      .catch((err) => {
-                        setSignupState(SIGNED_UP_STATE.ERROR);
-                        setError(err);
-                      });
-                  }}
-                >
-                  <button type="submit" className="button buddy-project-entry">
-                    GIVE ME A BUDDY
-                  </button>
-                </form>
-              )}
-              {signupState === SIGNED_UP_STATE.ERROR && <p>Error: {error}</p>}
-            </>
+    <div>
+      {user === undefined ? (
+        <NotLoggedIn />
+      ) : (
+        <>
+          <header>
+            <h3>Hi {user.username}!</h3>
+            <p>
+              Or should I call you {`${user.username}#${user.discriminator}`}?
+            </p>
+          </header>
+          <SignupText signupState={signupState} />
+          {signupState === SIGNED_UP_STATE.NOT_SIGNED_UP && (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                buddyProjectSignup(user.username, user.username, user.id)
+                  .then(() => setSignupState(SIGNED_UP_STATE.SIGNED_UP))
+                  .catch((err) => {
+                    setSignupState(SIGNED_UP_STATE.ERROR);
+                    setError(err);
+                  });
+              }}
+            >
+              <button type="submit" className="self-center">
+                GIVE ME A BUDDY
+              </button>
+            </form>
           )}
-        </div>
-      </div>
+          {signupState === SIGNED_UP_STATE.ERROR && <p>Error: {error}</p>}
+        </>
+      )}
     </div>
   );
 };
 
 const InitialContent = () => (
-  <div className="column-center photo-wall-top-content">
+  <div className="column-center">
     <div className="buddy-project-logo">
       <BuddyProjectLogo />
     </div>
@@ -134,6 +129,8 @@ const InitialContent = () => (
 
 const BuddyProject: React.FC<{}> = () => {
   const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
+
+  const { user } = React.useContext(UserContext);
 
   const scrollToAction = () => {
     const yOffset = -(
@@ -152,7 +149,7 @@ const BuddyProject: React.FC<{}> = () => {
     <>
       <NavBar fixed />
       <div className="column-center">
-        <div className="column-center photo-wall-top">
+        <div className="column-center buddy-project-top">
           <div></div>
           {/* div required here to have space-between sort everything out */}
           <InitialContent />
@@ -163,13 +160,62 @@ const BuddyProject: React.FC<{}> = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      <div ref={signupRef}>
-        <Signup user={userCtx.user} />
+        <div ref={signupRef} className="buddy-project-bottom column-center">
+          <SignupProcess />
+        </div>
       </div>
       <Footer />
     </>
+  );
+};
+
+const SignupWelcome: React.FC<{ username?: string }> = ({ username }) => {
+  const hi = (username ? " " : "") + (username ?? "");
+
+  return (
+    <div className="column buddy-project-process-welcome">
+      <div className="buddy-project-process-header">
+        Find a stranger<div className="blue">Discover a friend</div>
+      </div>
+      <div className="column">
+        <div className="buddy-project-process-title">
+          Hi
+          <div className="inline-blue">{hi}</div>!
+        </div>
+        <div className="buddy-project-process-introduction">
+          An opportunity to get to know a person miles away from you, building a
+          new friendship, and discovering a new way of living, what’s not to
+          like?
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ProcessStep: React.FC<{ title: string }> = ({ title, children }) => {
+  return (
+    <div className="column buddy-project-process-step">
+      <div className="buddy-project-process-title">{title}</div>
+      {children}
+    </div>
+  );
+};
+
+const SignupProcess: React.FC<Partial<BuddyProjectSignup>> = (props) => {
+  return (
+    <div className="column buddy-project-process">
+      <div className="buddy-project-process-blockone column">
+        <SignupWelcome />
+        <img src="" height="340" width="440" />
+      </div>
+      <div className="column buddy-project-process-steps">
+        <ProcessStep title="How do I join?" children={howToJoin} />
+        <ProcessStep title="What happens next?" children={whatNext} />
+        <ProcessStep title="How will it work?" children={howItWorks} />
+      </div>
+      <button className="inverted self-center">FIND YOUR BUDDY</button>
+    </div>
   );
 };
 

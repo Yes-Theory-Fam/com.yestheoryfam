@@ -1,12 +1,12 @@
 import * as React from "react";
 import "./NavBar.scss";
-import DiscordLogo from "../../assets/Discord-Logo-White.svg";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { UserContext } from "../../UserContext";
 import CloseBurgerOnNav from "../CloseBurgerOnNav/CloseBurgerOnNav";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import pages, { NavPage } from "./pages";
+import DiscordLoginButton from "../DiscordLoginButton/DiscordLoginButton";
 
 import { BUDDY_PROJECT_MODE } from "../../config";
 
@@ -22,23 +22,6 @@ const CurrentUser: React.FC = () => {
       <span>
         {user?.username}#{user?.discriminator}
       </span>
-    </div>
-  );
-};
-
-const DiscordLoginButton: React.FC = () => {
-  const LogoContainer = () => (
-    <div className="discord-logo" key="discord-logo">
-      <DiscordLogo />
-    </div>
-  );
-
-  return (
-    <div className="discord-login-container">
-      <Link className="discord-login row" to="/auth/discord">
-        <LogoContainer />
-        LOGIN VIA DISCORD
-      </Link>
     </div>
   );
 };
