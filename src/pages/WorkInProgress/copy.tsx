@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-const header = "Welcome to the YesTheoryFam page!";
 const paragraphs = [
   <div>
     We are happy to have you around and chances are you came here for the{" "}
@@ -17,6 +16,7 @@ const paragraphs = [
     We are looking forward to having you back when our photowall, meetups and
     groupchats launch.
   </div>,
+  <div>While you are waiting, check out our Discord server!</div>,
 ];
 
-export { header, paragraphs };
+export { paragraphs };
