@@ -24,7 +24,7 @@ import BuddyProject from "./pages/BuddyProject/BuddyProject";
 import WorkInProgress from "./pages/WorkInProgress/WorkInProgress";
 import { BUDDY_PROJECT_MODE } from "./config";
 
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import { ScrollToTop, SavePage } from "./components/NavHooks";
 import axios from "axios";
 import IDiscordUser from "./types/User";
 
@@ -66,6 +66,7 @@ const App = () => {
     <Router>
       <ToastContainer />
       <ScrollToTop />
+      <SavePage />
       <UserContext.Provider value={{ user, setUser }}>
         <Switch>
           <Route path="/home" exact component={Home} />

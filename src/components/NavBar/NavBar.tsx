@@ -3,7 +3,7 @@ import "./NavBar.scss";
 import { NavLink } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { UserContext } from "../../UserContext";
-import CloseBurgerOnNav from "../CloseBurgerOnNav/CloseBurgerOnNav";
+import CloseBurgerOnNav from "../NavHooks/CloseBurger";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import pages, { NavPage } from "./pages";
 import DiscordLoginButton from "../DiscordLoginButton/DiscordLoginButton";
