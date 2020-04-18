@@ -126,6 +126,14 @@
       @include common.desktop-specific {
         min-height: 150px;
         margin: 25px;
+
+        .buddy-project-process-title {
+          margin-bottom: 10px;
+        }
+
+        div:nth-of-type(2n){
+          flex: auto;
+        }
       }
     }
 
