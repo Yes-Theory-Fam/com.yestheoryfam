@@ -123,6 +123,17 @@ const InitialContent = () => (
 const BuddyProject: React.FC<{}> = () => {
   const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
 
+  const scrollToAction = () => {
+    const yOffset = -(
+      document.querySelector(".nav-bar")?.getBoundingClientRect()?.height ?? 100
+    );
+    const y =
+      (signupRef.current?.getBoundingClientRect()?.top ?? 0) +
+      window.pageYOffset +
+      yOffset;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
   return (
     <>
       <NavBar fixed />
@@ -134,12 +145,7 @@ const BuddyProject: React.FC<{}> = () => {
           <div className="scroll-for-more column-center">
             GET INVOLVED
             <div className="expand-container">
-              <IoIosArrowDown
-                onClick={() =>
-                  signupRef.current?.scrollIntoView({ behavior: "smooth" })
-                }
-                size={20}
-              />
+              <IoIosArrowDown onClick={scrollToAction} size={20} />
             </div>
           </div>
         </div>
@@ -226,7 +232,7 @@ const SignedUp = () => (
 
 const SignupError = () => (
   <p>
-    Hey there! Something seems to have gone wrong. Please refresh the page, or
+    Hey there! Something seems to have gone wrong. Please refresh the page, orf
     try to login again.
   </p>
 );
