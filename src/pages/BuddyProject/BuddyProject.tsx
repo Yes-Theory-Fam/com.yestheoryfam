@@ -116,6 +116,8 @@ const InitialContent = () => (
 );
 
 const BuddyProject: React.FC<{}> = () => {
+  const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
+
   return (
     <>
       <NavBar fixed />
@@ -127,17 +129,24 @@ const BuddyProject: React.FC<{}> = () => {
           <div className="scroll-for-more column-center">
             GET INVOLVED
             <div className="expand-container">
-              <IoIosArrowDown size={20} />
+              <IoIosArrowDown
+                onClick={() =>
+                  signupRef.current?.scrollIntoView({ behavior: "smooth" })
+                }
+                size={20}
+              />
             </div>
           </div>
         </div>
       </div>
 
-      <Signup
-        discordUsername="YESBOT#0001"
-        displayName="YesBot"
-        discordUserId="614101602046836776"
-      />
+      <div ref={signupRef}>
+        <Signup
+          discordUsername="YESBOT#0001"
+          displayName="YesBot"
+          discordUserId="614101602046836776"
+        />
+      </div>
       <Footer />
     </>
   );
