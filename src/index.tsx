@@ -19,7 +19,7 @@ import Meetups from "./pages/meetups/Meetups";
 import PhotoWall from "./pages/photowall/PhotoWall";
 import MeetupDetails from "./pages/MeetupDetails/MeetupDetails";
 import { UserContext } from "./UserContext";
-import Groupchats from "./pages/Groupchats/Groupchats";
+import Groupchats from "./pages/groupchats/Groupchats";
 import BuddyProject from "./pages/BuddyProject/BuddyProject";
 import WorkInProgress from "./pages/WorkInProgress/WorkInProgress";
 import { BUDDY_PROJECT_MODE } from "./config";
