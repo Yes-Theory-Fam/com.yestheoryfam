@@ -1,6 +1,7 @@
 import * as React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import { IoIosArrowDown } from "react-icons/io";
+import { UserContext } from "../../UserContext";
 import {
   initDb,
   buddyProjectSignup,
@@ -11,6 +12,7 @@ import "./BuddyProject.scss";
 import Footer from "../../components/Footer/Footer";
 
 import BuddyProjectLogo from "../../assets/buddyproject_logo.svg";
+import IDiscordUser from "../../types/User";
 
 enum LOGGED_IN_STATE {
   NOT_LOGGED_IN,
@@ -25,11 +27,7 @@ enum SIGNED_UP_STATE {
   ERROR,
 }
 
-const Signup: React.FC<BuddyProjectSignup> = ({
-  discordUserId,
-  discordUsername,
-  displayName,
-}) => {
+const Signup: React.FC<{ user: IDiscordUser | undefined }> = ({ user }) => {
   const [signupState, setSignupState] = React.useState(
     SIGNED_UP_STATE.NOT_LOADED
   );
@@ -54,9 +52,16 @@ const Signup: React.FC<BuddyProjectSignup> = ({
       return;
     }
 
+    if (user === undefined) {
+      // Short circuit this process if the user is not signed in.
+      setCurrentSignup(null);
+      setSignupState(SIGNED_UP_STATE.NOT_SIGNED_UP);
+      return;
+    }
+
     setSignupState(SIGNED_UP_STATE.LOADING);
 
-    fetchBuddyProjectSignup(discordUserId)
+    fetchBuddyProjectSignup(user.id)
       .then((signup) => {
         setSignupState(
           signup !== null
@@ -77,29 +82,38 @@ const Signup: React.FC<BuddyProjectSignup> = ({
         <div className="upload-header">Find a stranger, discover a friend.</div>
         {/* @ToDo: if not logged in, make 'em log in */}
         <div>
-          <header>
-            <h3>Hi {displayName}!</h3>
-            <p>Or should I call you {discordUsername}?</p>
-          </header>
-          <SignupText signupState={signupState} />
-          {signupState === SIGNED_UP_STATE.NOT_SIGNED_UP && (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                buddyProjectSignup(discordUsername, displayName, discordUserId)
-                  .then(() => setSignupState(SIGNED_UP_STATE.SIGNED_UP))
-                  .catch((err) => {
-                    setSignupState(SIGNED_UP_STATE.ERROR);
-                    setError(err);
-                  });
-              }}
-            >
-              <button type="submit" className="button buddy-project-entry">
-                GIVE ME A BUDDY
-              </button>
-            </form>
+          {user === undefined ? (
+            <NotLoggedIn />
+          ) : (
+            <>
+              <header>
+                <h3>Hi {user.username}!</h3>
+                <p>
+                  Or should I call you{" "}
+                  {`${user.username}#${user.discriminator}`}?
+                </p>
+              </header>
+              <SignupText signupState={signupState} />
+              {signupState === SIGNED_UP_STATE.NOT_SIGNED_UP && (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    buddyProjectSignup(user.username, user.username, user.id)
+                      .then(() => setSignupState(SIGNED_UP_STATE.SIGNED_UP))
+                      .catch((err) => {
+                        setSignupState(SIGNED_UP_STATE.ERROR);
+                        setError(err);
+                      });
+                  }}
+                >
+                  <button type="submit" className="button buddy-project-entry">
+                    GIVE ME A BUDDY
+                  </button>
+                </form>
+              )}
+              {signupState === SIGNED_UP_STATE.ERROR && <p>Error: {error}</p>}
+            </>
           )}
-          {signupState === SIGNED_UP_STATE.ERROR && <p>Error: {error}</p>}
         </div>
       </div>
     </div>
@@ -132,6 +146,8 @@ const BuddyProject: React.FC<{}> = () => {
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
+  const userCtx = React.useContext(UserContext);
+
   return (
     <>
       <NavBar fixed />
@@ -150,11 +166,7 @@ const BuddyProject: React.FC<{}> = () => {
       </div>
 
       <div ref={signupRef}>
-        <Signup
-          discordUsername="YESBOT#0001"
-          displayName="YesBot"
-          discordUserId="614101602046836776"
-        />
+        <Signup user={userCtx.user} />
       </div>
       <Footer />
     </>
