@@ -38,11 +38,13 @@ const DiscordApi = () => {
 };
 
 const getInitialUser = async (): Promise<IDiscordUser> => {
-  const userResponse = await DiscordApi().get(
-    "users/@me"
-  );
+  if (!localStorage.getItem("access_token")) {
+    throw new Error("no stored access token");
+  }
+
+  const userResponse = await DiscordApi().get("users/@me");
   const { id, username, avatar, discriminator, email } = userResponse.data;
-  
+
   return {
     username,
     avatar,
@@ -55,9 +57,11 @@ const getInitialUser = async (): Promise<IDiscordUser> => {
 const App = () => {
   const [user, setUser] = React.useState<undefined | IDiscordUser>(undefined);
   React.useEffect(() => {
-    getInitialUser().then(setUser)
-  }, [setUser])
-  
+    getInitialUser()
+      .then(setUser)
+      .catch((err) => console.error(err.toString()));
+  }, [setUser]);
+
   return (
     <Router>
       <ToastContainer />
