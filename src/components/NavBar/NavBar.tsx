@@ -10,32 +10,19 @@ import DiscordLoginButton from "../DiscordLoginButton/DiscordLoginButton";
 
 import { BUDDY_PROJECT_MODE } from "../../config";
 
-const isLoggedIn = false;
-let showLoginButton = true;
-
 const CurrentUser: React.FC = () => {
   const { user } = React.useContext(UserContext);
   const imageUrl = `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}`;
   return (
-    <div className="row nav-bar-links-link column-center">
-      <img src={imageUrl} alt={user?.username} className="user-avatar"></img>
-      <span>
-        {user?.username}#{user?.discriminator}
-      </span>
-    </div>
-  );
-};
-
-const CircularAvatar: React.FC = () => {
-  return (
-    <div className="avatar-container row">
+    <div className="row avatar-container">
       <img
+        src={imageUrl}
+        alt={user?.username}
         className="circle-avatar"
-        src="https://mirrors.creativecommons.org/presskit/icons/nc-jp.png" //Just some random thing that worked
-        height="26"
-        width="26"
+        height="42"
+        width="42"
       />
-      Username
+      {user?.username}#{user?.discriminator}
     </div>
   );
 };
@@ -79,9 +66,6 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
   const { user } = React.useContext(UserContext);
-  if (user) {
-    showLoginButton = false;
-  }
   const NewPill: React.FC = () => {
     return <div className="nav-bar-links-newpill centered-content">NEW</div>;
   };
@@ -103,9 +87,8 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   );
 
   const userNav = renderedPages.map(pageToNavLink);
-  if (isLoggedIn) userNav.push(<CircularAvatar />);
-  if (showLoginButton) userNav.push(<DiscordLoginButton key="discord-logo" />);
-  if (!showLoginButton) userNav.push(<CurrentUser />);
+  if (!user) userNav.push(<DiscordLoginButton key="discord-logo" />);
+  if (user) userNav.push(<CurrentUser key="current-user" />);
 
   return (
     <div className={`row nav-bar ${fixed ? "fixed" : ""} ${classNames || ""}`}>
