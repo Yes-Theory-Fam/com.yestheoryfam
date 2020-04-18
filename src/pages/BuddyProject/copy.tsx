@@ -6,8 +6,11 @@ const howToJoin = (
       <b>Click the button down below!</b>
     </div>
     Once you do that, you will be asked to join the <b>Yes Theory Fam</b> server
-    (if you’re not already in it). From then on, everything will be happening on
-    Discord.
+    (if you’re not already in it). From then on, everything will be happening on{" "}
+    <a href="https://discordapp.com" target="_blank" className="inline-blue">
+      Discord
+    </a>
+    .
   </div>
 );
 
