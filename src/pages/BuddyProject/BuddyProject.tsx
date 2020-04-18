@@ -112,10 +112,8 @@ const InitialContent = () => (
       <BuddyProjectLogo />
     </div>
     <div className="buddy-project-text">
-      <i>
-        Great things come to those who are willing to risk rejection and put
-        themselves out there.
-      </i>
+      Great things come to those who are willing to risk rejection and put
+      themselves out there.
     </div>
   </div>
 );
