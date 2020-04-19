@@ -14,12 +14,12 @@
     align-items: center;
 
     @include common.tablet-specific {
-      width: 50%;
+      width: 30%;
       flex-direction: row;
     }
 
     @include common.desktop-specific {
-      width: 33%;
+      width: 20%;
       flex-direction: row;
     }
   }
