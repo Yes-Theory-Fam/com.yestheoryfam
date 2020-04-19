@@ -5,7 +5,7 @@ const paragraphs = [
   <div key="p1">
     We are happy to have you around and chances are you came here for the{" "}
     <Link to="/buddyproject" className="link">
-      Buddy project.
+      Buddy Project.
     </Link>
   </div>,
   <div key="p2">
