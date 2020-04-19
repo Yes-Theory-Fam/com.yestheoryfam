@@ -8,7 +8,7 @@ const Footer: React.FC<{}> = () => {
       <Logo />
       <div className="footer-links column-center">
         <a href="https://discord.gg/yestheory" target="_blank">Discord</a>
-        {/* TODO: Add these back in once they work. 
+        {/* TODO: Add these back in once they work and increase the width styling as well.
         <Link to="/">Contact</Link>
         <Link to="/">Press</Link> */}
         <a href="https://seekdiscomfort.com" target="_blank">
