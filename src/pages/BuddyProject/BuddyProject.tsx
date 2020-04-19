@@ -153,20 +153,20 @@ const ProcessStep: React.FC<{ title: string }> = ({ title, children }) => {
 };
 
 const buddyProjectRegister = (user: IDiscordUser, setSignupState: (val: SIGNED_UP_STATE) => void) => {
-  const { username, id} = user;
+  const { username, id } = user;
   buddyProjectSignup(username, username, id)
-  .then(() =>
-  // After they've been registered to Firebase, send them to Discord. 
-  {
-    if (registerToDiscord(user)) {
-      setSignupState(SIGNED_UP_STATE.SIGNED_UP)
-    } else {
-      setSignupState(SIGNED_UP_STATE.NOT_SIGNED_UP);
-    }
-  })
-  .catch((err) => {
-    setSignupState(SIGNED_UP_STATE.ERROR);
-  });
+    .then(() =>
+    // After they've been registered to Firebase, send them to Discord. 
+    {
+      if (registerToDiscord(user)) {
+        setSignupState(SIGNED_UP_STATE.SIGNED_UP)
+      } else {
+        setSignupState(SIGNED_UP_STATE.NOT_SIGNED_UP);
+      }
+    })
+    .catch((err) => {
+      setSignupState(SIGNED_UP_STATE.ERROR);
+    });
 }
 
 const renderBPNextStepButton =
@@ -184,20 +184,20 @@ const renderBPNextStepButton =
           </a>
         )
       case SIGNED_UP_STATE.NOT_SIGNED_UP:
-        
+
         // IF USER LOGGED IN -> SIGN UP
         // IF USER NOT LOGGED IN -> LOGIN WITH DISCORD
         // MARKER FOR LATER (SIGNUP BUTTON)
         return (
           user ? (
-            <button onClick={() => {buddyProjectRegister(user, setSignupStatus)}} className='button inverted self-center'>
+            <button onClick={() => { buddyProjectRegister(user, setSignupStatus) }} className='button inverted self-center'>
               Sign up!
             </button>
           ) : (
-            <Link to='/auth/discord' className='button inverted self-center'>
-              Login with Discord!
-            </Link>
-          )
+              <Link to='/auth/discord' className='button inverted self-center'>
+                Login with Discord!
+              </Link>
+            )
         )
       default:
         return (
@@ -214,7 +214,7 @@ const SignupProcess: React.FC<{ user: IDiscordUser | undefined, bpSignupStatus: 
   user,
 }) => {
   const [showToDiscordModal, setShowToDiscordModal] = React.useState(true);
-  
+
   return (
     <div className="column buddy-project-process">
       <div className="buddy-project-process-blockone column">
