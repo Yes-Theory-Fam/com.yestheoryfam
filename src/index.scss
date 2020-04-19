@@ -56,6 +56,11 @@ img {
   color: common.$yesTheoryBlue;
 }
 
+.link {
+  @extend .inline-blue;
+  text-decoration: solid 1px underline common.$yesTheoryBlue;
+}
+
 .blue {
   color: common.$yesTheoryBlue;
 }

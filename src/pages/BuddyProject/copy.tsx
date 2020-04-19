@@ -7,7 +7,7 @@ const howToJoin = (
     </div>
     Once you do that, you will be asked to join the <b>Yes Theory Fam</b> server
     (if you’re not already in it). From then on, everything will be happening on{" "}
-    <a href="https://discordapp.com" target="_blank" className="inline-blue">
+    <a href="https://discordapp.com" target="_blank" className="link">
       Discord
     </a>
     .
@@ -43,7 +43,6 @@ const NotLoggedIn = () => (
     will be connected with your buddy.
   </p>
 );
-
 
 const NotSignedUp = () => (
   <>
@@ -114,7 +113,6 @@ const SignupError = () => (
     try to login again.
   </p>
 );
-
 
 export {
   howItWorks,
