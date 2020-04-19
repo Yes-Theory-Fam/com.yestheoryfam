@@ -2,21 +2,21 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 const paragraphs = [
-  <div>
+  <div key='p1'>
     We are happy to have you around and chances are you came here for the{" "}
     <Link to="/buddyproject" className="inline-blue">
       Buddy project.
     </Link>
   </div>,
-  <div>
+  <div key='p2'>
     Please note that this page is under heavy construction so new features will
     pop up soon when everything is set up!
   </div>,
-  <div>
+  <div key='p3'>
     We are looking forward to having you back when our photowall, meetups and
     groupchats launch.
   </div>,
-  <div>While you are waiting, check out our Discord server!</div>,
+  <div key='p4'>While you are waiting, check out our Discord server!</div>,
 ];
 
 export { paragraphs };

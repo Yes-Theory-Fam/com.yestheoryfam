@@ -13,10 +13,10 @@ import Footer from "../../components/Footer/Footer";
 
 import BuddyProjectLogo from "../../assets/buddyproject_logo.svg";
 import IDiscordUser from "../../types/User";
-
-import { howToJoin, whatNext, howItWorks } from "./copy";
+import { howToJoin, whatNext, howItWorks, NotSignedUp, SignedUp, SignupError, NotLoggedIn } from "./copy";
 import CutestBotEver from "../../assets/yesbot-yougotmail_bluetint.png";
 import { DiscordApi } from "../../index";
+import { SuccessModalToDiscord } from './SuccessfulSignUpModal';
 
 enum LOGGED_IN_STATE {
   NOT_LOGGED_IN,
@@ -30,6 +30,7 @@ enum SIGNED_UP_STATE {
   NOT_SIGNED_UP,
   ERROR,
 }
+
 
 const Signup: React.FC<{ user: IDiscordUser | undefined }> = ({ user }) => {
   const [signupState, setSignupState] = React.useState(
@@ -65,7 +66,7 @@ const Signup: React.FC<{ user: IDiscordUser | undefined }> = ({ user }) => {
 
     setSignupState(SIGNED_UP_STATE.LOADING);
 
-    fetchBuddyProjectSignup(user.id)
+    fetchBuddyProjectSignup(user?.id)
       .then((signup) => {
         setSignupState(
           signup !== null
@@ -85,34 +86,42 @@ const Signup: React.FC<{ user: IDiscordUser | undefined }> = ({ user }) => {
       {user === undefined ? (
         <NotLoggedIn />
       ) : (
-        <>
-          <header>
-            <h3>Hi {user.username}!</h3>
-            <p>
-              Or should I call you {`${user.username}#${user.discriminator}`}?
+          <>
+            <header>
+              <h3>Hi {user.username}!</h3>
+              <p>
+                Or should I call you {`${user.username}#${user.discriminator}`}?
             </p>
-          </header>
-          <SignupText signupState={signupState} />
-          {signupState === SIGNED_UP_STATE.NOT_SIGNED_UP && (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                buddyProjectSignup(user.username, user.username, user.id)
-                  .then(() => setSignupState(SIGNED_UP_STATE.SIGNED_UP))
-                  .catch((err) => {
-                    setSignupState(SIGNED_UP_STATE.ERROR);
-                    setError(err);
-                  });
-              }}
-            >
-              <button type="submit" className="self-center">
-                GIVE ME A BUDDY
-              </button>
-            </form>
-          )}
-          {signupState === SIGNED_UP_STATE.ERROR && <p>Error: {error}</p>}
-        </>
-      )}
+            </header>
+            <SignupText signupState={signupState} />
+            {signupState === SIGNED_UP_STATE.NOT_SIGNED_UP && (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  buddyProjectSignup(user?.username, user?.username, user?.id)
+                    .then(() =>
+                    // After they've been registered to Firebase, send them to Discord. 
+                    {
+                      if (registerToDiscord(user)) {
+                        setSignupState(SIGNED_UP_STATE.SIGNED_UP)
+                      } else {
+                        setSignupState(SIGNED_UP_STATE.NOT_SIGNED_UP);
+                      }
+                    })
+                    .catch((err) => {
+                      setSignupState(SIGNED_UP_STATE.ERROR);
+                      setError(err);
+                    });
+                }}
+              >
+                <button type="submit" className="self-center" style={{ marginTop: '5%' }}>
+                  GIVE ME A BUDDY
+                </button>
+              </form>
+            )}
+            {signupState === SIGNED_UP_STATE.ERROR && <p>Error: {error}</p>}
+          </>
+        )}
     </div>
   );
 };
@@ -129,17 +138,24 @@ const InitialContent = () => (
   </div>
 );
 
-const registerToDiscord = (user:IDiscordUser | undefined) => {
+const registerToDiscord = async (user: IDiscordUser | undefined) => {
   const access_token = localStorage.getItem("access_token");
   const guild_id = process.env.REACT_APP_GUILD_ID;
   const roles = [process.env.REACT_APP_BUDDY_PROJECT_ROLE_ID]
   const payload = { access_token, roles }
-  const response = DiscordApi("bot").put(`/guilds/${guild_id}/members/${user?.id}`, payload);
-  
+  const response = await DiscordApi("bot").put(`/guilds/${guild_id}/members/${user?.id}`, payload);
+  console.log('Response status: ', response.status);
+  if (response.status === 200) {
+    return true;
+  }
+  return false;
 }
+
 
 const BuddyProject: React.FC<{}> = () => {
   const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
+  const [bpStatus, setBPStatus] = React.useState(SIGNED_UP_STATE.NOT_SIGNED_UP);
+  const [error, setError] = React.useState('');
 
   const { user } = React.useContext(UserContext);
 
@@ -153,6 +169,23 @@ const BuddyProject: React.FC<{}> = () => {
       yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
   };
+
+  React.useEffect(() => {
+    initDb();
+    buddyProjectSignup(user?.username || '', user?.username || '', user?.id || '')
+      .then(() => {
+        if (registerToDiscord(user)) {
+          setBPStatus(SIGNED_UP_STATE.SIGNED_UP);
+        } else {
+          setBPStatus(SIGNED_UP_STATE.NOT_SIGNED_UP);
+        }
+      })
+      .catch((err) => {
+        console.log('ERror with Buddy proj: ', err.message);
+        setBPStatus(SIGNED_UP_STATE.ERROR);
+        setError(err.message);
+      });
+  }, [user, setBPStatus])
 
   return (
     <>
@@ -169,10 +202,10 @@ const BuddyProject: React.FC<{}> = () => {
             </div>
           </div>
         </div>
-
         <div ref={signupRef} className="buddy-project-bottom column-center">
-          <SignupProcess user={user} />
+          <SignupProcess user={user} bpSignupStatus={bpStatus} />
         </div>
+        {/* {error !== '' ? <span>{error}</span> : ''} */}
       </div>
       <Footer />
     </>
@@ -213,9 +246,46 @@ const ProcessStep: React.FC<{ title: string }> = ({ title, children }) => {
   );
 };
 
-const SignupProcess: React.FC<{ user: IDiscordUser | undefined }> = ({
+const renderBPNextStepButton =
+  (
+    user: IDiscordUser | undefined,
+    bpSignupStatus: SIGNED_UP_STATE,
+    setShowSignUpForm: { (val: boolean): void },
+  ) => {
+    switch (bpSignupStatus) {
+      case 2:
+        // SIGNED_UP
+        return (
+          <a className='button inverted self-center disabled' >
+            You've already signed up!
+          </a>
+        )
+      case 3:
+        // NOT_SIGNED_UP
+        return (
+          <button onClick={() => setShowSignUpForm(true)} className='button inverted self-center'>
+            Sign up!
+          </button>
+        )
+      default:
+        return (
+          <a href='/auth/discord' className='button inverted self-center'>
+            Login with Discord!
+          </a>
+        );
+    }
+  }
+
+const SignupProcess: React.FC<{ user: IDiscordUser | undefined, bpSignupStatus: SIGNED_UP_STATE }> = ({
+  bpSignupStatus,
   user,
 }) => {
+  const [showSignUpForm, setShowSignUpForm] = React.useState(false);
+  const [showToDiscordModal, setShowToDiscordModal] = React.useState(true);
+  const setShowSignUpFormMethod = (val: boolean) => {
+    setShowSignUpForm(val);
+  }
+
   return (
     <div className="column buddy-project-process">
       <div className="buddy-project-process-blockone column">
@@ -229,84 +299,16 @@ const SignupProcess: React.FC<{ user: IDiscordUser | undefined }> = ({
         <ProcessStep title="What happens next?" children={whatNext} />
         <ProcessStep title="How will it work?" children={howItWorks} />
       </div>
-      <button className="inverted self-center" onClick={() => registerToDiscord(user)}>FIND YOUR BUDDY</button>
-    </div>
+      {renderBPNextStepButton(user, bpSignupStatus, setShowSignUpFormMethod)}
+      {
+        bpSignupStatus === 2 && showToDiscordModal &&
+        < SuccessModalToDiscord onClose={() => setShowToDiscordModal(false)} username={user?.username} />
+      }
+      <br />
+      {showSignUpForm && <Signup user={user} />}
+    </div >
   );
 };
-
-const NotLoggedIn = () => (
-  <p>
-    Let’s get started, shall we? To sign up to the buddy project, you first have
-    to login with discord and be in the Yes Theory Fam server. This is where you
-    will be connected with your buddy.
-  </p>
-);
-
-const NotSignedUp = () => (
-  <>
-    <p>
-      An opportunity to get to know a person miles away from you, building a new
-      friendship, and discovering a new way of living, what’s not to like? Click
-      that join button to sign up to the buddy project!
-    </p>
-    <p>
-      Once you do that, you will be asked to join the Yes Theory Fam server (if
-      you’re not already in it). From then on, everything will be happening on
-      Discord. When the sign-up deadline is reached, everyone will be matched
-      with a buddy.
-    </p>
-    <p>
-      Yes Bot, our very own bot, will message you on discord with the name of
-      your partner and a set of questions. Your buddy and you will both get a
-      message, and you’ll have to make sure to message each other! You’ll have
-      two different sets of questions, and you’ll each take turns asking a
-      question from your list, and both answering, until there are no more
-      questions left.
-    </p>
-    <p>
-      We hope you enjoy and make a lifelong friend. Don’t forget to update us on
-      how things are going in #buddy-project, on the Yes Theory Fam server, we
-      would absolutely love to hear all about your experience.
-    </p>
-    <p>
-      Be sure to stay around on the server once this event is over, we have many
-      more awesome projects planned for you!
-    </p>
-  </>
-);
-
-const SignedUp = () => (
-  <>
-    <p>
-      Seems like you’re already signed up and good to go! From now on,
-      everything will be happening on Discord.{" "}
-    </p>
-    <p>
-      When the sign-up deadline is reached, everyone will be matched with a
-      buddy.{" "}
-    </p>
-    <p>
-      Yes Bot, our very own bot, will message you with the name of your partner
-      and a set of questions. Your buddy and you will both get a message, and
-      you’ll have to make sure to message each other! You’ll have two different
-      sets of questions, and you’ll each take turns asking a question from your
-      list, and both answering, until there are no more questions left. We hope
-      you enjoy and make a lifelong friend!{" "}
-    </p>
-    <p>
-      Don’t forget to update us on how things are going in #buddy-projects, on
-      the Yes Theory Fam server, we would absolutely love to hear all about your
-      experience.{" "}
-    </p>
-  </>
-);
-
-const SignupError = () => (
-  <p>
-    Hey there! Something seems to have gone wrong. Please refresh the page, orf
-    try to login again.
-  </p>
-);
 
 const SignupText: React.FC<{ signupState: SIGNED_UP_STATE }> = ({
   signupState,

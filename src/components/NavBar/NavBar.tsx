@@ -17,7 +17,7 @@ const logout = () => {
 
 const CurrentUser: React.FC = () => {
   const { user } = React.useContext(UserContext);
-  const imageUrl = user?.avatar? `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}`: "https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png"
+  const imageUrl = user?.avatar ? `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}` : "https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png"
   return (
     <div className="row avatar-container">
       <img

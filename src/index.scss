@@ -110,3 +110,8 @@ button.inverted,
   background-color: common.$yesTheoryBlue;
   color: white;
 }
+
+.button.inverted.disabled {
+  background-color: gray;
+  border: 1px solid gray;
+}
