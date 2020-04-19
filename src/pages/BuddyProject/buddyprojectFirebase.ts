@@ -29,15 +29,15 @@ export interface BuddyProjectSignup {
   displayName: string;
 }
 
-async function documentExists(id:string) {
+async function documentExists(id: string) {
   if (_db === null) {
     console.error("The database needs to be initialized first!");
     throw new Error("The database needs to be initialized first!");
   }
   const buddyDoc = await _db
-  .collection("buddyproject")
-  .doc(id)
-  .get();
+    .collection("buddyproject")
+    .doc(id)
+    .get();
   return buddyDoc.exists;
 }
 
@@ -52,7 +52,8 @@ export async function buddyProjectSignup(
   }
 
   const firebaseUserId = btoa(discordUserId);
-  if (documentExists(firebaseUserId)) {
+  const documentExistsCheck = await documentExists(firebaseUserId);
+  if (documentExistsCheck) {
     return true;
   }
 
