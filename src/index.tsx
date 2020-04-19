@@ -32,7 +32,12 @@ export const DiscordApi = (type = "user") => {
   const api = axios.create({
     baseURL: "https://discordapp.com/api/",
     timeout: 3000,
-    headers: { Authorization: type === "user" ? `Bearer ${localStorage.getItem("access_token")}` : `Bot ${process.env.REACT_APP_DISCORD_BOT_TOKEN}` }
+    headers: {
+      Authorization:
+        type === "user"
+          ? `Bearer ${localStorage.getItem("access_token")}`
+          : `Bot ${process.env.REACT_APP_DISCORD_BOT_TOKEN}`,
+    },
   });
   return api;
 };
@@ -69,7 +74,6 @@ const App = () => {
       <SavePage />
       <UserContext.Provider value={{ user, setUser }}>
         <Switch>
-          <Route path="/home" exact component={Home} />
           <Route
             path="/auth/discord"
             exact
@@ -82,6 +86,7 @@ const App = () => {
           />
           <Route path="/buddyproject" exact component={BuddyProject} />
           {BUDDY_PROJECT_MODE && <Route path="/" component={WorkInProgress} />}
+          <Route path="/home" exact component={Home} />
           <Route path="/blog" exact component={BlogOverview} />
           <Route path="/photowall" exact component={PhotoWall} />
           <Route path="/groupchats" exact component={Groupchats} />
