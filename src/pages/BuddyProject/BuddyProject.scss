@@ -38,6 +38,8 @@
   }
 
   &-process {
+    color: #2a2a2a;
+
     width: 80%;
     margin-bottom: 50px;
 
@@ -108,6 +110,10 @@
         flex-direction: row;
         justify-content: space-between;
       }
+
+      & div:not(.blue) > b {
+        color: black;
+      }
     }
 
     &-step {
@@ -131,7 +137,7 @@
           margin-bottom: 10px;
         }
 
-        div:nth-of-type(2n){
+        div:nth-of-type(2n) {
           flex: auto;
         }
       }
@@ -204,7 +210,7 @@
   align-self: center;
 }
 
-.success-modal { 
+.success-modal {
   -webkit-backdrop-filter: blur(2px);
   align-items: center;
   backdrop-filter: blur(2px);
@@ -226,7 +232,6 @@
     top: 30px;
     width: 100%;
     max-width: 675px;
-
   }
 
   &-text-content {
