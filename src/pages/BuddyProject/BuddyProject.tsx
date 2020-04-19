@@ -31,19 +31,6 @@ enum SIGNED_UP_STATE {
   ERROR,
 }
 
-const registerToDiscord = async (user: IDiscordUser | undefined) => {
-  const access_token = localStorage.getItem("access_token");
-  const guild_id = process.env.REACT_APP_GUILD_ID;
-  const roles = [process.env.REACT_APP_BUDDY_PROJECT_ROLE_ID]
-  const payload = { access_token, roles }
-  const response = await DiscordApi("bot").put(`/guilds/${guild_id}/members/${user?.id}`, payload);
-  console.log('Response status: ', response.status);
-  if (response.status === 200) {
-    return true;
-  }
-
-  return false;
-}
 
 const Signup: React.FC<{ user: IDiscordUser | undefined }> = ({ user }) => {
   const [signupState, setSignupState] = React.useState(
@@ -150,6 +137,20 @@ const InitialContent = () => (
     </div>
   </div>
 );
+
+const registerToDiscord = async (user: IDiscordUser | undefined) => {
+  const access_token = localStorage.getItem("access_token");
+  const guild_id = process.env.REACT_APP_GUILD_ID;
+  const roles = [process.env.REACT_APP_BUDDY_PROJECT_ROLE_ID]
+  const payload = { access_token, roles }
+  const response = await DiscordApi("bot").put(`/guilds/${guild_id}/members/${user?.id}`, payload);
+  console.log('Response status: ', response.status);
+  if (response.status === 200) {
+    return true;
+  }
+  return false;
+}
+
 
 const BuddyProject: React.FC<{}> = () => {
   const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
@@ -307,7 +308,7 @@ const SignupProcess: React.FC<{ user: IDiscordUser | undefined, bpSignupStatus: 
       }
       <br />
       {showSignUpForm && <Signup user={user} />}
-    </div>
+    </div >
   );
 };
 
