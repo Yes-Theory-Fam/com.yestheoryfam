@@ -245,8 +245,11 @@
     color: #0166ff;
     cursor: pointer;
     height: 46px;
-    margin-inline-start: 93%;
     position: absolute;
     width: 46px;
+
+    align-self: flex-end;
+    margin-top: 40px;
+    margin-inline-end: 58px;
   }
 }

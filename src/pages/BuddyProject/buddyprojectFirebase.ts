@@ -29,6 +29,18 @@ export interface BuddyProjectSignup {
   displayName: string;
 }
 
+async function documentExists(id:string) {
+  if (_db === null) {
+    console.error("The database needs to be initialized first!");
+    throw new Error("The database needs to be initialized first!");
+  }
+  const buddyDoc = await _db
+  .collection("buddyproject")
+  .doc(id)
+  .get();
+  return buddyDoc.exists;
+}
+
 export async function buddyProjectSignup(
   discordUsername: string,
   displayName: string,
@@ -39,18 +51,8 @@ export async function buddyProjectSignup(
     throw new Error("The database needs to be initialized first!");
   }
 
-  // Let's create a b64 of the discord userid (which won't change)
-  // and use that as the identifier in firebase
   const firebaseUserId = btoa(discordUserId);
-
-  const buddyDoc = await _db
-    .collection("buddyproject")
-    .doc(firebaseUserId)
-    .get();
-  if (buddyDoc.exists) {
-    // User has already signed up, so that looks all good
-    // @ToDo: Consider if we should update user info at this point
-    console.log("doc exists:", buddyDoc.data());
+  if (documentExists(firebaseUserId)) {
     return true;
   }
 
