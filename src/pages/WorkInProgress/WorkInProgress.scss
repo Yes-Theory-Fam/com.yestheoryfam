@@ -1,6 +1,9 @@
 @use '../../common';
 
 .wip {
+  margin-top: 30px;
+  justify-content: space-between;
+
   & .page-header {
     margin-bottom: 30px;
     font-size: 36px;
@@ -14,8 +17,6 @@
       font-size: 7vw;
     }
   }
-
-  justify-content: space-between;
 
   &-content {
     width: 90%;
