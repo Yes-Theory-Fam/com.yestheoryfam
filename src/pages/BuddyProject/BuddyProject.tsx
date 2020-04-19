@@ -255,7 +255,6 @@ const renderBPNextStepButton =
     switch (bpSignupStatus) {
       case 2:
         // SIGNED_UP
-        console.log("We're here!")
         return (
           <a className='button inverted self-center disabled' >
             You've already signed up!
@@ -263,7 +262,6 @@ const renderBPNextStepButton =
         )
       case 3:
         // NOT_SIGNED_UP
-        // TODO: This should open the modal
         return (
           <button onClick={() => setShowSignUpForm(true)} className='button inverted self-center'>
             Sign up!
