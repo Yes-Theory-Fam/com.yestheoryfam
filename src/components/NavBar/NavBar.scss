@@ -100,17 +100,6 @@
       width: 50px;
     }
   }
-
-  & .discord-login {
-    align-items: center;
-
-    padding: 10px;
-    border: none;
-    background-color: common.$yesTheoryBlue;
-    border-radius: 50px;
-
-    color: white;
-  }
 }
 
 .fixed {
@@ -120,20 +109,21 @@
   z-index: 1000;
 }
 
-.discord-logo {
-  height: 25px;
-  width: 25px;
-}
-
 .avatar-container {
+  margin-left: 4px;
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
 }
 
+.logout {
+  max-width: 30px;
+  margin-left:20px;
+}
+
 .circle-avatar {
   border-radius: 50%;
-  margin-right: 5px;
+  margin-right: 16px;
 }
 
 .current {

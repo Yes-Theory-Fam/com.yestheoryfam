@@ -44,7 +44,7 @@ img {
 }
 
 .page-header {
-  font-size: 100px;
+  font-size: 10vw;
   font-weight: 900;
   text-align: center;
   color: #2a2a2a;
@@ -53,6 +53,10 @@ img {
 
 .inline-blue {
   display: inline;
+  color: common.$yesTheoryBlue;
+}
+
+.blue {
   color: common.$yesTheoryBlue;
 }
 
@@ -99,4 +103,10 @@ button,
 
   text-decoration: none;
   cursor: pointer;
+}
+
+button.inverted,
+.button.inverted {
+  background-color: common.$yesTheoryBlue;
+  color: white;
 }

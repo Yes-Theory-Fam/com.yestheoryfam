@@ -1,6 +1,147 @@
 @use '../../common';
 
 .buddy-project {
+  &-top {
+    height: 100vh;
+    justify-content: space-between;
+
+    @include common.phone-landscape-specific {
+      height: 100%;
+    }
+
+    & .scroll-for-more {
+      width: 100vw;
+      margin-bottom: 20px;
+      color: common.$yesTheoryBlue;
+      z-index: 500;
+      font-size: 14px;
+
+      @include common.phone-landscape-specific {
+        position: static;
+      }
+    }
+  }
+
+  &-bottom {
+    width: 100%;
+    justify-content: flex-start;
+
+    @include common.desktop-specific {
+      padding-top: 50px;
+      min-height: 100vh;
+    }
+
+    &-content {
+      height: 100%;
+      justify-content: space-evenly;
+    }
+  }
+
+  &-process {
+    width: 80%;
+    margin-bottom: 50px;
+
+    @include common.desktop-specific {
+      min-height: 80%;
+      justify-content: space-between;
+    }
+
+    &-blockone {
+      @include common.desktop-specific {
+        flex-direction: row;
+      }
+
+      & .buddy-project-process-welcome {
+        @include common.desktop-specific {
+          flex: 2;
+        }
+      }
+    }
+
+    &-yesbot {
+      width: 100%;
+
+      @include common.desktop-specific {
+        flex: 1;
+        width: unset;
+      }
+
+      & img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &-welcome {
+      margin: 25px 0;
+    }
+
+    &-header {
+      color: #2a2a2a;
+      font-weight: 900;
+      font-size: 36px;
+      margin-bottom: 15px;
+
+      @include common.tablet-specific {
+        font-size: 64px;
+      }
+
+      @include common.desktop-specific {
+        font-size: 6vw;
+      }
+    }
+
+    &-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    @include common.desktop-specific {
+      &-introduction {
+        width: 70%;
+      }
+    }
+
+    &-steps {
+      @include common.desktop-specific {
+        margin-bottom: 20px;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    &-step {
+      flex: 1;
+      margin: 25px 0;
+      justify-content: space-between;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      @include common.desktop-specific {
+        min-height: 150px;
+        margin: 25px;
+
+        .buddy-project-process-title {
+          margin-bottom: 10px;
+        }
+
+        div:nth-of-type(2n){
+          flex: auto;
+        }
+      }
+    }
+
+    & button {
+      max-width: 260px;
+    }
+  }
+
   &-logo {
     width: 100%;
     max-width: 700px;
@@ -57,4 +198,8 @@
       max-width: 30rem;
     }
   }
+}
+
+.self-center {
+  align-self: center;
 }
