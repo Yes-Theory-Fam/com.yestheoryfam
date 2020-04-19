@@ -135,7 +135,6 @@ const registerToDiscord = (user:IDiscordUser | undefined) => {
   const roles = [process.env.REACT_APP_BUDDY_PROJECT_ROLE_ID]
   const payload = { access_token, roles }
   const response = DiscordApi("bot").put(`/guilds/${guild_id}/members/${user?.id}`, payload);
-  console.log(response);
   
 }
 
