@@ -59,6 +59,7 @@ img {
 .link {
   @extend .inline-blue;
   text-decoration: solid underline common.$yesTheoryBlue;
+  -webkit-text-decoration: solid underline common.$yesTheoryBlue;
 }
 
 .blue {
