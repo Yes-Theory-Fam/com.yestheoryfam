@@ -6,17 +6,25 @@ import {
   initDb,
   buddyProjectSignup,
   fetchBuddyProjectSignup,
-  BuddyProjectSignup
+  BuddyProjectSignup,
 } from "./buddyprojectFirebase";
 import "./BuddyProject.scss";
 import Footer from "../../components/Footer/Footer";
 
 import BuddyProjectLogo from "../../assets/buddyproject_logo.svg";
 import IDiscordUser from "../../types/User";
-import { howToJoin, whatNext, howItWorks, NotSignedUp, SignedUp, SignupError, NotLoggedIn } from "./copy";
+import {
+  howToJoin,
+  whatNext,
+  howItWorks,
+  NotSignedUp,
+  SignedUp,
+  SignupError,
+  NotLoggedIn,
+} from "./copy";
 import CutestBotEver from "../../assets/yesbot-yougotmail_bluetint.png";
 import { DiscordApi } from "../../index";
-import { SuccessModalToDiscord } from './SuccessfulSignUpModal';
+import { SuccessModalToDiscord } from "./SuccessfulSignUpModal";
 import { Link } from "react-router-dom";
 
 enum LOGGED_IN_STATE {
@@ -47,29 +55,36 @@ const InitialContent = () => (
 const registerToDiscord = async (user: IDiscordUser | undefined) => {
   const access_token = localStorage.getItem("access_token");
   const guild_id = process.env.REACT_APP_GUILD_ID;
-  const roles = [process.env.REACT_APP_BUDDY_PROJECT_ROLE_ID]
-  const payload = { access_token, roles }
-  const response = await DiscordApi("bot").put(`/guilds/${guild_id}/members/${user?.id}`, payload);
-  console.log('Response status: ', response.status);
+  const roles = [process.env.REACT_APP_BUDDY_PROJECT_ROLE_ID];
+  const payload = { access_token, roles };
+  const response = await DiscordApi("bot").put(
+    `/guilds/${guild_id}/members/${user?.id}`,
+    payload
+  );
+  console.log("Response status: ", response.status);
   if (response.status === 200) {
     return true;
   }
   return false;
-}
+};
 
 const isUserInGuild = (user: IDiscordUser) => {
   try {
-    DiscordApi("bot").get(`/guilds/${process.env.REACT_APP_GUILD_ID}/members/${user?.id}`);
+    DiscordApi("bot").get(
+      `/guilds/${process.env.REACT_APP_GUILD_ID}/members/${user?.id}`
+    );
     return true;
   } catch {
     return false;
   }
-}
+};
 
 const BuddyProject: React.FC<{}> = () => {
   const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
   const [bpStatus, setBPStatus] = React.useState(SIGNED_UP_STATE.LOADING);
-  const [guildStatus, setGuildStatus] = React.useState(LOGGED_IN_STATE.NOT_LOGGED_IN);
+  const [guildStatus, setGuildStatus] = React.useState(
+    LOGGED_IN_STATE.NOT_LOGGED_IN
+  );
 
   const { user } = React.useContext(UserContext);
 
@@ -87,12 +102,13 @@ const BuddyProject: React.FC<{}> = () => {
   React.useEffect(() => {
     initDb();
     if (user && SIGNED_UP_STATE.LOADING) {
-      fetchBuddyProjectSignup(user.id).then(signup => {
-        setBPStatus(signup ? SIGNED_UP_STATE.SIGNED_UP : SIGNED_UP_STATE.NOT_SIGNED_UP)
+      fetchBuddyProjectSignup(user.id).then((signup) => {
+        setBPStatus(
+          signup ? SIGNED_UP_STATE.SIGNED_UP : SIGNED_UP_STATE.NOT_SIGNED_UP
+        );
       });
     }
-
-  }, [user, setBPStatus])
+  }, [user, setBPStatus]);
 
   return (
     <>
@@ -110,7 +126,11 @@ const BuddyProject: React.FC<{}> = () => {
           </div>
         </div>
         <div ref={signupRef} className="buddy-project-bottom column-center">
-          <SignupProcess user={user} bpSignupStatus={bpStatus} setSignupStatus={setBPStatus} />
+          <SignupProcess
+            user={user}
+            bpSignupStatus={bpStatus}
+            setSignupStatus={setBPStatus}
+          />
         </div>
       </div>
       <Footer />
@@ -152,67 +172,72 @@ const ProcessStep: React.FC<{ title: string }> = ({ title, children }) => {
   );
 };
 
-const buddyProjectRegister = (user: IDiscordUser, setSignupState: (val: SIGNED_UP_STATE) => void) => {
+const buddyProjectRegister = (
+  user: IDiscordUser,
+  setSignupState: (val: SIGNED_UP_STATE) => void
+) => {
   const { username, id } = user;
   buddyProjectSignup(username, username, id)
     .then(() =>
-    // After they've been registered to Firebase, send them to Discord. 
-    {
-      if (registerToDiscord(user)) {
-        setSignupState(SIGNED_UP_STATE.SIGNED_UP)
-      } else {
-        setSignupState(SIGNED_UP_STATE.NOT_SIGNED_UP);
+      // After they've been registered to Firebase, send them to Discord.
+      {
+        if (registerToDiscord(user)) {
+          setSignupState(SIGNED_UP_STATE.SIGNED_UP);
+        } else {
+          setSignupState(SIGNED_UP_STATE.NOT_SIGNED_UP);
+        }
       }
-    })
+    )
     .catch((err) => {
       setSignupState(SIGNED_UP_STATE.ERROR);
     });
-}
+};
 
-const renderBPNextStepButton =
-  (
-    user: IDiscordUser | undefined,
-    bpSignupStatus: SIGNED_UP_STATE,
-    setSignupStatus: (val: SIGNED_UP_STATE) => void
-  ) => {
-    switch (bpSignupStatus) {
-      case SIGNED_UP_STATE.SIGNED_UP:
-        // SIGNED_UP
-        return (
-          <a className='button inverted self-center disabled' >
-            You've already signed up!
-          </a>
-        )
-      case SIGNED_UP_STATE.NOT_SIGNED_UP:
-
-        // IF USER LOGGED IN -> SIGN UP
-        // IF USER NOT LOGGED IN -> LOGIN WITH DISCORD
-        // MARKER FOR LATER (SIGNUP BUTTON)
-        return (
-          user ? (
-            <button onClick={() => { buddyProjectRegister(user, setSignupStatus) }} className='button inverted self-center'>
-              Sign up!
-            </button>
-          ) : (
-              <Link to='/auth/discord' className='button inverted self-center'>
-                Login with Discord!
-              </Link>
-            )
-        )
-      default:
-        return (
-          <a href='/auth/discord' className='button inverted self-center'>
-            Login with Discord!
-          </a>
-        );
-    }
+const renderBPNextStepButton = (
+  user: IDiscordUser | undefined,
+  bpSignupStatus: SIGNED_UP_STATE,
+  setSignupStatus: (val: SIGNED_UP_STATE) => void
+) => {
+  switch (bpSignupStatus) {
+    case SIGNED_UP_STATE.SIGNED_UP:
+      // SIGNED_UP
+      return (
+        <a className="button inverted self-center disabled">
+          You've already signed up!
+        </a>
+      );
+    case SIGNED_UP_STATE.NOT_SIGNED_UP:
+      // IF USER LOGGED IN -> SIGN UP
+      // IF USER NOT LOGGED IN -> LOGIN WITH DISCORD
+      // MARKER FOR LATER (SIGNUP BUTTON)
+      return user ? (
+        <button
+          onClick={() => {
+            buddyProjectRegister(user, setSignupStatus);
+          }}
+          className="button inverted self-center"
+        >
+          Sign up!
+        </button>
+      ) : (
+        <Link to="/auth/discord" className="button inverted self-center">
+          Login with Discord!
+        </Link>
+      );
+    default:
+      return (
+        <a href="/auth/discord" className="button inverted self-center">
+          Login with Discord!
+        </a>
+      );
   }
+};
 
-const SignupProcess: React.FC<{ user: IDiscordUser | undefined, bpSignupStatus: SIGNED_UP_STATE, setSignupStatus: (val: SIGNED_UP_STATE) => void }> = ({
-  setSignupStatus,
-  bpSignupStatus,
-  user,
-}) => {
+const SignupProcess: React.FC<{
+  user: IDiscordUser | undefined;
+  bpSignupStatus: SIGNED_UP_STATE;
+  setSignupStatus: (val: SIGNED_UP_STATE) => void;
+}> = ({ setSignupStatus, bpSignupStatus, user }) => {
   const [showToDiscordModal, setShowToDiscordModal] = React.useState(true);
 
   return (
@@ -229,11 +254,15 @@ const SignupProcess: React.FC<{ user: IDiscordUser | undefined, bpSignupStatus: 
         <ProcessStep title="How will it work?" children={howItWorks} />
       </div>
       {renderBPNextStepButton(user, bpSignupStatus, setSignupStatus)}
-      {
-        bpSignupStatus === SIGNED_UP_STATE.SIGNED_UP && showToDiscordModal &&
-        <SuccessModalToDiscord onClose={() => setShowToDiscordModal(false)} username={user?.username} />
-      }
-    </div >
+      {bpSignupStatus === SIGNED_UP_STATE.SIGNED_UP &&
+        showToDiscordModal &&
+        user && (
+          <SuccessModalToDiscord
+            onClose={() => setShowToDiscordModal(false)}
+            username={user.username}
+          />
+        )}
+    </div>
   );
 };
 

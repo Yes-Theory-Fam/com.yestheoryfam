@@ -114,6 +114,16 @@ const SignupError = () => (
   </p>
 );
 
+const SuccessfulSignup: React.FC<{ user: string }> = ({ user }) => (
+  <p>
+    Hey {user}, you have successfully signed up to the Buddy Project! Make sure
+    to keep checking your messages on Discord regularly, since that’s where you
+    will receive the name of your buddy, as well as your set of questions. If
+    you have any questions, feel free to ask them in #buddy-project, on the Yes
+    Theory Fam Discord Server.
+  </p>
+);
+
 export {
   howItWorks,
   howToJoin,
@@ -121,5 +131,6 @@ export {
   NotSignedUp,
   SignedUp,
   SignupError,
+  SuccessfulSignup,
   whatNext,
 };

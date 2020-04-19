@@ -211,18 +211,15 @@
 }
 
 .success-modal {
-  -webkit-backdrop-filter: blur(2px);
-  align-items: center;
   backdrop-filter: blur(2px);
-  display: flex;
+  -webkit-backdrop-filter: blur(2px);
   height: 100vh;
   justify-content: center;
   left: 0;
   position: fixed;
-  text-align: center;
   top: 0;
   width: 100vw;
-  z-index: 1;
+  z-index: 500;
 
   &-body {
     background: white;
@@ -230,11 +227,21 @@
     box-shadow: 0 3px 60px #0067ff29;
     position: relative;
     top: 30px;
-    width: 100%;
+    width: 90%;
     max-width: 675px;
+    overflow-y: auto;
+
+    @include common.phone-landscape-specific {
+      height: 80%;
+    }
+
+    @include common.tablet-specific {
+      width: 66%;
+    }
   }
 
   &-text-content {
+    width: 90%;
     padding-bottom: 20px;
     padding-top: 20px;
   }
@@ -242,19 +249,37 @@
   a {
     width: 30%;
     margin: 10px auto;
+    text-align: center;
+  }
+
+  &-top {
+    width: 90%;
+    margin: {
+      top: 32px;
+      left: 58px;
+      right: 58px;
+    }
+    justify-content: center;
+  }
+
+  &-logo {
+    margin-right: 30px;
+
+    @include common.tablet-specific {
+      max-width: 500px;
+    }
+
+    @include common.desktop-specific {
+      max-width: 500px;
+    }
   }
 
   &-close-button {
     border-radius: 30px;
-    border: 1px solid #0166ff;
-    color: #0166ff;
-    cursor: pointer;
     height: 46px;
-    position: absolute;
     width: 46px;
-
-    align-self: flex-end;
-    margin-top: 40px;
-    margin-inline-end: 58px;
+    border: 1px solid common.$yesTheoryBlue;
+    cursor: pointer;
+    color: common.$yesTheoryBlue;
   }
 }
