@@ -118,10 +118,10 @@ const BuddyProject: React.FC<{}> = () => {
           <div></div>
           {/* div required here to have space-between sort everything out */}
           <InitialContent />
-          <div className="scroll-for-more column-center">
+          <div onClick={scrollToAction} className="scroll-for-more column-center">
             GET INVOLVED
             <div className="expand-container">
-              <IoIosArrowDown onClick={scrollToAction} size={20} />
+              <IoIosArrowDown size={20} />
             </div>
           </div>
         </div>
