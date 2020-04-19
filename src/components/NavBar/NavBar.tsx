@@ -28,7 +28,7 @@ const CurrentUser: React.FC = () => {
         width="42"
       />
       {user?.username}#{user?.discriminator}
-      <button className="button logout" onClick={() => logout()}>LOGOUT</button>
+      <a className="button float-shadow logout" onClick={() => logout()}>LOGOUT</a>
     </div>
   );
 };

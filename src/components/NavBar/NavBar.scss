@@ -68,6 +68,10 @@
     text-decoration: none;
   }
 
+  .logout {
+    color: common.$yesTheoryBlue;
+  }
+
   &-links {
     display: none;
 
@@ -117,8 +121,8 @@
 }
 
 .logout {
-  max-width: 30px;
-  margin-left:20px;
+  min-width: 30px;
+  margin-left: 20px;
 }
 
 .circle-avatar {
