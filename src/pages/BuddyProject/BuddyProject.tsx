@@ -16,6 +16,7 @@ import IDiscordUser from "../../types/User";
 
 import { howToJoin, whatNext, howItWorks } from "./copy";
 import CutestBotEver from "../../assets/yesbot-yougotmail_bluetint.png";
+import { DiscordApi } from "../../index";
 
 enum LOGGED_IN_STATE {
   NOT_LOGGED_IN,
@@ -128,6 +129,16 @@ const InitialContent = () => (
   </div>
 );
 
+const registerToDiscord = (user:IDiscordUser | undefined) => {
+  const access_token = localStorage.getItem("access_token");
+  const guild_id = process.env.REACT_APP_GUILD_ID;
+  const roles = [process.env.REACT_APP_BUDDY_PROJECT_ROLE_ID]
+  const payload = { access_token, roles }
+  const response = DiscordApi("bot").put(`/guilds/${guild_id}/members/${user?.id}`, payload);
+  console.log(response);
+  
+}
+
 const BuddyProject: React.FC<{}> = () => {
   const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
 
@@ -219,7 +230,7 @@ const SignupProcess: React.FC<{ user: IDiscordUser | undefined }> = ({
         <ProcessStep title="What happens next?" children={whatNext} />
         <ProcessStep title="How will it work?" children={howItWorks} />
       </div>
-      <button className="inverted self-center">FIND YOUR BUDDY</button>
+      <button className="inverted self-center" onClick={() => registerToDiscord(user)}>FIND YOUR BUDDY</button>
     </div>
   );
 };
