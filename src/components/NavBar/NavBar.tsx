@@ -76,7 +76,9 @@ const HamburgerNav: React.FC<{
       <IoMdMenu size={42} onClick={onOpenButton} className="hamburger-icon" />
       <div
         style={{ ...defaultStyle, ...transitionStyles[open] }}
-        className={`side-drawer column-center`}
+        className={`side-drawer column-center ${
+          open !== "exited" ? "open" : ""
+        }`}
       >
         <div className="side-drawer-top row">
           <Logo />
