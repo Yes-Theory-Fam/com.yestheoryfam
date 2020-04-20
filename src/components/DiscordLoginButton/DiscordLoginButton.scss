@@ -11,6 +11,11 @@ a.discord-login {
   color: white;
   max-width: 250px;
   font-size: 14px;
+
+  &.inverted {
+    color: common.$yesTheoryBlue;
+    background-color: white;
+  }
 }
 
 .discord-logo {

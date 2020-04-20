@@ -119,8 +119,11 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   );
 
   const userNav = renderedPages.map(pageToNavLink);
-  if (!user) userNav.push(<DiscordLoginButton key="discord-logo" />);
   if (user) userNav.push(<CurrentUser key="current-user" />);
+  const mobileNav = Array.from(userNav);
+
+  if (!user) userNav.push(<DiscordLoginButton key="discord-logo" />);
+  if (!user) mobileNav.push(<DiscordLoginButton key="discord-logo" inverted />);
 
   return (
     <div className={`row nav-bar ${fixed ? "fixed" : ""} ${classNames || ""}`}>
@@ -129,7 +132,7 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
       <CSSTransition timeout={500} in={hamburgerOpen}>
         {(state) => (
           <HamburgerNav
-            children={userNav}
+            children={mobileNav}
             open={state}
             onCloseButton={() => setHamburgerOpen(false)}
             onOpenButton={() => setHamburgerOpen(true)}
