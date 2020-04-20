@@ -6,7 +6,7 @@ import Footer from "../../components/Footer/Footer";
 import { paragraphs } from "./copy";
 import "./WorkInProgress.scss";
 
-import CutestBotAround from "../../assets/yesbot-yougotmail.png";
+import BehindTheProject from "../../assets/behindtheproject.png";
 
 const WorkInProgress: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const WorkInProgress: React.FC = () => {
       <NavBar fixed />
       <div className="column-center wip">
         <div className="column-center wip-content">
-          <img src={CutestBotAround} />
+          <img src={BehindTheProject} />
           <div className="page-header">Under construction</div>
           <div className="column-center wip-content-paragraphs">
             {paragraphs}
