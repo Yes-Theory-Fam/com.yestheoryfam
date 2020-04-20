@@ -50,27 +50,18 @@
   }
 
   &-links {
-    margin-top: 50px;
+    margin-top: 36px;
     height: 60%;
-    justify-content: space-evenly;
 
     @include common.phone-landscape-specific {
       margin-top: 0;
     }
 
-    & a {
+    & a.nav-bar-links-link {
+      margin-bottom: 24px;
+      margin-right: 0;
       text-decoration: none;
       font-size: 1rem;
-      color: #818181;
-    }
-  }
-
-  & .nav-bar-links-link {
-    margin: 0;
-    display: flex;
-
-    & div {
-      margin-left: 15px;
     }
   }
 
