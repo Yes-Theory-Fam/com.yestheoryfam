@@ -6,6 +6,72 @@
   }
 }
 
+.side-drawer {
+  background-color: common.$yesTheoryBlue;
+  box-shadow: 0 3px 60px common.$yesTheoryBlue;
+  color: white;
+  height: 100%;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 60px;
+  position: fixed;
+  top: 0;
+  transition: 0.5s;
+  width: 250px;
+  z-index: 1;
+
+  & .avatar-container {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  & .logout {
+    margin-top: 10px;
+  }
+
+  &-top {
+    display: block;
+    color: white;
+
+    & svg {
+      float: right;
+      margin-left: 45px;
+    }
+  }
+
+  &-links {
+    margin-top: 50px;
+    height: 60%;
+    justify-content: space-evenly;
+
+    @include common.phone-landscape-specific {
+      margin-top: 0;
+    }
+
+    & a {
+      text-decoration: none;
+      font-size: 1rem;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+  }
+
+  & .nav-bar-links-link {
+    margin: 0;
+    display: flex;
+
+    & div {
+      margin-left: 15px;
+    }
+  }
+
+  & .current {
+    border-bottom: solid 1px white;
+  }
+}
+
 .hamburger-menu {
   height: 100vh;
   width: 100vw;
@@ -118,7 +184,7 @@
 
 .logout {
   max-width: 30px;
-  margin-left:20px;
+  margin-left: 20px;
 }
 
 .circle-avatar {

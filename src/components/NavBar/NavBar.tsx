@@ -52,17 +52,17 @@ const HamburgerNav: React.FC<{
   }
 
   return (
-    <div className={`hamburger-menu column-center ${open ? "open" : ""}`}>
-      <div className="row hamburger-menu-top">
+    <div className={`side-drawer column-center ${open ? "open" : ""}`}>
+      <div className="side-drawer-top">
         <Logo />
         <IoMdClose size={24} onClick={onCloseButton} />
       </div>
       <NavContent
         children={children}
-        className="hamburger-menu-links column-center"
+        className="side-drawer-links column-center"
       />
     </div>
-  );
+  )
 };
 
 const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
