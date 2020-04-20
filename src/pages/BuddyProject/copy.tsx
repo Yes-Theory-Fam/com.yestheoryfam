@@ -39,10 +39,11 @@ const howItWorks = (
 const SuccessfulSignup: React.FC<{ user: string }> = ({ user }) => (
   <p>
     Hey {user}, you have successfully signed up to the Buddy Project! Make sure
-    to keep checking your messages on Discord regularly, since that’s where you
-    will receive the name of your buddy, as well as your set of questions. If
-    you have any questions, feel free to ask them in #buddy-project, on the Yes
-    Theory Fam Discord Server.
+    to regularly check your messages on Discord, since that's where you will
+    receive the name of your buddy, your set of questions, as well as further
+    instructions on how things will go. If you have any concerns or need
+    clarifications, feel free to ask in #buddy-project, on the Yes Theory Fam
+    Discord Server.
   </p>
 );
 
