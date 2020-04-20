@@ -6,22 +6,13 @@ import {
   initDb,
   buddyProjectSignup,
   fetchBuddyProjectSignup,
-  BuddyProjectSignup,
 } from "./buddyprojectFirebase";
 import "./BuddyProject.scss";
 import Footer from "../../components/Footer/Footer";
 
 import BuddyProjectLogo from "../../assets/buddyproject_logo.svg";
 import IDiscordUser from "../../types/User";
-import {
-  howToJoin,
-  whatNext,
-  howItWorks,
-  NotSignedUp,
-  SignedUp,
-  SignupError,
-  NotLoggedIn,
-} from "./copy";
+import { howToJoin, whatNext, howItWorks } from "./copy";
 import CutestBotEver from "../../assets/yesbot-yougotmail_bluetint.png";
 import { DiscordApi } from "../../index";
 import { SuccessModalToDiscord } from "./SuccessfulSignUpModal";
@@ -118,7 +109,10 @@ const BuddyProject: React.FC<{}> = () => {
           <div></div>
           {/* div required here to have space-between sort everything out */}
           <InitialContent />
-          <div onClick={scrollToAction} className="scroll-for-more column-center">
+          <div
+            onClick={scrollToAction}
+            className="scroll-for-more column-center"
+          >
             GET INVOLVED
             <div className="expand-container">
               <IoIosArrowDown size={20} />
@@ -264,23 +258,6 @@ const SignupProcess: React.FC<{
         )}
     </div>
   );
-};
-
-const SignupText: React.FC<{ signupState: SIGNED_UP_STATE }> = ({
-  signupState,
-}) => {
-  switch (signupState) {
-    case SIGNED_UP_STATE.NOT_LOADED:
-      return <p>WE'LL BE LOADING SOON 🐵</p>;
-    case SIGNED_UP_STATE.LOADING:
-      return <p>LOADING 🐵</p>;
-    case SIGNED_UP_STATE.NOT_SIGNED_UP:
-      return <NotSignedUp />;
-    case SIGNED_UP_STATE.SIGNED_UP:
-      return <SignedUp />;
-    case SIGNED_UP_STATE.ERROR:
-      return <SignupError />;
-  }
 };
 
 export default BuddyProject;

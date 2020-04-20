@@ -9,26 +9,36 @@ import pages, { NavPage } from "./pages";
 import DiscordLoginButton from "../DiscordLoginButton/DiscordLoginButton";
 
 import { BUDDY_PROJECT_MODE } from "../../config";
+import { CSSTransition } from "react-transition-group";
+import { TransitionStatus } from "react-transition-group/Transition";
 
 const logout = () => {
   localStorage.clear();
   window.location.href = "/";
-}
+};
 
 const CurrentUser: React.FC = () => {
   const { user } = React.useContext(UserContext);
-  const imageUrl = user?.avatar ? `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}` : "https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png"
+  const imageUrl = user?.avatar
+    ? `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}`
+    : "https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png";
   return (
-    <div className="row avatar-container">
-      <img
-        src={imageUrl}
-        alt={user?.username}
-        className="circle-avatar"
-        height="42"
-        width="42"
-      />
-      {user?.username}#{user?.discriminator}
-      <a className="button float-shadow logout" onClick={() => logout()}>LOGOUT</a>
+    <div className="column avatar-container">
+      <div className="row centered-content">
+        <img
+          src={imageUrl}
+          alt={user?.username}
+          className="circle-avatar"
+          height="42"
+          width="42"
+        />
+        <div className="avatar-user">
+          {user?.username}#{user?.discriminator}
+        </div>
+      </div>
+      <button className="button logout" onClick={() => logout()}>
+        LOGOUT
+      </button>
     </div>
   );
 };
@@ -41,27 +51,45 @@ const NavContent: React.FC<{ className: string }> = ({
 };
 
 const HamburgerNav: React.FC<{
-  open: boolean;
+  open: TransitionStatus;
   onCloseButton: () => void;
   onOpenButton: () => void;
 }> = ({ children, open, onCloseButton, onOpenButton }) => {
-  if (!open) {
-    return (
-      <IoMdMenu size={42} onClick={onOpenButton} className="hamburger-icon" />
-    );
-  }
+  const defaultStyle: React.CSSProperties = {
+    right: "-100%",
+    transition: "all 150ms ease-out",
+  };
+
+  const transitionStyles: {
+    [key in TransitionStatus]?: React.CSSProperties;
+  } = {
+    entering: {
+      right: 0,
+    },
+    entered: {
+      right: 0,
+    },
+  };
 
   return (
-    <div className={`hamburger-menu column-center ${open ? "open" : ""}`}>
-      <div className="row hamburger-menu-top">
-        <Logo />
-        <IoMdClose size={24} onClick={onCloseButton} />
+    <>
+      <IoMdMenu size={42} onClick={onOpenButton} className="hamburger-icon" />
+      <div
+        style={{ ...defaultStyle, ...transitionStyles[open] }}
+        className={`side-drawer column-center ${
+          open !== "exited" ? "open" : ""
+        }`}
+      >
+        <div className="side-drawer-top row">
+          <Logo />
+          <IoMdClose size={42} onClick={onCloseButton} />
+        </div>
+        <NavContent
+          children={children}
+          className="side-drawer-links column-center"
+        />
       </div>
-      <NavContent
-        children={children}
-        className="hamburger-menu-links column-center"
-      />
-    </div>
+    </>
   );
 };
 
@@ -72,40 +100,58 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
   const { user } = React.useContext(UserContext);
-  const NewPill: React.FC = () => {
-    return <div className="nav-bar-links-newpill centered-content">NEW</div>;
+  const NewPill: React.FC<{ fraud?: boolean }> = ({ fraud }) => {
+    return (
+      <div
+        className={`nav-bar-links-newpill centered-content ${
+          fraud ? "fraud" : ""
+        }`}
+      >
+        NEW
+      </div>
+    );
   };
 
   const renderedPages: Array<NavPage> = BUDDY_PROJECT_MODE
     ? [{ display: "buddy project", isNew: true, path: "buddyproject" }]
     : pages;
 
-  const pageToNavLink = (page: NavPage) => (
+  const pageToNavLink = (page: NavPage, available: boolean = false) => (
     <NavLink
       to={`/${page.path}`}
       activeClassName="current"
       key={page.path}
-      className="row nav-bar-links-link"
+      className={`row nav-bar-links-link ${available ? "" : "unavailable"}`}
     >
+      {page.isNew && <NewPill fraud />}
       {page.display.toUpperCase()}
       {page.isNew && <NewPill />}
     </NavLink>
   );
 
-  const userNav = renderedPages.map(pageToNavLink);
-  if (!user) userNav.push(<DiscordLoginButton key="discord-logo" />);
+  const userNav = renderedPages.map((p) => pageToNavLink(p, true));
+  const mobileNav = pages.map((p) =>
+    pageToNavLink(p, p.path === "buddyproject")
+  );
   if (user) userNav.push(<CurrentUser key="current-user" />);
+
+  if (!user) userNav.push(<DiscordLoginButton key="discord-logo" />);
+  if (!user) mobileNav.push(<DiscordLoginButton key="discord-logo" inverted />);
 
   return (
     <div className={`row nav-bar ${fixed ? "fixed" : ""} ${classNames || ""}`}>
       <Logo />
       <NavContent className="nav-bar-links" children={userNav} />
-      <HamburgerNav
-        children={userNav}
-        open={hamburgerOpen}
-        onCloseButton={() => setHamburgerOpen(false)}
-        onOpenButton={() => setHamburgerOpen(true)}
-      />
+      <CSSTransition timeout={150} in={hamburgerOpen}>
+        {(state) => (
+          <HamburgerNav
+            children={mobileNav}
+            open={state}
+            onCloseButton={() => setHamburgerOpen(false)}
+            onOpenButton={() => setHamburgerOpen(true)}
+          />
+        )}
+      </CSSTransition>
       <CloseBurgerOnNav closeNav={() => setHamburgerOpen(false)} />
     </div>
   );
