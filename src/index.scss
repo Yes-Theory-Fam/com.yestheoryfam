@@ -123,3 +123,58 @@ button.inverted,
   background-color: gray;
   border: 1px solid gray;
 }
+
+/* Float Shadow */
+.float-shadow {
+  -webkit-transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  transition-property: transform;
+  vertical-align: middle;
+}
+.float-shadow:before {
+  background: -webkit-radial-gradient(
+    center,
+    ellipse,
+    common.$yesTheoryBlue -15%,
+    rgba(0, 0, 0, 0) 72%
+  );
+  background: radial-gradient(
+    ellipse at center,
+    common.$yesTheoryBlue -15%,
+    rgba(0, 0, 0, 0) 72%
+  );
+  content: "";
+  height: 10px;
+  left: 5%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  width: 90%;
+  z-index: -1;
+  /* W3C */
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform, opacity;
+  transition-property: transform, opacity;
+}
+.float-shadow:hover,
+.float-shadow:focus,
+.float-shadow:active {
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+  /* move the element up by 5px */
+}
+.float-shadow:hover:before,
+.float-shadow:focus:before,
+.float-shadow:active:before {
+  opacity: 1;
+  -webkit-transform: translateY(3px);
+  transform: translateY(3px);
+  /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
