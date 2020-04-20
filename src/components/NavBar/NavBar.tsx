@@ -100,29 +100,40 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
   const { user } = React.useContext(UserContext);
-  const NewPill: React.FC = () => {
-    return <div className="nav-bar-links-newpill centered-content">NEW</div>;
+  const NewPill: React.FC<{ fraud?: boolean }> = ({ fraud }) => {
+    return (
+      <div
+        className={`nav-bar-links-newpill centered-content ${
+          fraud ? "fraud" : ""
+        }`}
+      >
+        NEW
+      </div>
+    );
   };
 
   const renderedPages: Array<NavPage> = BUDDY_PROJECT_MODE
     ? [{ display: "buddy project", isNew: true, path: "buddyproject" }]
     : pages;
 
-  const pageToNavLink = (page: NavPage) => (
+  const pageToNavLink = (page: NavPage, available: boolean = false) => (
     <NavLink
       to={`/${page.path}`}
       activeClassName="current"
       key={page.path}
-      className="row nav-bar-links-link"
+      className={`row nav-bar-links-link ${available ? "" : "unavailable"}`}
     >
+      {page.isNew && <NewPill fraud />}
       {page.display.toUpperCase()}
       {page.isNew && <NewPill />}
     </NavLink>
   );
 
-  const userNav = renderedPages.map(pageToNavLink);
+  const userNav = renderedPages.map((p) => pageToNavLink(p, true));
+  const mobileNav = pages.map((p) =>
+    pageToNavLink(p, p.path === "buddyproject")
+  );
   if (user) userNav.push(<CurrentUser key="current-user" />);
-  const mobileNav = Array.from(userNav);
 
   if (!user) userNav.push(<DiscordLoginButton key="discord-logo" />);
   if (!user) mobileNav.push(<DiscordLoginButton key="discord-logo" inverted />);
