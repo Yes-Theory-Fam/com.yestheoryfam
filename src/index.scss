@@ -137,8 +137,17 @@ button.inverted,
   vertical-align: middle;
 }
 .float-shadow:before {
-  background: -webkit-radial-gradient(center, ellipse, common.$yesTheoryBlue -15%, rgba(0, 0, 0, 0) 72%);
-  background: radial-gradient(ellipse at center, common.$yesTheoryBlue -15%, rgba(0, 0, 0, 0) 72%);
+  background: -webkit-radial-gradient(
+    center,
+    ellipse,
+    common.$yesTheoryBlue -15%,
+    rgba(0, 0, 0, 0) 72%
+  );
+  background: radial-gradient(
+    ellipse at center,
+    common.$yesTheoryBlue -15%,
+    rgba(0, 0, 0, 0) 72%
+  );
   content: "";
   height: 10px;
   left: 5%;
