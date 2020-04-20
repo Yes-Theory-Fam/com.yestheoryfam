@@ -42,6 +42,14 @@ export const DiscordApi = (type = "user") => {
   return api;
 };
 
+export const YesApi = () => {
+  const api = axios.create({
+    baseURL: "https://us-central1-yesbot-qhddom.cloudfunctions.net/",
+    timeout: 4000,
+  });
+  return api;
+}
+
 const getInitialUser = async (): Promise<IDiscordUser> => {
   if (!localStorage.getItem("access_token")) {
     throw new Error("no stored access token");
@@ -66,7 +74,14 @@ const App = () => {
       .then(setUser)
       .catch((err) => console.error(err.toString()));
   }, [setUser]);
-
+  axios.get("https://us-central1-yesbot-qhddom.cloudfunctions.net/joinGuild")
+  .then((response) => {
+    console.log(response.data);
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+  });
   return (
     <Router>
       <ToastContainer />

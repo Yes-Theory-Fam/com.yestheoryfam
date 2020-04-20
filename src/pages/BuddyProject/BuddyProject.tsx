@@ -23,7 +23,7 @@ import {
   NotLoggedIn,
 } from "./copy";
 import CutestBotEver from "../../assets/yesbot-yougotmail_bluetint.png";
-import { DiscordApi } from "../../index";
+import { DiscordApi, YesApi } from "../../index";
 import { SuccessModalToDiscord } from "./SuccessfulSignUpModal";
 import { Link } from "react-router-dom";
 
@@ -57,26 +57,12 @@ const registerToDiscord = async (user: IDiscordUser | undefined) => {
   const guild_id = process.env.REACT_APP_GUILD_ID;
   const roles = [process.env.REACT_APP_BUDDY_PROJECT_ROLE_ID];
   const payload = { access_token, roles };
-  const response = await DiscordApi("bot").put(
-    `/guilds/${guild_id}/members/${user?.id}`,
-    payload
-  );
+  const response = await YesApi().get("/");
   console.log("Response status: ", response.status);
   if (response.status === 200) {
     return true;
   }
   return false;
-};
-
-const isUserInGuild = (user: IDiscordUser) => {
-  try {
-    DiscordApi("bot").get(
-      `/guilds/${process.env.REACT_APP_GUILD_ID}/members/${user?.id}`
-    );
-    return true;
-  } catch {
-    return false;
-  }
 };
 
 const BuddyProject: React.FC<{}> = () => {
@@ -118,10 +104,10 @@ const BuddyProject: React.FC<{}> = () => {
           <div></div>
           {/* div required here to have space-between sort everything out */}
           <InitialContent />
-          <div className="scroll-for-more column-center">
+          <div onClick={scrollToAction} className="scroll-for-more column-center">
             GET INVOLVED
             <div className="expand-container">
-              <IoIosArrowDown onClick={scrollToAction} size={20} />
+              <IoIosArrowDown size={20} />
             </div>
           </div>
         </div>
