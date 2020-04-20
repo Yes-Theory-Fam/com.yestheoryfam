@@ -1,46 +1,68 @@
 @use '../../common';
 
 .hamburger-icon {
+  @include common.tablet-specific {
+    display: none;
+  }
+
   @include common.desktop-specific {
     display: none;
   }
 }
 
-.hamburger-menu {
-  height: 100vh;
-  width: 100vw;
+.side-drawer {
+  background-color: common.$yesTheoryBlue;
+  color: white;
+  height: 100%;
+  right: -100%;
+  overflow-x: hidden;
   position: fixed;
   top: 0;
-  left: 0;
+  transition: width 150ms ease-out;
+  width: 100%;
+  z-index: 1;
 
-  z-index: 1000;
-  background-color: common.$yesTheoryBlue;
+  &.open {
+    box-shadow: 0 3px 60px common.$yesTheoryBlue;
+  }
 
-  // justify-content: space-evenly;
-  color: white;
+  & .avatar-container {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
 
-  @include common.desktop-specific {
-    display: none;
+  & .logout {
+    margin-top: 10px;
   }
 
   &-top {
-    margin: 25px 50px;
-    width: 85%;
+    padding: 10px 20px;
+    color: white;
+    width: calc(100vw - 40px);
     justify-content: space-between;
+    align-items: center;
+
+    & svg {
+      float: right;
+      margin-left: 45px;
+    }
   }
 
   &-links {
-    margin-top: 50px;
+    margin-top: 36px;
     height: 60%;
-    justify-content: space-evenly;
 
     @include common.phone-landscape-specific {
       margin-top: 0;
     }
-  }
 
-  & .nav-bar-links-link {
-    margin: 0;
+    & a.nav-bar-links-link {
+      margin-bottom: 24px;
+      margin-right: 0;
+      text-decoration: none;
+      font-size: 1rem;
+    }
   }
 
   & .current {
@@ -54,8 +76,18 @@
   width: calc(100vw - 40px);
 
   padding: 10px 20px;
-
   justify-content: space-between;
+
+  @include common.tablet-specific {
+    align-items: baseline;
+    width: 90%;
+    padding: 25px 60px;
+  }
+
+  @include common.phone-landscape-specific {
+    width: calc(100vw - 40px);
+    padding: 10px 20px;
+  }
 
   @include common.desktop-specific {
     align-items: baseline;
@@ -79,6 +111,10 @@
     font-size: 14px;
     justify-content: flex-end;
 
+    @include common.tablet-specific {
+      display: flex;
+    }
+
     @include common.desktop-specific {
       display: flex;
     }
@@ -98,6 +134,18 @@
       background-color: common.$notification;
 
       font-size: 10px;
+
+      &.fraud {
+        visibility: hidden;
+
+        @include common.tablet-specific {
+          display: none;
+        }
+
+        @include common.desktop-specific {
+          display: none;
+        }
+      }
     }
 
     & .user-avatar {
@@ -118,10 +166,32 @@
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
+
+  @include common.tablet-specific {
+    flex-direction: row;
+  }
+
+  @include common.desktop-specific {
+    flex-direction: row;
+  }
+}
+
+.avatar-user {
+  @include common.tablet-specific {
+    display: none;
+  }
+
+  @include common.phone-landscape-specific {
+    display: none;
+  }
+
+  @include common.desktop-specific {
+    display: unset;
+  }
 }
 
 .logout {
-  min-width: 30px;
+  max-width: 30px;
   margin-left: 20px;
 }
 
@@ -134,4 +204,13 @@
   padding-top: 11px;
   padding-bottom: 9px;
   border-bottom: common.$yesTheoryBlue solid 2px;
+}
+
+a.unavailable {
+  opacity: 0.5;
+
+  &.current {
+    padding: 0;
+    border-bottom: none;
+  }
 }
