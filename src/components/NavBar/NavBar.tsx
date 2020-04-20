@@ -9,26 +9,36 @@ import pages, { NavPage } from "./pages";
 import DiscordLoginButton from "../DiscordLoginButton/DiscordLoginButton";
 
 import { BUDDY_PROJECT_MODE } from "../../config";
+import { CSSTransition } from "react-transition-group";
+import { TransitionStatus } from "react-transition-group/Transition";
 
 const logout = () => {
   localStorage.clear();
   window.location.href = "/";
-}
+};
 
 const CurrentUser: React.FC = () => {
   const { user } = React.useContext(UserContext);
-  const imageUrl = user?.avatar ? `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}` : "https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png"
+  const imageUrl = user?.avatar
+    ? `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}`
+    : "https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png";
   return (
-    <div className="row avatar-container">
-      <img
-        src={imageUrl}
-        alt={user?.username}
-        className="circle-avatar"
-        height="42"
-        width="42"
-      />
-      {user?.username}#{user?.discriminator}
-      <button className="button logout" onClick={() => logout()}>LOGOUT</button>
+    <div className="column avatar-container">
+      <div className="row centered-content">
+        <img
+          src={imageUrl}
+          alt={user?.username}
+          className="circle-avatar"
+          height="42"
+          width="42"
+        />
+        <div className="avatar-user">
+          {user?.username}#{user?.discriminator}
+        </div>
+      </div>
+      <button className="button logout" onClick={() => logout()}>
+        LOGOUT
+      </button>
     </div>
   );
 };
@@ -41,28 +51,44 @@ const NavContent: React.FC<{ className: string }> = ({
 };
 
 const HamburgerNav: React.FC<{
-  open: boolean;
+  open: TransitionStatus;
   onCloseButton: () => void;
   onOpenButton: () => void;
 }> = ({ children, open, onCloseButton, onOpenButton }) => {
-  if (!open) {
-    return (
-      <IoMdMenu size={42} onClick={onOpenButton} className="hamburger-icon" />
-    );
-  }
+  const defaultStyle: React.CSSProperties = {
+    right: "-100%",
+    transition: "all 500ms ease-in-out",
+  };
+
+  const transitionStyles: {
+    [key in TransitionStatus]?: React.CSSProperties;
+  } = {
+    entering: {
+      right: 0,
+    },
+    entered: {
+      right: 0,
+    },
+  };
 
   return (
-    <div className={`side-drawer column-center ${open ? "open" : ""}`}>
-      <div className="side-drawer-top">
-        <Logo />
-        <IoMdClose size={24} onClick={onCloseButton} />
+    <>
+      <IoMdMenu size={42} onClick={onOpenButton} className="hamburger-icon" />
+      <div
+        style={{ ...defaultStyle, ...transitionStyles[open] }}
+        className={`side-drawer column-center`}
+      >
+        <div className="side-drawer-top row">
+          <Logo />
+          <IoMdClose size={42} onClick={onCloseButton} />
+        </div>
+        <NavContent
+          children={children}
+          className="side-drawer-links column-center"
+        />
       </div>
-      <NavContent
-        children={children}
-        className="side-drawer-links column-center"
-      />
-    </div>
-  )
+    </>
+  );
 };
 
 const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
@@ -100,12 +126,16 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
     <div className={`row nav-bar ${fixed ? "fixed" : ""} ${classNames || ""}`}>
       <Logo />
       <NavContent className="nav-bar-links" children={userNav} />
-      <HamburgerNav
-        children={userNav}
-        open={hamburgerOpen}
-        onCloseButton={() => setHamburgerOpen(false)}
-        onOpenButton={() => setHamburgerOpen(true)}
-      />
+      <CSSTransition timeout={500} in={hamburgerOpen}>
+        {(state) => (
+          <HamburgerNav
+            children={userNav}
+            open={state}
+            onCloseButton={() => setHamburgerOpen(false)}
+            onOpenButton={() => setHamburgerOpen(true)}
+          />
+        )}
+      </CSSTransition>
       <CloseBurgerOnNav closeNav={() => setHamburgerOpen(false)} />
     </div>
   );

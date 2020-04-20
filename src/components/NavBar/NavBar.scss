@@ -1,6 +1,10 @@
 @use '../../common';
 
 .hamburger-icon {
+  @include common.tablet-specific {
+    display: none;
+  }
+
   @include common.desktop-specific {
     display: none;
   }
@@ -8,17 +12,23 @@
 
 .side-drawer {
   background-color: common.$yesTheoryBlue;
-  box-shadow: 0 3px 60px common.$yesTheoryBlue;
   color: white;
   height: 100%;
-  left: 0;
+  right: -100%;
   overflow-x: hidden;
-  padding-top: 60px;
   position: fixed;
   top: 0;
-  transition: 0.5s;
-  width: 250px;
+  transition: width 0.5s ease-in-out;
+  width: 100%;
   z-index: 1;
+
+  @include common.tablet-specific {
+    width: 100%;
+  }
+
+  &.open {
+    box-shadow: 0 3px 60px common.$yesTheoryBlue;
+  }
 
   & .avatar-container {
     flex-wrap: wrap;
@@ -31,8 +41,11 @@
   }
 
   &-top {
-    display: block;
+    padding: 10px 20px;
     color: white;
+    width: calc(100vw - 40px);
+    justify-content: space-between;
+    align-items: center;
 
     & svg {
       float: right;
@@ -53,8 +66,6 @@
       text-decoration: none;
       font-size: 1rem;
       color: #818181;
-      display: block;
-      transition: 0.3s;
     }
   }
 
@@ -72,56 +83,24 @@
   }
 }
 
-.hamburger-menu {
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  z-index: 1000;
-  background-color: common.$yesTheoryBlue;
-
-  // justify-content: space-evenly;
-  color: white;
-
-  @include common.desktop-specific {
-    display: none;
-  }
-
-  &-top {
-    margin: 25px 50px;
-    width: 85%;
-    justify-content: space-between;
-  }
-
-  &-links {
-    margin-top: 50px;
-    height: 60%;
-    justify-content: space-evenly;
-
-    @include common.phone-landscape-specific {
-      margin-top: 0;
-    }
-  }
-
-  & .nav-bar-links-link {
-    margin: 0;
-  }
-
-  & .current {
-    border-bottom: solid 1px white;
-  }
-}
-
 .nav-bar {
   background-color: white;
   align-items: center;
   width: calc(100vw - 40px);
 
   padding: 10px 20px;
-
   justify-content: space-between;
+
+  @include common.tablet-specific {
+    align-items: baseline;
+    width: 90%;
+    padding: 25px 60px;
+  }
+
+  @include common.phone-landscape-specific {
+    width: calc(100vw - 40px);
+    padding: 10px 20px;
+  }
 
   @include common.desktop-specific {
     align-items: baseline;
@@ -140,6 +119,10 @@
     align-items: center;
     font-size: 14px;
     justify-content: flex-end;
+
+    @include common.tablet-specific {
+      display: flex;
+    }
 
     @include common.desktop-specific {
       display: flex;
@@ -180,6 +163,28 @@
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
+
+  @include common.tablet-specific {
+    flex-direction: row;
+  }
+
+  @include common.desktop-specific {
+    flex-direction: row;
+  }
+}
+
+.avatar-user {
+  @include common.tablet-specific {
+    display: none;
+  }
+
+  @include common.phone-landscape-specific {
+    display: none;
+  }
+
+  @include common.desktop-specific {
+    display: unset;
+  }
 }
 
 .logout {
