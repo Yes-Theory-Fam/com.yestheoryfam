@@ -13,13 +13,14 @@
     justify-content: space-between;
     align-items: center;
 
+    // TODO: increase the width styling after the Contact+Press links have been added back in.
     @include common.tablet-specific {
-      width: 50%;
+      width: 30%;
       flex-direction: row;
     }
 
     @include common.desktop-specific {
-      width: 33%;
+      width: 20%;
       flex-direction: row;
     }
   }

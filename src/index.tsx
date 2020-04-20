@@ -19,26 +19,37 @@ import Meetups from "./pages/meetups/Meetups";
 import PhotoWall from "./pages/photowall/PhotoWall";
 import MeetupDetails from "./pages/MeetupDetails/MeetupDetails";
 import { UserContext } from "./UserContext";
-import Groupchats from "./pages/Groupchats/Groupchats";
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import Groupchats from "./pages/groupchats/Groupchats";
+import BuddyProject from "./pages/BuddyProject/BuddyProject";
+import WorkInProgress from "./pages/WorkInProgress/WorkInProgress";
+import { BUDDY_PROJECT_MODE } from "./config";
+
+import { ScrollToTop, SavePage } from "./components/NavHooks";
 import axios from "axios";
 import IDiscordUser from "./types/User";
 
-const DiscordApi = () => {
+export const DiscordApi = (type = "user") => {
   const api = axios.create({
     baseURL: "https://discordapp.com/api/",
     timeout: 3000,
-    headers: { Authorization: localStorage.getItem("access_token") },
+    headers: {
+      Authorization:
+        type === "user"
+          ? `Bearer ${localStorage.getItem("access_token")}`
+          : `Bot ${process.env.REACT_APP_DISCORD_BOT_TOKEN}`,
+    },
   });
   return api;
 };
 
 const getInitialUser = async (): Promise<IDiscordUser> => {
-  const userResponse = await DiscordApi().get(
-    "users/@me"
-  );
+  if (!localStorage.getItem("access_token")) {
+    throw new Error("no stored access token");
+  }
+
+  const userResponse = await DiscordApi().get("users/@me");
   const { id, username, avatar, discriminator, email } = userResponse.data;
-  
+
   return {
     username,
     avatar,
@@ -51,16 +62,18 @@ const getInitialUser = async (): Promise<IDiscordUser> => {
 const App = () => {
   const [user, setUser] = React.useState<undefined | IDiscordUser>(undefined);
   React.useEffect(() => {
-    getInitialUser().then(setUser)
-  }, [setUser])
-  
+    getInitialUser()
+      .then(setUser)
+      .catch((err) => console.error(err.toString()));
+  }, [setUser]);
+
   return (
     <Router>
       <ToastContainer />
       <ScrollToTop />
+      <SavePage />
       <UserContext.Provider value={{ user, setUser }}>
         <Switch>
-          <Route path="/home" exact component={Home} />
           <Route
             path="/auth/discord"
             exact
@@ -71,6 +84,9 @@ const App = () => {
             exact
             component={DiscordAuthenticationCallback}
           />
+          <Route path="/buddyproject" exact component={BuddyProject} />
+          {BUDDY_PROJECT_MODE && <Route path="/" component={WorkInProgress} />}
+          <Route path="/home" exact component={Home} />
           <Route path="/blog" exact component={BlogOverview} />
           <Route path="/photowall" exact component={PhotoWall} />
           <Route path="/groupchats" exact component={Groupchats} />

@@ -1,0 +1,298 @@
+@use '../../common';
+
+.buddy-project {
+  &-top {
+    height: 100vh;
+    justify-content: space-between;
+
+    @include common.phone-landscape-specific {
+      height: 100%;
+    }
+
+    & .scroll-for-more {
+      width: 100vw;
+      margin-bottom: 20px;
+      color: common.$yesTheoryBlue;
+      z-index: 500;
+      font-size: 14px;
+
+      @include common.phone-landscape-specific {
+        position: static;
+      }
+    }
+  }
+
+  &-bottom {
+    width: 100%;
+    justify-content: flex-start;
+
+    @include common.desktop-specific {
+      padding-top: 50px;
+      min-height: 100vh;
+    }
+
+    &-content {
+      height: 100%;
+      justify-content: space-evenly;
+    }
+  }
+
+  &-process {
+    color: #2a2a2a;
+
+    width: 80%;
+    margin-bottom: 50px;
+
+    @include common.desktop-specific {
+      min-height: 80%;
+      justify-content: space-between;
+    }
+
+    &-blockone {
+      @include common.desktop-specific {
+        flex-direction: row;
+      }
+
+      & .buddy-project-process-welcome {
+        @include common.desktop-specific {
+          flex: 2;
+        }
+      }
+    }
+
+    &-yesbot {
+      width: 100%;
+
+      @include common.desktop-specific {
+        flex: 1;
+        width: unset;
+      }
+
+      & img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &-welcome {
+      margin: 25px 0;
+    }
+
+    &-header {
+      color: #2a2a2a;
+      font-weight: 900;
+      font-size: 36px;
+      margin-bottom: 15px;
+
+      @include common.tablet-specific {
+        font-size: 64px;
+      }
+
+      @include common.desktop-specific {
+        font-size: 6vw;
+      }
+    }
+
+    &-title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    @include common.desktop-specific {
+      &-introduction {
+        width: 70%;
+      }
+    }
+
+    &-steps {
+      @include common.desktop-specific {
+        margin-bottom: 20px;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      & div:not(.blue) > b {
+        color: black;
+      }
+    }
+
+    &-step {
+      flex: 1;
+      margin: 25px 0;
+      justify-content: space-between;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      @include common.desktop-specific {
+        min-height: 150px;
+        margin: 25px;
+
+        .buddy-project-process-title {
+          margin-bottom: 10px;
+        }
+
+        div:nth-of-type(2n) {
+          flex: auto;
+        }
+      }
+    }
+
+    & button {
+      max-width: 260px;
+    }
+  }
+
+  &-logo {
+    width: 90%;
+    max-width: 700px;
+
+    @include common.phone-landscape-specific {
+      width: 75%;
+      margin-top: 75px;
+    }
+
+    @include common.desktop-specific {
+      width: 100%;
+    }
+
+    @include common.tablet-specific {
+      width: 100%;
+    }
+  }
+
+  &-text {
+    margin-top: 40px;
+    max-width: 500px;
+    font-size: 22px;
+    text-align: center;
+    color: #4d4d4d;
+  }
+
+  &-entry {
+    margin-top: 40px;
+    max-width: 400px;
+    font-size: 38px;
+  }
+
+  &-list {
+    width: 75%;
+    padding-top: 173px;
+
+    & .column,
+    & .row {
+      justify-content: space-between;
+    }
+  }
+
+  &-signup {
+    height: 100vh;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    header {
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+
+      > h3 {
+        margin-right: 1rem;
+      }
+
+      > p {
+        font-style: italic;
+      }
+    }
+
+    * + * {
+      margin-top: 1rem;
+    }
+
+    p {
+      max-width: 30rem;
+    }
+  }
+}
+
+.self-center {
+  align-self: center;
+}
+
+.success-modal {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 500;
+
+  &-body {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 3px 60px #0067ff29;
+    position: relative;
+    top: 30px;
+    width: 90%;
+    max-width: 675px;
+    overflow-y: auto;
+
+    @include common.phone-landscape-specific {
+      height: 80%;
+    }
+
+    @include common.tablet-specific {
+      width: 66%;
+    }
+  }
+
+  &-text-content {
+    width: 90%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+  a {
+    width: 30%;
+    margin: 10px auto;
+    text-align: center;
+  }
+
+  &-top {
+    width: 90%;
+    margin: {
+      top: 32px;
+      left: 58px;
+      right: 58px;
+    }
+    justify-content: center;
+  }
+
+  &-logo {
+    margin-right: 30px;
+
+    @include common.tablet-specific {
+      max-width: 500px;
+    }
+
+    @include common.desktop-specific {
+      max-width: 500px;
+    }
+  }
+
+  &-close-button {
+    border-radius: 30px;
+    height: 46px;
+    width: 46px;
+    border: 1px solid common.$yesTheoryBlue;
+    cursor: pointer;
+    color: common.$yesTheoryBlue;
+  }
+}

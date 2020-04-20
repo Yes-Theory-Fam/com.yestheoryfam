@@ -17,9 +17,11 @@ const DiscordAuthenticationCallback = () => {
   ) as unknown) as number;
   localStorage.removeItem("auth_state");
 
-  localStorage.setItem("access_token", `Bearer ${access_token}`);
+  localStorage.setItem("access_token", String(access_token));
   const history = useHistory();
-  history.push("/");
+
+  const targetPage = localStorage.getItem("current_page") ?? "/";
+  history.push(targetPage);
 
   if (storedState !== sentState) {
     console.error(
