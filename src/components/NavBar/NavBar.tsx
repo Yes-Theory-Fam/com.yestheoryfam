@@ -57,7 +57,7 @@ const HamburgerNav: React.FC<{
 }> = ({ children, open, onCloseButton, onOpenButton }) => {
   const defaultStyle: React.CSSProperties = {
     right: "-100%",
-    transition: "all 300ms ease-out",
+    transition: "all 150ms ease-out",
   };
 
   const transitionStyles: {
@@ -131,7 +131,7 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
     <div className={`row nav-bar ${fixed ? "fixed" : ""} ${classNames || ""}`}>
       <Logo />
       <NavContent className="nav-bar-links" children={userNav} />
-      <CSSTransition timeout={300} in={hamburgerOpen}>
+      <CSSTransition timeout={150} in={hamburgerOpen}>
         {(state) => (
           <HamburgerNav
             children={mobileNav}
