@@ -7,7 +7,7 @@ import IMeetupProps from "../../types/Meetups";
 import "./MeetupDetails.scss";
 
 import { Link, RouteProps, RouteComponentProps } from "react-router-dom";
-import { format } from "date-fns";
+import format from "date-fns/format";
 import { IoIosPeople, IoMdCalendar } from "react-icons/io";
 
 const YES_THEORY_BLUE = "rgb(1, 102, 255)";
