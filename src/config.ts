@@ -1,1 +1,1 @@
-export const BUDDY_PROJECT_MODE = true;
+export const BUDDY_PROJECT_MODE = false;
