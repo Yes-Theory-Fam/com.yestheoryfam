@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { format } from "date-fns";
+import format from "date-fns/format";
 
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";

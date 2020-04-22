@@ -1,4 +1,7 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
+
+// Imported for side effects; adding `firestore` to `firebase`.
+import "firebase/firestore";
 
 let _db: firebase.firestore.Firestore | null = null;
 
