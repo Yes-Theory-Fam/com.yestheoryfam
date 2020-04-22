@@ -1,0 +1,105 @@
+@use '../../common';
+
+.about-us {
+    margin-top: 100px;
+    padding: 100px;
+
+    &-header {
+        color: #2a2a2a;
+        display: inline;
+        font-size: 36px;
+        font-weight: 900;
+
+        .inline-blue {
+            margin-left: 17px;
+        }
+
+        @include common.tablet-specific {
+            font-size: 64px;
+        }
+
+        @include common.desktop-specific {
+            font-size: 6vw;
+        }
+    }
+
+    &-introduction {
+        @include common.desktop-specific {
+            width: 50%;
+        }
+    }
+
+    .team-pics {
+        margin-top: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        @include common.phone-landscape-specific {
+            flex-direction: row;
+        }
+
+        .team-individual {
+            img {
+                border-radius: 0;
+                border: none;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+                flex-basis: 100%;
+                margin: 10px;
+                max-height: 200px;
+                border-radius: 10px;
+            }
+
+            max-width: 220px;
+            padding: 5px;
+
+            &-info {
+                text-align: center;
+
+                p.blue {
+                    font-weight: 900;
+                }
+            }
+        }
+
+        .social-icons-set {
+            margin-top: 10px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            height: auto;
+            width: auto;
+
+            li {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+
+                .sociali {
+                    font-size: 2em;
+                    line-height: 1.2em;
+                    margin-right: 10px;
+                    margin-bottom: 10px !important;
+                    padding-bottom: 10px !important;
+                }
+            }
+        }
+    }
+}

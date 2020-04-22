@@ -13,20 +13,23 @@ import {
 import { ToastContainer } from "react-toastify";
 import DiscordAuthenticationRequest from "./components/DiscordAuthenticationRequest/DiscordAuthenticationRequest";
 import DiscordAuthenticationCallback from "./components/DiscordAuthenticationCallback/DiscordAuthenticationCallback";
-import Home from "./pages/home/Home";
-import BlogOverview from "./pages/BlogOverview/BlogOverview";
-import Meetups from "./pages/meetups/Meetups";
-import PhotoWall from "./pages/photowall/PhotoWall";
-import MeetupDetails from "./pages/MeetupDetails/MeetupDetails";
+import {
+  Aboutus,
+  BlogOverview,
+  BuddyProject,
+  Groupchats,
+  Home,
+  MeetupDetails,
+  Meetups,
+  PhotoWall,
+  WorkInProgress,
+} from './pages';
 import { UserContext } from "./UserContext";
-import Groupchats from "./pages/groupchats/Groupchats";
-import BuddyProject from "./pages/BuddyProject/BuddyProject";
-import WorkInProgress from "./pages/WorkInProgress/WorkInProgress";
 import { BUDDY_PROJECT_MODE } from "./config";
-
 import { ScrollToTop, SavePage } from "./components/NavHooks";
 import axios from "axios";
 import IDiscordUser from "./types/User";
+
 
 export const DiscordApi = (type = "user") => {
   const api = axios.create({
@@ -87,6 +90,7 @@ const App = () => {
           <Route path="/buddyproject" exact component={BuddyProject} />
           {BUDDY_PROJECT_MODE && <Route path="/" component={WorkInProgress} />}
           <Route path="/home" exact component={Home} />
+          <Route path="/about" exact component={Aboutus} />
           <Route path="/blog" exact component={BlogOverview} />
           <Route path="/photowall" exact component={PhotoWall} />
           <Route path="/groupchats" exact component={Groupchats} />
