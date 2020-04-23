@@ -1,98 +1,146 @@
 import * as React from "react";
 import "./Aboutus.scss";
 import NavBar from "../../components/NavBar/NavBar";
-import { IoLogoInstagram, IoLogoLinkedin, IoLogoGithub, IoLogoTwitch, IoLogoTwitter } from "react-icons/io";
+import {
+  IoLogoInstagram,
+  IoLogoLinkedin,
+  IoLogoGithub,
+  IoLogoTwitter,
+  IoIosArrowDown,
+} from "react-icons/io";
+import { IconBaseProps } from "react-icons";
+
 import Footer from "../../components/Footer/Footer";
-import { team } from './Team';
+import { team, Socials, TeamMember } from "./Team";
+import { introduction, why, meetTheTeam } from "./copy";
 
-interface socialsInterface {
-    ig: string,
-    github: string,
-    linkedin: string,
-    twitter: string,
-}
-const SocialMediaInfo: React.FC<{}> = () => {
-    // React.FC<{ socials: socialsInterface }>
-    //     = ({ socials }) => {
-    let socialArr = [];
-    const socials = { ig: 'test-ig', twitter: 'test-twitter', github: 'test-github', linkedin: 'test-linkedin' };
-    if (socials.ig) {
-        socialArr.push(
-            <li><a className="sociali" href={socials.ig} target="_blank" aria-label="Instagram">
-                <IoLogoInstagram />
-            </a></li>
-        );
-    }
-    if (socials.github) {
-        socialArr.push(
-            <li><a className="sociali" href={socials.github} target="_blank" aria-label="Github">
-                <IoLogoGithub />
-            </a></li>
-        );
-    }
-    if (socials.linkedin) {
-        socialArr.push(
-            <li><a className="sociali" href={socials.ig} target="_blank" aria-label="Linkedin">
-                <IoLogoLinkedin />
-            </a></li>
-        );
-    }
-    if (socials.twitter) {
-        socialArr.push(
-            <li><a className="sociali" href={socials.twitter} target="_blank" aria-label="Twitter">
-                <IoLogoTwitter />
-            </a></li>
-        );
-    }
+import BehindTheProject from "../../assets/behindtheproject.png";
 
-    return (
-        <div className="social-icons">
-            <ul className="social-icons-set">
-                {socialArr}
-            </ul>
+const SocialIcon: React.FC<{
+  Icon: React.JSXElementConstructor<IconBaseProps>;
+  ariaLabel: string;
+  href: string;
+}> = ({ Icon, ariaLabel, href }) => {
+  return (
+    <div>
+      <a className="sociali" href={href} target="_blank" aria-label={ariaLabel}>
+        <Icon size={36} />
+      </a>
+    </div>
+  );
+};
+
+const SocialMediaInfo: React.FC<{ socials: Socials }> = ({ socials }) => {
+  let socialArr = [];
+  if (socials.ig) {
+    socialArr.push(
+      <SocialIcon
+        Icon={IoLogoInstagram}
+        ariaLabel="Instagram"
+        href={socials.ig}
+      />
+    );
+  }
+  if (socials.github) {
+    socialArr.push(
+      <SocialIcon
+        Icon={IoLogoGithub}
+        ariaLabel="GitHub"
+        href={socials.github}
+      />
+    );
+  }
+  if (socials.linkedin) {
+    socialArr.push(
+      <SocialIcon
+        Icon={IoLogoLinkedin}
+        ariaLabel="LinkedIn"
+        href={socials.linkedin}
+      />
+    );
+  }
+  if (socials.twitter) {
+    socialArr.push(
+      <SocialIcon
+        Icon={IoLogoTwitter}
+        ariaLabel="Twitter"
+        href={socials.twitter}
+      />
+    );
+  }
+
+  return (
+    <div className="social-icons">
+      <div className="social-icons-set">{socialArr}</div>
+    </div>
+  );
+};
+
+const MemberTile: React.FC<{ info: TeamMember }> = ({ info }) => {
+  return (
+    <div className="column team-individual">
+      <img
+        className="team-individual-avatar"
+        src={info.portfolioPic}
+        alt={info.name}
+      />
+      <div className="team-individual-info">
+        <p className="blue">{info.name}</p>
+        <strong>{info.title}</strong>
+        <p>"{info.quote}"</p>
+      </div>
+      <SocialMediaInfo socials={info.socials} />
+    </div>
+  );
+};
+
+const TopContent: React.FC = () => {
+  return (
+    <div className="column-center about-us-top-content">
+      <div className="column about-us-top-text">
+        <div className="column about-us-header">
+          People behind this <div className="inline-blue">project</div>
         </div>
-    )
+        <div className="about-us-intro">{introduction}</div>
+        <div className="about-us-section">Why are we doing this?</div>
+        <div className="about-us-intro">{why}</div>
+      </div>
+      <div className="about-us-top-image centered-content">
+        <img src={BehindTheProject} />
+      </div>
+    </div>
+  );
 };
 
 const AboutUs: React.FC = () => {
-    return (
-        <>
-            <NavBar fixed={true} />
-            <div className='about-us'>
-                <div className="about-us-header">
-                    Meet the
-                    <div className="inline-blue">team</div>
-                </div>
-                <div className='about-us-introduction'>
-                    Wondering who’s working behind the scenes? Well, meet the team. We’re nine people from 3 different continents, aged 19 to 26. Although we’re thousands of miles away from each other, we all have common interests. We met each other through the Yes Theory Fam Discord Server, and we want to help others connect and find like-minded people, the same way we found each other. That’s why we’re doing this, to allow you to turn strangers into lifelong friends! Feel free to contact each of us and give us a follow.
-                </div>
-                <hr />
-                <div className='row team-pics'>
-                    {
-                        team.map((eachPerson) => {
-                            return (<div className='column team-individual'>
-                                <img
-                                    className='team-individual-avatar'
-                                    src={eachPerson.portfolioPic}
-                                    alt={eachPerson.name}
-                                />
-                                <div className='team-individual-info'>
-                                    <p className='blue'>{eachPerson.name}</p>
-                                    <strong>{eachPerson.title}</strong>
-                                    <p>"{eachPerson.quote}"</p>
-                                </div>
-                                <SocialMediaInfo
-                                // socials={eachPerson.socials} 
-                                />
-                            </div>
-                            )
-                        })
-                    }
-                </div>
+  return (
+    <>
+      <NavBar fixed={true} />
+      <div className="about-us column-center">
+        <div className="column-center about-us-top">
+          <TopContent />
+          <div className="scroll-for-more column-center">
+            MEET THE TEAM
+            <div className="expand-container">
+              <IoIosArrowDown size={20} />
             </div>
-            <Footer />
-        </>
-    );
+          </div>
+        </div>
+        <div className="about-us-people column">
+          <div className="about-us-header">
+            Meet the <div className="inline-blue">team</div>
+          </div>
+          <div className="about-us-intro">{meetTheTeam}</div>
+          <div className="row team-pics">
+            {team.map((person) => {
+              return <MemberTile info={person} />;
+            })}
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 };
 
 export default AboutUs;
