@@ -1,10 +1,7 @@
-export interface Socials {
-  ig?: string,
-  github?: string,
-  linkedin?: string,
-  twitter?: string,
-}
-
+import { JSXElementConstructor } from "react";
+import { IconBaseProps } from "react-icons";
+import { AiFillBehanceSquare } from "react-icons/ai";
+import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin, IoLogoTwitter } from "react-icons/io";
 export interface TeamMember {
   name: string;
   portfolioPic: string;
@@ -12,6 +9,44 @@ export interface TeamMember {
   title: string;
   socials: Socials;
 }
+
+export interface Socials {
+  behance?: string;
+  github?: string;
+  ig?: string;
+  linkedin?: string;
+  twitter?: string;
+}
+
+type Available = keyof Socials;
+
+export interface Platform {
+  name: string;
+  Icon: JSXElementConstructor<IconBaseProps>,
+}
+
+export const platforms: { [key in Available]: Platform } = {
+  "behance": {
+    name: "Behance",
+    Icon: AiFillBehanceSquare,
+  },
+  "github": {
+    name: "GitHub",
+    Icon: IoLogoGithub,
+  },
+  "ig": {
+    name: "Instagram",
+    Icon: IoLogoInstagram,
+  },
+  "linkedin": {
+    name: "LinkedIn",
+    Icon: IoLogoLinkedin,
+  },
+  "twitter": {
+    name: "Twitter",
+    Icon: IoLogoTwitter,
+  },
+};
 
 export const team: Array<TeamMember> = [
   {

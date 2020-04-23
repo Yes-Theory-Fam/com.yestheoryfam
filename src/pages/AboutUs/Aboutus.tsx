@@ -1,17 +1,11 @@
 import * as React from "react";
 import "./Aboutus.scss";
 import NavBar from "../../components/NavBar/NavBar";
-import {
-  IoLogoInstagram,
-  IoLogoLinkedin,
-  IoLogoGithub,
-  IoLogoTwitter,
-  IoIosArrowDown,
-} from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import { IconBaseProps } from "react-icons";
 
 import Footer from "../../components/Footer/Footer";
-import { team, Socials, TeamMember } from "./Team";
+import { team, Socials, TeamMember, platforms } from "./Team";
 import { introduction, why, meetTheTeam } from "./copy";
 
 import BehindTheProject from "../../assets/behindtheproject.png";
@@ -32,41 +26,17 @@ const SocialIcon: React.FC<{
 
 const SocialMediaInfo: React.FC<{ socials: Socials }> = ({ socials }) => {
   let socialArr = [];
-  if (socials.ig) {
-    socialArr.push(
-      <SocialIcon
-        Icon={IoLogoInstagram}
-        ariaLabel="Instagram"
-        href={socials.ig}
-      />
-    );
-  }
-  if (socials.github) {
-    socialArr.push(
-      <SocialIcon
-        Icon={IoLogoGithub}
-        ariaLabel="GitHub"
-        href={socials.github}
-      />
-    );
-  }
-  if (socials.linkedin) {
-    socialArr.push(
-      <SocialIcon
-        Icon={IoLogoLinkedin}
-        ariaLabel="LinkedIn"
-        href={socials.linkedin}
-      />
-    );
-  }
-  if (socials.twitter) {
-    socialArr.push(
-      <SocialIcon
-        Icon={IoLogoTwitter}
-        ariaLabel="Twitter"
-        href={socials.twitter}
-      />
-    );
+
+  const keys = Object.keys(socials) as Array<keyof Socials>;
+  for (let i = 0; i < keys.length; i++) {
+    const platform = keys[i];
+    const link = socials[platform];
+    const info = platforms[platform];
+    if (link) {
+      socialArr.push(
+        <SocialIcon Icon={info.Icon} ariaLabel={info.name} href={link} />
+      );
+    }
   }
 
   return (
