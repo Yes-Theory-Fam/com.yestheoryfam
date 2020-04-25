@@ -56,10 +56,9 @@ export const team: Array<TeamMember> = [
     quote: "This whole thing is starting to scare me.",
     title: "Project Manager",
     socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-      twitter: "twitter",
-      linkedin: "linkedin",
+      ig: 'https://www.instagram.com/jamie_legg_/',
+      linkedin: 'https://www.linkedin.com/in/omnisjamie/',
+      github: 'https://github.com/jamie-legg'
     },
   },
   {
@@ -94,9 +93,9 @@ export const team: Array<TeamMember> = [
     quote: "Let’s f***ing do this sht!",
     title: "Graphic Designer",
     socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-      linkedin: "linkedin",
+      behance: 'https://www.behance.net/sa-o',
+      ig: "https://www.instagram.com/sara.olmzdh/",
+      linkedin: "https://www.linkedin.com/in/sa-o/",
     },
   },
   {
@@ -106,10 +105,9 @@ export const team: Array<TeamMember> = [
     quote: "So how does this all work?",
     title: "Full Stack Developer",
     socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-      twitter: "twitter",
-      linkedin: "linkedin",
+      ig: "https://www.instagram.com/dimapanfilove/",
+      github: "https://github.com/dimapanf",
+      linkedin: "https://www.linkedin.com/in/dimapanfilov/",
     },
   },
   {
@@ -145,10 +143,9 @@ export const team: Array<TeamMember> = [
     quote: "My mind is going a mile an hour.",
     title: "Full Stack Developer",
     socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-      twitter: "twitter",
-      linkedin: "linkedin",
+      ig: "https://www.instagram.com/shagun_mistry/",
+      github: "https://github.com/shagunmistry",
+      linkedin: "https://www.linkedin.com/in/shagun-mistry/",
     },
   },
   {
