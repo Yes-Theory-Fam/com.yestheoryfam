@@ -32,7 +32,7 @@ const FeaturedArticle: React.FC<IBlogProps> = ({
     <div className="featured-article column">
       <div className="blog-overview-section-header">Latest article</div>
       <div className="column featured-article-blog">
-        <div className="featured-image">
+        <div className="featured-image centered-content">
           <img src="https://picsum.photos/605/433?a=featured-article" />
         </div>
         <div className="featured-text-content column">
