@@ -29,28 +29,46 @@
   &-article {
     align-items: flex-start;
     padding-bottom: 100px;
+
+    &-blog {
+      width: 100%;
+
+      @include common.desktop-specific {
+        flex-direction: row;
+      }
+    }
   }
 
   &-image {
     flex: 1;
-    border-radius: 20px;
-    box-shadow: 15px 15px 60px #0067ff40;
+
+    img {
+      width: 100%;
+      height: auto;
+      box-shadow: 15px 15px 60px #0067ff40;
+    }
   }
 
   &-text-content {
     flex: 1;
     justify-content: space-evenly;
-    padding-left: 150px;
-    padding-right: 50px;
 
-    button {
+    @include common.phone-landscape-specific {
+      min-height: 300px;
+    }
+
+    @include common.tablet-specific {
+      min-height: 300px;
+    }
+
+    @include common.desktop-specific {
+      padding-left: 10%;
+      padding-right: 3%;
+    }
+
+    .button {
       max-width: 260px;
     }
-  }
-
-  &-summary {
-    width: 82%;
-    font-size: 16px;
   }
 
   &-title {
@@ -58,46 +76,65 @@
     color: common.$yesTheoryBlue;
     font-weight: 900;
   }
+
+  &-summary {
+    width: 82%;
+    font-size: 16px;
+  }
 }
 
 .other-article {
-  &-row {
-    height: 475px;
-    padding-bottom: 50px;
-    justify-content: flex-start;
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 50px;
+    column-gap: 3.5%;
+
+    margin-bottom: 50px;
+
+    @include common.phone-landscape-specific {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include common.tablet-specific {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include common.desktop-specific {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   &-tile {
     height: 100%;
-    width: 31%;
+    min-height: 460px;
     justify-content: space-between;
-    margin-right: 3.5%;
 
-    &::after {
-      content: "";
-      border-bottom: 1px solid #707070;
-      opacity: 0.24;
-      height: 1px;
-      width: 95%;
-      align-self: center;
-    }
-
-    &-last {
-      @extend .other-article-tile;
-
-      margin-right: 0;
+    &-top {
+      margin-bottom: 20px;
     }
 
     &-image {
       width: 100%;
       height: auto;
       border-radius: 20px;
+      margin-bottom: 20px;
     }
 
     &-title {
       font-size: 25px;
       color: common.$yesTheoryBlue;
       font-weight: 500;
+    }
+
+    .clamp-lines::after {
+      content: "";
+      display: block;
+      margin: 10px auto 0;
+      border-bottom: 1px solid #707070;
+      opacity: 0.24;
+      height: 1px;
+      width: 95%;
     }
   }
 }
