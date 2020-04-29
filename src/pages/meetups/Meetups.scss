@@ -2,41 +2,71 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap");
 
 .meetups {
-  padding-top: 200px;
+  margin-top: 50px;
+
+  @include common.tablet-specific {
+    margin-top: 150px;
+  }
+
+  @include common.desktop-specific {
+    margin-top: 200px;
+  }
 
   &-search-container {
-    width: 30%;
+    width: 75%;
+
+    @include common.phone-landscape-specific {
+      width: 50%;
+    }
+
+    @include common.tablet-specific {
+      width: 50%;
+    }
+
+    @include common.desktop-specific {
+      width: 40%;
+    }
   }
 
   &-heading {
-    padding-bottom: 190px;
+    margin-bottom: 100px;
+
+    @include common.tablet-specific {
+      margin-bottom: 160px;
+    }
+
+    @include common.tablet-specific {
+      margin-bottom: 190px;
+    }
   }
 
-  &-list {
+  &-grid {
     width: 75%;
-    padding-top: 135px;
-  }
+    margin: 150px 0;
+    grid-template-columns: repeat(1, 1fr);
+    display: grid;
+    row-gap: 75px;
+    column-gap: 3.5%;
 
-  &-row {
-    height: 475px;
-    padding-bottom: 50px;
-    justify-content: flex-start;
+    @include common.phone-landscape-specific {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include common.tablet-specific {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include common.desktop-specific {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   &-tile {
-    height: 100%;
-    width: 31%;
+    height: 120%;
     justify-content: space-between;
-    margin-right: 3.5%;
-
-    &-last {
-      @extend .meetups-tile;
-      margin-right: 0;
-    }
 
     &-image {
       width: 100%;
-      height: 55%; // Not ideal; "fixing" this will be done when this is restructured for mobile.
 
       & img {
         width: 100%;
@@ -50,6 +80,12 @@
       font-weight: 500;
       color: common.$yesTheoryBlue;
     }
+
+    &-info {
+      &-row {
+        margin-top: 10px;
+      }
+    }
   }
 
   &-no-content {
@@ -60,4 +96,5 @@
 
 .info-icon {
   padding-right: 5px;
+  color: common.$yesTheoryBlue;
 }

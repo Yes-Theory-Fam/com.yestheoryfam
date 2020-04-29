@@ -13,8 +13,6 @@ import { IoIosPeople, IoMdCalendar } from "react-icons/io";
 import "./Meetups.scss";
 import { Link } from "react-router-dom";
 
-const YES_THEORY_BLUE = "rgb(1, 102, 255)";
-
 const Header: React.FC = () => {
   return (
     <div className="page-header meetups-heading">
@@ -26,25 +24,10 @@ const Header: React.FC = () => {
 const MeetupList: React.FC<{ meetups: Array<IMeetupProps> }> = ({
   meetups,
 }) => {
-  const chunks = arrayToChunks(meetups, 3);
   return (
-    <div className="meetups-list column">
-      {chunks.map((chunk, index) => (
-        <MeetupRow meetups={chunk} key={index} />
-      ))}
-    </div>
-  );
-};
-
-const MeetupRow: React.FC<{ meetups: Array<IMeetupProps> }> = ({ meetups }) => {
-  return (
-    <div className="meetups-row row">
+    <div className="meetups-grid">
       {meetups.map((meetup, index) => (
-        <MeetupTile
-          {...meetup}
-          last={index === meetups.length - 1}
-          key={index}
-        />
+        <MeetupTile key={index} {...meetup} />
       ))}
     </div>
   );
@@ -58,8 +41,8 @@ const TileImage: React.FC<{ imageSource: string }> = ({ imageSource }) => {
   );
 };
 
-const MeetupTile: React.FC<IMeetupProps & { last: boolean }> = (props) => {
-  const { last, children, ...meetupProps } = props;
+const MeetupTile: React.FC<IMeetupProps> = (props) => {
+  const { children, ...meetupProps } = props;
   const {
     title,
     description,
@@ -76,20 +59,21 @@ const MeetupTile: React.FC<IMeetupProps & { last: boolean }> = (props) => {
   return (
     <Link
       to={{ pathname: "/meetups/0", state: meetupProps }}
-      className={`meetups-tile${last ? "-last" : ""} column`}
+      className="meetups-tile column"
     >
       <TileImage imageSource={imageSource} />
       <div className="meetups-tile-title">{title}</div>
-      {description}
-      <div className="row">
-        <IoMdCalendar size={18} color={YES_THEORY_BLUE} className="info-icon" />
-        {`${format(start, dateFormat)} - ${format(end, dateFormat)}`}
-        {/*TODO: Cases like 1th 2th and 3th */}
-      </div>
+      <div className="meetups-tile-info column">
+        {description}
+        <div className="row meetups-tile-info-row">
+          <IoMdCalendar size={18} className="info-icon" />
+          {`${format(start, dateFormat)} - ${format(end, dateFormat)}`}
+        </div>
 
-      <div className="row">
-        <IoIosPeople size={18} color={YES_THEORY_BLUE} className="info-icon" />
-        {`${limit} limit`}
+        <div className="row meetups-tile-info-row">
+          <IoIosPeople size={18} className="info-icon" />
+          {`${limit} limit`}
+        </div>
       </div>
     </Link>
   );
