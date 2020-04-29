@@ -10,8 +10,6 @@ import { Link, RouteProps, RouteComponentProps } from "react-router-dom";
 import format from "date-fns/format";
 import { IoIosPeople, IoMdCalendar } from "react-icons/io";
 
-const YES_THEORY_BLUE = "rgb(1, 102, 255)";
-
 const Header: React.FC<{ title: string }> = ({ title }) => {
   const bluePart = /fiyesta (.*)/i.exec(title)?.[1];
 
@@ -26,9 +24,6 @@ const Description: React.FC<{ description: string }> = ({ description }) => {
   return <div className="meetup-details-description">{description}</div>;
 };
 
-// Might have to double check how to get those to the same height if needed.
-// According to https://stackoverflow.com/questions/36004926/equal-height-rows-in-a-flex-container
-// it's not possible with Flexbox; solution with grid is available.
 const HowToJoin: React.FC = () => {
   return (
     <div className="meetup-details-how-to-join column-center">
@@ -69,26 +64,19 @@ const MoreInformation: React.FC<{
   const dateFormat = "do' of 'LLLL";
 
   return (
-    <div className="row meetup-details-more-information">
-      <img src={image} alt="" />
+    <div className="column meetup-details-more-information">
+      <div className="meetup-details-more-information-image centered-content">
+        <img src={image} alt="" />
+      </div>
       <div className="column text-content">
         <div className="section-header">More information</div>
-        <div className="row">
-          <IoMdCalendar
-            size={18}
-            color={YES_THEORY_BLUE}
-            className="info-icon"
-          />
+        <div className="row meetup-details-more-information-info-row">
+          <IoMdCalendar size={18} className="info-icon" />
           {`${format(dateStart, dateFormat)} - ${format(dateEnd, dateFormat)}`}
-          {/*TODO: Cases like 1th 2th and 3th */}
         </div>
 
-        <div className="row">
-          <IoIosPeople
-            size={18}
-            color={YES_THEORY_BLUE}
-            className="info-icon"
-          />
+        <div className="row meetup-details-more-information-info-row">
+          <IoIosPeople size={18} className="info-icon" />
           {`${limit} limit`}
         </div>
         {details.map((paragraph, index) => (
