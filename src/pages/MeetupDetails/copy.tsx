@@ -3,7 +3,7 @@ import * as React from "react";
 const step1 = (
   <div>
     Join our discord (
-    <a href="https://discord.gg/yestheory" className="inline-blue">
+    <a href="https://discord.gg/yestheory" className="link">
       https://discord.gg/yestheory
     </a>
     ). The server is where most of the planning and conversation takes place.
