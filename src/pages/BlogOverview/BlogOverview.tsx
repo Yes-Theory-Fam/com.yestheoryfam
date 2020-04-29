@@ -31,11 +31,10 @@ const FeaturedArticle: React.FC<IBlogProps> = ({
   return (
     <div className="featured-article column">
       <div className="blog-overview-section-header">Latest article</div>
-      <div className="row">
-        <img
-          className="featured-image"
-          src="https://picsum.photos/605/433?a=featured-article"
-        />
+      <div className="column featured-article-blog">
+        <div className="featured-image">
+          <img src="https://picsum.photos/605/433?a=featured-article" />
+        </div>
         <div className="featured-text-content column">
           <Remark author={author} time={time} />
           <Title title={title} />
@@ -68,42 +67,32 @@ const OtherArticles: React.FC<{ blogs: Array<IBlogProps> }> = ({ blogs }) => {
   return (
     <div className="column">
       <div className="blog-overview-section-header">Other articles</div>
-      {arrayToChunks(blogs, 3).map((chunk, index) => (
-        <OtherArticlesRow blogs={chunk} rowIndex={index} key={index} />
-      ))}
+      <div className="other-article-grid">
+        {blogs.map((blog, index) => (
+          <OtherArticleTile id={`blog-tile-${index}`} key={index} {...blog} />
+        ))}
+      </div>
     </div>
   );
 };
 
-const OtherArticlesRow: React.FC<{
-  blogs: Array<IBlogProps>;
-  rowIndex: number;
-}> = ({ blogs, rowIndex }) => {
+const OtherArticleTile: React.FC<IBlogProps & { id: string }> = ({
+  author,
+  time,
+  title,
+  content,
+  id,
+}) => {
   return (
-    <div className="other-article-row row">
-      {blogs.map((blog, index) => (
-        <OtherArticleTile
-          {...blog}
-          id={`article-${rowIndex}-${index}`}
-          last={index === blogs.length - 1}
-          key={index}
+    <div className="other-article-tile column">
+      <div className="other-article-tile-top">
+        <img
+          className="other-article-tile-image"
+          src={`https://picsum.photos/398/260?a=${id}`}
         />
-      ))}
-    </div>
-  );
-};
-
-const OtherArticleTile: React.FC<
-  IBlogProps & { id: string; last: boolean }
-> = ({ author, time, title, content, id, last }) => {
-  return (
-    <div className={`other-article-tile${last ? "-last" : ""} column`}>
-      <img
-        className="other-article-tile-image"
-        src={`https://picsum.photos/398/260?a=${id}`}
-      />
-      <Remark author={author} time={time} />
-      <div className="other-article-tile-title">{title}</div>
+        <Remark author={author} time={time} />
+        <div className="other-article-tile-title">{title}</div>
+      </div>
       <ClampLines text={content} lines={4} id={id} buttons={false} />
     </div>
   );
