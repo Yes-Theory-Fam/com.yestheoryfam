@@ -111,8 +111,8 @@ div.content {
   left: -10%;
 
   @include common.tablet-specific {
-    left: -100vw;
-    bottom: -50vh;
+    left: -35vw;
+    bottom: -10vh;
   }
 
   @include common.phone-landscape-specific {
