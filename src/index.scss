@@ -44,11 +44,19 @@ img {
 }
 
 .page-header {
-  font-size: 10vw;
+  font-size: 36px;
   font-weight: 900;
   text-align: center;
   color: #2a2a2a;
   width: 70%;
+
+  @include common.tablet-specific {
+    font-size: 8vw;
+  }
+
+  @include common.desktop-specific {
+    font-size: 6vw;
+  }
 }
 
 .inline-blue {
