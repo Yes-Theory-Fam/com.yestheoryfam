@@ -1,52 +1,10 @@
 @use '../../common';
 
 .layout-row {
-  max-height: 560px;
+  display: grid;
+  gap: 1vh;
+
   margin-bottom: 1vh;
-
-  @include common.phone-landscape-specific {
-    margin-bottom: 2vh;
-  }
-
-  @include common.desktop-specific {
-    margin-bottom: 2vh;
-  }
-}
-
-.h-33 {
-  height: 32.5%;
-}
-
-.h-66 {
-  height: 65.5%;
-}
-
-.h-50 {
-  height: 49%;
-}
-
-.h-100 {
-  height: 100%;
-}
-
-.w-25 {
-  width: 24.5%;
-}
-
-.w-33 {
-  width: 32.5%;
-}
-
-.w-50 {
-  width: 49%;
-}
-
-.w-66 {
-  width: 65.5%;
-}
-
-.w-100 {
-  width: 100%;
 }
 
 .blur {

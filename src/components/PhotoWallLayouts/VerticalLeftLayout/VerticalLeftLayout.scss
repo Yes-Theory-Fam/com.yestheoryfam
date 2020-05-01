@@ -1,0 +1,14 @@
+.vl-layout {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 25vh 25vh;
+
+  .tall {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+
+  .long {
+    grid-column: 2 / 4;
+    grid-row: 1;
+  }
+}
