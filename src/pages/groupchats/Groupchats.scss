@@ -10,24 +10,59 @@ body {
   height: 90vh;
   justify-content: flex-start;
 
+  @include common.phone-landscape-specific {
+    height: unset;
+  }
+
   &-search {
     &-container {
-      width: 30%;
+      width: 75%;
+
+      @include common.tablet-specific {
+        width: 50%;
+      }
+
+      @include common.desktop-specific {
+        width: 40%;
+      }
     }
   }
 
   &-auto-suggest {
     margin-top: 50px;
     width: 100%;
-    justify-content: center;
+
+    @include common.tablet-specific {
+      max-height: 50%;
+    }
+
+    @include common.phone-landscape-specific {
+      max-height: 500px;
+      margin-bottom: 80px;
+    }
+
+    @include common.desktop-specific {
+      max-height: 50%;
+    }
 
     &-suggestions {
-      padding-top: 40px;
+      margin-top: 40px;
       padding-right: 10px;
-      width: 30%;
-      height: 80%;
       overflow-y: auto;
       position: relative;
+
+      height: 30%;
+      width: 75%;
+
+      @include common.tablet-specific {
+        height: 80%;
+        width: 50%;
+      }
+
+      @include common.desktop-specific {
+        height: 80%;
+        width: 40%;
+      }
 
       &-container {
         position: absolute;
@@ -49,6 +84,10 @@ body {
         font-size: 16px;
         line-height: 21px;
         justify-content: space-between;
+
+        @include common.desktop-specific {
+          flex-direction: row;
+        }
 
         &:hover {
           background-color: color.adjust(common.$yesTheoryBlue, $alpha: -0.9);
