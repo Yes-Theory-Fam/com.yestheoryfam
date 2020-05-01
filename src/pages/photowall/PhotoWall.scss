@@ -2,7 +2,15 @@
 
 .layout-row {
   max-height: 560px;
-  padding-bottom: 2vh;
+  padding-bottom: 1vh;
+
+  @include common.phone-landscape-specific {
+    padding-bottom: 2vh;
+  }
+
+  @include common.desktop-specific {
+    padding-bottom: 2vh;
+  }
 }
 
 .h-33 {
@@ -51,6 +59,15 @@
     height: 100vh;
     justify-content: space-between;
 
+    @include common.phone-landscape-specific {
+      height: unset;
+      margin-top: 90px;
+
+      button {
+        margin-bottom: 35px;
+      }
+    }
+
     & .scroll-for-more {
       width: 100vw;
       margin-bottom: 20px;
@@ -65,8 +82,16 @@
     }
 
     &-text {
-      width: 40%;
+      width: 80%;
       text-align: center;
+
+      @include common.tablet-specific {
+        width: 60%;
+      }
+
+      @include common.desktop-specific {
+        width: 40%;
+      }
     }
   }
 
@@ -81,7 +106,7 @@
   }
 
   &-upload-modal {
-    z-index: 1;
+    z-index: 1001;
 
     position: fixed;
     top: 0;
@@ -95,17 +120,23 @@
     justify-content: center;
 
     &-dropzone {
-      // I might want to make this cleaner.
-      // But for now this works to keep the box shadow away from the navbar
-      // that would otherwise eat the shadow.
-      position: relative;
-      top: 30px;
-
       background: white;
-
-      width: 70%;
       border-radius: 20px;
       box-shadow: 0 3px 60px #0067ff29;
+
+      width: 90%;
+
+      @include common.phone-landscape-specific {
+        width: 70%;
+      }
+
+      @include common.tablet-specific {
+        width: 70%;
+      }
+
+      @include common.desktop-specific {
+        width: 70%;
+      }
     }
   }
 }

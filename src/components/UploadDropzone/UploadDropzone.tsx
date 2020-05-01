@@ -289,8 +289,7 @@ const InputContent: React.FC<{ rejected: boolean }> = ({ rejected }) => {
         <IoMdCloudUpload size={45} />{" "}
       </div>
       <div>
-        Drag file here or{" "}
-        <div className="inline-blue upload-input-browse">browse locally</div>
+        Drag file here or <div className="link">browse locally</div>
       </div>
     </div>
   );
