@@ -6,12 +6,17 @@
   height: 30px;
   width: 100%;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 35px;
   padding-bottom: 7px;
   font-size: 16px;
   position: relative;
   left: 10px;
   color: #8c8c8c;
+
+  &[placeholder] {
+    width: 90%;
+    text-overflow: ellipsis;
+  }
 
   &-searching {
     font-size: 12px;
