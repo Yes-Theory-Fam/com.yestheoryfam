@@ -53,8 +53,18 @@
     }
 
     @include common.desktop-specific {
-      height: 70%;
+      align-self: stretch;
+      justify-content: space-evenly;
+    }
+  }
+
+  @include common.desktop-specific {
+    &.row &-text-content {
       margin-inline-start: 35px;
+    }
+
+    &.row-reverse &-text-content {
+      margin-inline-end: 35px;
     }
   }
 
