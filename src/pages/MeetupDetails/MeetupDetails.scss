@@ -1,13 +1,13 @@
 @use '../../common';
 
 .meetup-details {
-  padding-top: 150px;
+  margin-top: 150px;
   color: #474747c9;
 
   &-description {
     text-align: center;
     line-height: 25px;
-    padding: 30px 0;
+    margin: 30px 0;
     width: 75%;
 
     @include common.tablet-specific {

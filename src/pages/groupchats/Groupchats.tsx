@@ -103,7 +103,7 @@ const SuggestionContainer: React.FC<{ suggestions?: React.ReactNodeArray }> = ({
 }) => {
   return (
     <div className="column groupchats-auto-suggest-suggestions">
-      <div className="groupchat-auto-suggest-suggestions-container">
+      <div>
         {suggestions && suggestions.length > 0 && (
           <div className="groupchats-auto-suggest-suggestions-header">
             Join your partners in crime...

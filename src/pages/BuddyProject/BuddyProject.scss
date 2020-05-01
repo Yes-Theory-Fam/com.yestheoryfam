@@ -27,7 +27,7 @@
     justify-content: flex-start;
 
     @include common.desktop-specific {
-      padding-top: 50px;
+      margin-top: 50px;
       min-height: 100vh;
     }
 
@@ -180,16 +180,6 @@
     font-size: 38px;
   }
 
-  &-list {
-    width: 75%;
-    padding-top: 173px;
-
-    & .column,
-    & .row {
-      justify-content: space-between;
-    }
-  }
-
   &-signup {
     height: 100vh;
     margin-left: 1rem;
@@ -255,8 +245,8 @@
 
   &-text-content {
     width: 90%;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 
   a {
