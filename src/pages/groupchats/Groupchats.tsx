@@ -73,20 +73,11 @@ const getSuggestions = (search: string) => {
   const input = search.trim().toLowerCase();
   const length = input.length;
 
-  console.log(`Getting suggestions for input search ${input}`);
-
-  console.log(`length < 2: ${length < 2}`);
-  console.log(`cities: ${chatList.map(({ city }) => city.toLowerCase())}`);
-  console.log(
-    `countries: ${chatList.map(({ country }) => country.toLowerCase())}`
-  );
-
   const filtered = chatList.filter(
     (chat) =>
       chat.city.toLowerCase().includes(input) ||
       chat.country.toLowerCase().includes(input)
   );
-  console.log(`filtered: ${filtered}`);
 
   return length < 2 ? [] : filtered;
 };
@@ -94,7 +85,7 @@ const getSuggestions = (search: string) => {
 const renderSuggestion = (suggestion: IGroupchat, index: number) => {
   return (
     <a
-      className="row groupchats-auto-suggest-suggestions-entry"
+      className="column groupchats-auto-suggest-suggestions-entry"
       key={index}
       href={suggestion.link}
       target="_blank"
