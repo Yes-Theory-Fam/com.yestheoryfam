@@ -4,7 +4,7 @@ import "./PhotoWrapper.scss";
 import Lightbox from "react-image-lightbox";
 
 const PhotoWrapper: React.FC<{
-  className: string;
+  className?: string | undefined;
   src: string | undefined;
 }> = ({ className, src }) => {
   const [showsInModal, setShowsInModal] = React.useState(false);
