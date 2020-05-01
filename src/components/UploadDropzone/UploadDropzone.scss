@@ -7,10 +7,22 @@
     width: 46px;
     border: 1px solid common.$yesTheoryBlue;
     align-self: flex-end;
-    margin-top: 40px;
-    margin-inline-end: 58px;
     cursor: pointer;
     color: common.$yesTheoryBlue;
+
+    margin-top: 20px;
+    margin-inline-end: 20px;
+    margin-bottom: 20px;
+
+    @include common.tablet-specific {
+      margin-top: 40px;
+      margin-inline-end: 58px;
+    }
+
+    @include common.desktop-specific {
+      margin-top: 40px;
+      margin-inline-end: 58px;
+    }
   }
 
   &-progress {
@@ -62,24 +74,48 @@
       color: black;
       margin-bottom: 10px;
     }
-
-    &-browse {
-      text-decoration: underline;
-      text-decoration-color: common.$yesTheoryBlue;
-    }
   }
 
   &-header {
+    display: none;
     color: #2a2a2a;
     opacity: 0.71;
     font-size: 36px;
     line-height: 43px;
     padding-bottom: 40px;
+
+    @include common.tablet-specific {
+      display: unset;
+    }
+
+    @include common.phone-landscape-specific {
+      display: none;
+    }
+
+    @include common.desktop-specific {
+      display: unset;
+    }
   }
 
   &-dropzone {
-    width: 70%;
-    height: 485px;
+    height: 100%;
+    width: 80%;
+
+    @include common.tablet-specific {
+      width: 70%;
+      height: 40vh;
+    }
+
+    @include common.phone-landscape-specific {
+      width: 80%;
+      height: 40vh;
+    }
+
+    @include common.desktop-specific {
+      width: 70%;
+      height: 40vh;
+    }
+
     margin-bottom: 50px;
     border-radius: 20px;
     border-color: common.$yesTheoryBlue;
