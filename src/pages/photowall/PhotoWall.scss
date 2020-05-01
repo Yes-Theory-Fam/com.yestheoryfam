@@ -2,14 +2,14 @@
 
 .layout-row {
   max-height: 560px;
-  padding-bottom: 1vh;
+  margin-bottom: 1vh;
 
   @include common.phone-landscape-specific {
-    padding-bottom: 2vh;
+    margin-bottom: 2vh;
   }
 
   @include common.desktop-specific {
-    padding-bottom: 2vh;
+    margin-bottom: 2vh;
   }
 }
 
@@ -97,7 +97,7 @@
 
   &-list {
     width: 75%;
-    padding-top: 173px;
+    margin-top: 173px;
 
     & .column,
     & .row {

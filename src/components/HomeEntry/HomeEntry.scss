@@ -6,11 +6,10 @@
   align-items: center;
   flex-wrap: wrap;
 
-  padding: 50px 0;
+  margin: 50px 0;
 
   @include common.desktop-specific {
-    // height: 674px;
-    padding: 75px 0;
+    margin: 75px 0;
   }
 
   &-header {
