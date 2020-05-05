@@ -112,6 +112,18 @@ export const team: Array<TeamMember> = [
     },
   },
   {
+    name: "Travis T.",
+    portfolioPic:
+      "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-1/p480x480/73346489_10216496194497398_6160492027554299904_o.jpg?_nc_cat=110&_nc_sid=dbb9e7&_nc_ohc=VeRaHY67670AX_9BtK_&_nc_ht=scontent-atl3-1.xx&_nc_tp=6&oh=6dca729dd125f2be49f4a20d1c43c762&oe=5EC5A991",
+    quote: "BIG TODO",
+    title: "Intern",
+    socials: {
+      ig: "https://www.instagram.com/shagun_mistry/",
+      github: "https://github.com/shagunmistry",
+      linkedin: "https://www.linkedin.com/in/shagun-mistry/",
+    },
+  },
+  {
     name: "Matej P.",
     portfolioPic:
       "https://avatars2.githubusercontent.com/u/33829929?s=460&u=9b320dc99638f062827291de857ea7a82cbc4b1a&v=4",
