@@ -64,8 +64,8 @@ export const team: Array<TeamMember> = [
     quote: "This whole thing is starting to scare me.",
     title: "Project Manager",
     socials: {
-      ig: 'https://www.instagram.com/jamie_legg_/',
-      linkedin: 'https://www.linkedin.com/in/omnisjamie/',
+      ig: 'https://instagram.com/jamie_legg_/',
+      linkedin: 'https://linkedin.com/in/omnisjamie/',
       github: 'https://github.com/jamie-legg'
     },
   },
@@ -95,9 +95,9 @@ export const team: Array<TeamMember> = [
     quote: "So how does this all work?",
     title: "Full Stack Developer",
     socials: {
-      ig: "https://www.instagram.com/dimapanfilove/",
+      ig: "https://instagram.com/dimapanfilove/",
       github: "https://github.com/dimapanf",
-      linkedin: "https://www.linkedin.com/in/dimapanfilov/",
+      linkedin: "https://linkedin.com/in/dimapanfilov/",
     },
   },
   {
@@ -106,9 +106,9 @@ export const team: Array<TeamMember> = [
     quote: "My mind is going a mile an hour.",
     title: "Full Stack Developer",
     socials: {
-      ig: "https://www.instagram.com/shagun_mistry/",
+      ig: "https://instagram.com/shagun_mistry/",
       github: "https://github.com/shagunmistry",
-      linkedin: "https://www.linkedin.com/in/shagun-mistry/",
+      linkedin: "https://linkedin.com/in/shagun-mistry/",
     },
   },
   {
@@ -117,9 +117,9 @@ export const team: Array<TeamMember> = [
     quote: "BIG TODO",
     title: "Intern",
     socials: {
-      ig: "https://www.instagram.com/lenerdee",
+      ig: "https://instagram.com/lenerdee",
       github: "http://github.com/travisthebot",
-      linkedin: "https://www.linkedin.com/in/findtravishere",
+      linkedin: "https://linkedin.com/in/findtravishere",
     },
   },
   {
@@ -151,9 +151,9 @@ export const team: Array<TeamMember> = [
     quote: "Let’s f***ing do this sh*t!",
     title: "Graphic Designer",
     socials: {
-      behance: 'https://www.behance.net/sa-o',
-      ig: "https://www.instagram.com/sara.olmzdh/",
-      linkedin: "https://www.linkedin.com/in/sa-o/",
+      behance: 'https://behance.net/sa-o',
+      ig: "https://instagram.com/sara.olmzdh/",
+      linkedin: "https://linkedin.com/in/sa-o/",
     },
   },
   {
