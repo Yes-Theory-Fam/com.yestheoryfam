@@ -1,0 +1,11 @@
+export { default as Jamie } from '../../assets/team/jam.jpg';
+export { default as Michel } from '../../assets/team/mic.jpg';
+export { default as Haakon } from '../../assets/team/hak.jpg';
+export { default as Dima } from '../../assets/team/dim.jpg';
+export { default as Shagun } from '../../assets/team/sha.jpg';
+export { default as Travis } from '../../assets/team/tra.jpg';
+export { default as Matej } from '../../assets/team/mat.jpg';
+export { default as Carola } from '../../assets/team/yikes.jpg';
+export { default as Sara } from '../../assets/team/sar.jpg';
+export { default as Lea } from '../../assets/team/lea.jpg';
+export { default as YesBot } from '../../assets/yesbot-yougotmail_bluetint.png';
