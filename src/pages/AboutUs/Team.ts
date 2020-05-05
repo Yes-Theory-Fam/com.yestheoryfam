@@ -146,7 +146,7 @@ export const team: Array<TeamMember> = [
   {
     name: "Sara O.",
     portfolioPic: Sara,
-    quote: "Let’s f***ing do this sht!",
+    quote: "Let’s f***ing do this sh*t!",
     title: "Graphic Designer",
     socials: {
       behance: 'https://www.behance.net/sa-o',
