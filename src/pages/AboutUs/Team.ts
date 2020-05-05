@@ -62,52 +62,16 @@ export const team: Array<TeamMember> = [
     },
   },
   {
-    name: "Carola L.",
+    name: "Michel v.V.",
     portfolioPic:
       "https://avatars2.githubusercontent.com/u/33829929?s=460&u=9b320dc99638f062827291de857ea7a82cbc4b1a&v=4",
-    quote: "I don’t know how I got dragged into this.",
-    title: "Graphic Designer/Illustrator",
+    quote: "It should hopefully be fixed now.",
+    title: "Frontend Developer",
     socials: {
       ig: "https://ig-link.com",
       github: "github",
       twitter: "twitter",
       linkedin: "linkedin",
-    },
-  },
-  {
-    name: "Matej P.",
-    portfolioPic:
-      "https://avatars2.githubusercontent.com/u/33829929?s=460&u=9b320dc99638f062827291de857ea7a82cbc4b1a&v=4",
-    quote: "Michel move that 2 pixels to the right.",
-    title: "UI/UX Designer",
-    socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-      twitter: "twitter",
-    },
-  },
-  {
-    name: "Sara O.",
-    portfolioPic:
-      "https://avatars2.githubusercontent.com/u/33829929?s=460&u=9b320dc99638f062827291de857ea7a82cbc4b1a&v=4",
-    quote: "Let’s f***ing do this sht!",
-    title: "Graphic Designer",
-    socials: {
-      behance: 'https://www.behance.net/sa-o',
-      ig: "https://www.instagram.com/sara.olmzdh/",
-      linkedin: "https://www.linkedin.com/in/sa-o/",
-    },
-  },
-  {
-    name: "Dima P.",
-    portfolioPic:
-      "https://media-exp1.licdn.com/dms/image/C5603AQEFw1EPLcqFCQ/profile-displayphoto-shrink_200_200/0?e=1593043200&v=beta&t=gMafpnXPzEF2IhGqO938XUNvjKyen6lhXiqvD-jggEk",
-    quote: "So how does this all work?",
-    title: "Full Stack Developer",
-    socials: {
-      ig: "https://www.instagram.com/dimapanfilove/",
-      github: "https://github.com/dimapanf",
-      linkedin: "https://www.linkedin.com/in/dimapanfilov/",
     },
   },
   {
@@ -124,16 +88,15 @@ export const team: Array<TeamMember> = [
     },
   },
   {
-    name: "Michel v.V.",
+    name: "Dmitri P.",
     portfolioPic:
-      "https://avatars2.githubusercontent.com/u/33829929?s=460&u=9b320dc99638f062827291de857ea7a82cbc4b1a&v=4",
-    quote: "It should hopefully be fixed now.",
-    title: "Frontend Developer",
+      "https://media-exp1.licdn.com/dms/image/C5603AQEFw1EPLcqFCQ/profile-displayphoto-shrink_200_200/0?e=1593043200&v=beta&t=gMafpnXPzEF2IhGqO938XUNvjKyen6lhXiqvD-jggEk",
+    quote: "So how does this all work?",
+    title: "Full Stack Developer",
     socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-      twitter: "twitter",
-      linkedin: "linkedin",
+      ig: "https://www.instagram.com/dimapanfilove/",
+      github: "https://github.com/dimapanf",
+      linkedin: "https://www.linkedin.com/in/dimapanfilov/",
     },
   },
   {
@@ -146,6 +109,43 @@ export const team: Array<TeamMember> = [
       ig: "https://www.instagram.com/shagun_mistry/",
       github: "https://github.com/shagunmistry",
       linkedin: "https://www.linkedin.com/in/shagun-mistry/",
+    },
+  },
+  {
+    name: "Matej P.",
+    portfolioPic:
+      "https://avatars2.githubusercontent.com/u/33829929?s=460&u=9b320dc99638f062827291de857ea7a82cbc4b1a&v=4",
+    quote: "Michel move that 2 pixels to the right.",
+    title: "UI/UX Designer",
+    socials: {
+      ig: "https://ig-link.com",
+      github: "github",
+      twitter: "twitter",
+    },
+  },
+  {
+    name: "Carola L.",
+    portfolioPic:
+      "https://avatars2.githubusercontent.com/u/33829929?s=460&u=9b320dc99638f062827291de857ea7a82cbc4b1a&v=4",
+    quote: "I don’t know how I got dragged into this.",
+    title: "Graphic Designer/Illustrator",
+    socials: {
+      ig: "https://ig-link.com",
+      github: "github",
+      twitter: "twitter",
+      linkedin: "linkedin",
+    },
+  },
+  {
+    name: "Sara O.",
+    portfolioPic:
+      "https://avatars2.githubusercontent.com/u/33829929?s=460&u=9b320dc99638f062827291de857ea7a82cbc4b1a&v=4",
+    quote: "Let’s f***ing do this sht!",
+    title: "Graphic Designer",
+    socials: {
+      behance: 'https://www.behance.net/sa-o',
+      ig: "https://www.instagram.com/sara.olmzdh/",
+      linkedin: "https://www.linkedin.com/in/sa-o/",
     },
   },
   {
