@@ -2,6 +2,7 @@ import { JSXElementConstructor } from "react";
 import { IconBaseProps } from "react-icons";
 import { AiFillBehanceSquare } from "react-icons/ai";
 import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin, IoLogoTwitter } from "react-icons/io";
+import { FaArtstation } from "react-icons/fa";
 
 import { Jamie, Michel, Haakon, Dima, Shagun, Travis, Matej, Carola, Sara, Lea, YesBot } from './teamImages';
 
@@ -19,6 +20,7 @@ export interface Socials {
   ig?: string;
   linkedin?: string;
   twitter?: string;
+  artstation?: string;
 }
 
 type Available = keyof Socials;
@@ -49,6 +51,10 @@ export const platforms: { [key in Available]: Platform } = {
     name: "Twitter",
     Icon: IoLogoTwitter,
   },
+  "artstation": {
+    name: "ArtStation",
+    Icon: FaArtstation,
+  }
 };
 
 export const team: Array<TeamMember> = [
@@ -69,10 +75,8 @@ export const team: Array<TeamMember> = [
     quote: "It should hopefully be fixed now.",
     title: "Frontend Developer",
     socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-      twitter: "twitter",
-      linkedin: "linkedin",
+      github: "https://github.com/geisterfurz007",
+      linkedin: "https://linkedin.com/in/michelvonv",
     },
   },
   {
@@ -81,10 +85,8 @@ export const team: Array<TeamMember> = [
     quote: "I'm not getting any smarter.",
     title: "Full Stack Developer",
     socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-      twitter: "twitter",
-      linkedin: "linkedin",
+      github: "https://github.com/sklirg",
+      linkedin: "https://no.linkedin.com/in/hlsolbjorg",
     },
   },
   {
@@ -115,9 +117,9 @@ export const team: Array<TeamMember> = [
     quote: "BIG TODO",
     title: "Intern",
     socials: {
-      ig: "https://www.instagram.com/shagun_mistry/",
-      github: "https://github.com/shagunmistry",
-      linkedin: "https://www.linkedin.com/in/shagun-mistry/",
+      ig: "https://www.instagram.com/lenerdee",
+      github: "http://github.com/travisthebot",
+      linkedin: "https://www.linkedin.com/in/findtravishere",
     },
   },
   {
@@ -137,10 +139,10 @@ export const team: Array<TeamMember> = [
     quote: "I don’t know how I got dragged into this.",
     title: "Graphic Designer/Illustrator",
     socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-      twitter: "twitter",
-      linkedin: "linkedin",
+      ig: "https://instagram.com/cludix.jpg/",
+      linkedin: "https://linkedin.com/in/cludix",
+      behance: "https://behance.net/cludix",
+      artstation: "https://artstation.com/cludix"
     },
   },
   {
@@ -160,10 +162,8 @@ export const team: Array<TeamMember> = [
     quote: "‘tis broken.",
     title: "Copywriter",
     socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-      twitter: "twitter",
-      linkedin: "linkedin",
+      ig: "https://instagram.com/leakayy/",
+      linkedin: "https://linkedin.com/in/lea-kay",
     },
   },
   {
@@ -171,9 +171,6 @@ export const team: Array<TeamMember> = [
     portfolioPic: YesBot,
     quote: "Beep Boop",
     title: "Mascot / Helper",
-    socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-    },
+    socials: {},
   },
 ];
