@@ -49,15 +49,17 @@ const SocialMediaInfo: React.FC<{ socials: Socials }> = ({ socials }) => {
 const MemberTile: React.FC<{ info: TeamMember }> = ({ info }) => {
   return (
     <div className="column team-individual">
-      <img
-        className="team-individual-avatar"
-        src={info.portfolioPic}
-        alt={info.name}
-      />
-      <div className="team-individual-info">
-        <p className="blue">{info.name}</p>
-        <strong>{info.title}</strong>
-        <p>"{info.quote}"</p>
+      <div className="column">
+        <img
+          className="team-individual-avatar"
+          src={info.portfolioPic}
+          alt={info.name}
+        />
+        <div className="team-individual-info column">
+          <p className="blue">{info.name}</p>
+          <strong className="title">{info.title}</strong>
+          <p>"{info.quote}"</p>
+        </div>
       </div>
       <SocialMediaInfo socials={info.socials} />
     </div>
