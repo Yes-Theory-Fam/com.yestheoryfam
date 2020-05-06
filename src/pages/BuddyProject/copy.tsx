@@ -17,22 +17,22 @@ const howToJoin = (
 const whatNext = (
   <div>
     <div>
-      When the sign-up deadline is reached, everyone will be matched with a
-      buddy.
+      As soon as the sign-up deadline is reached, everyone will be matched with
+      a buddy.
     </div>
     <div className="inline-blue">
       <b>Yes Bot</b>
     </div>
     , our very own bot, will message you on discord with the name of your
-    partner and a set of questions. One of you will have to message the other.
+    partner, a set of questions and further instructions. One of you will start
+    messaging the other.
   </div>
 );
 
 const howItWorks = (
   <div>
-    How will it work? Both of you will have your own set of questions, and
-    you’ll each take turns asking a question from your list, and both answering,
-    until there are no more questions left.
+    Both of you will be given your own set of questions, with each of you taking
+    turns asking and both answering them until all the questions are cleared.
   </div>
 );
 
