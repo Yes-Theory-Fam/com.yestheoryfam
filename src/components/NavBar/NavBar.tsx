@@ -119,7 +119,9 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
       className={`row nav-bar-links-link ${available ? "" : "unavailable"}`}
     >
       {page.isNew && <NewPill fraud />}
-      {page.display.toUpperCase()}
+      <div className="nav-bar-links-link-title">
+        {page.display.toUpperCase()}
+      </div>
       {page.isNew && <NewPill />}
     </NavLink>
   );
