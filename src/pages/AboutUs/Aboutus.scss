@@ -102,16 +102,21 @@
 .team-pics {
   margin-top: 52px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 220px);
-  justify-content: space-between;
+  grid-template-columns: repeat(auto-fill, 250px);
+  justify-content: center;
+  column-gap: 25px;
+
+  @include common.tablet-specific {
+    justify-content: space-between;
+  }
 
   @include common.desktop-specific {
-    column-gap: 25px;
+    justify-content: space-between;
   }
 }
 
 .team-individual {
-  max-width: 220px;
+  max-width: 250px;
   justify-content: space-between;
   margin-bottom: 30px;
 
@@ -126,7 +131,6 @@
   }
 
   img {
-    border-radius: 0;
     border: none;
     flex-basis: 100%;
     border-radius: 10px;
