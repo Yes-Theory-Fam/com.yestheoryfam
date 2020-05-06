@@ -4,7 +4,7 @@
   margin-top: 40px;
   width: 100%;
 
-  @include common.phone-landscape-specific {
+  @include common.tablet-specific {
     margin-top: 100px;
   }
 
