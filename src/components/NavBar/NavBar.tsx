@@ -14,7 +14,7 @@ import { TransitionStatus } from "react-transition-group/Transition";
 
 const logout = () => {
   localStorage.clear();
-  window.location.href = "/";
+  window.location.reload();
 };
 
 const CurrentUser: React.FC = () => {
