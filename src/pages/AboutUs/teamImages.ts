@@ -8,4 +8,4 @@ export { default as Matej } from '../../assets/team/mat.jpg';
 export { default as Carola } from '../../assets/team/yikes.jpg';
 export { default as Sara } from '../../assets/team/sar.jpg';
 export { default as Lea } from '../../assets/team/lea.jpg';
-export { default as YesBot } from '../../assets/yesbot-yougotmail_bluetint.png';
+export { default as YesBot } from '../../assets/team/yes.jpg';
