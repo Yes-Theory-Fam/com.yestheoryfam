@@ -197,8 +197,13 @@
 }
 
 .logout {
-  max-width: 30px;
   margin-left: 20px;
+
+  @include common.phone-landscape-specific {
+    min-width: unset;
+    margin-left: 10px;
+    padding: 10px 35px;
+  }
 }
 
 .circle-avatar {
