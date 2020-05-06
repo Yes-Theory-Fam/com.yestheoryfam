@@ -1,7 +1,7 @@
 import { JSXElementConstructor } from "react";
 import { IconBaseProps } from "react-icons";
 import { AiFillBehanceSquare } from "react-icons/ai";
-import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin, IoLogoTwitter } from "react-icons/io";
+import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin, IoLogoTwitter, IoLogoDribbble } from "react-icons/io";
 import { FaArtstation } from "react-icons/fa";
 
 import { Jamie, Michel, Haakon, Dima, Shagun, Travis, Matej, Carola, Sara, Lea, YesBot } from './teamImages';
@@ -19,6 +19,7 @@ export interface Socials {
   github?: string;
   linkedin?: string;
   behance?: string;
+  dribble?: string;
   twitter?: string;
   artstation?: string;
 }
@@ -34,6 +35,10 @@ export const platforms: { [key in Available]: Platform } = {
   "behance": {
     name: "Behance",
     Icon: AiFillBehanceSquare,
+  },
+  "dribble": {
+    name: "Dribbble",
+    Icon: IoLogoDribbble,
   },
   "github": {
     name: "GitHub",
