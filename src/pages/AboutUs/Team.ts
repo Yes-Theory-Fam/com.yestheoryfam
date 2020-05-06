@@ -163,7 +163,7 @@ export const team: Array<TeamMember> = [
     },
   },
   {
-    name: "Lea K.",
+    name: "Léa K.",
     portfolioPic: Lea,
     quote: "‘tis broken.",
     title: "Copywriter",
