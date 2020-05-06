@@ -5,7 +5,7 @@ import Logo from "../Logo/Logo";
 import { UserContext } from "../../UserContext";
 import CloseBurgerOnNav from "../NavHooks/CloseBurger";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
-import pages, { NavPage } from "./pages";
+import pages, { NavPage } from "../../pages/pages";
 import DiscordLoginButton from "../DiscordLoginButton/DiscordLoginButton";
 
 import { BUDDY_PROJECT_MODE } from "../../config";
