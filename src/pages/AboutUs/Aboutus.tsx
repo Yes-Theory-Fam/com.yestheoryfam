@@ -14,11 +14,12 @@ const SocialIcon: React.FC<{
   Icon: React.JSXElementConstructor<IconBaseProps>;
   ariaLabel: string;
   href: string;
-}> = ({ Icon, ariaLabel, href }) => {
+  color: string;
+}> = ({ Icon, ariaLabel, href, color }) => {
   return (
     <div>
       <a className="sociali" href={href} target="_blank" aria-label={ariaLabel}>
-        <Icon size={36} />
+        <Icon size={36} color={color} />
       </a>
     </div>
   );
@@ -34,7 +35,7 @@ const SocialMediaInfo: React.FC<{ socials: Socials }> = ({ socials }) => {
     const info = platforms[platform];
     if (link) {
       socialArr.push(
-        <SocialIcon Icon={info.Icon} ariaLabel={info.name} href={link} />
+        <SocialIcon Icon={info.Icon} ariaLabel={info.name} href={link} color={info.color} />
       );
     }
   }
