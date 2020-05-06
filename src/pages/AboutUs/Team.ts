@@ -133,9 +133,9 @@ export const team: Array<TeamMember> = [
     quote: "Michel move that 2 pixels to the right.",
     title: "UI/UX Designer",
     socials: {
-      ig: "https://ig-link.com",
-      github: "github",
-      twitter: "twitter",
+      linkedin: "https://linkedin.com/in/matej-pribani%C4%87-165462144/",
+      behance: "https://behance.net/matejpribani1",
+      dribble: "https://dribbble.com/matejpribanic",
     },
   },
   {
