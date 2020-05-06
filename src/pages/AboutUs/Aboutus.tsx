@@ -75,7 +75,7 @@ const TopContent: React.FC = () => {
           People behind this <div className="inline-blue">project</div>
         </div>
         <div className="about-us-intro">{introduction}</div>
-        <div className="about-us-section">Why are we doing this?</div>
+        <div className="about-us-section">Why did we say yes?</div>
         <div className="about-us-intro">{why}</div>
       </div>
       <div className="about-us-top-image centered-content">
@@ -103,8 +103,7 @@ const AboutUs: React.FC = () => {
           <div className="about-us-header">
             Meet the <div className="inline-blue">team</div>
           </div>
-          <div className="about-us-intro">{meetTheTeam}</div>
-          <div className="row team-pics">
+          <div className="team-pics">
             {team.map((person) => {
               return <MemberTile info={person} />;
             })}
