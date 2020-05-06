@@ -15,10 +15,10 @@ export interface TeamMember {
 }
 
 export interface Socials {
-  behance?: string;
-  github?: string;
   ig?: string;
+  github?: string;
   linkedin?: string;
+  behance?: string;
   twitter?: string;
   artstation?: string;
 }
@@ -65,8 +65,8 @@ export const team: Array<TeamMember> = [
     title: "Project Manager",
     socials: {
       ig: 'https://instagram.com/jamie_legg_/',
+      github: 'https://github.com/jamie-legg',
       linkedin: 'https://linkedin.com/in/omnisjamie/',
-      github: 'https://github.com/jamie-legg'
     },
   },
   {
@@ -151,9 +151,9 @@ export const team: Array<TeamMember> = [
     quote: "Let’s f***ing do this sh*t!",
     title: "Graphic Designer",
     socials: {
-      behance: 'https://behance.net/sa-o',
       ig: "https://instagram.com/sara.olmzdh/",
       linkedin: "https://linkedin.com/in/sa-o/",
+      behance: 'https://behance.net/sa-o',
     },
   },
   {
