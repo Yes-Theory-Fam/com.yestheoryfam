@@ -121,6 +121,7 @@
     }
 
     .quote {
+      color: #2a2a2a;
       margin-bottom: 7px;
     }
   }
@@ -138,23 +139,17 @@
   height: auto;
   width: auto;
 
-  li {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+  .sociali {
+    font-size: 2em;
+    line-height: 1.2em;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    transition: 0.2s;
+    color: #7a7a7a;
 
-    .sociali {
-      font-size: 2em;
-      line-height: 1.2em;
-      margin-right: 10px;
-      margin-bottom: 10px !important;
-      padding-bottom: 10px !important;
+    &:hover {
+      color: common.$yesTheoryBlue;
     }
   }
 }
