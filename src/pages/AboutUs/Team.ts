@@ -28,32 +28,39 @@ type Available = keyof Socials;
 export interface Platform {
   name: string;
   Icon: JSXElementConstructor<IconBaseProps>,
+  color: string,
 }
 
 export const platforms: { [key in Available]: Platform } = {
   "behance": {
     name: "Behance",
     Icon: AiFillBehanceSquare,
+    color: '#053eff',
   },
   "github": {
     name: "GitHub",
     Icon: IoLogoGithub,
+    color: '#4078c0'
   },
   "ig": {
     name: "Instagram",
     Icon: IoLogoInstagram,
+    color: '#fb3958'
   },
   "linkedin": {
     name: "LinkedIn",
     Icon: IoLogoLinkedin,
+    color: '#0e76a8'
   },
   "twitter": {
     name: "Twitter",
     Icon: IoLogoTwitter,
+    color: '#00acee',
   },
   "artstation": {
     name: "ArtStation",
     Icon: FaArtstation,
+    color: '#000000',
   }
 };
 
