@@ -6,7 +6,7 @@ import Footer from "../../components/Footer/Footer";
 import { paragraphs } from "./copy";
 import "./WorkInProgress.scss";
 
-import BehindTheProject from "../../assets/behindtheproject.png";
+import BehindTheProject from "../../assets/underconstruction.png";
 
 const WorkInProgress: React.FC = () => {
   return (
