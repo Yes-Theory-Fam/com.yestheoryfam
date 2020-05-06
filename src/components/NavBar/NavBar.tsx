@@ -5,10 +5,9 @@ import Logo from "../Logo/Logo";
 import { UserContext } from "../../UserContext";
 import CloseBurgerOnNav from "../NavHooks/CloseBurger";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
-import pages, { NavPage } from "../../pages/pages";
+import { pages, NavPage } from "../../pages";
 import DiscordLoginButton from "../DiscordLoginButton/DiscordLoginButton";
 
-import { BUDDY_PROJECT_MODE } from "../../config";
 import { CSSTransition } from "react-transition-group";
 import { TransitionStatus } from "react-transition-group/Transition";
 
@@ -112,10 +111,6 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
     );
   };
 
-  const renderedPages: Array<NavPage> = BUDDY_PROJECT_MODE
-    ? [{ display: "buddy project", isNew: true, path: "buddyproject" }]
-    : pages;
-
   const pageToNavLink = (page: NavPage, available: boolean = false) => (
     <NavLink
       to={`/${page.path}`}
@@ -129,10 +124,11 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
     </NavLink>
   );
 
-  const userNav = renderedPages.map((p) => pageToNavLink(p, true));
-  const mobileNav = pages.map((p) =>
-    pageToNavLink(p, p.path === "buddyproject")
-  );
+  const userNav = pages
+    .filter(({ available }) => available)
+    .map((p) => pageToNavLink(p, true));
+  const mobileNav = pages.map((p) => pageToNavLink(p, p.available));
+
   if (user) userNav.push(<CurrentUser key="current-user" />);
 
   if (!user) userNav.push(<DiscordLoginButton key="discord-logo" />);
