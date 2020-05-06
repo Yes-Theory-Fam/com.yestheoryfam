@@ -66,7 +66,13 @@
   }
 
   & .current {
-    border-bottom: solid 1px white;
+    padding-top: unset;
+    padding-bottom: unset;
+    .nav-bar-links-link-title {
+      padding-top: 11px;
+      padding-bottom: 9px;
+      border-bottom: white solid 1px;
+    }
   }
 }
 
