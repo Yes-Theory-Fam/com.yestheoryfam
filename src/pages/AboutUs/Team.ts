@@ -41,6 +41,7 @@ export const platforms: { [key in Available]: Platform } = {
   "dribble": {
     name: "Dribbble",
     Icon: IoLogoDribbble,
+    color: "#ea4c89"
   },
   "github": {
     name: "GitHub",
@@ -65,7 +66,7 @@ export const platforms: { [key in Available]: Platform } = {
   "artstation": {
     name: "ArtStation",
     Icon: FaArtstation,
-    color: '#000000',
+    color: '#13AFF0',
   }
 };
 
