@@ -152,4 +152,13 @@
       color: common.$yesTheoryBlue;
     }
   }
+
+  svg {
+    filter: grayscale(1);
+    transition: filter 100ms linear;
+
+    &:hover {
+      filter: unset;
+    }
+  }
 }
