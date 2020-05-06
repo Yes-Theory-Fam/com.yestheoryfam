@@ -114,7 +114,7 @@ export const team: Array<TeamMember> = [
   {
     name: "Travis T.",
     portfolioPic: Travis,
-    quote: "BIG TODO",
+    quote: "I was promised food vouchers.",
     title: "Intern",
     socials: {
       ig: "https://instagram.com/lenerdee",
