@@ -92,7 +92,6 @@
 }
 
 .team-individual {
-  height: 375px;
   max-width: 220px;
   padding: 5px;
   justify-content: space-between;
@@ -118,6 +117,10 @@
 
     .title {
       margin: 7px 0;
+    }
+
+    .quote {
+      margin-bottom: 7px;
     }
   }
 }
