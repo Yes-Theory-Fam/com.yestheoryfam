@@ -54,7 +54,6 @@ const App = () => {
   }, [setUser]);
 
   const availablePages = pages.filter(({ available }) => available);
-  console.log(availablePages);
 
   return (
     <Router>
@@ -74,7 +73,7 @@ const App = () => {
             component={DiscordAuthenticationCallback}
           />
           {availablePages.map((page) => (
-            <Route path={"/" + page.path} {...page.component} />
+            <Route path={"/" + page.path} {...page.component} key={page.path} />
           ))}
           <Route path="/" component={WorkInProgress} />
         </Switch>
