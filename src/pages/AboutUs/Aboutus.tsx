@@ -58,7 +58,7 @@ const MemberTile: React.FC<{ info: TeamMember }> = ({ info }) => {
         <div className="team-individual-info column">
           <p className="blue">{info.name}</p>
           <strong className="title">{info.title}</strong>
-          <p>"{info.quote}"</p>
+          <p className="quote">"{info.quote}"</p>
         </div>
       </div>
       <SocialMediaInfo socials={info.socials} />
