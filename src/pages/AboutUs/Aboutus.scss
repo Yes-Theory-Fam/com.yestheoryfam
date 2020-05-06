@@ -86,24 +86,35 @@
 }
 
 .team-pics {
-  margin-top: 30px;
-  justify-content: center;
-  flex-wrap: wrap;
+  margin-top: 52px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 220px);
+  justify-content: space-between;
+
+  @include common.desktop-specific {
+    column-gap: 25px;
+  }
 }
 
 .team-individual {
   max-width: 220px;
-  padding: 5px;
   justify-content: space-between;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+
+  justify-self: center;
+
+  @include common.tablet-specific {
+    justify-self: unset;
+  }
+
+  @include common.desktop-specific {
+    justify-self: unset;
+  }
 
   img {
     border-radius: 0;
     border: none;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     flex-basis: 100%;
-    margin: 10px;
-    max-height: 200px;
     border-radius: 10px;
     object-fit: cover;
   }
