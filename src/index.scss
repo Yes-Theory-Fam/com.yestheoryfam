@@ -104,6 +104,10 @@ button,
     padding: 16px 40px;
   }
 
+  @include common.phone-landscape-specific {
+    padding: 10px 44px;
+  }
+
   @include common.desktop-specific {
     min-width: 175px;
     padding: 16px 40px;
