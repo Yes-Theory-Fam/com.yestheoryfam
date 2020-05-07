@@ -18,11 +18,6 @@ import DiscordApi from "../../apis/discord";
 import { SuccessModalToDiscord } from "./SuccessfulSignUpModal";
 import { Link } from "react-router-dom";
 
-enum LOGGED_IN_STATE {
-  NOT_LOGGED_IN,
-  LOGGED_IN_NOT_ON_SERVER,
-  LOGGED_IN_ON_SERVER,
-}
 enum SIGNED_UP_STATE {
   NOT_LOADED,
   LOADING,
@@ -59,23 +54,9 @@ const registerToDiscord = async (user: IDiscordUser | undefined) => {
   return false;
 };
 
-const isUserInGuild = (user: IDiscordUser) => {
-  try {
-    DiscordApi("bot").get(
-      `/guilds/${process.env.REACT_APP_GUILD_ID}/members/${user?.id}`
-    );
-    return true;
-  } catch {
-    return false;
-  }
-};
-
 const BuddyProject: React.FC<{}> = () => {
   const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
   const [bpStatus, setBPStatus] = React.useState(SIGNED_UP_STATE.LOADING);
-  const [guildStatus, setGuildStatus] = React.useState(
-    LOGGED_IN_STATE.NOT_LOGGED_IN
-  );
 
   const { user } = React.useContext(UserContext);
 
