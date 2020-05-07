@@ -14,7 +14,7 @@ import BuddyProjectLogo from "../../assets/buddyproject_logo.svg";
 import IDiscordUser from "../../types/User";
 import { howToJoin, whatNext, howItWorks } from "./copy";
 import CutestBotEver from "../../assets/yesbot-yougotmail_bluetint.png";
-import { DiscordApi } from "../../index";
+import DiscordApi from "../../apis/discord";
 import { SuccessModalToDiscord } from "./SuccessfulSignUpModal";
 import { Link } from "react-router-dom";
 
