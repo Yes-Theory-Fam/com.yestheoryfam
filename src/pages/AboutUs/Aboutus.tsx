@@ -96,7 +96,6 @@ const AboutUs: React.FC = () => {
       <NavBar fixed={true} />
       <div className="about-us column-center">
         <div className="column-center about-us-top">
-          <div></div>
           <TopContent />
           <div className="scroll-for-more column-center">
             MEET THE TEAM

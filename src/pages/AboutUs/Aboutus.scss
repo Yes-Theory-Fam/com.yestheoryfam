@@ -1,25 +1,26 @@
 @use '../../common';
 
 .about-us {
-  margin-top: 40px;
   width: 100%;
 
-  @include common.tablet-specific {
-    margin-top: 100px;
-  }
-
-  @include common.phone-landscape-specific {
-    margin-top: 40px;
-  }
-
-  @include common.desktop-specific {
-    margin-top: 40px;
-  }
-
   &-top {
+    margin-top: 40px;
+
+    @include common.tablet-specific {
+      margin-top: 100px;
+    }
+
+    @include common.phone-landscape-specific {
+      margin-top: 40px;
+    }
+
+    @include common.desktop-specific {
+      margin-top: 100px;
+    }
+
     justify-content: space-between;
     width: 90%;
-    min-height: 100vh;
+    min-height: calc(100vh - 100px);
 
     &-content {
       @include common.desktop-specific {
@@ -92,7 +93,7 @@
 
   & .scroll-for-more {
     width: 100vw;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     color: common.$yesTheoryBlue;
     z-index: 500;
     font-size: 14px;
