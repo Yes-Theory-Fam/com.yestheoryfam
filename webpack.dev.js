@@ -18,14 +18,14 @@ module.exports = {
     output: {
         publicPath: "/",
     },
-    
+
     // Enable sourcemaps for debugging webpack's output.
     devtool: "inline-source-map",
-    
+
     devServer: {
         historyApiFallback: true,
         hot: true,
-        inline:true,
+        inline: true,
     },
 
     entry: [
@@ -76,5 +76,8 @@ module.exports = {
     plugins: [
         htmlWebpackPlugin,
         new Dotenv(),
-    ]
+    ],
+    node: {
+        fs: 'empty'
+    }
 };

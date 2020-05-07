@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 
 // Imported for side effects; adding `firestore` to `firebase`.
 import "firebase/firestore";
+import { logError, logInfo } from "../../Logger";
 
 let _db: firebase.firestore.Firestore | null = null;
 
@@ -34,7 +35,7 @@ export interface BuddyProjectSignup {
 
 async function documentExists(id: string) {
   if (_db === null) {
-    console.error("The database needs to be initialized first!");
+    logError('documentExists() --> The database needs to be initialized first!', new Error());
     throw new Error("The database needs to be initialized first!");
   }
   const buddyDoc = await _db
@@ -50,7 +51,7 @@ export async function buddyProjectSignup(
   discordUserId: string
 ) {
   if (_db === null) {
-    console.error("The database needs to be initialized first!");
+    logError('buddyProjectSignup() --> The database needs to be initialized first!', new Error());
     throw new Error("The database needs to be initialized first!");
   }
 
@@ -66,7 +67,14 @@ export async function buddyProjectSignup(
     displayName,
   };
 
-  _db.collection("buddyproject").doc(firebaseUserId).set(buddy);
+  _db.collection("buddyproject").doc(firebaseUserId).set(buddy)
+    .then(() => {
+      logInfo(`buddyProjectSignup() --> New user signed up: ${buddy.displayName} - ${buddy.discordUserId}`)
+    })
+    .catch((err) => {
+      logError(`buddyProjectSignup() --> DB error for: ${buddy.displayName} - ${buddy.discordUserId}!`
+        , err);
+    });
   return true;
 }
 
@@ -74,9 +82,9 @@ export async function fetchBuddyProjectSignup(
   discordUserId: string
 ): Promise<BuddyProjectSignup | null> {
   if (_db === null) {
+    logError('fetchBuddyProjectSignup() --> The database needs to be initialized first!', new Error());
     console.error("The database needs to be initialized first!");
     return null;
-    // return reject("The database needs to be initialized first!");
   }
 
   // Let's create a b64 of the discord userid (which won't change)

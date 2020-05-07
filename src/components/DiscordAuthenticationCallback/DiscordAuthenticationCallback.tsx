@@ -2,6 +2,7 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import RedirectNotice from "../RedirectNotice/RedirectNotice";
 import Cookies from "js-cookie";
+import { logError } from "../../Logger";
 
 const DiscordAuthenticationCallback = () => {
   const storedState = localStorage.getItem("auth_state");
@@ -24,6 +25,7 @@ const DiscordAuthenticationCallback = () => {
   history.push(targetPage);
 
   if (storedState !== sentState) {
+    logError("Stored state did not equal the one sent by discord. User won't be authenticated!", new Error());
     console.error(
       "Stored state did not equal the one sent by discord. User won't be authenticated!"
     );

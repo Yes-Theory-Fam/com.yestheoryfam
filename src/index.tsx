@@ -23,6 +23,7 @@ import Groupchats from "./pages/groupchats/Groupchats";
 import BuddyProject from "./pages/BuddyProject/BuddyProject";
 import WorkInProgress from "./pages/WorkInProgress/WorkInProgress";
 import { BUDDY_PROJECT_MODE } from "./config";
+import { logError } from './Logger';
 
 import { ScrollToTop, SavePage } from "./components/NavHooks";
 import axios from "axios";
@@ -44,6 +45,7 @@ export const DiscordApi = (type = "user") => {
 
 const getInitialUser = async (): Promise<IDiscordUser> => {
   if (!localStorage.getItem("access_token")) {
+    logError('getInitialUser() --> No stored access token.', new Error("no stored access token"));
     throw new Error("no stored access token");
   }
 
@@ -64,7 +66,10 @@ const App = () => {
   React.useEffect(() => {
     getInitialUser()
       .then(setUser)
-      .catch((err) => console.error(err.toString()));
+      .catch((err) => {
+        console.error(err.toString());
+        logError('getInitialUser() --> ' + err.toString(), err)
+      });
   }, [setUser]);
 
   return (

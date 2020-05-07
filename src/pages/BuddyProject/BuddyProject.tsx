@@ -17,6 +17,7 @@ import CutestBotEver from "../../assets/yesbot-yougotmail_bluetint.png";
 import { DiscordApi } from "../../index";
 import { SuccessModalToDiscord } from "./SuccessfulSignUpModal";
 import { Link } from "react-router-dom";
+import { logError } from "../../Logger";
 
 enum LOGGED_IN_STATE {
   NOT_LOGGED_IN,
@@ -173,16 +174,17 @@ const buddyProjectRegister = (
   const { username, id } = user;
   buddyProjectSignup(username, username, id)
     .then(() =>
-      // After they've been registered to Firebase, send them to Discord.
-      {
-        if (registerToDiscord(user)) {
-          setSignupState(SIGNED_UP_STATE.SIGNED_UP);
-        } else {
-          setSignupState(SIGNED_UP_STATE.NOT_SIGNED_UP);
-        }
+    // After they've been registered to Firebase, send them to Discord.
+    {
+      if (registerToDiscord(user)) {
+        setSignupState(SIGNED_UP_STATE.SIGNED_UP);
+      } else {
+        setSignupState(SIGNED_UP_STATE.NOT_SIGNED_UP);
       }
+    }
     )
     .catch((err) => {
+      logError(`buddyProjectRegister() --> For user: ${user.username} - ${user.id} `, err);
       setSignupState(SIGNED_UP_STATE.ERROR);
     });
 };
@@ -214,10 +216,10 @@ const renderBPNextStepButton = (
           Sign up!
         </button>
       ) : (
-        <Link to="/auth/discord" className="button inverted self-center">
-          Login with Discord!
-        </Link>
-      );
+          <Link to="/auth/discord" className="button inverted self-center">
+            Login with Discord!
+          </Link>
+        );
     default:
       return (
         <a href="/auth/discord" className="button inverted self-center">

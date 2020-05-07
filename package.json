@@ -48,7 +48,9 @@
     "react-image-lightbox": "^5.1.1",
     "react-router-dom": "^5.1.2",
     "react-toastify": "^5.5.0",
-    "react-transition-group": "^4.3.0"
+    "react-transition-group": "^4.3.0",
+    "winston": "^3.2.1",
+    "winston-discord-transport": "^1.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.7.5",
