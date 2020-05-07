@@ -6,7 +6,7 @@ import { IconBaseProps } from "react-icons";
 
 import Footer from "../../components/Footer/Footer";
 import { team, Socials, TeamMember, platforms } from "./Team";
-import { introduction, why, meetTheTeam } from "./copy";
+import { introduction, why } from "./copy";
 
 import BehindTheProject from "../../assets/behindtheproject.png";
 
@@ -35,7 +35,12 @@ const SocialMediaInfo: React.FC<{ socials: Socials }> = ({ socials }) => {
     const info = platforms[platform];
     if (link) {
       socialArr.push(
-        <SocialIcon Icon={info.Icon} ariaLabel={info.name} href={link} color={info.color} />
+        <SocialIcon
+          Icon={info.Icon}
+          ariaLabel={info.name}
+          href={link}
+          color={info.color}
+        />
       );
     }
   }
