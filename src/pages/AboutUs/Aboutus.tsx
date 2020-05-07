@@ -91,13 +91,29 @@ const TopContent: React.FC = () => {
 };
 
 const AboutUs: React.FC = () => {
+  const headerRef = React.useRef() as React.RefObject<HTMLDivElement>;
+
+  const scrollToAction = () => {
+    const yOffset = -(
+      document.querySelector(".nav-bar")?.getBoundingClientRect()?.height ?? 100
+    );
+    const y =
+      (headerRef.current?.getBoundingClientRect()?.top ?? 0) +
+      window.pageYOffset +
+      yOffset;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
   return (
     <>
       <NavBar fixed={true} />
       <div className="about-us column-center">
         <div className="column-center about-us-top">
           <TopContent />
-          <div className="scroll-for-more column-center">
+          <div
+            className="scroll-for-more column-center"
+            onClick={scrollToAction}
+          >
             MEET THE TEAM
             <div className="expand-container">
               <IoIosArrowDown size={20} />
@@ -105,7 +121,7 @@ const AboutUs: React.FC = () => {
           </div>
         </div>
         <div className="about-us-people column">
-          <div className="about-us-header">
+          <div className="about-us-header" ref={headerRef}>
             Meet the <div className="inline-blue">team</div>
           </div>
           <div className="team-pics">
