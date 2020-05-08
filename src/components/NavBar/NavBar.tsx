@@ -129,7 +129,10 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   const userNav = pages
     .filter(({ available }) => available)
     .map((p) => pageToNavLink(p, true));
-  const mobileNav = pages.map((p) => pageToNavLink(p, p.available));
+    
+  const mobileNav = pages
+    .filter(({ available }) => available)
+    .map((p) => pageToNavLink(p, p.available));
 
   if (user) userNav.push(<CurrentUser key="current-user" />);
 

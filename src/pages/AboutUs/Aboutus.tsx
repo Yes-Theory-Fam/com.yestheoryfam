@@ -36,6 +36,7 @@ const SocialMediaInfo: React.FC<{ socials: Socials }> = ({ socials }) => {
     if (link) {
       socialArr.push(
         <SocialIcon
+          key={info.name.trim()}
           Icon={info.Icon}
           ariaLabel={info.name}
           href={link}
@@ -125,8 +126,8 @@ const AboutUs: React.FC = () => {
             Meet the <div className="inline-blue">team</div>
           </div>
           <div className="team-pics">
-            {team.map((person) => {
-              return <MemberTile info={person} />;
+            {team.map((person, idx) => {
+              return <MemberTile info={person} key={`${person.name}-${idx}`} />;
             })}
           </div>
         </div>
