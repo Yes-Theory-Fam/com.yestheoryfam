@@ -14,15 +14,10 @@ import BuddyProjectLogo from "../../assets/buddyproject_logo.svg";
 import IDiscordUser from "../../types/User";
 import { howToJoin, whatNext, howItWorks } from "./copy";
 import CutestBotEver from "../../assets/yesbot-yougotmail_bluetint.png";
-import { DiscordApi } from "../../index";
+import BackendApi from "../../apis/backend";
 import { SuccessModalToDiscord } from "./SuccessfulSignUpModal";
 import { Link } from "react-router-dom";
 
-enum LOGGED_IN_STATE {
-  NOT_LOGGED_IN,
-  LOGGED_IN_NOT_ON_SERVER,
-  LOGGED_IN_ON_SERVER,
-}
 enum SIGNED_UP_STATE {
   NOT_LOADED,
   LOADING,
@@ -43,39 +38,17 @@ const InitialContent = () => (
   </div>
 );
 
-const registerToDiscord = async (user: IDiscordUser | undefined) => {
-  const access_token = localStorage.getItem("access_token");
-  const guild_id = process.env.REACT_APP_GUILD_ID;
-  const roles = [process.env.REACT_APP_BUDDY_PROJECT_ROLE_ID];
-  const payload = { access_token, roles };
-  const response = await DiscordApi("bot").put(
-    `/guilds/${guild_id}/members/${user?.id}`,
-    payload
-  );
-  console.log("Response status: ", response.status);
+const registerToDiscord = async () => {
+  const response = await BackendApi().post(`/bot-actions/add-user`);
   if (response.status === 200) {
     return true;
   }
   return false;
 };
 
-const isUserInGuild = (user: IDiscordUser) => {
-  try {
-    DiscordApi("bot").get(
-      `/guilds/${process.env.REACT_APP_GUILD_ID}/members/${user?.id}`
-    );
-    return true;
-  } catch {
-    return false;
-  }
-};
-
 const BuddyProject: React.FC<{}> = () => {
   const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
   const [bpStatus, setBPStatus] = React.useState(SIGNED_UP_STATE.LOADING);
-  const [guildStatus, setGuildStatus] = React.useState(
-    LOGGED_IN_STATE.NOT_LOGGED_IN
-  );
 
   const { user } = React.useContext(UserContext);
 
@@ -175,7 +148,7 @@ const buddyProjectRegister = (
     .then(() =>
       // After they've been registered to Firebase, send them to Discord.
       {
-        if (registerToDiscord(user)) {
+        if (registerToDiscord()) {
           setSignupState(SIGNED_UP_STATE.SIGNED_UP);
         } else {
           setSignupState(SIGNED_UP_STATE.NOT_SIGNED_UP);
