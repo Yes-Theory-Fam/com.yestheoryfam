@@ -4,14 +4,14 @@
   width: 100%;
 
   &-top {
-    margin-top: 40px;
+    margin-top: 80px;
 
     @include common.tablet-specific {
       margin-top: 100px;
     }
 
     @include common.phone-landscape-specific {
-      margin-top: 40px;
+      margin-top: 80px;
     }
 
     @include common.desktop-specific {
