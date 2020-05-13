@@ -4,7 +4,12 @@ import * as ReactDOM from "react-dom";
 import "./reset.css";
 import "./index.scss";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import DiscordAuthenticationRequest from "./components/DiscordAuthenticationRequest/DiscordAuthenticationRequest";
 import DiscordAuthenticationCallback from "./components/DiscordAuthenticationCallback/DiscordAuthenticationCallback";
@@ -61,6 +66,7 @@ const App = () => {
           {availablePages.map((page) => (
             <Route path={"/" + page.path} {...page.component} key={page.path} />
           ))}
+          <Redirect exact path="/" to="/buddyproject" />
           <Route path="/" component={WorkInProgress} />
         </Switch>
       </UserContext.Provider>
