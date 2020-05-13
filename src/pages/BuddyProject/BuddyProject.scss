@@ -152,16 +152,16 @@
     width: 90%;
     max-width: 700px;
 
+    @include common.tablet-specific {
+      width: 100%;
+    }
+
     @include common.phone-landscape-specific {
       width: 75%;
       margin-top: 75px;
     }
 
     @include common.desktop-specific {
-      width: 100%;
-    }
-
-    @include common.tablet-specific {
       width: 100%;
     }
   }
