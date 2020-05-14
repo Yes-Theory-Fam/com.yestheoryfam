@@ -42,8 +42,8 @@ const SuccessfulSignup: React.FC<{ user: string }> = ({ user }) => (
     to regularly check your messages on Discord, since that's where you will
     receive the name of your buddy, your set of questions, as well as further
     instructions on how things will go. If you have any concerns or need
-    clarifications, feel free to ask in #buddy-project, on the Yes Theory Fam
-    Discord Server.
+    clarifications, feel free to ask in #buddy-project-chat on the Yes Theory
+    Fam Discord Server.
   </p>
 );
 
