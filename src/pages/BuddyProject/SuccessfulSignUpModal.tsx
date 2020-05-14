@@ -29,7 +29,7 @@ export const SuccessModalToDiscord: React.FC<{
           <SuccessfulSignup user={username} />
           <a
             className="button inverted self-center"
-            href="https://discordapp.com/channels/449984633342525462/449984633908625409"
+            href="https://discord.com/channels/449984633342525462/701717612001886228"
           >
             Continue to Discord!
           </a>
