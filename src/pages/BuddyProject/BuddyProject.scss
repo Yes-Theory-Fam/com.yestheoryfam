@@ -276,6 +276,7 @@
   }
 
   &-logo {
+    flex: 1;
     margin-right: 30px;
 
     @include common.tablet-specific {
