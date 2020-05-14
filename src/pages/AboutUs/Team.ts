@@ -184,7 +184,7 @@ export const team: Array<TeamMember> = [
     name: "Yes Bot",
     portfolioPic: YesBot,
     quote: "Beep Boop",
-    title: "Mascot / Helper",
+    title: "Mascot/Helper",
     socials: {},
   },
 ];
