@@ -8,7 +8,7 @@ const DiscordApi = (type = "user") => {
       Authorization:
         type === "user"
           ? `Bearer ${localStorage.getItem("access_token")}`
-          : `Bot ${process.env.REACT_APP_DISCORD_BOT_TOKEN}`,
+          : "",
     },
   });
   return api;
