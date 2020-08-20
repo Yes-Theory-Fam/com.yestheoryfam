@@ -15,8 +15,8 @@ import { IoIosArrowDown } from "react-icons/io";
 
 const UploadModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return (
-    <div className="photo-wall-upload-modal">
-      <div className="photo-wall-upload-modal-dropzone">
+    <div className="upload-modal">
+      <div className="upload-modal-dropzone">
         <UploadDropzone onClose={onClose} />
       </div>
     </div>
