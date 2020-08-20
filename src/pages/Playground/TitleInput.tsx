@@ -20,6 +20,7 @@ const htmlToText = (html: string) => {
   return sneakyDiv.innerText;
 };
 
+// TODO: Disallow hitting return (or return => blur)
 const EditableTitle: React.FC<{
   value: string;
   onChange: (value: string) => void;
@@ -41,11 +42,16 @@ const EditableTitle: React.FC<{
 
   const displayTitle = displayedValue || hasFocus ? customTitle : placeHolder;
 
+  // nbsp hack required for firefox that places the cursor on contenteditable + text-align: center divs still on the far left
+  // Placing an nbsp resolves this (see https://stackoverflow.com/a/16984412/6707985)
+  // Given that the HTML is cleaned up for the display anyway, this doesn't cause additional issues.
+  const nbsp = "\xa0";
+
   return (
     <div className="blog-title-edit">
       {displayTitle}
       <ContentEditable
-        html={value}
+        html={displayedValue ? value : nbsp}
         contentEditable
         onChange={({ target: { value } }) => onChange(value)}
         onBlur={() => setHasFocus(false)}
