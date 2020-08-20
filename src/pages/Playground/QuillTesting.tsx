@@ -119,18 +119,9 @@ const QuillTesting: React.FC = () => {
             />
           ))}
         </div>
-        <Ruler />
+        <div className="ruler" />
         <div className="blog-preview">
-          <div
-            style={{
-              marginBottom: 25,
-              marginTop: 25,
-              fontWeight: "bold",
-              fontSize: 24,
-            }}
-          >
-            Preview
-          </div>
+          <div className="blog-preview-title">Preview</div>
           <img src="https://picsum.photos/1380/487" />
           <TitleInput value={title} />
           <PreviewWrapper editor={editorRef} />
@@ -143,16 +134,3 @@ const QuillTesting: React.FC = () => {
 };
 
 export default QuillTesting;
-
-const Ruler: React.FC = () => {
-  return (
-    <div
-      style={{
-        backgroundColor: "gray",
-        width: "90%",
-        height: 1,
-        marginBottom: 25,
-      }}
-    />
-  );
-};
