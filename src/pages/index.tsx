@@ -59,7 +59,7 @@ const pages: Array<NavPage> = [
     path: "home",
     display: "home",
     component: { component: Home },
-    available: false,
+    available: true,
   },
   {
     isNew: true,
@@ -87,14 +87,14 @@ const pages: Array<NavPage> = [
     path: "photowall",
     display: "photowall",
     component: { component: PhotoWall },
-    available: false,
+    available: true,
   },
   {
     isNew: false,
     path: "groupchats",
     display: "groupchats",
     component: { component: Groupchats },
-    available: false,
+    available: true,
   },
   {
     isNew: false,
