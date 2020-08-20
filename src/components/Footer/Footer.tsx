@@ -1,13 +1,16 @@
 import * as React from "react";
-import "./Footer.scss";
 import Logo from "../Logo/Logo";
+import classNames from "classnames";
+import styles from "./Footer.module.scss";
 
-const Footer: React.FC<{}> = () => {
+const Footer: React.FC = () => {
   return (
-    <div className="footer column-center">
+    <div className={classNames(styles.footer, "column-center")}>
       <Logo />
-      <div className="footer-links column-center">
-        <a href="https://discord.gg/yestheory" target="_blank">Discord</a>
+      <div className={classNames(styles.footerLinks, "column-center")}>
+        <a href="https://discord.gg/yestheory" target="_blank">
+          Discord
+        </a>
         {/* TODO: Add these back in once they work and increase the width styling as well.
         <Link to="/">Contact</Link>
         <Link to="/">Press</Link> */}
@@ -15,7 +18,7 @@ const Footer: React.FC<{}> = () => {
           Seek Discomfort
         </a>
       </div>
-      <div className="footer-copyright">
+      <div className={styles.footerCopyright}>
         &#169; {new Date().getFullYear()} YESTHEORYFAM
       </div>
     </div>

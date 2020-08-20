@@ -54,7 +54,21 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
-        loader: ["style-loader", "css-loader", "sass-loader"],
+        loader: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: {
+                auto: true,
+                localIdentName: "[name]__[local]--[hash:base64:5]",
+              },
+              localsConvention: "camelCase",
+            },
+          },
+          "sass-loader",
+        ],
       },
       {
         test: /\.svg$/,
