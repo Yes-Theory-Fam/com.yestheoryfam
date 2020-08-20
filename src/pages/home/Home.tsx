@@ -56,42 +56,38 @@ const Content: React.FC = () => {
 
 const Home: React.FC = () => {
   return (
-    <>
-      <NavBar fixed={true} />
-      <div>
-        <div className="container yes-background">YES</div>
-        <div className="container clouds-background">
-          <img src={cloudBig} className="cloud big-back" />
-        </div>
-        <div className="container mountain" />
-        <div className="container content column">
-          <div className="clouds-front">
-            <img src={cloudBot} className="cloud bot-front" />
-            <img src={cloudBot} className="cloud bot-front" />
-            <div
-              style={{ maxWidth: "100vw", overflow: "hidden" }}
-              className="cloud"
-            >
-              <img src={cloudBig} className="cloud-r big-front" />
-            </div>
-            <div
-              style={{ maxWidth: "100vw", overflow: "hidden" }}
-              className="cloud"
-            >
-              <img src={cloudBig} className="cloud-r big-front" />
-            </div>
-            <div className="scroll-for-more column-center">
-              SCROLL FOR MORE
-              <div className="expand-container">
-                <IoIosArrowDown size={20} />
-              </div>
+    <div>
+      <div className="container yes-background">YES</div>
+      <div className="container clouds-background">
+        <img src={cloudBig} className="cloud big-back" />
+      </div>
+      <div className="container mountain" />
+      <div className="container content column">
+        <div className="clouds-front">
+          <img src={cloudBot} className="cloud bot-front" />
+          <img src={cloudBot} className="cloud bot-front" />
+          <div
+            style={{ maxWidth: "100vw", overflow: "hidden" }}
+            className="cloud"
+          >
+            <img src={cloudBig} className="cloud-r big-front" />
+          </div>
+          <div
+            style={{ maxWidth: "100vw", overflow: "hidden" }}
+            className="cloud"
+          >
+            <img src={cloudBig} className="cloud-r big-front" />
+          </div>
+          <div className="scroll-for-more column-center">
+            SCROLL FOR MORE
+            <div className="expand-container">
+              <IoIosArrowDown size={20} />
             </div>
           </div>
-          <Content />
-          <Footer />
         </div>
+        <Content />
       </div>
-    </>
+    </div>
   );
 };
 

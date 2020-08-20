@@ -114,23 +114,19 @@ const MeetupDetails: React.FC<RouteComponentProps<
   console.log(id);
 
   return (
-    <>
-      <NavBar fixed />
-      <div className="column-center meetup-details">
-        <Header title={title} />
-        <Description description={description} />
-        <HowToJoin />
-        <MoreInformation
-          dateStart={dateStart}
-          dateEnd={dateEnd}
-          limit={limit}
-          details={details}
-          image={imageSource}
-        />
-        <BackToMeetups />
-      </div>
-      <Footer />
-    </>
+    <div className="column-center meetup-details">
+      <Header title={title} />
+      <Description description={description} />
+      <HowToJoin />
+      <MoreInformation
+        dateStart={dateStart}
+        dateEnd={dateEnd}
+        limit={limit}
+        details={details}
+        image={imageSource}
+      />
+      <BackToMeetups />
+    </div>
   );
 };
 

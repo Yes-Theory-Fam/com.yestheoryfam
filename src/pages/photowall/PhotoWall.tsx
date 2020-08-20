@@ -58,7 +58,6 @@ const PhotoWall: React.FC<{}> = () => {
 
   return (
     <>
-      <NavBar fixed classNames={showModal ? "blur" : ""} />
       {showModal && <UploadModal onClose={() => setShowModal(false)} />}
       <div className={`column-center ${showModal ? "blur" : ""}`}>
         <div className="column-center photo-wall-top">
@@ -77,7 +76,6 @@ const PhotoWall: React.FC<{}> = () => {
           <div className="column">{builtLayouts}</div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

@@ -86,16 +86,14 @@ const OtherArticles: React.FC<{ blogs: Array<IBlogProps> }> = ({ blogs }) => {
       <div className="blog-overview-section-header">Other articles</div>
       <div className="other-article-grid">
         {blogs.map((blog, index) => (
-            <OtherArticleTile key={index} blog={blog} />
+          <OtherArticleTile key={index} blog={blog} />
         ))}
       </div>
     </div>
   );
 };
 
-const OtherArticleTile: React.FC<{ blog: IBlogProps }> = ({
-  blog,
-}) => {
+const OtherArticleTile: React.FC<{ blog: IBlogProps }> = ({ blog }) => {
   const { authorName, readTime, title, blogContent, id, titleImage } = blog;
   const content = blogContentToContent(blogContent);
 
@@ -107,14 +105,14 @@ const OtherArticleTile: React.FC<{ blog: IBlogProps }> = ({
         </div>
         <Remark author={authorName} time={readTime} />
         <Link
-        to={{
-          pathname: `/blogs/${id}`,
-          state: blog,
-        }}
-        className="other-article-tile-title"
-      >
-        {title}
-      </Link>
+          to={{
+            pathname: `/blogs/${id}`,
+            state: blog,
+          }}
+          className="other-article-tile-title"
+        >
+          {title}
+        </Link>
       </div>
       <ClampLines text={content} lines={4} id={id} buttons={false} />
     </div>
@@ -149,17 +147,13 @@ const BlogOverview: React.FC = () => {
   const [featured, ...other] = blogs;
 
   return (
-    <>
-      <NavBar fixed={false} />
-      <div className="column-center">
-        <BlogOverviewHeader />
-        <div className="blog-overview-articles column">
-          <FeaturedArticle blog={featured} />
-          <OtherArticles blogs={other} />
-        </div>
+    <div className="column-center">
+      <BlogOverviewHeader />
+      <div className="blog-overview-articles column">
+        <FeaturedArticle blog={featured} />
+        <OtherArticles blogs={other} />
       </div>
-      <Footer />
-    </>
+    </div>
   );
 };
 

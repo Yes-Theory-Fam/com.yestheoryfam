@@ -7,13 +7,13 @@
     - Might be possible with own videoHandler
     - Drag and drop?
     - Last resort is building a custom uploader following the code of the image upload (and I am frightened)
-  
+
   Upload audio:
     - Might be possible to salvage this somehow: https://stackoverflow.com/q/58506688/6707985
     - Probably same thing as with video. Gotta build something for that
-  
+
   Popup for optional caption?
-    
+
   Generally: https://quilljs.com/guides/cloning-medium-with-parchment/ might be useful
 */
 
@@ -148,8 +148,6 @@ const QuillTesting: React.FC = () => {
 
   return (
     <>
-      <NavBar fixed classNames={uploadOpen ? "blur" : ""} />
-
       <div className="mobile-note">
         This has been disabled for your own good. Don't write an entire blogpost
         on a phone like that!
@@ -200,8 +198,6 @@ const QuillTesting: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };

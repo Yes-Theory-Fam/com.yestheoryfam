@@ -89,27 +89,23 @@ const Meetups: React.FC = () => {
   );
 
   return (
-    <>
-      <NavBar fixed={false} />
-      <div className="meetups column-center">
-        <Header />
-        <SearchBar
-          setSearch={setSearch}
-          hasInput={search !== ""}
-          placeholder="Discover events near you..."
-          containerClassName="meetups-search-container"
-          searchBarClassName=""
-        />
-        {filteredMeetups.length > 0 ? (
-          <MeetupList meetups={filteredMeetups} />
-        ) : (
-          <div className="centered-content meetups-no-content">
-            No meetups found
-          </div>
-        )}
-      </div>
-      <Footer />
-    </>
+    <div className="meetups column-center">
+      <Header />
+      <SearchBar
+        setSearch={setSearch}
+        hasInput={search !== ""}
+        placeholder="Discover events near you..."
+        containerClassName="meetups-search-container"
+        searchBarClassName=""
+      />
+      {filteredMeetups.length > 0 ? (
+        <MeetupList meetups={filteredMeetups} />
+      ) : (
+        <div className="centered-content meetups-no-content">
+          No meetups found
+        </div>
+      )}
+    </div>
   );
 };
 

@@ -75,33 +75,26 @@ const BuddyProject: React.FC<{}> = () => {
   }, [user, setBPStatus]);
 
   return (
-    <>
-      <NavBar fixed />
-      <div className="column-center">
-        <div className="column-center buddy-project-top">
-          <div></div>
-          {/* div required here to have space-between sort everything out */}
-          <InitialContent />
-          <div
-            onClick={scrollToAction}
-            className="scroll-for-more column-center"
-          >
-            GET INVOLVED
-            <div className="expand-container">
-              <IoIosArrowDown size={20} />
-            </div>
+    <div className="column-center">
+      <div className="column-center buddy-project-top">
+        <div />
+        {/* div required here to have space-between sort everything out */}
+        <InitialContent />
+        <div onClick={scrollToAction} className="scroll-for-more column-center">
+          GET INVOLVED
+          <div className="expand-container">
+            <IoIosArrowDown size={20} />
           </div>
         </div>
-        <div ref={signupRef} className="buddy-project-bottom column-center">
-          <SignupProcess
-            user={user}
-            bpSignupStatus={bpStatus}
-            setSignupStatus={setBPStatus}
-          />
-        </div>
       </div>
-      <Footer />
-    </>
+      <div ref={signupRef} className="buddy-project-bottom column-center">
+        <SignupProcess
+          user={user}
+          bpSignupStatus={bpStatus}
+          setSignupStatus={setBPStatus}
+        />
+      </div>
+    </div>
   );
 };
 

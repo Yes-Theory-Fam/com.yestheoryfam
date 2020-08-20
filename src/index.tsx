@@ -18,6 +18,8 @@ import { UserContext } from "./UserContext";
 import { ScrollToTop, SavePage } from "./components/NavHooks";
 import IDiscordUser from "./types/User";
 import DiscordApi from "./apis/discord";
+import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/Footer";
 
 const getInitialUser = async (): Promise<IDiscordUser> => {
   if (!localStorage.getItem("access_token")) {
@@ -52,6 +54,7 @@ const App = () => {
       <ScrollToTop />
       <SavePage />
       <UserContext.Provider value={{ user, setUser }}>
+        <NavBar fixed />
         <Switch>
           <Route
             path="/auth/discord"
@@ -69,6 +72,7 @@ const App = () => {
           <Redirect exact path="/" to="/buddyproject" />
           <Route path="/" component={WorkInProgress} />
         </Switch>
+        <Footer />
       </UserContext.Provider>
     </Router>
   );

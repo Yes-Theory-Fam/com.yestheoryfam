@@ -123,26 +123,21 @@ const Groupchats: React.FC = () => {
   );
 
   return (
-    <>
-      <NavBar fixed />
-      <div className="column-center groupchats">
-        <div className="page-header">
-          CONNECT WITH THE FAM FIND A{" "}
-          <div className="inline-blue">GROUPCHAT</div>
-        </div>
-        <div className="column-center groupchats-auto-suggest">
-          <SearchBar
-            setSearch={setSearch}
-            containerClassName="groupchats-search-container"
-            hasInput={search.length > 0}
-            searchBarClassName=""
-            placeholder="Search for the tribe in your country..."
-          />
-          <SuggestionContainer suggestions={suggestions} />
-        </div>
+    <div className="column-center groupchats">
+      <div className="page-header">
+        CONNECT WITH THE FAM FIND A <div className="inline-blue">GROUPCHAT</div>
       </div>
-      <Footer />
-    </>
+      <div className="column-center groupchats-auto-suggest">
+        <SearchBar
+          setSearch={setSearch}
+          containerClassName="groupchats-search-container"
+          hasInput={search.length > 0}
+          searchBarClassName=""
+          placeholder="Search for the tribe in your country..."
+        />
+        <SuggestionContainer suggestions={suggestions} />
+      </div>
+    </div>
   );
 };
 

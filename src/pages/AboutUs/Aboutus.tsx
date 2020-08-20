@@ -106,34 +106,27 @@ const AboutUs: React.FC = () => {
   };
 
   return (
-    <>
-      <NavBar fixed={true} />
-      <div className="about-us column-center">
-        <div className="column-center about-us-top">
-          <TopContent />
-          <div
-            className="scroll-for-more column-center"
-            onClick={scrollToAction}
-          >
-            MEET THE TEAM
-            <div className="expand-container">
-              <IoIosArrowDown size={20} />
-            </div>
-          </div>
-        </div>
-        <div className="about-us-people column">
-          <div className="about-us-header" ref={headerRef}>
-            Meet the <div className="inline-blue">team</div>
-          </div>
-          <div className="team-pics">
-            {team.map((person, idx) => {
-              return <MemberTile info={person} key={`${person.name}-${idx}`} />;
-            })}
+    <div className="about-us column-center">
+      <div className="column-center about-us-top">
+        <TopContent />
+        <div className="scroll-for-more column-center" onClick={scrollToAction}>
+          MEET THE TEAM
+          <div className="expand-container">
+            <IoIosArrowDown size={20} />
           </div>
         </div>
       </div>
-      <Footer />
-    </>
+      <div className="about-us-people column">
+        <div className="about-us-header" ref={headerRef}>
+          Meet the <div className="inline-blue">team</div>
+        </div>
+        <div className="team-pics">
+          {team.map((person, idx) => {
+            return <MemberTile info={person} key={`${person.name}-${idx}`} />;
+          })}
+        </div>
+      </div>
+    </div>
   );
 };
 

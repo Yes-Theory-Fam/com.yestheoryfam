@@ -10,24 +10,18 @@ import BehindTheProject from "../../assets/underconstruction.png";
 
 const WorkInProgress: React.FC = () => {
   return (
-    <div>
-      <NavBar fixed />
-      <div className="column-center wip">
-        <div className="column-center wip-content">
-          <img src={BehindTheProject} />
-          <div className="page-header">Under construction</div>
-          <div className="column-center wip-content-paragraphs">
-            {paragraphs}
-          </div>
-          <a
-            href="https://discord.gg/yestheory"
-            target="_blank"
-            className="button inverted"
-          >
-            JOIN NOW
-          </a>
-        </div>
-        <Footer />
+    <div className="column-center wip">
+      <div className="column-center wip-content">
+        <img src={BehindTheProject} />
+        <div className="page-header">Under construction</div>
+        <div className="column-center wip-content-paragraphs">{paragraphs}</div>
+        <a
+          href="https://discord.gg/yestheory"
+          target="_blank"
+          className="button inverted"
+        >
+          JOIN NOW
+        </a>
       </div>
     </div>
   );

@@ -176,7 +176,6 @@ const Blog: React.FC<
 
   return (
     <>
-      <NavBar fixed />
       {explanationVisible && (
         <ReasoningModal
           onClose={() => setExplanationVisible(false)}
@@ -205,7 +204,6 @@ const Blog: React.FC<
           />
         )}
       </div>
-      <Footer />
     </>
   );
 };
