@@ -22,7 +22,6 @@ const htmlToText = (html: string) => {
   return sneakyDiv.innerText;
 };
 
-// TODO: Disallow hitting return (or return => blur)
 const EditableTitle: React.FC<{
   value: string;
   onChange: (value: string) => void;
@@ -30,6 +29,7 @@ const EditableTitle: React.FC<{
   const displayedValue = htmlToText(value);
   const { black, blue } = colourTitle(displayedValue);
   const [hasFocus, setHasFocus] = React.useState(false);
+  const editRef = React.useRef<HTMLDivElement>(null);
 
   const customTitle = (
     <div className="blog-title">
@@ -53,9 +53,13 @@ const EditableTitle: React.FC<{
     <div className="blog-title-edit">
       {displayTitle}
       <ContentEditable
+        innerRef={editRef}
         html={displayedValue ? value : nbsp}
         contentEditable
         onChange={({ target: { value } }) => onChange(value)}
+        onKeyDown={({ key }) => {
+          if (key.toLowerCase() === "enter") editRef.current?.blur();
+        }}
         onBlur={() => setHasFocus(false)}
         onFocus={() => setHasFocus(true)}
         className="blog-title blog-title-edit-input"
