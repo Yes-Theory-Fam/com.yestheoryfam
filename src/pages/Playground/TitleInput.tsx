@@ -1,10 +1,10 @@
 import * as React from "react";
-import { saveCaretPosition } from "./cursorManipUtil";
+import ContentEditable from "react-contenteditable";
 
 const colourTitle = (value: string): { black: string; blue: string } => {
   const bluePercentage = 0.2;
   const blueAbsolute = Math.floor(value.length * bluePercentage);
-  const splitS = `.* (.*?[a-zA-Z0-9 .!]{${blueAbsolute}})$`;
+  const splitS = `.* (.*?.{${blueAbsolute}})$`;
   const split = RegExp(splitS);
 
   const [, blue = ""] = split.exec(value) || [, ""];
@@ -14,55 +14,50 @@ const colourTitle = (value: string): { black: string; blue: string } => {
   return { black, blue };
 };
 
-// TODO Placeholder
-// TODO Prevent flickering when in inline div
-// TODO Fix empty content breaking the entire thing for some reason
-// TODO Delete next to blue start kills everything...
-const TitleInput: React.FC<{
+const htmlToText = (html: string) => {
+  const sneakyDiv = document.createElement("div");
+  sneakyDiv.innerHTML = html;
+  return sneakyDiv.innerText;
+};
+
+const EditableTitle: React.FC<{
   value: string;
   onChange: (value: string) => void;
 }> = ({ value, onChange }) => {
-  const divRef = React.useRef() as React.RefObject<HTMLDivElement>;
-  const restoreRef = React.useRef(() => {});
+  const displayedValue = htmlToText(value);
+  const { black, blue } = colourTitle(displayedValue);
+  const [hasFocus, setHasFocus] = React.useState(false);
 
-  const onInput = () => {
-    const divText = divRef.current?.innerText || "";
-    const restore = saveCaretPosition(divRef.current);
-    restoreRef.current = restore;
-    onChange(divText);
-  };
+  const customTitle = (
+    <div className="blog-title">
+      {black}
+      <div className="inline-blue">{blue}</div>
+    </div>
+  );
 
-  const { black, blue } = colourTitle(value);
+  const placeHolder = (
+    <div className="blog-title placeholder">Type your post's title here...</div>
+  );
 
-  // Noop on first render, restores using the saved restore function on subsequent renders
-  // setTimeout to delay the execution to after the return and render of the component to make sure
-  // setting the cursor actually works
-  setTimeout(() => restoreRef.current());
+  const displayTitle = displayedValue || hasFocus ? customTitle : placeHolder;
 
   return (
-    // We can safely suppress the warning as any changes to the content of the div are caught through listeners on the div
-    // Which cause a state change upstream which in turn causes React to fully rerender this component and sorting out
-    // divergences between virtual and actual DOM
-    <div
-      id="title-input"
-      className="titleInput"
-      ref={divRef}
-      onInput={onInput}
-      contentEditable
-      spellCheck={false}
-      suppressContentEditableWarning
-      style={{ cursor: "text" }}
-    >
-      <div className="blog-title">
-        {black}
-        <div className="inline-blue">{blue}</div>
-      </div>
+    <div className="blog-title-edit">
+      {displayTitle}
+      <ContentEditable
+        html={value}
+        contentEditable
+        onChange={({ target: { value } }) => onChange(value)}
+        onBlur={() => setHasFocus(false)}
+        onFocus={() => setHasFocus(true)}
+        className="blog-title blog-title-edit-input"
+      />
     </div>
   );
 };
 
 const Title: React.FC<{ value: string }> = ({ value }) => {
-  const { black, blue } = colourTitle(value);
+  const { black, blue } = colourTitle(htmlToText(value));
   return (
     <div className="blog-title">
       {black}
@@ -89,7 +84,7 @@ const ArbitraryTitle: React.FC<TitleProps> = (props) => {
   const isEdit = (props: TitleProps): props is Edit => !!props.editable;
 
   return isEdit(props) ? (
-    <TitleInput value={props.value} onChange={props.onChange} />
+    <EditableTitle value={props.value} onChange={props.onChange} />
   ) : (
     <Title value={props.value} />
   );
