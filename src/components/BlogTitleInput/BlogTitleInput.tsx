@@ -1,6 +1,8 @@
 import * as React from "react";
 import ContentEditable from "react-contenteditable";
 
+import "./BlogTitleInput.scss";
+
 const colourTitle = (value: string): { black: string; blue: string } => {
   const bluePercentage = 0.2;
   const blueAbsolute = Math.floor(value.length * bluePercentage);

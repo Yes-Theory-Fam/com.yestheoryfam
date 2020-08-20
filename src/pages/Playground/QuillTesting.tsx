@@ -28,7 +28,7 @@ import "./QuillTesting.scss";
 
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import TitleInput from "./TitleInput";
+import TitleInput from "../../components/BlogTitleInput/BlogTitleInput";
 import SuggestionCard from "./SuggestionCard";
 
 import suggestions from "./copy";
