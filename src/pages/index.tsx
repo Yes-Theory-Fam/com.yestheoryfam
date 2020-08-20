@@ -7,9 +7,11 @@ import MeetupDetails from "./MeetupDetails/MeetupDetails";
 import Meetups from "./meetups/Meetups";
 import PhotoWall from "./photowall/PhotoWall";
 import WorkInProgress from "./WorkInProgress/WorkInProgress";
+import Playground from "./Playground/QuillTesting";
+import Blog from "./Blog/Blog";
 
 import React, { JSXElementConstructor, ReactNode } from "react";
-import { Route, RouteComponentProps } from "react-router-dom";
+import { Route, RouteComponentProps, Switch } from "react-router-dom";
 import { StaticContext } from "react-router";
 
 interface NavPage {
@@ -32,6 +34,25 @@ const MeetupRouting = ({ match: { url } }: { match: { url: string } }) => (
   </>
 );
 
+const BlogRouting = ({ match: { url } }: { match: { url: string } }) => (
+  <>
+    <Route
+      path={`${url}/preview/:id`}
+      exact
+      render={(props) => <Blog {...props} preview />}
+    />
+    <Switch>
+      <Route path={`${url}/write`} exact component={Playground} />
+      <Route
+        path={`${url}/:id`}
+        exact
+        render={(props) => <Blog {...props} />}
+      />
+    </Switch>
+    <Route path={`${url}/`} exact component={BlogOverview} />
+  </>
+);
+
 const pages: Array<NavPage> = [
   {
     isNew: false,
@@ -48,18 +69,18 @@ const pages: Array<NavPage> = [
     available: true,
   },
   {
-    isNew: false,
-    path: "blog",
+    isNew: true,
+    path: "blogs",
     display: "blog",
-    component: { component: BlogOverview },
-    available: false,
+    component: { render: BlogRouting },
+    available: true,
   },
   {
     isNew: false,
     path: "meetups",
     display: "meetups",
     component: { render: MeetupRouting },
-    available: false,
+    available: true,
   },
   {
     isNew: false,

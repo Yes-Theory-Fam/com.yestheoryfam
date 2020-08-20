@@ -2,17 +2,14 @@ import * as React from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
-import { arrayToChunks } from "../../utils";
 import ClampLines from "react-clamp-lines";
 
-import "./BlogOverview.scss";
+import { Quill } from "react-quill";
+import { Delta, DeltaStatic } from "quill";
 
-interface IBlogProps {
-  author: string;
-  time: number;
-  title: string;
-  content: string;
-}
+import "./BlogOverview.scss";
+import BackendApi from "../../apis/backend";
+import IBlogProps from "../../types/Blog";
 
 const BlogOverviewHeader: React.FC = () => {
   return (
@@ -22,24 +19,44 @@ const BlogOverviewHeader: React.FC = () => {
   );
 };
 
-const FeaturedArticle: React.FC<IBlogProps> = ({
-  author,
-  time,
-  title,
-  content,
-}) => {
+// This is potentially very, very dumb but it's 00:30 currently and I am starting to get frustrated with this.
+// This function attempts to turn a Quill Delta to a string that can be used as preview in the overview
+// This is achieved by using all insert deltas that insert a string, replacing whitespace with single spaces and joining them.
+// I am afraid of this.
+const blogContentToContent = (delta: DeltaStatic) => {
+  const DeltaS = Quill.import("delta");
+
+  const actualDelta: Delta = new DeltaS(delta);
+
+  return actualDelta
+    .filter((op) => op.insert && typeof op.insert === "string")
+    .map((op) => op.insert.toString().replace(/\s/g, " "))
+    .join(" ");
+};
+
+const FeaturedArticle: React.FC<{ blog: IBlogProps }> = ({ blog }) => {
+  const { authorName, readTime, title, blogContent, titleImage, id } = blog;
+
+  const content = blogContentToContent(blogContent);
+
   return (
     <div className="featured-article column">
       <div className="blog-overview-section-header">Latest article</div>
       <div className="column featured-article-blog">
         <div className="featured-image centered-content">
-          <img src="https://picsum.photos/605/433?a=featured-article" />
+          <img src={titleImage} className={"featured-image"} />
         </div>
         <div className="featured-text-content column">
-          <Remark author={author} time={time} />
+          <Remark author={authorName} time={readTime} />
           <Title title={title} />
           <div className="featured-summary">{content}</div>
-          <Link to="/" className="button">
+          <Link
+            to={{
+              pathname: `/blogs/${id}`,
+              state: blog,
+            }}
+            className="button"
+          >
             READ POST
           </Link>
         </div>
@@ -69,108 +86,81 @@ const OtherArticles: React.FC<{ blogs: Array<IBlogProps> }> = ({ blogs }) => {
       <div className="blog-overview-section-header">Other articles</div>
       <div className="other-article-grid">
         {blogs.map((blog, index) => (
-          <OtherArticleTile id={`blog-tile-${index}`} key={index} {...blog} />
+            <OtherArticleTile key={index} blog={blog} />
         ))}
       </div>
     </div>
   );
 };
 
-const OtherArticleTile: React.FC<IBlogProps & { id: string }> = ({
-  author,
-  time,
-  title,
-  content,
-  id,
+const OtherArticleTile: React.FC<{ blog: IBlogProps }> = ({
+  blog,
 }) => {
+  const { authorName, readTime, title, blogContent, id, titleImage } = blog;
+  const content = blogContentToContent(blogContent);
+
   return (
     <div className="other-article-tile column">
       <div className="other-article-tile-top">
-        <img
-          className="other-article-tile-image"
-          src={`https://picsum.photos/398/260?a=${id}`}
-        />
-        <Remark author={author} time={time} />
-        <div className="other-article-tile-title">{title}</div>
+        <div className="other-article-tile-image-container">
+          <img className="other-article-tile-image" src={titleImage} />
+        </div>
+        <Remark author={authorName} time={readTime} />
+        <Link
+        to={{
+          pathname: `/blogs/${id}`,
+          state: blog,
+        }}
+        className="other-article-tile-title"
+      >
+        {title}
+      </Link>
       </div>
       <ClampLines text={content} lines={4} id={id} buttons={false} />
     </div>
   );
 };
 
+const getBlogs = async () => {
+  const response = await BackendApi().get("/blogs");
+  if (response.status !== 200)
+    throw "Couldn't fetch blogs; response: " + response;
+
+  const fixedBlogs = response.data.map((blog: IBlogProps) => ({
+    ...blog,
+    blogContent: JSON.parse(blog.blogContent.toString()), // I know this is a blatant hack to get around TS and I am sorry!
+  }));
+
+  return fixedBlogs;
+};
+
 const BlogOverview: React.FC = () => {
+  const [blogs, setBlogs] = React.useState<Array<IBlogProps>>();
+  React.useEffect(() => {
+    if (blogs) return;
+
+    getBlogs().then(setBlogs);
+  });
+
+  if (!blogs) return <></>;
+
+  if (blogs.length < 1) return <>No blogs yet, kinda sad</>;
+
+  const [featured, ...other] = blogs;
+
   return (
     <>
       <NavBar fixed={false} />
       <div className="column-center">
         <BlogOverviewHeader />
         <div className="blog-overview-articles column">
-          <FeaturedArticle
-            author="Carola S."
-            time={7}
-            title="How I survived Bali with 10 strangers"
-            content="Luctus accumsan tortor posuere ac ut. Viverra maecenas accumsan lacus vel facilisis volutpat est. Nec ullamcorper sit amet risus nullam eget felis."
-          />
-          <OtherArticles blogs={otherArticles} />
+          <FeaturedArticle blog={featured} />
+          <OtherArticles blogs={other} />
         </div>
       </div>
       <Footer />
     </>
   );
 };
-
-const otherArticles: Array<IBlogProps> = [
-  {
-    author: "Matej P.",
-    time: 7,
-    content:
-      "I'll start- So my name is Cody, I'm 20 years old and live in Brisbane, Australia. I've lived a amazing life so far. I've been overseas twice, skydived twice, and have wonderful family/friends that I love to the moon and back. I have all these things yet my life hasn't been all butterflies and rainbows. ...",
-    title: "How does it feel to meet strangers?",
-  },
-  {
-    author: "John D.",
-    time: 7,
-    content:
-      "Today I took a pretty big step out of my comfort zone (while of course wearing my seek discomfort t shirt). A couple weeks ago I signed up to be a small group leader for an activity my school does called make the change and today was the training. Most of it wasn’t extremely difficult, but one activity called “if you really knew me” pushed me way out of my comfort zone. Basically you go around the circle and each time you say ...",
-    title: "FiYestas changed my life; they can change yours too!",
-  },
-  {
-    author: "Matinoz S.",
-    time: 7,
-    content:
-      "I’ve ever done. ⁣If you would have told me that I would randomly by a flight cross country by myself, and not plan out every step of the trip along the way even a few weeks ago I would have thought you were nuts. In light of this, I decided to roll with the flow and take things as they came up, a really good life lesson that I know has alrea",
-    title:
-      "I recently took a trip to San Diego and it was the biggest discomfort",
-  },
-  {
-    author: "Jamie L.",
-    time: 7,
-    content:
-      'We could finally use this and incorporate in our films and photoshoot. I\'m loving the vibes of this flag and whenever we bring these all around the Philippines- people are always like "Is that some sort of a movement or a cult?"',
-    title: "First ever SEEK DISCOMFORT Flag",
-  },
-  {
-    author: "Matej P.",
-    time: 7,
-    content:
-      "I'll start- So my name is Cody, I'm 20 years old and live in Brisbane, Australia. I've lived a amazing life so far. I've been overseas twice, skydived twice, and have wonderful family/friends that I love to the moon and back. I have all these things yet my life hasn't been all butterflies and rainbows. ...",
-    title: "How does it feel to meet strangers?",
-  },
-  {
-    author: "John D.",
-    time: 7,
-    content:
-      "Today I took a pretty big step out of my comfort zone (while of course wearing my seek discomfort t shirt). A couple weeks ago I signed up to be a small group leader for an activity my school does called make the change and today was the training. Most of it wasn’t extremely difficult, but one activity called “if you really knew me” pushed me way out of my comfort zone. Basically you go around the circle and each time you say ...",
-    title: "FiYestas changed my life; they can change yours too!",
-  },
-  {
-    author: "Matinoz S.",
-    time: 7,
-    content:
-      "I’ve ever done. ⁣If you would have told me that I would randomly by a flight cross country by myself, and not plan out every step of the trip along the way even a few weeks ago I would have thought you were nuts. In light of this, I decided to roll with the flow and take things as they came up, a really good life lesson that I know has alrea",
-    title:
-      "I recently took a trip to San Diego and it was the biggest discomfort",
-  },
-];
 
 export default BlogOverview;

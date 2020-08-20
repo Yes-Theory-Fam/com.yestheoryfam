@@ -37,6 +37,11 @@
   &-header {
     margin-bottom: 35px;
   }
+
+  &-post-button {
+    align-self: flex-end;
+    margin-bottom: 20px;
+  }
 }
 
 .quill-container {
@@ -60,6 +65,10 @@
       font-size: 24px;
     }
 
+    &-titleimage {
+      width: 100%;
+    }
+
     &-remark {
       display: inline-block;
       font-size: 12px;
@@ -70,8 +79,12 @@
     }
 
     &-text {
-      width: 75%;
+      width: 100%;
       max-width: 750px;
+
+      @include common.desktop-specific {
+        width: 75%;
+      }
     }
 
     // Div only to make this selector more specific.
@@ -81,6 +94,8 @@
     }
 
     &-image {
+      width: 100%;
+      height: auto;
       align-self: center;
       box-shadow: 0px 15px 60px #0067ff29;
     }
@@ -92,8 +107,11 @@
 }
 
 .quill {
-  width: 75%;
   max-width: 725px;
+
+  @include common.desktop-specific {
+    width: 75%;
+  }
 
   .ql-container {
     color: #2a2a2a;
