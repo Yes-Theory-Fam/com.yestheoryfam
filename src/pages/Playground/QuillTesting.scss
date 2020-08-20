@@ -1,0 +1,77 @@
+@use '../../common';
+
+// TODO definitely needs some polishing
+.mobile-note {
+  margin: 100px 0;
+  width: 90%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include common.tablet-specific {
+    display: none;
+  }
+
+  @include common.desktop-specific {
+    display: none;
+  }
+}
+
+.write-your-blog {
+  margin: 100px;
+  display: none;
+
+  @include common.phone-landscape-specific {
+    display: none;
+  }
+
+  @include common.tablet-specific {
+    display: flex;
+  }
+
+  @include common.desktop-specific {
+    display: flex;
+  }
+
+  &-header {
+    margin-bottom: 35px;
+  }
+}
+
+.quill-container {
+  width: 90%;
+  margin: 25px 0;
+
+  button {
+    min-width: unset;
+  }
+}
+
+.blog {
+  &-title {
+    font-size: 62px;
+    line-height: 75px;
+    font-weight: 900;
+    margin: 20px 0;
+    color: #2a2a2a;
+  }
+
+  &-preview {
+    .blog-title {
+      align-self: flex-start;
+    }
+  }
+}
+
+.quill {
+  width: 75%;
+}
+
+.quill-container .ql-container {
+  height: 500px;
+}
+
+.suggestions {
+  width: 75%;
+}
