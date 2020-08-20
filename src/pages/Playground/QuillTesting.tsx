@@ -87,9 +87,7 @@ const QuillTesting: React.FC = () => {
   const editorRef = React.useRef(null);
   const [uploadOpen, setUploadOpen] = React.useState(false);
 
-  const [title, setTitle] = React.useState(
-    "This is going to be your awesome title!"
-  );
+  const [title, setTitle] = React.useState("");
 
   return (
     <>
