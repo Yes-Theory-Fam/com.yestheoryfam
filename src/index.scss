@@ -190,3 +190,10 @@ button.inverted,
   transform: translateY(3px);
   /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
 }
+
+.Toastify,
+.quill {
+  button {
+    min-width: unset;
+  }
+}
