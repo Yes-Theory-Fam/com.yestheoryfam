@@ -11,6 +11,7 @@ import BackendApi from "../../apis/backend";
 
 import "./Blog.scss";
 import { IoMdClose } from "react-icons/io";
+import { StaticContext } from "react-router";
 
 const getBlog = async (preview: boolean | undefined, id: string) => {
   const url = `/blogs/${preview ? "preview/" : ""}${id}`;
@@ -128,8 +129,14 @@ const ReasoningModal: React.FC<{
   );
 };
 
+export type BlogRouteProps = RouteComponentProps<
+  { id: string },
+  {},
+  IBlogProps | null
+>;
+
 const Blog: React.FC<
-  RouteComponentProps<{ id: string }, {}, IBlogProps | null> & {
+  BlogRouteProps & {
     preview?: boolean | undefined;
   }
 > = ({ preview, match, location }) => {

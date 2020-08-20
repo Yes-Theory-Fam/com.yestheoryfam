@@ -8,7 +8,7 @@ import Meetups from "./meetups/Meetups";
 import PhotoWall from "./photowall/PhotoWall";
 import WorkInProgress from "./WorkInProgress/WorkInProgress";
 import Playground from "./Playground/QuillTesting";
-import Blog from "./Blog/Blog";
+import Blog, { BlogRouteProps } from "./Blog/Blog";
 
 import React, { JSXElementConstructor, ReactNode } from "react";
 import { Route, RouteComponentProps, Switch } from "react-router-dom";
@@ -39,14 +39,14 @@ const BlogRouting = ({ match: { url } }: { match: { url: string } }) => (
     <Route
       path={`${url}/preview/:id`}
       exact
-      render={(props) => <Blog {...props} preview />}
+      render={(props: BlogRouteProps) => <Blog {...props} preview />}
     />
     <Switch>
       <Route path={`${url}/write`} exact component={Playground} />
       <Route
         path={`${url}/:id`}
         exact
-        render={(props) => <Blog {...props} />}
+        render={(props: BlogRouteProps) => <Blog {...props} />}
       />
     </Switch>
     <Route path={`${url}/`} exact component={BlogOverview} />
