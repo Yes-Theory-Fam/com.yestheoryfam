@@ -36,8 +36,6 @@ import suggestions from "./copy";
 const toolbarOptions = [
   ["bold", "italic", "underline", "strike"], // toggled buttons
   ["blockquote"],
-
-  [{ color: ["#2A2A2A"] }],
   ["image", "video"],
 ];
 
@@ -80,7 +78,14 @@ const PreviewWrapper: React.FC<{ editor: React.RefObject<ReactQuill> }> = ({
     return () => clearInterval(intervalId);
   });
 
-  return <ReactQuill value={preview} readOnly theme="bubble" />;
+  return (
+    <ReactQuill
+      value={preview}
+      readOnly
+      theme="bubble"
+      className="blog-preview-quill"
+    />
+  );
 };
 
 const QuillTesting: React.FC = () => {
@@ -120,11 +125,19 @@ const QuillTesting: React.FC = () => {
           ))}
         </div>
         <div className="ruler" />
-        <div className="blog-preview">
+        <div className="blog-preview column-center">
           <div className="blog-preview-title">Preview</div>
-          <img src="https://picsum.photos/1380/487" />
+          <img
+            src="https://picsum.photos/1380/487"
+            className="blog-preview-image"
+          />
           <TitleInput value={title} />
-          <PreviewWrapper editor={editorRef} />
+          <div className="column blog-preview-text">
+            <div className="row blog-preview-remark">
+              Matej P. - 7 min. read
+            </div>
+            <PreviewWrapper editor={editorRef} />
+          </div>
         </div>
       </div>
 
