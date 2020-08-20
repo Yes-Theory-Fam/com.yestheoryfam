@@ -62,39 +62,4 @@
       justify-content: space-between;
     }
   }
-
-  &-upload-modal {
-    z-index: 1001;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &-dropzone {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 3px 60px #0067ff29;
-
-      width: 90%;
-
-      @include common.phone-landscape-specific {
-        width: 70%;
-      }
-
-      @include common.tablet-specific {
-        width: 70%;
-      }
-
-      @include common.desktop-specific {
-        width: 70%;
-      }
-    }
-  }
 }

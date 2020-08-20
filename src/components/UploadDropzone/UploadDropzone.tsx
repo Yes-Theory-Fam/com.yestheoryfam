@@ -295,7 +295,7 @@ const InputContent: React.FC<{ rejected: boolean }> = ({ rejected }) => {
   );
 };
 
-const FullModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+const FullUpload: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const handleChangeStatus = (
     { meta, remove }: IFileWithMeta,
     status: StatusValue
@@ -335,6 +335,16 @@ const FullModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           dropzoneReject: "upload-dropzone-reject",
         }}
       />
+    </div>
+  );
+};
+
+const FullModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+  return (
+    <div className="upload-modal">
+      <div className="upload-modal-dropzone">
+        <FullUpload onClose={onClose} />
+      </div>
     </div>
   );
 };
