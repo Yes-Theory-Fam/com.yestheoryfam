@@ -35,9 +35,22 @@
         flex-direction: row;
       }
     }
+
+    &-row {
+      min-height: 430px;
+    }
   }
 
   &-image {
+    border-radius: 20px;
+    box-shadow: 15px 15px 60px #0067ff40;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+
+    &-container {
+      width: 50%;
+    }
     flex: 1;
 
     img {
@@ -48,8 +61,10 @@
   }
 
   &-text-content {
-    flex: 1;
     justify-content: space-evenly;
+    padding-left: 150px;
+    padding-right: 50px;
+    width: 50%;
     min-height: 400px;
 
     @include common.phone-landscape-specific {
@@ -125,9 +140,14 @@
 
     &-image {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       border-radius: 20px;
       margin-bottom: 20px;
+
+      &-container {
+        height: 260px;
+      }
     }
 
     &-title {

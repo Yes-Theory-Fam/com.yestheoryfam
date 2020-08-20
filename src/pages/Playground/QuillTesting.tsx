@@ -32,6 +32,9 @@ import TitleInput from "../../components/BlogTitleInput/BlogTitleInput";
 import SuggestionCard from "./SuggestionCard";
 
 import suggestions from "./copy";
+import { toast } from "react-toastify";
+import BackendApi from "../../apis/backend";
+import { useHistory } from "react-router-dom";
 
 const toolbarOptions = [
   ["bold", "italic", "underline", "strike"], // toggled buttons
@@ -60,6 +63,55 @@ const QuillWrapper = React.forwardRef((_, ref: React.RefObject<ReactQuill>) => {
     </div>
   );
 });
+
+const htmlToText = (html: string) => {
+  const sneakyDiv = document.createElement("div");
+  sneakyDiv.innerHTML = html;
+  return sneakyDiv.innerText.trim();
+};
+
+const PostButton: React.FC<{
+  title: string;
+  titleImage: string;
+  readTime: number;
+  blogContent: React.RefObject<ReactQuill>;
+}> = ({ blogContent, readTime, title, titleImage }) => {
+  const savedTitle = htmlToText(title);
+  const history = useHistory();
+  const onClick = async () => {
+    const ref = blogContent.current;
+    if (!ref) {
+      toast("'tis broken!");
+      return;
+    }
+
+    const content = ref.getEditor().getContents();
+    const response = await BackendApi().post("/blogs", {
+      title: savedTitle,
+      titleImage,
+      readTime,
+      blogContent: JSON.stringify(content),
+    });
+
+    const preview = response.data.previewId;
+    const previewUrl = `/blogs/preview/${preview}`;
+
+    toast(`Your post was submitted! Click here to see the preview again.`, {
+      type: "success",
+      autoClose: false,
+      onClick: () => history.push(previewUrl),
+    });
+  };
+
+  return (
+    <button
+      className="inverted write-your-blog-post-button float-shadow"
+      onClick={onClick}
+    >
+      POST
+    </button>
+  );
+};
 
 const PreviewWrapper: React.FC<{ editor: React.RefObject<ReactQuill> }> = ({
   editor,
@@ -123,14 +175,22 @@ const QuillTesting: React.FC = () => {
               key={index}
             />
           ))}
+          <PostButton
+            title={title}
+            titleImage={"https://picsum.photos/1380/487"}
+            readTime={7}
+            blogContent={editorRef}
+          />
         </div>
         <div className="ruler" />
         <div className="blog-preview column-center">
           <div className="blog-preview-title">Preview</div>
-          <img
-            src="https://picsum.photos/1380/487"
-            className="blog-preview-image"
-          />
+          <div className="blog-preview-titleimage">
+            <img
+              src="https://picsum.photos/1380/487"
+              className="blog-preview-image"
+            />
+          </div>
           <TitleInput value={title} />
           <div className="column blog-preview-text">
             <div className="row blog-preview-remark">

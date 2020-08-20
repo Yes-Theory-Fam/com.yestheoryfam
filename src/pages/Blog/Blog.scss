@@ -1,0 +1,143 @@
+@use '../../common';
+
+.blog {
+  margin-top: 80px;
+  width: 90%;
+
+  @include common.tablet-specific {
+    margin-top: 120px;
+    width: 80%;
+  }
+
+  @include common.phone-landscape-specific {
+    margin-top: 80px;
+    width: 80%;
+  }
+
+  @include common.desktop-specific {
+    margin-top: 120px;
+    width: 80%;
+  }
+
+  &-preview-vote {
+    width: 80%;
+    justify-content: space-between;
+    margin-top: 40px;
+    margin-bottom: 80px;
+
+    @include common.desktop-specific {
+      width: unset;
+      justify-content: unset;
+
+      align-self: flex-end;
+      margin-right: 10%;
+
+      button {
+        margin-left: 35px;
+      }
+    }
+  }
+
+  &-title {
+    width: 85%;
+  }
+
+  .quill {
+    width: 100%;
+    max-width: 750%;
+  }
+}
+
+.reasoning-modal {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 500;
+
+  &-body {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 3px 60px #0067ff29;
+    position: relative;
+    top: 30px;
+    width: 90%;
+    max-width: 675px;
+    overflow-y: auto;
+
+    @include common.phone-landscape-specific {
+      height: 80%;
+    }
+
+    @include common.tablet-specific {
+      width: 66%;
+    }
+  }
+
+  &-text-content {
+    width: 90%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+
+  a {
+    width: 30%;
+    margin: 10px auto;
+    text-align: center;
+  }
+
+  &-top {
+    width: 80%;
+    margin: {
+      top: 32px;
+      left: 58px;
+      right: 58px;
+      bottom: 32px;
+    }
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 38px;
+  }
+
+  &-logo {
+    margin-right: 30px;
+
+    @include common.tablet-specific {
+      max-width: 500px;
+    }
+
+    @include common.desktop-specific {
+      max-width: 500px;
+    }
+  }
+
+  textarea {
+    width: calc(80% - 10px);
+    height: 150px;
+    resize: none;
+    margin-bottom: 25px;
+
+    padding: 5px;
+    font-family: "Roboto", sans-serif;
+  }
+
+  &-close-button {
+    border-radius: 30px;
+    height: 46px;
+    width: 46px;
+    border: 1px solid common.$yesTheoryBlue;
+    cursor: pointer;
+    color: common.$yesTheoryBlue;
+  }
+
+  &-buttons {
+    margin-bottom: 25px;
+    width: 80%;
+    justify-content: space-between;
+  }
+}
