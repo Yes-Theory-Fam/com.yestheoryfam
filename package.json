@@ -22,18 +22,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jamie-legg/com.yestheoryfam.git"
+    "url": "git+https://github.com/Yes-Theory-Fam/com.yestheoryfam.git"
   },
   "keywords": [
     "yes",
     "theory"
   ],
-  "author": "Jamie Legg",
+  "author": "Yes Fam Website Team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jamie-legg/com.yestheoryfam/issues"
+    "url": "https://github.com/Yes-Theory-Fam/com.yestheoryfam/issues"
   },
-  "homepage": "https://github.com/jamie-legg/com.yestheoryfam#readme",
+  "homepage": "https://github.com/Yes-Theory-Fam/com.yestheoryfam#readme",
   "dependencies": {
     "@types/js-cookie": "^2.2.6",
     "@types/passport-auth0": "^1.0.4",
