@@ -34,11 +34,11 @@
     }
   }
 
-  &.row img {
+  &:global(.row) img {
     box-shadow: 15px 15px 60px #0054ff40;
   }
 
-  &.row-reverse img {
+  &:global(.row-reverse) img {
     box-shadow: -15px 15px 60px #0054ff40;
   }
 
@@ -58,11 +58,11 @@
   }
 
   @include common.desktop-specific {
-    &.row &-text-content {
+    &:global(.row) &-text-content {
       margin-inline-start: 35px;
     }
 
-    &.row-reverse &-text-content {
+    &:global(.row-reverse) &-text-content {
       margin-inline-end: 35px;
     }
   }

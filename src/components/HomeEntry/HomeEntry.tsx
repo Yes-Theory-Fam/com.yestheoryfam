@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import "./HomeEntry.scss";
+import styles from "./HomeEntry.module.scss";
+import classNames from "classnames";
 
 interface IHomeEntryProps {
   imageSide: "left" | "right";
@@ -16,14 +17,19 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({
   children,
 }) => {
   return (
-    <div className={`entry ${imageSide === "left" ? "row" : "row-reverse"}`}>
+    <div
+      className={classNames(styles.entry, {
+        row: imageSide === "left",
+        "row-reverse": imageSide !== "left",
+      })}
+    >
       <img src={`https://picsum.photos/674/674?a=${headerBlackText}`} />
-      <div className="entry-text-content column">
+      <div className={classNames(styles.entryTextContent, "column")}>
         <EntryHeader
           headerBlackText={headerBlackText}
           headerBlueText={headerBlueText}
         />
-        <div className="entry-summary">{children}</div>
+        <div className={styles.entrySummary}>{children}</div>
         <Link to="/" className="button">
           READ MORE
         </Link>
@@ -32,12 +38,14 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({
   );
 };
 
+// TODO: Fix desktop
+
 const EntryHeader: React.FC<{
   headerBlackText: string;
   headerBlueText: string;
 }> = ({ headerBlackText, headerBlueText }) => {
   return (
-    <div className="entry-header">
+    <div className={styles.entryHeader}>
       {headerBlackText + " "}
       <div className="inline-blue">{headerBlueText}</div>
     </div>
