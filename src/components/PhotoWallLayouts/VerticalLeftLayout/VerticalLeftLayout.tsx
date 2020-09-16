@@ -4,7 +4,8 @@ import { PhotoWallLayoutProps, LayoutProps } from "../PhotoWallLayoutTypes";
 import PhotoWrapper from "../PhotoWrapper/PhotoWrapper";
 import { splitImages } from "../../../utils";
 
-import "./VerticalLeftLayout.scss";
+import styles from "./VerticalLeftLayout.module.scss";
+import classNames from "classnames";
 
 const VerticalLeftLayout: React.FC<LayoutProps> = ({ images }) => {
   const [[chosenHorizontal], [chosenVertical], otherImages] = splitImages(
@@ -14,9 +15,9 @@ const VerticalLeftLayout: React.FC<LayoutProps> = ({ images }) => {
   );
 
   return (
-    <div className="vl-layout layout-row">
-      <PhotoWrapper className="tall" src={chosenVertical.src} />
-      <PhotoWrapper className="long" src={chosenHorizontal.src} />
+    <div className={classNames(styles.vlLayout, "layout-row")}>
+      <PhotoWrapper className={styles.tall} src={chosenVertical.src} />
+      <PhotoWrapper className={styles.long} src={chosenHorizontal.src} />
       <PhotoWrapper src={otherImages[0].src} />
       <PhotoWrapper src={otherImages[1].src} />
     </div>

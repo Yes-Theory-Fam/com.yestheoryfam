@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./PhotoWrapper.scss";
+import styles from "./PhotoWrapper.module.scss";
 // CSS for react-image-lightbox already imported in PhotoWall.tsx because once is enough
 import Lightbox from "react-image-lightbox";
 
@@ -15,7 +15,7 @@ const PhotoWrapper: React.FC<{
   return (
     <div className={className} onClick={showInModal}>
       {!src && <></>}
-      {src && <img className="fit-container" src={src} />}
+      {src && <img className={styles.fitContainer} src={src} />}
       {src && showsInModal && (
         <Lightbox
           mainSrc={src}

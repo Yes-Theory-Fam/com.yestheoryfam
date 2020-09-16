@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./NavBar.scss";
+import styles from "./NavBar.module.scss";
 import { NavLink } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { UserContext } from "../../UserContext";
@@ -10,6 +10,7 @@ import DiscordLoginButton from "../DiscordLoginButton/DiscordLoginButton";
 
 import { CSSTransition } from "react-transition-group";
 import { TransitionStatus } from "react-transition-group/Transition";
+import classNames from 'classnames';
 
 const logout = () => {
   localStorage.clear();
@@ -22,20 +23,20 @@ const CurrentUser: React.FC = () => {
     ? `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}`
     : "https://discordapp.com/assets/dd4dbc0016779df1378e7812eabaa04d.png";
   return (
-    <div className="column avatar-container">
+    <div className={classNames("column", styles.avatarContainer)}>
       <div className="row centered-content">
         <img
           src={imageUrl}
           alt={user?.username}
-          className="circle-avatar"
+          className={styles.circleAvatar}
           height="42"
           width="42"
         />
-        <div className="avatar-user">
+        <div className={styles.avatarUser}>
           {user?.username}#{user?.discriminator}
         </div>
       </div>
-      <button className="button logout" onClick={() => logout()}>
+      <button className={classNames("button", styles.logout)} onClick={() => logout()}>
         LOGOUT
       </button>
     </div>
@@ -72,20 +73,18 @@ const HamburgerNav: React.FC<{
 
   return (
     <>
-      <IoMdMenu size={42} onClick={onOpenButton} className="hamburger-icon" />
+      <IoMdMenu size={42} onClick={onOpenButton} className={styles.hamburgerIcon} />
       <div
         style={{ ...defaultStyle, ...transitionStyles[open] }}
-        className={`side-drawer column-center ${
-          open !== "exited" ? "open" : ""
-        }`}
+        className={classNames(styles.sideDrawer, "column-center", { [styles.open]: open !== "exited"})}
       >
-        <div className="side-drawer-top row">
+        <div className={classNames(styles.sideDrawerTop, "row")}>
           <Logo />
           <IoMdClose size={42} onClick={onCloseButton} />
         </div>
         <NavContent
           children={children}
-          className="side-drawer-links column-center"
+          className={classNames(styles.sideDrawerLinks, "column-center")}
         />
       </div>
     </>
@@ -94,7 +93,7 @@ const HamburgerNav: React.FC<{
 
 const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   fixed,
-  classNames,
+  classNames: barClassNames,
 }) => {
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
@@ -102,9 +101,7 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   const NewPill: React.FC<{ fraud?: boolean }> = ({ fraud }) => {
     return (
       <div
-        className={`nav-bar-links-newpill centered-content ${
-          fraud ? "fraud" : ""
-        }`}
+        className={classNames(styles.navBarLinksNewpill, "centered-content", {[styles.fraud]: fraud})}
       >
         NEW
       </div>
@@ -114,12 +111,12 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   const pageToNavLink = (page: NavPage, available: boolean = false) => (
     <NavLink
       to={`/${page.path}`}
-      activeClassName="current"
+      activeClassName={styles.current}
       key={page.path}
-      className={`row nav-bar-links-link ${available ? "" : "unavailable"}`}
+      className={classNames("row", styles.navBarLinksLink, {[styles.unavailable]: !available})}
     >
       {page.isNew && <NewPill fraud />}
-      <div className="nav-bar-links-link-title">
+      <div className={styles.navBarLinksLinkTitle}>
         {page.display.toUpperCase()}
       </div>
       {page.isNew && <NewPill />}
@@ -137,9 +134,9 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
   if (!user) mobileNav.push(<DiscordLoginButton key="discord-logo" inverted />);
 
   return (
-    <div className={`row nav-bar ${fixed ? "fixed" : ""} ${classNames || ""}`}>
+    <div className={classNames("row", styles.navBar, { [styles.fixed]: fixed }, barClassNames)}>
       <Logo />
-      <NavContent className="nav-bar-links" children={userNav} />
+      <NavContent className={styles.navBarLinks} children={userNav} />
       <CSSTransition timeout={150} in={hamburgerOpen}>
         {(state) => (
           <HamburgerNav

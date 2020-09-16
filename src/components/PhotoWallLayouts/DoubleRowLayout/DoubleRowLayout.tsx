@@ -3,17 +3,18 @@ import { PhotoWallLayoutProps, LayoutProps } from "../PhotoWallLayoutTypes";
 import PhotoWrapper from "../PhotoWrapper/PhotoWrapper";
 import { splitImages } from "../../../utils";
 
-import "./DoubleRowLayout.scss";
+import styles from "./DoubleRowLayout.module.scss";
+import classNames from "classnames";
 
 const DoubleRowLayout: React.FC<LayoutProps> = ({ images }) => {
   const [selectedHorizontal, , otherImages] = splitImages(images, 2, 0);
 
   return (
-    <div className="dr-layout layout-row">
-      <PhotoWrapper className="long-1" src={selectedHorizontal[0].src} />
+    <div className={classNames(styles.drLayout, "layout-row")}>
+      <PhotoWrapper className={styles.long1} src={selectedHorizontal[0].src} />
       <PhotoWrapper src={otherImages[0].src} />
       <PhotoWrapper src={otherImages[1].src} />
-      <PhotoWrapper className="long-2" src={selectedHorizontal[1].src} />
+      <PhotoWrapper className={styles.long2} src={selectedHorizontal[1].src} />
     </div>
   );
 };

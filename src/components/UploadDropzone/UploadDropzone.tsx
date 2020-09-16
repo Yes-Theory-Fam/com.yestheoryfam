@@ -13,7 +13,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 // Keep in this order; our stylesheet needs to be applied last
 import "react-dropzone-uploader/dist/styles.css";
-import "./UploadDropzone.scss";
+import styles from "./UploadDropzone.scss";
+import classNames from "classnames";
 
 import { TransitionStatus } from "react-transition-group/Transition";
 import { IoMdCloudUpload, IoMdClose } from "react-icons/io";
@@ -120,7 +121,7 @@ const YESSES = [
 
 const CloseButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
-    <div className="centered-content upload-close-button" onClick={onClick}>
+    <div className={classNames(styles.uploadCloseButton, "centered-content")} onClick={onClick}>
       <IoMdClose size={22} />
     </div>
   );
@@ -179,7 +180,7 @@ const AnimatedYes: React.FC<{
       {(state) => (
         <div
           style={{ ...defaultStyle, ...transitionStyles[state] }}
-          className="upload-fountain-yes"
+          className={styles.uploadFountainYes}
         >
           {yesContent}
         </div>
@@ -239,7 +240,7 @@ const YesFountain: React.FC = () => {
     return () => clearInterval(intervalId);
   });
 
-  return <div className="column-center upload-fountain">{activeWords}</div>;
+  return <div className={classNames(styles.uploadFountain, "column-center")}>{activeWords}</div>;
 };
 
 const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
@@ -252,9 +253,9 @@ const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
   };
 
   return (
-    <div className="row upload-progress">
-      <div style={styleBlue} className="upload-progress-bar blue" />
-      <div style={styleGray} className="upload-progress-bar gray" />
+    <div className={classNames(styles.uploadProgress, "row")}>
+      <div style={styleBlue} className={classNames(styles.uploadProgressBar, styles.blue)} />
+      <div style={styleGray} className={classNames(styles.uploadProgressBar, styles.gray)} />
     </div>
   );
 };
@@ -266,7 +267,7 @@ const Preview: React.FC<IPreviewProps & { Fountain: React.ReactNode }> = ({
   Fountain,
 }) => {
   return (
-    <div className="column-center upload-preview">
+    <div className={classNames(styles.uploadPreview, "column-center")}>
       {Fountain}
       Uploading {name}...
       <ProgressBar progress={percent} />
@@ -277,15 +278,15 @@ const Preview: React.FC<IPreviewProps & { Fountain: React.ReactNode }> = ({
 const InputContent: React.FC<{ rejected: boolean }> = ({ rejected }) => {
   if (rejected) {
     return (
-      <div className="centered-content upload-input-rejected">
+      <div className={classNames(styles.uploadInputRejected, "centered-content")}>
         Image files only!
       </div>
     );
   }
 
   return (
-    <div className="column-center upload-input">
-      <div className="centered-content upload-input-icon">
+    <div className={classNames(styles.uploadInput, "column-center")}>
+      <div className={classNames(styles.uploadInputIcon, "centered-content")}>
         <IoMdCloudUpload size={45} />{" "}
       </div>
       <div>
@@ -319,7 +320,7 @@ const FullUpload: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return (
     <div style={{ height: "100%", width: "100%" }} className="column-center">
       <CloseButton onClick={onClose} />
-      <div className="upload-header">Please upload your photo</div>
+      <div className={styles.uploadHeader}>Please upload your photo</div>
 
       <Dropzone
         accept="image/*"
@@ -331,8 +332,8 @@ const FullUpload: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         PreviewComponent={(args) => <Preview {...args} Fountain={Fountain} />}
         onChangeStatus={handleChangeStatus}
         addClassNames={{
-          dropzone: "upload-dropzone",
-          dropzoneReject: "upload-dropzone-reject",
+          dropzone: styles.uploadDropzone,
+          dropzoneReject: styles.uploadDropzoneReject,
         }}
       />
     </div>
@@ -341,8 +342,8 @@ const FullUpload: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
 const FullModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return (
-    <div className="upload-modal">
-      <div className="upload-modal-dropzone">
+    <div className={styles.uploadModal}>
+      <div className={styles.uploadModalDropzone}>
         <FullUpload onClose={onClose} />
       </div>
     </div>

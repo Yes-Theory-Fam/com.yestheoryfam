@@ -2,14 +2,15 @@ import * as React from "react";
 import { PhotoWallLayoutProps, LayoutProps } from "../PhotoWallLayoutTypes";
 import PhotoWrapper from "../PhotoWrapper/PhotoWrapper";
 
-import "./OneFourLayout.scss";
+import styles from "./OneFourLayout.module.scss";
+import classNames from "classnames";
 
 const OneFourLayout: React.FC<LayoutProps> = ({ images }) => {
   const sources = images.map(({ src }) => src);
 
   return (
-    <div className="of-layout layout-row">
-      <PhotoWrapper className="big" src={sources[0]} />
+    <div className={classNames(styles.ofLayout, "layout-row")}>
+      <PhotoWrapper className={styles.big} src={sources[0]} />
       <PhotoWrapper src={sources[1]} />
       <PhotoWrapper src={sources[2]} />
       <PhotoWrapper src={sources[3]} />

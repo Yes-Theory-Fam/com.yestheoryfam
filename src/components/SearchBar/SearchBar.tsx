@@ -1,7 +1,8 @@
 import * as React from "react";
 import { IoMdClose, IoMdSearch } from "react-icons/io";
 
-import "./SearchBar.scss";
+import styles from "./SearchBar.module.scss";
+import classNames from "classnames";
 
 const YES_THEORY_BLUE = "rgb(1, 102, 255)";
 
@@ -36,8 +37,8 @@ const SearchBar: React.FC<{
     setSearch((ev.target as HTMLInputElement).value);
 
   return (
-    <div className={`column ${containerClassName}`}>
-      <div className={`search-bar-searching ${hasInput ? "" : "hidden"}`}>
+    <div className={classNames("column", containerClassName)}>
+      <div className={classNames(styles.searchBarSearching, {[styles.hidden]: !hasInput})}>
         Searching...
       </div>
       <div className={`centered-content`}>
@@ -48,17 +49,17 @@ const SearchBar: React.FC<{
           onInput={onInput}
           type="text"
           placeholder={placeholder}
-          className={`search-bar ${searchBarClassName}`}
+          className={classNames(styles.searchBar, searchBarClassName)}
         />
-        <div className={"search-bar-icon"}>
+        <div className={styles.searchBarIcon}>
           {hasInput ? (
             <IoMdClose
               onClick={clearSearch}
-              className="pointer search-bar-icon"
+              className={classNames(styles.pointer, styles.searchBarIcon)}
               {...iconProps}
             />
           ) : (
-            <IoMdSearch className="search-bar-icon" {...iconProps} />
+            <IoMdSearch className={styles.searchBarIcon} {...iconProps} />
           )}
         </div>
       </div>
