@@ -1,6 +1,5 @@
 import * as React from "react";
 import styles from "./Aboutus.module.scss";
-import { IoIosArrowDown } from "react-icons/io";
 import { IconBaseProps } from "react-icons";
 
 import { team, Socials, TeamMember, platforms } from "./Team";
@@ -8,6 +7,7 @@ import { introduction, why } from "./copy";
 
 import BehindTheProject from "../../assets/behindtheproject.png";
 import classNames from "classnames";
+import ScrollForAction from "../../components/ScrollForAction/ScrollForAction";
 
 const SocialIcon: React.FC<{
   Icon: React.JSXElementConstructor<IconBaseProps>;
@@ -83,23 +83,11 @@ const TopContent: React.FC = () => {
 const AboutUs: React.FC = () => {
   const headerRef = React.useRef() as React.RefObject<HTMLDivElement>;
 
-  // TODO NavBar selector - Gotta fix this when extracting to its own component
-  const scrollToAction = () => {
-    const yOffset = -(document.querySelector(".nav-bar")?.getBoundingClientRect()?.height ?? 100);
-    const y = (headerRef.current?.getBoundingClientRect()?.top ?? 0) + window.pageYOffset + yOffset;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
   return (
     <div className={classNames(styles.aboutUs, "column-center")}>
       <div className={classNames(styles.aboutUsTop, "column-center")}>
         <TopContent />
-        <div className={classNames(styles.scrollForMore, "column-center")} onClick={scrollToAction}>
-          MEET THE TEAM
-          <div className={styles.expandContainer}>
-            <IoIosArrowDown size={20} />
-          </div>
-        </div>
+        <ScrollForAction callText={"MEET THE TEAM"} scrollToRef={headerRef} />
       </div>
       <div className={classNames(styles.aboutUsPeople, "column")}>
         <div className={styles.aboutUsHeader} ref={headerRef}>

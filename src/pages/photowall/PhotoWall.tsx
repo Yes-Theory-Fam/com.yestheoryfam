@@ -10,7 +10,7 @@ import "react-image-lightbox/style.css";
 import { PhotoProps } from "../../components/PhotoWallLayouts/PhotoWallLayoutTypes";
 import UploadDropzone from "../../components/UploadDropzone/UploadDropzone";
 
-import { IoIosArrowDown } from "react-icons/io";
+import ScrollForAction from "../../components/ScrollForAction/ScrollForAction";
 
 const InitialContent: React.FC<{ onButtonClick: () => void }> = ({ onButtonClick }) => {
   return (
@@ -50,12 +50,7 @@ const PhotoWall: React.FC<{}> = () => {
           <div></div>
           {/* div required here to have space-between sort everything out */}
           <InitialContent onButtonClick={() => setShowModal(true)} />
-          <div className={classNames(styles.scrollForMore, "column-center")}>
-            SEE ALL PHOTOS
-            <div className={styles.expandContainer}>
-              <IoIosArrowDown size={20} />
-            </div>
-          </div>
+          <ScrollForAction callText={"SEE ALL PHOTOS"} />
         </div>
 
         <div className={styles.photoWallList}>

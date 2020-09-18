@@ -3,9 +3,9 @@ import styles from "./Home.module.scss";
 import classNames from "classnames";
 import cloudBig from "../../assets/cloudBig.png";
 import cloudBot from "../../assets/cloudBot.png";
-import { IoIosArrowDown } from "react-icons/io";
 
 import HomeEntry from "../../components/HomeEntry/HomeEntry";
+import ScrollForAction from "../../components/ScrollForAction/ScrollForAction";
 
 const Content: React.FC = () => {
   return (
@@ -55,12 +55,7 @@ const Home: React.FC = () => {
           <div style={{ maxWidth: "100vw", overflow: "hidden" }} className={styles.cloud}>
             <img src={cloudBig} className={classNames(styles.cloudR, styles.bigFront)} />
           </div>
-          <div className={classNames(styles.scrollForMore, "column-center")}>
-            SCROLL FOR MORE
-            <div className={styles.expandContainer}>
-              <IoIosArrowDown size={20} />
-            </div>
-          </div>
+          <ScrollForAction callText={"SCROLL FOR MORE"} />
         </div>
         <Content />
       </div>

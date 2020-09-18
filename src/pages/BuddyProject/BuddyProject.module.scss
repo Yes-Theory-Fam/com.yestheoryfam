@@ -8,18 +8,6 @@
     @include common.phone-landscape-specific {
       height: 100%;
     }
-
-    & .scroll-for-more {
-      width: 100vw;
-      margin-bottom: 20px;
-      color: common.$yesTheoryBlue;
-      z-index: 500;
-      font-size: 14px;
-
-      @include common.phone-landscape-specific {
-        position: static;
-      }
-    }
   }
 
   &-bottom {
@@ -286,10 +274,4 @@
     cursor: pointer;
     color: common.$yesTheoryBlue;
   }
-}
-
-.expand-container {
-  margin-top: 9px;
-  height: 15px;
-  width: 15px;
 }

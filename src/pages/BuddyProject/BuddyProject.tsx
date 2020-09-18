@@ -1,5 +1,4 @@
 import * as React from "react";
-import { IoIosArrowDown } from "react-icons/io";
 import { UserContext } from "../../UserContext";
 import { initDb, buddyProjectSignup, fetchBuddyProjectSignup } from "./buddyprojectFirebase";
 import styles from "./BuddyProject.module.scss";
@@ -12,6 +11,7 @@ import CutestBotEver from "../../assets/yesbot-yougotmail_bluetint.png";
 import BackendApi from "../../apis/backend";
 import { SuccessModalToDiscord } from "./SuccessfulSignUpModal";
 import { Link } from "react-router-dom";
+import ScrollForAction from "../../components/ScrollForAction/ScrollForAction";
 
 enum SIGNED_UP_STATE {
   NOT_LOADED,
@@ -46,13 +46,6 @@ const BuddyProject: React.FC<{}> = () => {
 
   const { user } = React.useContext(UserContext);
 
-  // TODO fix selector - done when moving this to standalone component
-  const scrollToAction = () => {
-    const yOffset = -(document.querySelector(".nav-bar")?.getBoundingClientRect()?.height ?? 100);
-    const y = (signupRef.current?.getBoundingClientRect()?.top ?? 0) + window.pageYOffset + yOffset;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
   React.useEffect(() => {
     initDb();
     if (user && SIGNED_UP_STATE.LOADING) {
@@ -68,12 +61,7 @@ const BuddyProject: React.FC<{}> = () => {
         <div />
         {/* div required here to have space-between sort everything out */}
         <InitialContent />
-        <div onClick={scrollToAction} className={classNames(styles.scrollForMore, "column-center")}>
-          GET INVOLVED
-          <div className={styles.expandContainer}>
-            <IoIosArrowDown size={20} />
-          </div>
-        </div>
+        <ScrollForAction callText={"GET INVOLVED"} scrollToRef={signupRef} />
       </div>
       <div ref={signupRef} className={classNames(styles.buddyProjectBottom, "column-center")}>
         <SignupProcess user={user} bpSignupStatus={bpStatus} setSignupStatus={setBPStatus} />

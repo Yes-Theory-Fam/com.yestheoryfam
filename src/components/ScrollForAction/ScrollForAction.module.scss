@@ -1,0 +1,19 @@
+@use 'src/common';
+
+.expand-container {
+  margin-top: 9px;
+  height: 15px;
+  width: 15px;
+}
+
+.scroll-for-more {
+  width: 100vw;
+  margin-bottom: 20px;
+  color: common.$yesTheoryBlue;
+  z-index: 500;
+  font-size: 14px;
+}
+
+.pointer {
+  cursor: pointer;
+}
