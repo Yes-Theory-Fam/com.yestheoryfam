@@ -10,7 +10,7 @@ const DoubleRowLayout: React.FC<LayoutProps> = ({ images }) => {
   const [selectedHorizontal, , otherImages] = splitImages(images, 2, 0);
 
   return (
-    <div className={classNames(styles.drLayout, "layout-row")}>
+    <div className={classNames(styles.drLayout, "photowall-layout-row")}>
       <PhotoWrapper className={styles.long1} src={selectedHorizontal[0].src} />
       <PhotoWrapper src={otherImages[0].src} />
       <PhotoWrapper src={otherImages[1].src} />

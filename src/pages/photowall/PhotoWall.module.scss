@@ -1,7 +1,6 @@
 @use '../../common';
 
-// TODO Rename to make more specific
-:global(.layout-row) {
+:global(.photowall-layout-row) {
   display: grid;
   gap: 1vh;
 

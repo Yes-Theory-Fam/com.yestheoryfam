@@ -65,8 +65,7 @@ const VotingButtons: React.FC<{
   const [isVisible, setIsVisible] = React.useState(false);
   const checkForMod = async () => {
     const response = await BackendApi().get("/is-mod");
-    if (response.status === 200) return true;
-    return false;
+    return response.status === 200;
   };
 
   React.useEffect(() => {

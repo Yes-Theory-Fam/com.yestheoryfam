@@ -34,13 +34,10 @@ const InitialContent = () => (
 
 const registerToDiscord = async () => {
   const response = await BackendApi().post(`/bot-actions/add-user`);
-  if (response.status === 200) {
-    return true;
-  }
-  return false;
+  return response.status === 200;
 };
 
-const BuddyProject: React.FC<{}> = () => {
+const BuddyProject: React.FC = () => {
   const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
   const [bpStatus, setBPStatus] = React.useState(SIGNED_UP_STATE.LOADING);
 
@@ -148,10 +145,9 @@ const renderBPNextStepButton = (
       );
     default:
       return (
-        // TODO Link
-        <a href="/auth/discord" className={classNames(styles.selfCenter, "button inverted")}>
+        <Link to="/auth/discord" className={classNames(styles.selfCenter, "button inverted")}>
           Login with Discord!
-        </a>
+        </Link>
       );
   }
 };

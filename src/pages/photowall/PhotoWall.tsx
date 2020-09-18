@@ -27,7 +27,7 @@ const InitialContent: React.FC<{ onButtonClick: () => void }> = ({ onButtonClick
   );
 };
 
-const PhotoWall: React.FC<{}> = () => {
+const PhotoWall: React.FC = () => {
   // This should be temporary until state management is done properly. I am just pretty sure I need a state here to handle loading of the images.
   const [builtLayouts, setLayouts] = React.useState<Array<React.ReactNode>>([]);
   const [showModal, setShowModal] = React.useState(false);

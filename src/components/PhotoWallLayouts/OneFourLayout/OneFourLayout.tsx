@@ -9,7 +9,7 @@ const OneFourLayout: React.FC<LayoutProps> = ({ images }) => {
   const sources = images.map(({ src }) => src);
 
   return (
-    <div className={classNames(styles.ofLayout, "layout-row")}>
+    <div className={classNames(styles.ofLayout, "photowall-layout-row")}>
       <PhotoWrapper className={styles.big} src={sources[0]} />
       <PhotoWrapper src={sources[1]} />
       <PhotoWrapper src={sources[2]} />

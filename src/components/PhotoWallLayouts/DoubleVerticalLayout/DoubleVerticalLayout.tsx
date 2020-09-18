@@ -10,7 +10,7 @@ const DoubleVerticalLayout: React.FC<LayoutProps> = ({ images }) => {
   const [, chosenVerticals, otherImages] = splitImages(images, 0, 2);
 
   return (
-    <div className={classNames(styles.dvLayout, "layout-row")}>
+    <div className={classNames(styles.dvLayout, "photowall-layout-row")}>
       <PhotoWrapper className={styles.tall} src={chosenVerticals[0].src} />
       <PhotoWrapper src={otherImages[0].src} />
       <PhotoWrapper src={otherImages[1].src} />
