@@ -23,8 +23,7 @@ function initializeFirebase() {
   return _db;
 }
 
-export const initDb: () => firebase.firestore.Firestore = () =>
-  _db === null ? initializeFirebase() : _db;
+export const initDb: () => firebase.firestore.Firestore = () => (_db === null ? initializeFirebase() : _db);
 
 export interface BuddyProjectSignup {
   discordUserId: string;
@@ -37,18 +36,11 @@ async function documentExists(id: string) {
     console.error("The database needs to be initialized first!");
     throw new Error("The database needs to be initialized first!");
   }
-  const buddyDoc = await _db
-    .collection("buddyproject")
-    .doc(id)
-    .get();
+  const buddyDoc = await _db.collection("buddyproject").doc(id).get();
   return buddyDoc.exists;
 }
 
-export async function buddyProjectSignup(
-  discordUsername: string,
-  displayName: string,
-  discordUserId: string
-) {
+export async function buddyProjectSignup(discordUsername: string, displayName: string, discordUserId: string) {
   if (_db === null) {
     console.error("The database needs to be initialized first!");
     throw new Error("The database needs to be initialized first!");
@@ -70,9 +62,7 @@ export async function buddyProjectSignup(
   return true;
 }
 
-export async function fetchBuddyProjectSignup(
-  discordUserId: string
-): Promise<BuddyProjectSignup | null> {
+export async function fetchBuddyProjectSignup(discordUserId: string): Promise<BuddyProjectSignup | null> {
   if (_db === null) {
     console.error("The database needs to be initialized first!");
     return null;

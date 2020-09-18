@@ -8,11 +8,7 @@ import styles from "./VerticalLeftLayout.module.scss";
 import classNames from "classnames";
 
 const VerticalLeftLayout: React.FC<LayoutProps> = ({ images }) => {
-  const [[chosenHorizontal], [chosenVertical], otherImages] = splitImages(
-    images,
-    1,
-    1
-  );
+  const [[chosenHorizontal], [chosenVertical], otherImages] = splitImages(images, 1, 1);
 
   return (
     <div className={classNames(styles.vlLayout, "layout-row")}>

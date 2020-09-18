@@ -1,9 +1,5 @@
 import * as React from "react";
-import Dropzone, {
-  IPreviewProps,
-  IFileWithMeta,
-  StatusValue,
-} from "react-dropzone-uploader";
+import Dropzone, { IPreviewProps, IFileWithMeta, StatusValue } from "react-dropzone-uploader";
 import { CSSTransition } from "react-transition-group";
 import { toast } from "react-toastify";
 
@@ -134,14 +130,7 @@ const AnimatedYes: React.FC<{
   endFontSize: number;
   xOffset: number;
   yesContent: string;
-}> = ({
-  direction,
-  startingOpacity,
-  endOpacity,
-  endFontSize,
-  xOffset,
-  yesContent,
-}) => {
+}> = ({ direction, startingOpacity, endOpacity, endFontSize, xOffset, yesContent }) => {
   const [inProp, setInProp] = React.useState(false);
 
   const defaultStyle: React.CSSProperties = {
@@ -178,10 +167,7 @@ const AnimatedYes: React.FC<{
   return (
     <CSSTransition in={inProp} timeout={2500}>
       {(state) => (
-        <div
-          style={{ ...defaultStyle, ...transitionStyles[state] }}
-          className={styles.uploadFountainYes}
-        >
+        <div style={{ ...defaultStyle, ...transitionStyles[state] }} className={styles.uploadFountainYes}>
           {yesContent}
         </div>
       )}
@@ -190,9 +176,7 @@ const AnimatedYes: React.FC<{
 };
 
 const YesFountain: React.FC = () => {
-  const [activeWords, setActiveWords] = React.useState<Array<React.ReactNode>>(
-    []
-  );
+  const [activeWords, setActiveWords] = React.useState<Array<React.ReactNode>>([]);
 
   // Using useRef to create a mutable object that is retained between renders
   // And more importantly not prone to the issue with closures.
@@ -262,10 +246,7 @@ const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
 
 // The Fountain has to be passed in as full component because the Preview is rerendered with each percentage change
 // therefore resetting the fountain
-const Preview: React.FC<IPreviewProps & { Fountain: React.ReactNode }> = ({
-  meta: { percent, name },
-  Fountain,
-}) => {
+const Preview: React.FC<IPreviewProps & { Fountain: React.ReactNode }> = ({ meta: { percent, name }, Fountain }) => {
   return (
     <div className={classNames(styles.uploadPreview, "column-center")}>
       {Fountain}
@@ -277,11 +258,7 @@ const Preview: React.FC<IPreviewProps & { Fountain: React.ReactNode }> = ({
 
 const InputContent: React.FC<{ rejected: boolean }> = ({ rejected }) => {
   if (rejected) {
-    return (
-      <div className={classNames(styles.uploadInputRejected, "centered-content")}>
-        Image files only!
-      </div>
-    );
+    return <div className={classNames(styles.uploadInputRejected, "centered-content")}>Image files only!</div>;
   }
 
   return (
@@ -297,10 +274,7 @@ const InputContent: React.FC<{ rejected: boolean }> = ({ rejected }) => {
 };
 
 const FullUpload: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-  const handleChangeStatus = (
-    { meta, remove }: IFileWithMeta,
-    status: StatusValue
-  ) => {
+  const handleChangeStatus = ({ meta, remove }: IFileWithMeta, status: StatusValue) => {
     if (status === "headers_received") {
       toast.success(`${meta.name} uploaded!`, {
         position: "top-right",

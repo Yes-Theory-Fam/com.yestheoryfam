@@ -103,10 +103,7 @@ const ReasoningModal: React.FC<{
       <div className={classNames(styles.reasoningModalBody, "column-center")}>
         <div className={classNames(styles.reasoningModalTop, "row")}>
           Reason for rejection
-          <div
-            className={classNames(styles.reasoningModalCloseButton, "centered-content")}
-            onClick={closeFunction}
-          >
+          <div className={classNames(styles.reasoningModalCloseButton, "centered-content")} onClick={closeFunction}>
             <IoMdClose size={22} />
           </div>
         </div>
@@ -127,11 +124,7 @@ const ReasoningModal: React.FC<{
   );
 };
 
-export type BlogRouteProps = RouteComponentProps<
-  { id: string },
-  {},
-  IBlogProps | null
->;
+export type BlogRouteProps = RouteComponentProps<{ id: string }, {}, IBlogProps | null>;
 
 const Blog: React.FC<
   BlogRouteProps & {
@@ -154,15 +147,7 @@ const Blog: React.FC<
     return <></>; // TODO Loading indicator
   }
 
-  const {
-    titleImage,
-    title,
-    authorName,
-    readTime,
-    blogContent,
-    isPublic,
-    id: blogId,
-  } = blogData;
+  const { titleImage, title, authorName, readTime, blogContent, isPublic, id: blogId } = blogData;
   const userIsMod = true;
 
   if (isPublic && preview) {
@@ -174,12 +159,7 @@ const Blog: React.FC<
 
   return (
     <>
-      {explanationVisible && (
-        <ReasoningModal
-          onClose={() => setExplanationVisible(false)}
-          previewId={id}
-        />
-      )}
+      {explanationVisible && <ReasoningModal onClose={() => setExplanationVisible(false)} previewId={id} />}
       <div className="column-center">
         <div className={classNames(styles.blog, "column-center")}>
           <div className={styles.blogPreviewTitleimage}>
@@ -195,11 +175,7 @@ const Blog: React.FC<
         </div>
         {!preview && <BlogSuggestions />}
         {preview && userIsMod && (
-          <VotingButtons
-            previewId={id}
-            blog={blogData}
-            onDeny={() => setExplanationVisible(true)}
-          />
+          <VotingButtons previewId={id} blog={blogData} onDeny={() => setExplanationVisible(true)} />
         )}
       </div>
     </>

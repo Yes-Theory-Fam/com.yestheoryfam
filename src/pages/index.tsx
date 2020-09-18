@@ -36,18 +36,10 @@ const MeetupRouting = ({ match: { url } }: { match: { url: string } }) => (
 
 const BlogRouting = ({ match: { url } }: { match: { url: string } }) => (
   <>
-    <Route
-      path={`${url}/preview/:id`}
-      exact
-      render={(props: BlogRouteProps) => <Blog {...props} preview />}
-    />
+    <Route path={`${url}/preview/:id`} exact render={(props: BlogRouteProps) => <Blog {...props} preview />} />
     <Switch>
       <Route path={`${url}/write`} exact component={Playground} />
-      <Route
-        path={`${url}/:id`}
-        exact
-        render={(props: BlogRouteProps) => <Blog {...props} />}
-      />
+      <Route path={`${url}/:id`} exact render={(props: BlogRouteProps) => <Blog {...props} />} />
     </Switch>
     <Route path={`${url}/`} exact component={BlogOverview} />
   </>

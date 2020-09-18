@@ -9,13 +9,9 @@ const paragraphs = [
     </Link>
   </div>,
   <div key="p2">
-    Please note that this page is under heavy construction so new features will
-    pop up soon when everything is set up!
+    Please note that this page is under heavy construction so new features will pop up soon when everything is set up!
   </div>,
-  <div key="p3">
-    We are looking forward to having you back when our photowall, meetups and
-    groupchats launch.
-  </div>,
+  <div key="p3">We are looking forward to having you back when our photowall, meetups and groupchats launch.</div>,
   <div key="p4">While you are waiting, check out our Discord server!</div>,
 ];
 

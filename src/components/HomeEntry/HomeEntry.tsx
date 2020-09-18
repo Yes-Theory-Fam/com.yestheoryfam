@@ -10,12 +10,7 @@ interface IHomeEntryProps {
   headerBlueText: string;
 }
 
-const HomeEntry: React.FC<IHomeEntryProps> = ({
-  imageSide,
-  headerBlackText,
-  headerBlueText,
-  children,
-}) => {
+const HomeEntry: React.FC<IHomeEntryProps> = ({ imageSide, headerBlackText, headerBlueText, children }) => {
   return (
     <div
       className={classNames(styles.entry, {
@@ -25,10 +20,7 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({
     >
       <img src={`https://picsum.photos/674/674?a=${headerBlackText}`} />
       <div className={classNames(styles.entryTextContent, "column")}>
-        <EntryHeader
-          headerBlackText={headerBlackText}
-          headerBlueText={headerBlueText}
-        />
+        <EntryHeader headerBlackText={headerBlackText} headerBlueText={headerBlueText} />
         <div className={styles.entrySummary}>{children}</div>
         <Link to="/" className="button">
           READ MORE

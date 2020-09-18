@@ -12,18 +12,15 @@ import UploadDropzone from "../../components/UploadDropzone/UploadDropzone";
 
 import { IoIosArrowDown } from "react-icons/io";
 
-const InitialContent: React.FC<{ onButtonClick: () => void }> = ({
-  onButtonClick,
-}) => {
+const InitialContent: React.FC<{ onButtonClick: () => void }> = ({ onButtonClick }) => {
   return (
     <div className={classNames(styles.photoWallTopContent, "column-center")}>
       <div className="page-header">
         PHOTO<div className="inline-blue">WALL</div>
       </div>
       <div className={styles.photoWallTopText}>
-        Become a part of the story by sharing your photographs from the last
-        event on our photowall. The more people can see it, the more people will
-        get involved next time. Make the FOMO be real!
+        Become a part of the story by sharing your photographs from the last event on our photowall. The more people can
+        see it, the more people will get involved next time. Make the FOMO be real!
       </div>
       <button onClick={onButtonClick}>BE PART OF THE STORY</button>
     </div>
@@ -48,7 +45,7 @@ const PhotoWall: React.FC<{}> = () => {
   return (
     <>
       {showModal && <UploadDropzone onClose={() => setShowModal(false)} />}
-      <div className={classNames("column-center", {[styles.blur] : showModal})}>
+      <div className={classNames("column-center", { [styles.blur]: showModal })}>
         <div className={classNames(styles.photoWallTop, "column-center")}>
           <div></div>
           {/* div required here to have space-between sort everything out */}
@@ -69,12 +66,8 @@ const PhotoWall: React.FC<{}> = () => {
   );
 };
 
-const getNextBuiltLayout = async (
-  images: Array<string>
-): Promise<React.ReactNode> => {
-  const availableLayouts = layouts.filter(
-    ({ props }) => props.totalImages <= images.length
-  );
+const getNextBuiltLayout = async (images: Array<string>): Promise<React.ReactNode> => {
+  const availableLayouts = layouts.filter(({ props }) => props.totalImages <= images.length);
 
   console.log("Filtered layouts: ");
   console.log(availableLayouts);
@@ -82,11 +75,7 @@ const getNextBuiltLayout = async (
   // Using that layout makes it easy to get a proper end to the list based on how the layout is structured
   // It also doesn't cause chaos or strange alignments because all of the images end up roughly square in the final layout anyway
   if (availableLayouts.length === 0) {
-    const restLayout = (
-      <OneFourLayout
-        images={images.map((src) => ({ src, orientation: "square" }))}
-      />
-    );
+    const restLayout = <OneFourLayout images={images.map((src) => ({ src, orientation: "square" }))} />;
     images.length = 0;
     return restLayout;
   }
@@ -96,9 +85,7 @@ const getNextBuiltLayout = async (
 
   if (layout === undefined) {
     console.log("Layout object undefined! Relevant values include: ");
-    console.log(
-      `availableLayouts: ${availableLayouts}, choice: ${choice}, images remaining: ${images.length}`
-    );
+    console.log(`availableLayouts: ${availableLayouts}, choice: ${choice}, images remaining: ${images.length}`);
     console.log("Cleaning images and returning to avoid issues downstream!");
     images.length = 0;
     return;
@@ -121,22 +108,13 @@ const getNextBuiltLayout = async (
 
   console.log(`Loading orientations for ${pickedImages.length} images...`);
 
-  const photoProps = await Promise.all(
-    pickedImages.map((img) => getOrientation(img))
-  );
+  const photoProps = await Promise.all(pickedImages.map((img) => getOrientation(img)));
 
-  const pickedHorizontal = photoProps.filter(
-    ({ orientation }) => orientation === "horizontal"
-  ).length;
+  const pickedHorizontal = photoProps.filter(({ orientation }) => orientation === "horizontal").length;
 
-  const pickedVertical = photoProps.filter(
-    ({ orientation }) => orientation === "vertical"
-  ).length;
+  const pickedVertical = photoProps.filter(({ orientation }) => orientation === "vertical").length;
 
-  if (
-    pickedHorizontal >= horizontalImages &&
-    pickedVertical >= verticalImages
-  ) {
+  if (pickedHorizontal >= horizontalImages && pickedVertical >= verticalImages) {
     return <LayoutComponent images={photoProps} />;
   }
 
@@ -160,38 +138,31 @@ const getNextBuiltLayout = async (
 // Data-use-wise I probably shouldn't just discard those loaded images.
 // Unless they are cached. In which case I would have won. Which would be nice.
 const getOrientation = (url: string): Promise<PhotoProps> => {
-  const orientationPromise: Promise<PhotoProps> = new Promise(
-    (resolve, reject) => {
-      const img = new Image();
+  const orientationPromise: Promise<PhotoProps> = new Promise((resolve, reject) => {
+    const img = new Image();
 
-      img.addEventListener("load", function () {
-        const height = this.naturalHeight;
-        const width = this.naturalWidth;
+    img.addEventListener("load", function () {
+      const height = this.naturalHeight;
+      const width = this.naturalWidth;
 
-        if (height === width)
-          return resolve({ src: url, orientation: "square" });
-        if (height > width)
-          return resolve({ src: url, orientation: "vertical" });
-        if (height < width)
-          return resolve({ src: url, orientation: "horizontal" });
+      if (height === width) return resolve({ src: url, orientation: "square" });
+      if (height > width) return resolve({ src: url, orientation: "vertical" });
+      if (height < width) return resolve({ src: url, orientation: "horizontal" });
 
-        console.log(`height: ${height} - width: ${width} - url: ${url}`);
-      });
+      console.log(`height: ${height} - width: ${width} - url: ${url}`);
+    });
 
-      img.src = url;
+    img.src = url;
 
-      // setTimeout(() => reject(`Timeout loading image with URL ${url}!`), 2000);
-    }
-  );
+    // setTimeout(() => reject(`Timeout loading image with URL ${url}!`), 2000);
+  });
 
   return orientationPromise;
 };
 
 const randomImages = Array(27)
   .fill(undefined)
-  .map(
-    () => `https://picsum.photos/${randomInt(260, 900)}/${randomInt(260, 900)}`
-  );
+  .map(() => `https://picsum.photos/${randomInt(260, 900)}/${randomInt(260, 900)}`);
 
 // const randomImages = [
 //   "https://i.picsum.photos/id/425/431/619.jpg",

@@ -2,9 +2,8 @@ import { FC, useEffect } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
 const savePage = (currentPage: string) => {
-  if (!currentPage.includes("auth"))
-    localStorage.setItem("current_page", currentPage);
-}
+  if (!currentPage.includes("auth")) localStorage.setItem("current_page", currentPage);
+};
 
 // Saves the current path in localstorage when the page is loaded or changed
 // Excluding auth routes

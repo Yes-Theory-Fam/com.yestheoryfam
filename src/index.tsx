@@ -4,12 +4,7 @@ import * as ReactDOM from "react-dom";
 import "./reset.css";
 import "./index.scss";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import DiscordAuthenticationRequest from "./components/DiscordAuthenticationRequest/DiscordAuthenticationRequest";
 import DiscordAuthenticationCallback from "./components/DiscordAuthenticationCallback/DiscordAuthenticationCallback";
@@ -56,16 +51,8 @@ const App = () => {
       <UserContext.Provider value={{ user, setUser }}>
         <NavBar fixed />
         <Switch>
-          <Route
-            path="/auth/discord"
-            exact
-            component={DiscordAuthenticationRequest}
-          />
-          <Route
-            path="/oauth/redirect"
-            exact
-            component={DiscordAuthenticationCallback}
-          />
+          <Route path="/auth/discord" exact component={DiscordAuthenticationRequest} />
+          <Route path="/oauth/redirect" exact component={DiscordAuthenticationCallback} />
           {availablePages.map((page) => (
             <Route path={"/" + page.path} {...page.component} key={page.path} />
           ))}

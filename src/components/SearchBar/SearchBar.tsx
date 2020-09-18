@@ -12,13 +12,7 @@ const SearchBar: React.FC<{
   placeholder: string;
   containerClassName: string;
   searchBarClassName: string;
-}> = ({
-  setSearch,
-  hasInput,
-  placeholder,
-  containerClassName,
-  searchBarClassName,
-}) => {
+}> = ({ setSearch, hasInput, placeholder, containerClassName, searchBarClassName }) => {
   const searchBar = React.useRef<HTMLInputElement | null>(null);
 
   const [hasFocus, setFocus] = React.useState(false);
@@ -33,14 +27,11 @@ const SearchBar: React.FC<{
   const iconColor = hasFocus ? YES_THEORY_BLUE : "#8C8C8C";
   const iconProps = { color: iconColor, size: 20 };
 
-  const onInput = (ev: React.FormEvent<HTMLInputElement>) =>
-    setSearch((ev.target as HTMLInputElement).value);
+  const onInput = (ev: React.FormEvent<HTMLInputElement>) => setSearch((ev.target as HTMLInputElement).value);
 
   return (
     <div className={classNames("column", containerClassName)}>
-      <div className={classNames(styles.searchBarSearching, {[styles.hidden]: !hasInput})}>
-        Searching...
-      </div>
+      <div className={classNames(styles.searchBarSearching, { [styles.hidden]: !hasInput })}>Searching...</div>
       <div className={`centered-content`}>
         <input
           ref={searchBar}

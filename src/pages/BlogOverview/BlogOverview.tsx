@@ -64,10 +64,7 @@ const FeaturedArticle: React.FC<{ blog: IBlogProps }> = ({ blog }) => {
   );
 };
 
-const Remark: React.FC<{ author: string; time: number }> = ({
-  author,
-  time,
-}) => {
+const Remark: React.FC<{ author: string; time: number }> = ({ author, time }) => {
   return (
     <div className={styles.blogOverviewRemark}>
       {author} - {time} min read
@@ -120,8 +117,7 @@ const OtherArticleTile: React.FC<{ blog: IBlogProps }> = ({ blog }) => {
 
 const getBlogs = async () => {
   const response = await BackendApi().get("/blogs");
-  if (response.status !== 200)
-    throw "Couldn't fetch blogs; response: " + response;
+  if (response.status !== 200) throw "Couldn't fetch blogs; response: " + response;
 
   const fixedBlogs = response.data.map((blog: IBlogProps) => ({
     ...blog,

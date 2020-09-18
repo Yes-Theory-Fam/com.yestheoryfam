@@ -1,11 +1,7 @@
 import * as React from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { UserContext } from "../../UserContext";
-import {
-  initDb,
-  buddyProjectSignup,
-  fetchBuddyProjectSignup,
-} from "./buddyprojectFirebase";
+import { initDb, buddyProjectSignup, fetchBuddyProjectSignup } from "./buddyprojectFirebase";
 import styles from "./BuddyProject.module.scss";
 import classNames from "classnames";
 
@@ -31,8 +27,7 @@ const InitialContent = () => (
       <BuddyProjectLogo />
     </div>
     <div className={styles.buddyProjectText}>
-      Great things come to those who are willing to risk rejection and put
-      themselves out there.
+      Great things come to those who are willing to risk rejection and put themselves out there.
     </div>
   </div>
 );
@@ -53,13 +48,8 @@ const BuddyProject: React.FC<{}> = () => {
 
   // TODO fix selector - done when moving this to standalone component
   const scrollToAction = () => {
-    const yOffset = -(
-      document.querySelector(".nav-bar")?.getBoundingClientRect()?.height ?? 100
-    );
-    const y =
-      (signupRef.current?.getBoundingClientRect()?.top ?? 0) +
-      window.pageYOffset +
-      yOffset;
+    const yOffset = -(document.querySelector(".nav-bar")?.getBoundingClientRect()?.height ?? 100);
+    const y = (signupRef.current?.getBoundingClientRect()?.top ?? 0) + window.pageYOffset + yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
@@ -67,9 +57,7 @@ const BuddyProject: React.FC<{}> = () => {
     initDb();
     if (user && SIGNED_UP_STATE.LOADING) {
       fetchBuddyProjectSignup(user.id).then((signup) => {
-        setBPStatus(
-          signup ? SIGNED_UP_STATE.SIGNED_UP : SIGNED_UP_STATE.NOT_SIGNED_UP
-        );
+        setBPStatus(signup ? SIGNED_UP_STATE.SIGNED_UP : SIGNED_UP_STATE.NOT_SIGNED_UP);
       });
     }
   }, [user, setBPStatus]);
@@ -88,19 +76,13 @@ const BuddyProject: React.FC<{}> = () => {
         </div>
       </div>
       <div ref={signupRef} className={classNames(styles.buddyProjectBottom, "column-center")}>
-        <SignupProcess
-          user={user}
-          bpSignupStatus={bpStatus}
-          setSignupStatus={setBPStatus}
-        />
+        <SignupProcess user={user} bpSignupStatus={bpStatus} setSignupStatus={setBPStatus} />
       </div>
     </div>
   );
 };
 
-const SignupWelcome: React.FC<{ user: IDiscordUser | undefined }> = ({
-  user,
-}) => {
+const SignupWelcome: React.FC<{ user: IDiscordUser | undefined }> = ({ user }) => {
   const hi = user ? ` ${user.username}#${user.discriminator}` : "";
 
   return (
@@ -114,9 +96,8 @@ const SignupWelcome: React.FC<{ user: IDiscordUser | undefined }> = ({
           <div className="inline-blue">{hi}</div>!
         </div>
         <div className={styles.buddyProjectProcessIntroduction}>
-          An opportunity to get to know a person miles away from you, building a
-          new friendship, and discovering a new way of living, what’s not to
-          like?
+          An opportunity to get to know a person miles away from you, building a new friendship, and discovering a new
+          way of living, what’s not to like?
         </div>
       </div>
     </div>
@@ -132,10 +113,7 @@ const ProcessStep: React.FC<{ title: string }> = ({ title, children }) => {
   );
 };
 
-const buddyProjectRegister = (
-  user: IDiscordUser,
-  setSignupState: (val: SIGNED_UP_STATE) => void
-) => {
+const buddyProjectRegister = (user: IDiscordUser, setSignupState: (val: SIGNED_UP_STATE) => void) => {
   const { username, id } = user;
   buddyProjectSignup(username, username, id)
     .then(() =>
@@ -161,11 +139,7 @@ const renderBPNextStepButton = (
   switch (bpSignupStatus) {
     case SIGNED_UP_STATE.SIGNED_UP:
       // SIGNED_UP
-      return (
-        <a className={classNames(styles.selfCenter, "button inverted disabled")}>
-          You've already signed up!
-        </a>
-      );
+      return <a className={classNames(styles.selfCenter, "button inverted disabled")}>You've already signed up!</a>;
     case SIGNED_UP_STATE.NOT_SIGNED_UP:
       // IF USER LOGGED IN -> SIGN UP
       // IF USER NOT LOGGED IN -> LOGIN WITH DISCORD
@@ -186,7 +160,7 @@ const renderBPNextStepButton = (
       );
     default:
       return (
-          // TODO Link
+        // TODO Link
         <a href="/auth/discord" className={classNames(styles.selfCenter, "button inverted")}>
           Login with Discord!
         </a>
@@ -215,14 +189,9 @@ const SignupProcess: React.FC<{
         <ProcessStep title="How will it work?" children={howItWorks} />
       </div>
       {renderBPNextStepButton(user, bpSignupStatus, setSignupStatus)}
-      {bpSignupStatus === SIGNED_UP_STATE.SIGNED_UP &&
-        showToDiscordModal &&
-        user && (
-          <SuccessModalToDiscord
-            onClose={() => setShowToDiscordModal(false)}
-            username={user.username}
-          />
-        )}
+      {bpSignupStatus === SIGNED_UP_STATE.SIGNED_UP && showToDiscordModal && user && (
+        <SuccessModalToDiscord onClose={() => setShowToDiscordModal(false)} username={user.username} />
+      )}
     </div>
   );
 };

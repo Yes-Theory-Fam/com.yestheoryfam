@@ -13,11 +13,7 @@ const WorkInProgress: React.FC = () => {
         <img src={BehindTheProject} />
         <div className="page-header">Under construction</div>
         <div className={classNames(styles.wipContentParagraphs, "column-center")}>{paragraphs}</div>
-        <a
-          href="https://discord.gg/yestheory"
-          target="_blank"
-          className="button inverted"
-        >
+        <a href="https://discord.gg/yestheory" target="_blank" className="button inverted">
           JOIN NOW
         </a>
       </div>

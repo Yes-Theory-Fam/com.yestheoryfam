@@ -4,7 +4,7 @@ import { AiFillBehanceSquare } from "react-icons/ai";
 import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin, IoLogoTwitter, IoLogoDribbble } from "react-icons/io";
 import { FaArtstation } from "react-icons/fa";
 
-import { Jamie, Michel, Haakon, Dima, Shagun, Travis, Matej, Carola, Sara, Lea, YesBot } from './teamImages';
+import { Jamie, Michel, Haakon, Dima, Shagun, Travis, Matej, Carola, Sara, Lea, YesBot } from "./teamImages";
 
 export interface TeamMember {
   name: string;
@@ -28,46 +28,46 @@ type Available = keyof Socials;
 
 export interface Platform {
   name: string;
-  Icon: JSXElementConstructor<IconBaseProps>,
-  color: string,
+  Icon: JSXElementConstructor<IconBaseProps>;
+  color: string;
 }
 
 export const platforms: { [key in Available]: Platform } = {
-  "behance": {
+  behance: {
     name: "Behance",
     Icon: AiFillBehanceSquare,
-    color: '#053eff',
+    color: "#053eff",
   },
-  "dribble": {
+  dribble: {
     name: "Dribbble",
     Icon: IoLogoDribbble,
-    color: "#ea4c89"
+    color: "#ea4c89",
   },
-  "github": {
+  github: {
     name: "GitHub",
     Icon: IoLogoGithub,
-    color: '#4078c0'
+    color: "#4078c0",
   },
-  "ig": {
+  ig: {
     name: "Instagram",
     Icon: IoLogoInstagram,
-    color: '#fb3958'
+    color: "#fb3958",
   },
-  "linkedin": {
+  linkedin: {
     name: "LinkedIn",
     Icon: IoLogoLinkedin,
-    color: '#0e76a8'
+    color: "#0e76a8",
   },
-  "twitter": {
+  twitter: {
     name: "Twitter",
     Icon: IoLogoTwitter,
-    color: '#00acee',
+    color: "#00acee",
   },
-  "artstation": {
+  artstation: {
     name: "ArtStation",
     Icon: FaArtstation,
-    color: '#13AFF0',
-  }
+    color: "#13AFF0",
+  },
 };
 
 export const team: Array<TeamMember> = [
@@ -77,9 +77,9 @@ export const team: Array<TeamMember> = [
     quote: "This whole thing is starting to scare me.",
     title: "Project Manager",
     socials: {
-      ig: 'https://instagram.com/jamie_legg_/',
-      github: 'https://github.com/jamie-legg',
-      linkedin: 'https://linkedin.com/in/omnisjamie/',
+      ig: "https://instagram.com/jamie_legg_/",
+      github: "https://github.com/jamie-legg",
+      linkedin: "https://linkedin.com/in/omnisjamie/",
     },
   },
   {
@@ -156,7 +156,7 @@ export const team: Array<TeamMember> = [
       ig: "https://instagram.com/cludix.jpg/",
       linkedin: "https://linkedin.com/in/cludix",
       behance: "https://behance.net/cludix",
-      artstation: "https://artstation.com/cludix"
+      artstation: "https://artstation.com/cludix",
     },
   },
   {
@@ -167,7 +167,7 @@ export const team: Array<TeamMember> = [
     socials: {
       ig: "https://instagram.com/sara.olmzdh/",
       linkedin: "https://linkedin.com/in/sa-o/",
-      behance: 'https://behance.net/sa-o',
+      behance: "https://behance.net/sa-o",
     },
   },
   {

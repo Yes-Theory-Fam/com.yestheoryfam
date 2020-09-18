@@ -38,9 +38,7 @@ const EditableTitle: React.FC<{
     </div>
   );
 
-  const placeHolder = (
-    <div className="blog-title placeholder">Type your post's title here...</div>
-  );
+  const placeHolder = <div className="blog-title placeholder">Type your post's title here...</div>;
 
   const displayTitle = displayedValue || hasFocus ? customTitle : placeHolder;
 

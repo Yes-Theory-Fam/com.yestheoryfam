@@ -1,4 +1,4 @@
-import { DeltaStatic } from 'quill';
+import { DeltaStatic } from "quill";
 
 export default interface IBlogProps {
   title: string;

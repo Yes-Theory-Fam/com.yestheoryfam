@@ -10,7 +10,7 @@ import DiscordLoginButton from "../DiscordLoginButton/DiscordLoginButton";
 
 import { CSSTransition } from "react-transition-group";
 import { TransitionStatus } from "react-transition-group/Transition";
-import classNames from 'classnames';
+import classNames from "classnames";
 
 const logout = () => {
   localStorage.clear();
@@ -25,13 +25,7 @@ const CurrentUser: React.FC = () => {
   return (
     <div className={classNames("column", styles.avatarContainer)}>
       <div className="row centered-content">
-        <img
-          src={imageUrl}
-          alt={user?.username}
-          className={styles.circleAvatar}
-          height="42"
-          width="42"
-        />
+        <img src={imageUrl} alt={user?.username} className={styles.circleAvatar} height="42" width="42" />
         <div className={styles.avatarUser}>
           {user?.username}#{user?.discriminator}
         </div>
@@ -43,10 +37,7 @@ const CurrentUser: React.FC = () => {
   );
 };
 
-const NavContent: React.FC<{ className: string }> = ({
-  className,
-  children,
-}) => {
+const NavContent: React.FC<{ className: string }> = ({ className, children }) => {
   return <div className={className}>{children}</div>;
 };
 
@@ -76,35 +67,25 @@ const HamburgerNav: React.FC<{
       <IoMdMenu size={42} onClick={onOpenButton} className={styles.hamburgerIcon} />
       <div
         style={{ ...defaultStyle, ...transitionStyles[open] }}
-        className={classNames(styles.sideDrawer, "column-center", { [styles.open]: open !== "exited"})}
+        className={classNames(styles.sideDrawer, "column-center", { [styles.open]: open !== "exited" })}
       >
         <div className={classNames(styles.sideDrawerTop, "row")}>
           <Logo />
           <IoMdClose size={42} onClick={onCloseButton} />
         </div>
-        <NavContent
-          children={children}
-          className={classNames(styles.sideDrawerLinks, "column-center")}
-        />
+        <NavContent children={children} className={classNames(styles.sideDrawerLinks, "column-center")} />
       </div>
     </>
   );
 };
 
-const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
-  fixed,
-  classNames: barClassNames,
-}) => {
+const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({ fixed, classNames: barClassNames }) => {
   const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
   const { user } = React.useContext(UserContext);
   const NewPill: React.FC<{ fraud?: boolean }> = ({ fraud }) => {
     return (
-      <div
-        className={classNames(styles.navBarLinksNewpill, "centered-content", {[styles.fraud]: fraud})}
-      >
-        NEW
-      </div>
+      <div className={classNames(styles.navBarLinksNewpill, "centered-content", { [styles.fraud]: fraud })}>NEW</div>
     );
   };
 
@@ -113,19 +94,15 @@ const NavBar: React.FC<{ fixed: boolean; classNames?: string }> = ({
       to={`/${page.path}`}
       activeClassName={styles.current}
       key={page.path}
-      className={classNames("row", styles.navBarLinksLink, {[styles.unavailable]: !available})}
+      className={classNames("row", styles.navBarLinksLink, { [styles.unavailable]: !available })}
     >
       {page.isNew && <NewPill fraud />}
-      <div className={styles.navBarLinksLinkTitle}>
-        {page.display.toUpperCase()}
-      </div>
+      <div className={styles.navBarLinksLinkTitle}>{page.display.toUpperCase()}</div>
       {page.isNew && <NewPill />}
     </NavLink>
   );
 
-  const userNav = pages
-    .filter(({ available }) => available)
-    .map((p) => pageToNavLink(p, true));
+  const userNav = pages.filter(({ available }) => available).map((p) => pageToNavLink(p, true));
   const mobileNav = pages.map((p) => pageToNavLink(p, p.available));
 
   if (user) userNav.push(<CurrentUser key="current-user" />);

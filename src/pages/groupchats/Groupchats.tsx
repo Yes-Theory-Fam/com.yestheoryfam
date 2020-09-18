@@ -73,9 +73,7 @@ const getSuggestions = (search: string) => {
   const length = input.length;
 
   const filtered = chatList.filter(
-    (chat) =>
-      chat.city.toLowerCase().includes(input) ||
-      chat.country.toLowerCase().includes(input)
+    (chat) => chat.city.toLowerCase().includes(input) || chat.country.toLowerCase().includes(input)
   );
 
   return length < 2 ? [] : filtered;
@@ -89,24 +87,18 @@ const renderSuggestion = (suggestion: IGroupchat, index: number) => {
       href={suggestion.link}
       target="_blank"
     >
-      <div className={styles.groupchatsAutoSuggestSuggestionsEntryCity}>
-        {suggestion.city}
-      </div>
+      <div className={styles.groupchatsAutoSuggestSuggestionsEntryCity}>{suggestion.city}</div>
       <div className="inline-blue">{suggestion.link}</div>
     </a>
   );
 };
 
-const SuggestionContainer: React.FC<{ suggestions?: React.ReactNodeArray }> = ({
-  suggestions,
-}) => {
+const SuggestionContainer: React.FC<{ suggestions?: React.ReactNodeArray }> = ({ suggestions }) => {
   return (
     <div className={classNames(styles.groupchatAutoSuggestSuggestions, "column")}>
       <div>
         {suggestions && suggestions.length > 0 && (
-          <div className={styles.groupchatsAutoSuggestSuggestionsHeader}>
-            Join your partners in crime...
-          </div>
+          <div className={styles.groupchatsAutoSuggestSuggestionsHeader}>Join your partners in crime...</div>
         )}
         <div className="column">{suggestions}</div>
       </div>
@@ -117,9 +109,7 @@ const SuggestionContainer: React.FC<{ suggestions?: React.ReactNodeArray }> = ({
 const Groupchats: React.FC = () => {
   const [search, setSearch] = React.useState("");
   const suggestionObjects = getSuggestions(search);
-  const suggestions = suggestionObjects.map((s, index) =>
-    renderSuggestion(s, index)
-  );
+  const suggestions = suggestionObjects.map((s, index) => renderSuggestion(s, index));
 
   return (
     <div className={classNames(styles.groupchats, "column-center")}>

@@ -27,10 +27,7 @@ const HowToJoin: React.FC = () => {
   return (
     <div className={classNames(styles.meetupDetailsHowToJoin, "column-center")}>
       <div className={styles.meetupDetailsHowToJoinHeader}>How to join?</div>
-      <div
-        className={styles.meetupDetailsHowToJoinCards}
-        style={{ flexWrap: "wrap", justifyContent: "space-evenly" }}
-      >
+      <div className={styles.meetupDetailsHowToJoinCards} style={{ flexWrap: "wrap", justifyContent: "space-evenly" }}>
         {steps.map((step, index) => (
           <HowToJoinCard content={step} stepIndex={index + 1} key={index} />
         ))}
@@ -45,9 +42,7 @@ const HowToJoinCard: React.FC<{
 }> = ({ stepIndex, content }) => {
   return (
     <div className={classNames(styles.meetupDetailsHowToJoinCard, "column")}>
-      <div className={styles.meetupDetailsHowToJoinCardHeader}>
-        Step {stepIndex}
-      </div>
+      <div className={styles.meetupDetailsHowToJoinCardHeader}>Step {stepIndex}</div>
       {content}
     </div>
   );
@@ -94,20 +89,8 @@ const BackToMeetups: React.FC = () => {
   );
 };
 
-const MeetupDetails: React.FC<RouteComponentProps<
-  { id: string },
-  {},
-  IMeetupProps
->> = ({ location, match }) => {
-  const {
-    title,
-    description,
-    dateStart,
-    dateEnd,
-    limit,
-    details,
-    imageSource,
-  } = location?.state;
+const MeetupDetails: React.FC<RouteComponentProps<{ id: string }, {}, IMeetupProps>> = ({ location, match }) => {
+  const { title, description, dateStart, dateEnd, limit, details, imageSource } = location?.state;
 
   const { id } = match.params;
   console.log(id);
@@ -117,13 +100,7 @@ const MeetupDetails: React.FC<RouteComponentProps<
       <Header title={title} />
       <Description description={description} />
       <HowToJoin />
-      <MoreInformation
-        dateStart={dateStart}
-        dateEnd={dateEnd}
-        limit={limit}
-        details={details}
-        image={imageSource}
-      />
+      <MoreInformation dateStart={dateStart} dateEnd={dateEnd} limit={limit} details={details} image={imageSource} />
       <BackToMeetups />
     </div>
   );

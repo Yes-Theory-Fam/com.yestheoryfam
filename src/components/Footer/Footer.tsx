@@ -18,9 +18,7 @@ const Footer: React.FC = () => {
           Seek Discomfort
         </a>
       </div>
-      <div className={styles.footerCopyright}>
-        &#169; {new Date().getFullYear()} YESTHEORYFAM
-      </div>
+      <div className={styles.footerCopyright}>&#169; {new Date().getFullYear()} YESTHEORYFAM</div>
     </div>
   );
 };

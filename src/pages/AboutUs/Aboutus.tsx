@@ -17,12 +17,7 @@ const SocialIcon: React.FC<{
 }> = ({ Icon, ariaLabel, href, color }) => {
   return (
     <div>
-      <a
-        className={styles.sociali}
-        href={href}
-        target="_blank"
-        aria-label={ariaLabel}
-      >
+      <a className={styles.sociali} href={href} target="_blank" aria-label={ariaLabel}>
         <Icon size={36} color={color} />
       </a>
     </div>
@@ -39,13 +34,7 @@ const SocialMediaInfo: React.FC<{ socials: Socials }> = ({ socials }) => {
     const info = platforms[platform];
     if (link) {
       socialArr.push(
-        <SocialIcon
-          key={info.name.trim()}
-          Icon={info.Icon}
-          ariaLabel={info.name}
-          href={link}
-          color={info.color}
-        />
+        <SocialIcon key={info.name.trim()} Icon={info.Icon} ariaLabel={info.name} href={link} color={info.color} />
       );
     }
   }
@@ -61,11 +50,7 @@ const MemberTile: React.FC<{ info: TeamMember }> = ({ info }) => {
   return (
     <div className={classNames(styles.teamIndividual, "column")}>
       <div className="column">
-        <img
-          className={styles.teamIndividualAvatar}
-          src={info.portfolioPic}
-          alt={info.name}
-        />
+        <img className={styles.teamIndividualAvatar} src={info.portfolioPic} alt={info.name} />
         <div className={classNames(styles.teamIndividualInfo, "column")}>
           <p className="blue">{info.name}</p>
           <strong className={styles.title}>{info.title}</strong>
@@ -100,13 +85,8 @@ const AboutUs: React.FC = () => {
 
   // TODO NavBar selector - Gotta fix this when extracting to its own component
   const scrollToAction = () => {
-    const yOffset = -(
-      document.querySelector(".nav-bar")?.getBoundingClientRect()?.height ?? 100
-    );
-    const y =
-      (headerRef.current?.getBoundingClientRect()?.top ?? 0) +
-      window.pageYOffset +
-      yOffset;
+    const yOffset = -(document.querySelector(".nav-bar")?.getBoundingClientRect()?.height ?? 100);
+    const y = (headerRef.current?.getBoundingClientRect()?.top ?? 0) + window.pageYOffset + yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 

@@ -16,10 +16,7 @@ export const SuccessModalToDiscord: React.FC<{
             <BPLogo />
           </div>
           <div>
-            <div
-              className="centered-content success-modal-close-button"
-              onClick={onClose}
-            >
+            <div className="centered-content success-modal-close-button" onClick={onClose}>
               <IoMdClose size={22} />
             </div>
           </div>

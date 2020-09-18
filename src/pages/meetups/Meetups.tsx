@@ -19,9 +19,7 @@ const Header: React.FC = () => {
   );
 };
 
-const MeetupList: React.FC<{ meetups: Array<IMeetupProps> }> = ({
-  meetups,
-}) => {
+const MeetupList: React.FC<{ meetups: Array<IMeetupProps> }> = ({ meetups }) => {
   return (
     <div className={styles.meetupsGrid}>
       {meetups.map((meetup, index) => (
@@ -41,24 +39,14 @@ const TileImage: React.FC<{ imageSource: string }> = ({ imageSource }) => {
 
 const MeetupTile: React.FC<IMeetupProps> = (props) => {
   const { children, ...meetupProps } = props;
-  const {
-    title,
-    description,
-    dateStart,
-    dateEnd,
-    limit,
-    imageSource,
-  } = meetupProps;
+  const { title, description, dateStart, dateEnd, limit, imageSource } = meetupProps;
 
   const start = new Date(dateStart);
   const end = new Date(dateEnd);
   const dateFormat = "do' of 'LLLL";
 
   return (
-    <Link
-      to={{ pathname: "/meetups/0", state: meetupProps }}
-      className={classNames(styles.meetupsTile, "column")}
-    >
+    <Link to={{ pathname: "/meetups/0", state: meetupProps }} className={classNames(styles.meetupsTile, "column")}>
       <TileImage imageSource={imageSource} />
       <div className={styles.meetupsTileTitle}>{title}</div>
       <div className={classNames(styles.meetupsTileInfo, "column")}>
@@ -81,9 +69,7 @@ const Meetups: React.FC = () => {
   const [search, setSearch] = React.useState("");
   const filter = search.toLowerCase();
   const filteredMeetups = meetups.filter(
-    ({ title, description }) =>
-      title.toLowerCase().includes(filter) ||
-      description.toLowerCase().includes(filter)
+    ({ title, description }) => title.toLowerCase().includes(filter) || description.toLowerCase().includes(filter)
   );
 
   return (
@@ -99,9 +85,7 @@ const Meetups: React.FC = () => {
       {filteredMeetups.length > 0 ? (
         <MeetupList meetups={filteredMeetups} />
       ) : (
-        <div className={classNames(styles.meetupsNoContent, "centered-content")}>
-          No meetups found
-        </div>
+        <div className={classNames(styles.meetupsNoContent, "centered-content")}>No meetups found</div>
       )}
     </div>
   );
@@ -110,8 +94,7 @@ const Meetups: React.FC = () => {
 const meetups: Array<IMeetupProps> = [
   {
     title: "FiYESta Croatia",
-    description:
-      "Four days in Zagreb with a day trip to Plitvice Lakes and lots more exploring around Croatia.",
+    description: "Four days in Zagreb with a day trip to Plitvice Lakes and lots more exploring around Croatia.",
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
@@ -120,8 +103,7 @@ const meetups: Array<IMeetupProps> = [
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
-    description:
-      "Staying in a group room of the Generator Hostel, celebrating James' birthday just like last time!",
+    description: "Staying in a group room of the Generator Hostel, celebrating James' birthday just like last time!",
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
@@ -130,8 +112,7 @@ const meetups: Array<IMeetupProps> = [
   },
   {
     title: "FiYESta Bali 2020",
-    description:
-      "A 10-day trip to explore Bali, Indonesia and stay in one of the exclusive villas in the Canggu area.",
+    description: "A 10-day trip to explore Bali, Indonesia and stay in one of the exclusive villas in the Canggu area.",
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
@@ -140,8 +121,7 @@ const meetups: Array<IMeetupProps> = [
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
-    description:
-      "Staying in a group room of the Generator Hostel, celebrating James' birthday just like last time!",
+    description: "Staying in a group room of the Generator Hostel, celebrating James' birthday just like last time!",
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
@@ -150,8 +130,7 @@ const meetups: Array<IMeetupProps> = [
   },
   {
     title: "FiYESta Croatia",
-    description:
-      "Four days in Zagreb with a day trip to Plitvice Lakes and lots more exploring around Croatia.",
+    description: "Four days in Zagreb with a day trip to Plitvice Lakes and lots more exploring around Croatia.",
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
@@ -160,8 +139,7 @@ const meetups: Array<IMeetupProps> = [
   },
   {
     title: "FiYESta Hamburg B-Day 2020",
-    description:
-      "Staying in a group room of the Generator Hostel, celebrating James' birthday just like last time!",
+    description: "Staying in a group room of the Generator Hostel, celebrating James' birthday just like last time!",
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,
@@ -170,8 +148,7 @@ const meetups: Array<IMeetupProps> = [
   },
   {
     title: "FiYESta Bali 2020",
-    description:
-      "A 10-day trip to explore Bali, Indonesia and stay in one of the exclusive villas in the Canggu area.",
+    description: "A 10-day trip to explore Bali, Indonesia and stay in one of the exclusive villas in the Canggu area.",
     dateStart: Date.now(),
     dateEnd: Date.now(),
     limit: 45,

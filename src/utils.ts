@@ -32,16 +32,9 @@ export const splitImages = (
   requiredHorizontal: number,
   requiredVertical: number
 ): [Array<PhotoProps>, Array<PhotoProps>, Array<PhotoProps>] => {
-  const verticalImages = images.filter(
-    ({ orientation }) => orientation === "vertical"
-  );
-  const horizontalImages = images.filter(
-    ({ orientation }) => orientation === "horizontal"
-  );
-  const otherImages = images.filter(
-    ({ orientation }) =>
-      orientation !== "horizontal" && orientation !== "vertical"
-  );
+  const verticalImages = images.filter(({ orientation }) => orientation === "vertical");
+  const horizontalImages = images.filter(({ orientation }) => orientation === "horizontal");
+  const otherImages = images.filter(({ orientation }) => orientation !== "horizontal" && orientation !== "vertical");
 
   const pickedHorizontal = horizontalImages.splice(0, requiredHorizontal);
   const pickedVertical = verticalImages.splice(0, requiredVertical);

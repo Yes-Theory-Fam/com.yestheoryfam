@@ -52,13 +52,7 @@ const QuillWrapper = React.forwardRef((_, ref: React.RefObject<ReactQuill>) => {
 
   return (
     <div className={classNames(styles.quillContainer, "column-center")}>
-      <ReactQuill
-        theme="snow"
-        ref={ref}
-        value={value}
-        onChange={setValue}
-        modules={modules}
-      />
+      <ReactQuill theme="snow" ref={ref} value={value} onChange={setValue} modules={modules} />
     </div>
   );
 });
@@ -103,18 +97,13 @@ const PostButton: React.FC<{
   };
 
   return (
-    <button
-      className={classNames(styles.writeYourBlogPostButton, "inverted", "float-shadow")}
-      onClick={onClick}
-    >
+    <button className={classNames(styles.writeYourBlogPostButton, "inverted", "float-shadow")} onClick={onClick}>
       POST
     </button>
   );
 };
 
-const PreviewWrapper: React.FC<{ editor: React.RefObject<ReactQuill> }> = ({
-  editor,
-}) => {
+const PreviewWrapper: React.FC<{ editor: React.RefObject<ReactQuill> }> = ({ editor }) => {
   const [preview, setPreview] = React.useState<Value>("");
 
   // This will update the preview every second or so
@@ -129,14 +118,7 @@ const PreviewWrapper: React.FC<{ editor: React.RefObject<ReactQuill> }> = ({
     return () => clearInterval(intervalId);
   });
 
-  return (
-    <ReactQuill
-      value={preview}
-      readOnly
-      theme="bubble"
-      className={styles.blogPreviewQuill}
-    />
-  );
+  return <ReactQuill value={preview} readOnly theme="bubble" className={styles.blogPreviewQuill} />;
 };
 
 const QuillTesting: React.FC = () => {
@@ -148,29 +130,20 @@ const QuillTesting: React.FC = () => {
   return (
     <>
       <div className={styles.mobileNote}>
-        This has been disabled for your own good. Don't write an entire blogpost
-        on a phone like that!
+        This has been disabled for your own good. Don't write an entire blogpost on a phone like that!
       </div>
 
       {uploadOpen && <UploadDropzone onClose={() => setUploadOpen(false)} />}
-      <div
-        className={classNames(styles.writeYourBlog, "column-center", {[styles.blur]: uploadOpen})}
-      >
+      <div className={classNames(styles.writeYourBlog, "column-center", { [styles.blur]: uploadOpen })}>
         <div className={classNames(styles.writeYourBlogHeader, "page-header")}>
           Write your blog <div className="inline-blue">post</div>
         </div>
         <TitleInput value={title} onChange={setTitle} editable />
-        <button onClick={() => setUploadOpen(true)}>
-          ADD TITLE IMAGE (pref 1400 x 500)
-        </button>
+        <button onClick={() => setUploadOpen(true)}>ADD TITLE IMAGE (pref 1400 x 500)</button>
         <QuillWrapper ref={editorRef} />
         <div className={classNames(styles.suggestions, "column-center")}>
           {suggestions.map((s, index) => (
-            <SuggestionCard
-              completed={Math.random() > 0.5}
-              content={s}
-              key={index}
-            />
+            <SuggestionCard completed={Math.random() > 0.5} content={s} key={index} />
           ))}
           <PostButton
             title={title}
@@ -183,16 +156,11 @@ const QuillTesting: React.FC = () => {
         <div className={classNames(styles.blogPreview, "column-center")}>
           <div className={styles.blogPreviewTitle}>Preview</div>
           <div className={styles.blogPreviewTitleimage}>
-            <img
-              src="https://picsum.photos/1380/487"
-              className={styles.blogPreviewImage}
-            />
+            <img src="https://picsum.photos/1380/487" className={styles.blogPreviewImage} />
           </div>
           <TitleInput value={title} />
           <div className={classNames(styles.blogPreviewText, "column")}>
-            <div className={classNames(styles.blogPreviewRemark, "row")}>
-              Matej P. - 7 min. read
-            </div>
+            <div className={classNames(styles.blogPreviewRemark, "row")}>Matej P. - 7 min. read</div>
             <PreviewWrapper editor={editorRef} />
           </div>
         </div>
