@@ -18,7 +18,9 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({ imageSide, headerBlackText, head
         "row-reverse": imageSide !== "left",
       })}
     >
-      <img src={`https://picsum.photos/674/674?a=${headerBlackText}`} />
+      <div className={styles.entryImageContainer}>
+        <img src={`https://picsum.photos/674/674?a=${headerBlackText}`} />
+      </div>
       <div className={classNames(styles.entryTextContent, "column")}>
         <EntryHeader headerBlackText={headerBlackText} headerBlueText={headerBlueText} />
         <div className={styles.entrySummary}>{children}</div>
@@ -29,8 +31,6 @@ const HomeEntry: React.FC<IHomeEntryProps> = ({ imageSide, headerBlackText, head
     </div>
   );
 };
-
-// TODO: Fix desktop
 
 const EntryHeader: React.FC<{
   headerBlackText: string;

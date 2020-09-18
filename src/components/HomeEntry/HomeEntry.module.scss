@@ -25,12 +25,19 @@
     }
   }
 
-  & img {
+  &-image-container {
     width: 100%;
 
     @include common.desktop-specific {
-      flex: 1;
+      flex: 1 1 0;
       width: unset;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      overflow: hidden;
     }
   }
 
@@ -43,7 +50,7 @@
   }
 
   &-text-content {
-    flex: 1;
+    flex: 1 1 0;
     justify-content: space-between;
     margin-top: 30px;
 
@@ -59,11 +66,11 @@
 
   @include common.desktop-specific {
     &:global(.row) &-text-content {
-      margin-inline-start: 35px;
+      margin-inline-start: 60px;
     }
 
     &:global(.row-reverse) &-text-content {
-      margin-inline-end: 35px;
+      margin-inline-end: 60px;
     }
   }
 
