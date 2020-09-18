@@ -1,8 +1,7 @@
 import * as React from "react";
-import "./Groupchats.scss";
+import styles from "./Groupchats.module.scss";
+import classNames from "classnames";
 
-import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/Footer";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
 interface IGroupchat {
@@ -85,12 +84,12 @@ const getSuggestions = (search: string) => {
 const renderSuggestion = (suggestion: IGroupchat, index: number) => {
   return (
     <a
-      className="column groupchats-auto-suggest-suggestions-entry"
+      className={classNames(styles.groupchatsAutoSuggestSuggestionsEntry, "column")}
       key={index}
       href={suggestion.link}
       target="_blank"
     >
-      <div className="groupchats-auto-suggest-suggestions-entry-city">
+      <div className={styles.groupchatsAutoSuggestSuggestionsEntryCity}>
         {suggestion.city}
       </div>
       <div className="inline-blue">{suggestion.link}</div>
@@ -102,10 +101,10 @@ const SuggestionContainer: React.FC<{ suggestions?: React.ReactNodeArray }> = ({
   suggestions,
 }) => {
   return (
-    <div className="column groupchats-auto-suggest-suggestions">
+    <div className={classNames(styles.groupchatAutoSuggestSuggestions, "column")}>
       <div>
         {suggestions && suggestions.length > 0 && (
-          <div className="groupchats-auto-suggest-suggestions-header">
+          <div className={styles.groupchatsAutoSuggestSuggestionsHeader}>
             Join your partners in crime...
           </div>
         )}
@@ -123,14 +122,14 @@ const Groupchats: React.FC = () => {
   );
 
   return (
-    <div className="column-center groupchats">
+    <div className={classNames(styles.groupchats, "column-center")}>
       <div className="page-header">
         CONNECT WITH THE FAM FIND A <div className="inline-blue">GROUPCHAT</div>
       </div>
-      <div className="column-center groupchats-auto-suggest">
+      <div className={classNames(styles.groupchatsAutoSuggest, "column-center")}>
         <SearchBar
           setSearch={setSearch}
-          containerClassName="groupchats-search-container"
+          containerClassName={styles.groupchatsSearchContainer}
           hasInput={search.length > 0}
           searchBarClassName=""
           placeholder="Search for the tribe in your country..."

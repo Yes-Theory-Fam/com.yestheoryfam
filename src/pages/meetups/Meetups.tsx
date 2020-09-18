@@ -2,20 +2,18 @@ import * as React from "react";
 
 import format from "date-fns/format";
 
-import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/Footer";
 import IMeetupProps from "../../types/Meetups";
-import { arrayToChunks } from "../../utils";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
 import { IoIosPeople, IoMdCalendar } from "react-icons/io";
 
-import "./Meetups.scss";
+import styles from "./Meetups.module.scss";
+import classNames from "classnames";
 import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
-    <div className="page-header meetups-heading">
+    <div className={classNames(styles.meetupsHeading, "page-header")}>
       FIND A <div className="inline-blue">FiYESta</div> NEAR YOU
     </div>
   );
@@ -25,7 +23,7 @@ const MeetupList: React.FC<{ meetups: Array<IMeetupProps> }> = ({
   meetups,
 }) => {
   return (
-    <div className="meetups-grid">
+    <div className={styles.meetupsGrid}>
       {meetups.map((meetup, index) => (
         <MeetupTile key={index} {...meetup} />
       ))}
@@ -35,7 +33,7 @@ const MeetupList: React.FC<{ meetups: Array<IMeetupProps> }> = ({
 
 const TileImage: React.FC<{ imageSource: string }> = ({ imageSource }) => {
   return (
-    <div className="meetups-tile-image">
+    <div className={styles.meetupsTileImage}>
       <img src={imageSource} alt="" />
     </div>
   );
@@ -59,19 +57,19 @@ const MeetupTile: React.FC<IMeetupProps> = (props) => {
   return (
     <Link
       to={{ pathname: "/meetups/0", state: meetupProps }}
-      className="meetups-tile column"
+      className={classNames(styles.meetupsTile, "column")}
     >
       <TileImage imageSource={imageSource} />
-      <div className="meetups-tile-title">{title}</div>
-      <div className="meetups-tile-info column">
+      <div className={styles.meetupsTileTitle}>{title}</div>
+      <div className={classNames(styles.meetupsTileInfo, "column")}>
         {description}
-        <div className="row meetups-tile-info-row">
-          <IoMdCalendar size={18} className="info-icon" />
+        <div className={classNames(styles.meetupsTileInfoRow, "row")}>
+          <IoMdCalendar size={18} className={styles.infoIcon} />
           {`${format(start, dateFormat)} - ${format(end, dateFormat)}`}
         </div>
 
-        <div className="row meetups-tile-info-row">
-          <IoIosPeople size={18} className="info-icon" />
+        <div className={classNames(styles.meetupsTileInfoRow, "row")}>
+          <IoIosPeople size={18} className={styles.infoIcon} />
           {`${limit} limit`}
         </div>
       </div>
@@ -89,19 +87,19 @@ const Meetups: React.FC = () => {
   );
 
   return (
-    <div className="meetups column-center">
+    <div className={classNames(styles.meetups, "column-center")}>
       <Header />
       <SearchBar
         setSearch={setSearch}
         hasInput={search !== ""}
         placeholder="Discover events near you..."
-        containerClassName="meetups-search-container"
+        containerClassName={styles.meetupsSearchContainer}
         searchBarClassName=""
       />
       {filteredMeetups.length > 0 ? (
         <MeetupList meetups={filteredMeetups} />
       ) : (
-        <div className="centered-content meetups-no-content">
+        <div className={classNames(styles.meetupsNoContent, "centered-content")}>
           No meetups found
         </div>
       )}

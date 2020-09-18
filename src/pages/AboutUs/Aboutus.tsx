@@ -1,14 +1,13 @@
 import * as React from "react";
-import "./Aboutus.scss";
-import NavBar from "../../components/NavBar/NavBar";
+import styles from "./Aboutus.module.scss";
 import { IoIosArrowDown } from "react-icons/io";
 import { IconBaseProps } from "react-icons";
 
-import Footer from "../../components/Footer/Footer";
 import { team, Socials, TeamMember, platforms } from "./Team";
 import { introduction, why } from "./copy";
 
 import BehindTheProject from "../../assets/behindtheproject.png";
+import classNames from "classnames";
 
 const SocialIcon: React.FC<{
   Icon: React.JSXElementConstructor<IconBaseProps>;
@@ -18,7 +17,12 @@ const SocialIcon: React.FC<{
 }> = ({ Icon, ariaLabel, href, color }) => {
   return (
     <div>
-      <a className="sociali" href={href} target="_blank" aria-label={ariaLabel}>
+      <a
+        className={styles.sociali}
+        href={href}
+        target="_blank"
+        aria-label={ariaLabel}
+      >
         <Icon size={36} color={color} />
       </a>
     </div>
@@ -47,25 +51,25 @@ const SocialMediaInfo: React.FC<{ socials: Socials }> = ({ socials }) => {
   }
 
   return (
-    <div className="social-icons">
-      <div className="social-icons-set">{socialArr}</div>
+    <div className={styles.socialIcons}>
+      <div className={styles.socialIconsSet}>{socialArr}</div>
     </div>
   );
 };
 
 const MemberTile: React.FC<{ info: TeamMember }> = ({ info }) => {
   return (
-    <div className="column team-individual">
+    <div className={classNames(styles.teamIndividual, "column")}>
       <div className="column">
         <img
-          className="team-individual-avatar"
+          className={styles.teamIndividualAvatar}
           src={info.portfolioPic}
           alt={info.name}
         />
-        <div className="team-individual-info column">
+        <div className={classNames(styles.teamIndividualInfo, "column")}>
           <p className="blue">{info.name}</p>
-          <strong className="title">{info.title}</strong>
-          <p className="quote">"{info.quote}"</p>
+          <strong className={styles.title}>{info.title}</strong>
+          <p className={styles.quote}>"{info.quote}"</p>
         </div>
       </div>
       <SocialMediaInfo socials={info.socials} />
@@ -75,16 +79,16 @@ const MemberTile: React.FC<{ info: TeamMember }> = ({ info }) => {
 
 const TopContent: React.FC = () => {
   return (
-    <div className="column-center about-us-top-content">
-      <div className="column about-us-top-text">
-        <div className="column about-us-header">
+    <div className={classNames(styles.aboutUsTopContent, "column-center")}>
+      <div className={classNames(styles.aboutUsTopText, "column")}>
+        <div className={classNames(styles.aboutUsHeader, "column")}>
           People behind this <div className="inline-blue">project</div>
         </div>
-        <div className="about-us-intro">{introduction}</div>
-        <div className="about-us-section">Why did we say yes?</div>
-        <div className="about-us-intro">{why}</div>
+        <div className={styles.aboutUsIntro}>{introduction}</div>
+        <div className={styles.aboutUsSection}>Why did we say yes?</div>
+        <div className={styles.aboutUsIntro}>{why}</div>
       </div>
-      <div className="about-us-top-image centered-content">
+      <div className={classNames(styles.aboutUsTopImage, "centered-content")}>
         <img src={BehindTheProject} />
       </div>
     </div>
@@ -94,6 +98,7 @@ const TopContent: React.FC = () => {
 const AboutUs: React.FC = () => {
   const headerRef = React.useRef() as React.RefObject<HTMLDivElement>;
 
+  // TODO NavBar selector - Gotta fix this when extracting to its own component
   const scrollToAction = () => {
     const yOffset = -(
       document.querySelector(".nav-bar")?.getBoundingClientRect()?.height ?? 100
@@ -106,21 +111,21 @@ const AboutUs: React.FC = () => {
   };
 
   return (
-    <div className="about-us column-center">
-      <div className="column-center about-us-top">
+    <div className={classNames(styles.aboutUs, "column-center")}>
+      <div className={classNames(styles.aboutUsTop, "column-center")}>
         <TopContent />
-        <div className="scroll-for-more column-center" onClick={scrollToAction}>
+        <div className={classNames(styles.scrollForMore, "column-center")} onClick={scrollToAction}>
           MEET THE TEAM
-          <div className="expand-container">
+          <div className={styles.expandContainer}>
             <IoIosArrowDown size={20} />
           </div>
         </div>
       </div>
-      <div className="about-us-people column">
-        <div className="about-us-header" ref={headerRef}>
+      <div className={classNames(styles.aboutUsPeople, "column")}>
+        <div className={styles.aboutUsHeader} ref={headerRef}>
           Meet the <div className="inline-blue">team</div>
         </div>
-        <div className="team-pics">
+        <div className={styles.teamPics}>
           {team.map((person, idx) => {
             return <MemberTile info={person} key={`${person.name}-${idx}`} />;
           })}

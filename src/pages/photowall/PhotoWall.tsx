@@ -3,35 +3,24 @@ import * as React from "react";
 import layouts, { OneFourLayout } from "../../components/PhotoWallLayouts";
 import { randomInt } from "../../utils";
 
-import "./PhotoWall.scss";
+import styles from "./PhotoWall.module.scss";
+import classNames from "classnames";
 import "react-image-lightbox/style.css";
 
 import { PhotoProps } from "../../components/PhotoWallLayouts/PhotoWallLayoutTypes";
-import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/Footer";
 import UploadDropzone from "../../components/UploadDropzone/UploadDropzone";
 
 import { IoIosArrowDown } from "react-icons/io";
-
-const UploadModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-  return (
-    <div className="upload-modal">
-      <div className="upload-modal-dropzone">
-        <UploadDropzone onClose={onClose} />
-      </div>
-    </div>
-  );
-};
 
 const InitialContent: React.FC<{ onButtonClick: () => void }> = ({
   onButtonClick,
 }) => {
   return (
-    <div className="column-center photo-wall-top-content">
+    <div className={classNames(styles.photoWallTopContent, "column-center")}>
       <div className="page-header">
         PHOTO<div className="inline-blue">WALL</div>
       </div>
-      <div className="photo-wall-top-text">
+      <div className={styles.photoWallTopText}>
         Become a part of the story by sharing your photographs from the last
         event on our photowall. The more people can see it, the more people will
         get involved next time. Make the FOMO be real!
@@ -58,21 +47,21 @@ const PhotoWall: React.FC<{}> = () => {
 
   return (
     <>
-      {showModal && <UploadModal onClose={() => setShowModal(false)} />}
-      <div className={`column-center ${showModal ? "blur" : ""}`}>
-        <div className="column-center photo-wall-top">
+      {showModal && <UploadDropzone onClose={() => setShowModal(false)} />}
+      <div className={classNames("column-center", {[styles.blur] : showModal})}>
+        <div className={classNames(styles.photoWallTop, "column-center")}>
           <div></div>
           {/* div required here to have space-between sort everything out */}
           <InitialContent onButtonClick={() => setShowModal(true)} />
-          <div className="scroll-for-more column-center">
+          <div className={classNames(styles.scrollForMore, "column-center")}>
             SEE ALL PHOTOS
-            <div className="expand-container">
+            <div className={styles.expandContainer}>
               <IoIosArrowDown size={20} />
             </div>
           </div>
         </div>
 
-        <div className="photo-wall-list">
+        <div className={styles.photoWallList}>
           <div className="column">{builtLayouts}</div>
         </div>
       </div>

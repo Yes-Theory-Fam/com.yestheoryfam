@@ -1,6 +1,7 @@
 @use '../../common';
 
-.layout-row {
+// TODO Rename to make more specific
+:global(.layout-row) {
   display: grid;
   gap: 1vh;
 
@@ -62,4 +63,10 @@
       justify-content: space-between;
     }
   }
+}
+
+.expand-container {
+  margin-top: 9px;
+  height: 15px;
+  width: 15px;
 }

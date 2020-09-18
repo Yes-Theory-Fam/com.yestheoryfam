@@ -1,13 +1,12 @@
 import * as React from "react";
-import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/Footer";
 import { Link } from "react-router-dom";
 import ClampLines from "react-clamp-lines";
 
 import { Quill } from "react-quill";
 import { Delta, DeltaStatic } from "quill";
 
-import "./BlogOverview.scss";
+import styles from "./BlogOverview.module.scss";
+import classNames from "classnames";
 import BackendApi from "../../apis/backend";
 import IBlogProps from "../../types/Blog";
 
@@ -40,16 +39,16 @@ const FeaturedArticle: React.FC<{ blog: IBlogProps }> = ({ blog }) => {
   const content = blogContentToContent(blogContent);
 
   return (
-    <div className="featured-article column">
-      <div className="blog-overview-section-header">Latest article</div>
-      <div className="column featured-article-blog">
-        <div className="featured-image centered-content">
-          <img src={titleImage} className={"featured-image"} />
+    <div className={classNames(styles.featuredArticle, "column")}>
+      <div className={styles.blogOverviewSectionHeader}>Latest article</div>
+      <div className={classNames(styles.featuredArticleBlog, "column")}>
+        <div className={classNames(styles.featuredImage, "centered-content")}>
+          <img src={titleImage} className={styles.featuredImage} />
         </div>
-        <div className="featured-text-content column">
+        <div className={classNames(styles.featuredTextContent, "column")}>
           <Remark author={authorName} time={readTime} />
           <Title title={title} />
-          <div className="featured-summary">{content}</div>
+          <div className={styles.featuredSummary}>{content}</div>
           <Link
             to={{
               pathname: `/blogs/${id}`,
@@ -70,21 +69,21 @@ const Remark: React.FC<{ author: string; time: number }> = ({
   time,
 }) => {
   return (
-    <div className="blog-overview-remark">
+    <div className={styles.blogOverviewRemark}>
       {author} - {time} min read
     </div>
   );
 };
 
 const Title: React.FC<{ title: string }> = ({ title }) => {
-  return <div className="featured-title">{title}</div>;
+  return <div className={styles.featuredTitle}>{title}</div>;
 };
 
 const OtherArticles: React.FC<{ blogs: Array<IBlogProps> }> = ({ blogs }) => {
   return (
     <div className="column">
-      <div className="blog-overview-section-header">Other articles</div>
-      <div className="other-article-grid">
+      <div className={styles.blogOverviewSectionHeader}>Other articles</div>
+      <div className={styles.otherArticleGrid}>
         {blogs.map((blog, index) => (
           <OtherArticleTile key={index} blog={blog} />
         ))}
@@ -98,10 +97,10 @@ const OtherArticleTile: React.FC<{ blog: IBlogProps }> = ({ blog }) => {
   const content = blogContentToContent(blogContent);
 
   return (
-    <div className="other-article-tile column">
-      <div className="other-article-tile-top">
-        <div className="other-article-tile-image-container">
-          <img className="other-article-tile-image" src={titleImage} />
+    <div className={classNames(styles.otherArticleTile, "column")}>
+      <div className={styles.otherArticleTileTop}>
+        <div className={styles.otherArticleTileImageContainer}>
+          <img className={styles.otherArticleTileImage} src={titleImage} />
         </div>
         <Remark author={authorName} time={readTime} />
         <Link
@@ -109,7 +108,7 @@ const OtherArticleTile: React.FC<{ blog: IBlogProps }> = ({ blog }) => {
             pathname: `/blogs/${id}`,
             state: blog,
           }}
-          className="other-article-tile-title"
+          className={styles.otherArticleTileTitle}
         >
           {title}
         </Link>
@@ -149,7 +148,7 @@ const BlogOverview: React.FC = () => {
   return (
     <div className="column-center">
       <BlogOverviewHeader />
-      <div className="blog-overview-articles column">
+      <div className={classNames(styles.blogOverviewArticles, "column")}>
         <FeaturedArticle blog={featured} />
         <OtherArticles blogs={other} />
       </div>

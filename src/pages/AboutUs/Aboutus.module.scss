@@ -142,7 +142,7 @@
     text-align: center;
     margin-top: 10px;
 
-    p.blue {
+    p:global(.blue) {
       font-weight: 900;
     }
 
@@ -191,4 +191,10 @@
       filter: unset;
     }
   }
+}
+
+.expand-container {
+  margin-top: 9px;
+  height: 15px;
+  width: 15px;
 }

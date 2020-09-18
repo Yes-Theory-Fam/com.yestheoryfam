@@ -24,10 +24,9 @@ import UploadDropzone from "../../components/UploadDropzone/UploadDropzone";
 
 import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
-import "./QuillTesting.scss";
+import styles from "./QuillTesting.module.scss";
+import classNames from "classnames";
 
-import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/Footer";
 import TitleInput from "../../components/BlogTitleInput/BlogTitleInput";
 import SuggestionCard from "./SuggestionCard";
 
@@ -52,7 +51,7 @@ const QuillWrapper = React.forwardRef((_, ref: React.RefObject<ReactQuill>) => {
   const [value, setValue] = React.useState("");
 
   return (
-    <div className="quill-container column-center">
+    <div className={classNames(styles.quillContainer, "column-center")}>
       <ReactQuill
         theme="snow"
         ref={ref}
@@ -105,7 +104,7 @@ const PostButton: React.FC<{
 
   return (
     <button
-      className="inverted write-your-blog-post-button float-shadow"
+      className={classNames(styles.writeYourBlogPostButton, "inverted", "float-shadow")}
       onClick={onClick}
     >
       POST
@@ -135,7 +134,7 @@ const PreviewWrapper: React.FC<{ editor: React.RefObject<ReactQuill> }> = ({
       value={preview}
       readOnly
       theme="bubble"
-      className="blog-preview-quill"
+      className={styles.blogPreviewQuill}
     />
   );
 };
@@ -148,16 +147,16 @@ const QuillTesting: React.FC = () => {
 
   return (
     <>
-      <div className="mobile-note">
+      <div className={styles.mobileNote}>
         This has been disabled for your own good. Don't write an entire blogpost
         on a phone like that!
       </div>
 
       {uploadOpen && <UploadDropzone onClose={() => setUploadOpen(false)} />}
       <div
-        className={`column-center ${uploadOpen ? "blur" : ""} write-your-blog`}
+        className={classNames(styles.writeYourBlog, "column-center", {[styles.blur]: uploadOpen})}
       >
-        <div className="page-header write-your-blog-header">
+        <div className={classNames(styles.writeYourBlogHeader, "page-header")}>
           Write your blog <div className="inline-blue">post</div>
         </div>
         <TitleInput value={title} onChange={setTitle} editable />
@@ -165,7 +164,7 @@ const QuillTesting: React.FC = () => {
           ADD TITLE IMAGE (pref 1400 x 500)
         </button>
         <QuillWrapper ref={editorRef} />
-        <div className="suggestions column-center">
+        <div className={classNames(styles.suggestions, "column-center")}>
           {suggestions.map((s, index) => (
             <SuggestionCard
               completed={Math.random() > 0.5}
@@ -180,18 +179,18 @@ const QuillTesting: React.FC = () => {
             blogContent={editorRef}
           />
         </div>
-        <div className="ruler" />
-        <div className="blog-preview column-center">
-          <div className="blog-preview-title">Preview</div>
-          <div className="blog-preview-titleimage">
+        <div className={styles.ruler} />
+        <div className={classNames(styles.blogPreview, "column-center")}>
+          <div className={styles.blogPreviewTitle}>Preview</div>
+          <div className={styles.blogPreviewTitleimage}>
             <img
               src="https://picsum.photos/1380/487"
-              className="blog-preview-image"
+              className={styles.blogPreviewImage}
             />
           </div>
           <TitleInput value={title} />
-          <div className="column blog-preview-text">
-            <div className="row blog-preview-remark">
+          <div className={classNames(styles.blogPreviewText, "column")}>
+            <div className={classNames(styles.blogPreviewRemark, "row")}>
               Matej P. - 7 min. read
             </div>
             <PreviewWrapper editor={editorRef} />

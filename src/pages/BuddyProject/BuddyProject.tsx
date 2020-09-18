@@ -1,5 +1,4 @@
 import * as React from "react";
-import NavBar from "../../components/NavBar/NavBar";
 import { IoIosArrowDown } from "react-icons/io";
 import { UserContext } from "../../UserContext";
 import {
@@ -7,8 +6,8 @@ import {
   buddyProjectSignup,
   fetchBuddyProjectSignup,
 } from "./buddyprojectFirebase";
-import "./BuddyProject.scss";
-import Footer from "../../components/Footer/Footer";
+import styles from "./BuddyProject.module.scss";
+import classNames from "classnames";
 
 import BuddyProjectLogo from "../../assets/buddyproject_logo.svg";
 import IDiscordUser from "../../types/User";
@@ -28,10 +27,10 @@ enum SIGNED_UP_STATE {
 
 const InitialContent = () => (
   <div className="column-center">
-    <div className="buddy-project-logo">
+    <div className={styles.buddyProjectLogo}>
       <BuddyProjectLogo />
     </div>
-    <div className="buddy-project-text">
+    <div className={styles.buddyProjectText}>
       Great things come to those who are willing to risk rejection and put
       themselves out there.
     </div>
@@ -52,6 +51,7 @@ const BuddyProject: React.FC<{}> = () => {
 
   const { user } = React.useContext(UserContext);
 
+  // TODO fix selector - done when moving this to standalone component
   const scrollToAction = () => {
     const yOffset = -(
       document.querySelector(".nav-bar")?.getBoundingClientRect()?.height ?? 100
@@ -76,18 +76,18 @@ const BuddyProject: React.FC<{}> = () => {
 
   return (
     <div className="column-center">
-      <div className="column-center buddy-project-top">
+      <div className={classNames(styles.buddyProjectTop, "column-center")}>
         <div />
         {/* div required here to have space-between sort everything out */}
         <InitialContent />
-        <div onClick={scrollToAction} className="scroll-for-more column-center">
+        <div onClick={scrollToAction} className={classNames(styles.scrollForMore, "column-center")}>
           GET INVOLVED
-          <div className="expand-container">
+          <div className={styles.expandContainer}>
             <IoIosArrowDown size={20} />
           </div>
         </div>
       </div>
-      <div ref={signupRef} className="buddy-project-bottom column-center">
+      <div ref={signupRef} className={classNames(styles.buddyProjectBottom, "column-center")}>
         <SignupProcess
           user={user}
           bpSignupStatus={bpStatus}
@@ -104,16 +104,16 @@ const SignupWelcome: React.FC<{ user: IDiscordUser | undefined }> = ({
   const hi = user ? ` ${user.username}#${user.discriminator}` : "";
 
   return (
-    <div className="column buddy-project-process-welcome">
-      <div className="buddy-project-process-header">
+    <div className={classNames(styles.buddyProjectProcessWelcome, "column")}>
+      <div className={styles.buddyProjectProcessHeader}>
         Find a stranger<div className="blue">Discover a friend</div>
       </div>
       <div className="column">
-        <div className="buddy-project-process-title">
+        <div className={styles.buddyProjectProcessTitle}>
           Hi
           <div className="inline-blue">{hi}</div>!
         </div>
-        <div className="buddy-project-process-introduction">
+        <div className={styles.buddyProjectProcessIntroduction}>
           An opportunity to get to know a person miles away from you, building a
           new friendship, and discovering a new way of living, what’s not to
           like?
@@ -125,8 +125,8 @@ const SignupWelcome: React.FC<{ user: IDiscordUser | undefined }> = ({
 
 const ProcessStep: React.FC<{ title: string }> = ({ title, children }) => {
   return (
-    <div className="column buddy-project-process-step">
-      <div className="buddy-project-process-title">{title}</div>
+    <div className={classNames(styles.buddyProjectProcessStep, "column")}>
+      <div className={styles.buddyProjectProcessTitle}>{title}</div>
       {children}
     </div>
   );
@@ -162,7 +162,7 @@ const renderBPNextStepButton = (
     case SIGNED_UP_STATE.SIGNED_UP:
       // SIGNED_UP
       return (
-        <a className="button inverted self-center disabled">
+        <a className={classNames(styles.selfCenter, "button inverted disabled")}>
           You've already signed up!
         </a>
       );
@@ -175,18 +175,19 @@ const renderBPNextStepButton = (
           onClick={() => {
             buddyProjectRegister(user, setSignupStatus);
           }}
-          className="button inverted self-center"
+          className={classNames(styles.selfCenter, "button inverted")}
         >
           Sign up!
         </button>
       ) : (
-        <Link to="/auth/discord" className="button inverted self-center">
+        <Link to="/auth/discord" className={classNames(styles.selfCenter, "button inverted")}>
           Login with Discord!
         </Link>
       );
     default:
       return (
-        <a href="/auth/discord" className="button inverted self-center">
+          // TODO Link
+        <a href="/auth/discord" className={classNames(styles.selfCenter, "button inverted")}>
           Login with Discord!
         </a>
       );
@@ -201,14 +202,14 @@ const SignupProcess: React.FC<{
   const [showToDiscordModal, setShowToDiscordModal] = React.useState(true);
 
   return (
-    <div className="column buddy-project-process">
-      <div className="buddy-project-process-blockone column">
+    <div className={classNames(styles.buddyProjectProcess, "column")}>
+      <div className={classNames(styles.buddyProjectProcessBlockone, "column")}>
         <SignupWelcome user={user} />
-        <div className="buddy-project-process-yesbot centered-content">
+        <div className={classNames(styles.buddyProjectProcessYesbot, "centered-content")}>
           <img src={CutestBotEver} />
         </div>
       </div>
-      <div className="column buddy-project-process-steps">
+      <div className={classNames(styles.buddyProjectProcessSteps, "column")}>
         <ProcessStep title="How do I join?" children={howToJoin} />
         <ProcessStep title="What happens next?" children={whatNext} />
         <ProcessStep title="How will it work?" children={howItWorks} />

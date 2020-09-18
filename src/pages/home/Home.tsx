@@ -1,16 +1,15 @@
 import * as React from "react";
-import "./Home.scss";
+import styles from "./Home.module.scss";
+import classNames from "classnames";
 import cloudBig from "../../assets/cloudBig.png";
 import cloudBot from "../../assets/cloudBot.png";
-import NavBar from "../../components/NavBar/NavBar";
 import { IoIosArrowDown } from "react-icons/io";
 
 import HomeEntry from "../../components/HomeEntry/HomeEntry";
-import Footer from "../../components/Footer/Footer";
 
 const Content: React.FC = () => {
   return (
-    <div className="home-entries column-center">
+    <div className={classNames(styles.homeEntries, "column-center")}>
       <HomeEntry
         headerBlackText="Discover"
         headerBlueText="empowering stories"
@@ -57,30 +56,30 @@ const Content: React.FC = () => {
 const Home: React.FC = () => {
   return (
     <div>
-      <div className="container yes-background">YES</div>
-      <div className="container clouds-background">
-        <img src={cloudBig} className="cloud big-back" />
+      <div className={classNames(styles.container, styles.yesBackground)}>YES</div>
+      <div className={classNames(styles.container, styles.cloudsBackground)}>
+        <img src={cloudBig} className={classNames(styles.cloud, styles.bigBack)} />
       </div>
-      <div className="container mountain" />
-      <div className="container content column">
-        <div className="clouds-front">
-          <img src={cloudBot} className="cloud bot-front" />
-          <img src={cloudBot} className="cloud bot-front" />
+      <div className={classNames(styles.container, styles.mountain)} />
+      <div className={classNames(styles.container, styles.content, "column")}>
+        <div className={styles.cloudsFront}>
+          <img src={cloudBot} className={classNames(styles.cloud, styles.botFront)} />
+          <img src={cloudBot} className={classNames(styles.cloud, styles.botFront)} />
           <div
             style={{ maxWidth: "100vw", overflow: "hidden" }}
-            className="cloud"
+            className={styles.cloud}
           >
-            <img src={cloudBig} className="cloud-r big-front" />
+            <img src={cloudBig} className={classNames(styles.cloudR, styles.bigFront)} />
           </div>
           <div
             style={{ maxWidth: "100vw", overflow: "hidden" }}
-            className="cloud"
+            className={styles.cloud}
           >
-            <img src={cloudBig} className="cloud-r big-front" />
+            <img src={cloudBig} className={classNames(styles.cloudR, styles.bigFront)} />
           </div>
-          <div className="scroll-for-more column-center">
+          <div className={classNames(styles.scrollForMore, "column-center")}>
             SCROLL FOR MORE
-            <div className="expand-container">
+            <div className={styles.expandContainer}>
               <IoIosArrowDown size={20} />
             </div>
           </div>

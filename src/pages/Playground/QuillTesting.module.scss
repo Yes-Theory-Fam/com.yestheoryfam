@@ -106,14 +106,14 @@
   }
 }
 
-.quill {
+:global(.quill) {
   max-width: 725px;
 
   @include common.desktop-specific {
     width: 75%;
   }
 
-  .ql-container {
+  :global(.ql-container) {
     color: #2a2a2a;
     font-size: 16px;
     line-height: 25px;
@@ -126,10 +126,10 @@
   }
 }
 
-.quill-container .ql-container {
+.quill-container :global(.ql-container) {
   height: 500px;
 
-  .ql-editor {
+  :global(.ql-editor) {
     overflow-y: scroll;
   }
 }
@@ -144,4 +144,9 @@
   width: 90%;
   height: 1px;
   margin-bottom: 25px;
+}
+
+.blur {
+  filter: blur(2px);
+  overflow: hidden;
 }

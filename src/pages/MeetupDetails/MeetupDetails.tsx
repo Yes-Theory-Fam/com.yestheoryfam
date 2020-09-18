@@ -1,10 +1,9 @@
 import * as React from "react";
-import NavBar from "../../components/NavBar/NavBar";
 import steps from "./copy";
-import Footer from "../../components/Footer/Footer";
 import IMeetupProps from "../../types/Meetups";
 
-import "./MeetupDetails.scss";
+import styles from "./MeetupDetails.module.scss";
+import classNames from "classnames";
 
 import { Link, RouteProps, RouteComponentProps } from "react-router-dom";
 import format from "date-fns/format";
@@ -21,15 +20,15 @@ const Header: React.FC<{ title: string }> = ({ title }) => {
 };
 
 const Description: React.FC<{ description: string }> = ({ description }) => {
-  return <div className="meetup-details-description">{description}</div>;
+  return <div className={styles.meetupDetailsDescription}>{description}</div>;
 };
 
 const HowToJoin: React.FC = () => {
   return (
-    <div className="meetup-details-how-to-join column-center">
-      <div className="meetup-details-how-to-join-header">How to join?</div>
+    <div className={classNames(styles.meetupDetailsHowToJoin, "column-center")}>
+      <div className={styles.meetupDetailsHowToJoinHeader}>How to join?</div>
       <div
-        className="meetup-details-how-to-join-cards"
+        className={styles.meetupDetailsHowToJoinCards}
         style={{ flexWrap: "wrap", justifyContent: "space-evenly" }}
       >
         {steps.map((step, index) => (
@@ -45,8 +44,8 @@ const HowToJoinCard: React.FC<{
   content: React.ReactNode;
 }> = ({ stepIndex, content }) => {
   return (
-    <div className="meetup-details-how-to-join-card column">
-      <div className="meetup-details-how-to-join-card-header">
+    <div className={classNames(styles.meetupDetailsHowToJoinCard, "column")}>
+      <div className={styles.meetupDetailsHowToJoinCardHeader}>
         Step {stepIndex}
       </div>
       {content}
@@ -64,19 +63,19 @@ const MoreInformation: React.FC<{
   const dateFormat = "do' of 'LLLL";
 
   return (
-    <div className="column meetup-details-more-information">
-      <div className="meetup-details-more-information-image centered-content">
+    <div className={classNames(styles.meetupDetailsMoreInformation, "column")}>
+      <div className={classNames(styles.meetupDetailsMoreInformationImage, "centered-content")}>
         <img src={image} alt="" />
       </div>
-      <div className="column text-content">
-        <div className="section-header">More information</div>
-        <div className="row meetup-details-more-information-info-row">
-          <IoMdCalendar size={18} className="info-icon" />
+      <div className={classNames(styles.textContent, "column")}>
+        <div className={styles.sectionHeader}>More information</div>
+        <div className={classNames(styles.meetupDetailsMoreInformationInfoRow, "row")}>
+          <IoMdCalendar size={18} className={styles.infoIcon} />
           {`${format(dateStart, dateFormat)} - ${format(dateEnd, dateFormat)}`}
         </div>
 
-        <div className="row meetup-details-more-information-info-row">
-          <IoIosPeople size={18} className="info-icon" />
+        <div className={classNames(styles.meetupDetailsMoreInformationInfoRow, "row")}>
+          <IoIosPeople size={18} className={styles.infoIcon} />
           {`${limit} limit`}
         </div>
         {details.map((paragraph, index) => (
@@ -89,7 +88,7 @@ const MoreInformation: React.FC<{
 
 const BackToMeetups: React.FC = () => {
   return (
-    <Link className="button meetup-details-back-button" to="/meetups">
+    <Link className={classNames(styles.meetupDetailsBackButton, "button")} to="/meetups">
       CHECK OTHER MEETUPS
     </Link>
   );
@@ -114,7 +113,7 @@ const MeetupDetails: React.FC<RouteComponentProps<
   console.log(id);
 
   return (
-    <div className="column-center meetup-details">
+    <div className={classNames(styles.meetupDetails, "column-center")}>
       <Header title={title} />
       <Description description={description} />
       <HowToJoin />

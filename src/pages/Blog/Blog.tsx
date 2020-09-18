@@ -4,14 +4,12 @@ import ReactQuill from "react-quill";
 import { toast } from "react-toastify";
 
 import IBlogProps from "../../types/Blog";
-import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/Footer";
 import TitleInput from "../../components/BlogTitleInput/BlogTitleInput";
 import BackendApi from "../../apis/backend";
 
-import "./Blog.scss";
+import styles from "./Blog.module.scss";
+import classNames from "classnames";
 import { IoMdClose } from "react-icons/io";
-import { StaticContext } from "react-router";
 
 const getBlog = async (preview: boolean | undefined, id: string) => {
   const url = `/blogs/${preview ? "preview/" : ""}${id}`;
@@ -80,7 +78,7 @@ const VotingButtons: React.FC<{
   const history = useHistory();
 
   return (
-    <div className="row blog-preview-vote">
+    <div className={classNames(styles.blogPreviewBote, "row")}>
       <button
         onClick={() => {
           acceptBlog(previewId);
@@ -101,19 +99,19 @@ const ReasoningModal: React.FC<{
   const textRef = React.useRef<HTMLTextAreaElement>(null);
 
   return (
-    <div className="reasoning-modal centered-content">
-      <div className="reasoning-modal-body column-center">
-        <div className="reasoning-modal-top row">
+    <div className={classNames(styles.reasoningModal, "centered-content")}>
+      <div className={classNames(styles.reasoningModalBody, "column-center")}>
+        <div className={classNames(styles.reasoningModalTop, "row")}>
           Reason for rejection
           <div
-            className="centered-content reasoning-modal-close-button"
+            className={classNames(styles.reasoningModalCloseButton, "centered-content")}
             onClick={closeFunction}
           >
             <IoMdClose size={22} />
           </div>
         </div>
         <textarea ref={textRef} />
-        <div className="row reasoning-modal-buttons">
+        <div className={classNames(styles.reasoningModalButtons, "row")}>
           <button onClick={closeFunction}>CANCEL</button>
           <button
             onClick={() => {
@@ -183,13 +181,13 @@ const Blog: React.FC<
         />
       )}
       <div className="column-center">
-        <div className="blog column-center">
-          <div className="blog-preview-titleimage">
-            <img src={titleImage} className="blog-preview-image" />
+        <div className={classNames(styles.blog, "column-center")}>
+          <div className={styles.blogPreviewTitleimage}>
+            <img src={titleImage} className={styles.blogPreviewImage} />
           </div>
           <TitleInput value={title} />
-          <div className="column blog-preview-text">
-            <div className="row blog-preview-remark">
+          <div className={classNames(styles.blogPreviewText, "column")}>
+            <div className={classNames(styles.blogPreviewRemark, "row")}>
               {authorName} - {readTime} min. read
             </div>
             <ReactQuill value={blogContent} readOnly theme="bubble" />

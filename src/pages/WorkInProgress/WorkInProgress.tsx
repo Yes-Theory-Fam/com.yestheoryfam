@@ -1,20 +1,18 @@
 import * as React from "react";
 
-import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/Footer";
-
 import { paragraphs } from "./copy";
-import "./WorkInProgress.scss";
+import styles from "./WorkInProgress.module.scss";
+import classNames from "classnames";
 
 import BehindTheProject from "../../assets/underconstruction.png";
 
 const WorkInProgress: React.FC = () => {
   return (
-    <div className="column-center wip">
-      <div className="column-center wip-content">
+    <div className={classNames(styles.wip, "column-center")}>
+      <div className={classNames(styles.wipContent, "column-center")}>
         <img src={BehindTheProject} />
         <div className="page-header">Under construction</div>
-        <div className="column-center wip-content-paragraphs">{paragraphs}</div>
+        <div className={classNames(styles.wipContentParagraphs, "column-center")}>{paragraphs}</div>
         <a
           href="https://discord.gg/yestheory"
           target="_blank"
