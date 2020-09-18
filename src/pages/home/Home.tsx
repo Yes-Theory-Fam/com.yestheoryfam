@@ -40,12 +40,12 @@ const Content: React.FC = () => {
 const Home: React.FC = () => {
   return (
     <div>
-      <div className={classNames(styles.container, styles.yesBackground)}>YES</div>
-      <div className={classNames(styles.container, styles.cloudsBackground)}>
-        <img src={cloudBig} className={classNames(styles.cloud, styles.bigBack)} />
-      </div>
-      <div className={classNames(styles.container, styles.mountain)} />
-      <div className={classNames(styles.container, styles.content, "column")}>
+      <div className={styles.cloudsMountainYesContainer}>
+        <div className={classNames(styles.container, styles.yesBackground)}>YES</div>
+        <div className={classNames(styles.container, styles.cloudsBackground)}>
+          <img src={cloudBig} className={classNames(styles.cloud, styles.bigBack)} />
+        </div>
+        <div className={classNames(styles.container, styles.mountain)} />
         <div className={styles.cloudsFront}>
           <img src={cloudBot} className={classNames(styles.cloud, styles.botFront)} />
           <img src={cloudBot} className={classNames(styles.cloud, styles.botFront)} />
@@ -55,8 +55,10 @@ const Home: React.FC = () => {
           <div style={{ maxWidth: "100vw", overflow: "hidden" }} className={styles.cloud}>
             <img src={cloudBig} className={classNames(styles.cloudR, styles.bigFront)} />
           </div>
-          <ScrollForAction callText={"SCROLL FOR MORE"} />
+          <ScrollForAction containerClassNames={styles.scrollForAction} callText={"SCROLL FOR MORE"} />
         </div>
+      </div>
+      <div className={classNames(styles.content, "column")}>
         <Content />
       </div>
     </div>

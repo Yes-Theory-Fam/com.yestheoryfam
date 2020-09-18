@@ -5,11 +5,12 @@ import { IoIosArrowDown } from "react-icons/io";
 import * as React from "react";
 
 interface ScrollForActionProps {
+  containerClassNames?: string;
   callText: string;
   scrollToRef?: React.RefObject<HTMLElement | undefined>;
 }
 
-const ScrollForAction: React.FC<ScrollForActionProps> = ({ callText, scrollToRef }) => {
+const ScrollForAction: React.FC<ScrollForActionProps> = ({ callText, scrollToRef, containerClassNames }) => {
   const scrollToAction = () => {
     if (!scrollToRef) return;
 
@@ -20,7 +21,12 @@ const ScrollForAction: React.FC<ScrollForActionProps> = ({ callText, scrollToRef
 
   return (
     <div
-      className={classNames(styles.scrollForMore, "column-center", { [styles.pointer]: scrollToRef })}
+      className={classNames(
+        styles.scrollForMore,
+        "column-center",
+        { [styles.pointer]: scrollToRef },
+        containerClassNames
+      )}
       onClick={scrollToAction}
     >
       {callText}

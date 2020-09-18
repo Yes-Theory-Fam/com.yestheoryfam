@@ -7,68 +7,69 @@
 
   width: 100vw;
   height: 100vh;
-  top: 0;
-  left: 0;
 }
 
-.yes-background {
-  z-index: 100;
-  position: fixed;
-  text-align: center;
-  color: common.$yesTheoryBlue;
-  font-size: 42vw;
-  font-weight: 900;
-
-  @include common.phone-landscape-specific {
-    margin-top: 25px;
-  }
-}
-
-.clouds-background {
-  z-index: 200;
-  position: absolute;
-}
-
-.mountain {
-  z-index: 300;
-  position: fixed;
-  left: -200px;
-  width: calc(100vw + 200px);
-
-  background: {
-    repeat: no-repeat;
-    image: url("../../assets/piqsels.com-id-sqodj.png");
-    position-x: 25%;
-    position-y: bottom -15vh;
-    size: 200% auto;
-  }
-
-  @include common.tablet-specific {
-    background-position-y: bottom -5vh;
-    background-size: 150% auto;
-  }
-
-  @include common.phone-landscape-specific {
-    background-position-y: bottom -78vh;
-    background-size: 150% auto;
-  }
-
-  @include common.desktop-specific {
-    background-position-y: bottom -5vw;
-    background-size: cover;
-  }
-}
-
-div.content {
-  z-index: 400;
-  position: absolute;
-  height: unset;
-}
-
-.clouds-front {
-  position: relative;
-  width: 100vw;
+.clouds-mountain-yes-container {
   height: 100vh;
+
+  .yes-background {
+    z-index: -300;
+    position: fixed;
+    text-align: center;
+    color: common.$yesTheoryBlue;
+    font-size: 42vw;
+    font-weight: 900;
+
+    @include common.phone-landscape-specific {
+      margin-top: 25px;
+    }
+  }
+
+  .clouds-background {
+    z-index: -200;
+    position: absolute;
+  }
+
+  .mountain {
+    z-index: -100;
+    position: fixed;
+    left: -200px;
+    width: calc(100vw + 200px);
+
+    background: {
+      repeat: no-repeat;
+      image: url("../../assets/piqsels.com-id-sqodj.png");
+      position-x: 25%;
+      position-y: bottom -15vh;
+      size: 200% auto;
+    }
+
+    @include common.tablet-specific {
+      background-position-y: bottom -5vh;
+      background-size: 150% auto;
+    }
+
+    @include common.phone-landscape-specific {
+      background-position-y: bottom -78vh;
+      background-size: 150% auto;
+    }
+
+    @include common.desktop-specific {
+      background-position-y: bottom -5vw;
+      background-size: cover;
+    }
+  }
+
+  .clouds-front {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+
+    .scroll-for-action {
+      position: absolute;
+      bottom: 10px;
+    }
+  }
 }
 
 .cloud {
