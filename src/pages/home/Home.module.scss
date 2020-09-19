@@ -39,23 +39,22 @@
     background: {
       repeat: no-repeat;
       image: url("../../assets/piqsels.com-id-sqodj.png");
-      position-x: 25%;
-      position-y: bottom -15vh;
+      position: left 25% bottom -15vh;
       size: 200% auto;
     }
 
     @include common.tablet-specific {
-      background-position-y: bottom -5vh;
+      background-position: left 25% bottom -5vh;
       background-size: 150% auto;
     }
 
     @include common.phone-landscape-specific {
-      background-position-y: bottom -78vh;
+      background-position: left 25% bottom -78vh;
       background-size: 150% auto;
     }
 
     @include common.desktop-specific {
-      background-position-y: bottom -5vw;
+      background-position: left 25% bottom -5vw;
       background-size: cover;
     }
   }
