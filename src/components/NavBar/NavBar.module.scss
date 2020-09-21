@@ -1,4 +1,4 @@
-@use '../../common';
+@use 'src/common';
 
 .hamburger-icon {
   @include common.tablet-specific {
