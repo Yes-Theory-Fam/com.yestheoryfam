@@ -11,6 +11,7 @@ import { PhotoProps } from "../../components/PhotoWallLayouts/PhotoWallLayoutTyp
 import UploadDropzone from "../../components/UploadDropzone/UploadDropzone";
 
 import ScrollForAction from "../../components/ScrollForAction/ScrollForAction";
+import CommonLayout from "../../components/CommonLayout/CommonLayout";
 
 const InitialContent: React.FC<{ onButtonClick: () => void }> = ({ onButtonClick }) => {
   return (
@@ -27,8 +28,7 @@ const InitialContent: React.FC<{ onButtonClick: () => void }> = ({ onButtonClick
   );
 };
 
-const PhotoWall: React.FC = () => {
-  // This should be temporary until state management is done properly. I am just pretty sure I need a state here to handle loading of the images.
+const Photos: React.FC = () => {
   const [builtLayouts, setLayouts] = React.useState<Array<React.ReactNode>>([]);
   const [showModal, setShowModal] = React.useState(false);
 
@@ -46,13 +46,6 @@ const PhotoWall: React.FC = () => {
     <>
       {showModal && <UploadDropzone onClose={() => setShowModal(false)} />}
       <div className={classNames("column-center", { [styles.blur]: showModal })}>
-        <div className={classNames(styles.photoWallTop, "column-center")}>
-          <div></div>
-          {/* div required here to have space-between sort everything out */}
-          <InitialContent onButtonClick={() => setShowModal(true)} />
-          <ScrollForAction callText={"SEE ALL PHOTOS"} />
-        </div>
-
         <div className={styles.photoWallList}>
           <div className="column">{builtLayouts}</div>
         </div>
@@ -60,6 +53,10 @@ const PhotoWall: React.FC = () => {
     </>
   );
 };
+
+const PhotoWall: React.FC = () => (
+  <CommonLayout TopComponent={InitialContent} BottomComponent={Photos} scrollForActionText={"SEE ALL PHOTOS"} />
+);
 
 const getNextBuiltLayout = async (images: Array<string>): Promise<React.ReactNode> => {
   const availableLayouts = layouts.filter(({ props }) => props.totalImages <= images.length);

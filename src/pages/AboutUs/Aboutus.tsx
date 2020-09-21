@@ -7,7 +7,7 @@ import { introduction, why } from "./copy";
 
 import BehindTheProject from "../../assets/behindtheproject.png";
 import classNames from "classnames";
-import ScrollForAction from "../../components/ScrollForAction/ScrollForAction";
+import CommonLayout from "../../components/CommonLayout/CommonLayout";
 
 const SocialIcon: React.FC<{
   Icon: React.JSXElementConstructor<IconBaseProps>;
@@ -64,7 +64,7 @@ const MemberTile: React.FC<{ info: TeamMember }> = ({ info }) => {
 
 const TopContent: React.FC = () => {
   return (
-    <div className={classNames(styles.aboutUsTopContent, "column-center")}>
+    <div className={classNames(styles.aboutUsTop, styles.aboutUsTopContent, "column-center")}>
       <div className={classNames(styles.aboutUsTopText, "column")}>
         <div className={classNames(styles.aboutUsHeader, "column")}>
           People behind this <div className="inline-blue">project</div>
@@ -80,27 +80,23 @@ const TopContent: React.FC = () => {
   );
 };
 
-const AboutUs: React.FC = () => {
-  const headerRef = React.useRef() as React.RefObject<HTMLDivElement>;
-
+const Team: React.FC = () => {
   return (
-    <div className={classNames(styles.aboutUs, "column-center")}>
-      <div className={classNames(styles.aboutUsTop, "column-center")}>
-        <TopContent />
-        <ScrollForAction callText={"MEET THE TEAM"} scrollToRef={headerRef} />
+    <div className={classNames(styles.aboutUsPeople, "column")}>
+      <div className={styles.aboutUsHeader}>
+        Meet the <div className="inline-blue">team</div>
       </div>
-      <div className={classNames(styles.aboutUsPeople, "column")}>
-        <div className={styles.aboutUsHeader} ref={headerRef}>
-          Meet the <div className="inline-blue">team</div>
-        </div>
-        <div className={styles.teamPics}>
-          {team.map((person, idx) => {
-            return <MemberTile info={person} key={`${person.name}-${idx}`} />;
-          })}
-        </div>
+      <div className={styles.teamPics}>
+        {team.map((person, idx) => {
+          return <MemberTile info={person} key={`${person.name}-${idx}`} />;
+        })}
       </div>
     </div>
   );
 };
+
+const AboutUs: React.FC = () => (
+  <CommonLayout TopComponent={TopContent} BottomComponent={Team} scrollForActionText={"MEET THE TEAM"} />
+);
 
 export default AboutUs;

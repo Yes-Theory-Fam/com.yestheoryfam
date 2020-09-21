@@ -5,7 +5,7 @@ import cloudBig from "../../assets/cloudBig.png";
 import cloudBot from "../../assets/cloudBot.png";
 
 import HomeEntry from "../../components/HomeEntry/HomeEntry";
-import ScrollForAction from "../../components/ScrollForAction/ScrollForAction";
+import CommonLayout from "../../components/CommonLayout/CommonLayout";
 
 const Content: React.FC = () => {
   return (
@@ -37,32 +37,44 @@ const Content: React.FC = () => {
   );
 };
 
-const Home: React.FC = () => {
+const TopContent: React.FC = () => {
   return (
-    <div>
-      <div className={styles.cloudsMountainYesContainer}>
-        <div className={classNames(styles.container, styles.yesBackground)}>YES</div>
-        <div className={classNames(styles.container, styles.cloudsBackground)}>
-          <img src={cloudBig} className={classNames(styles.cloud, styles.bigBack)} />
-        </div>
-        <div className={classNames(styles.container, styles.mountain)} />
-        <div className={styles.cloudsFront}>
-          <img src={cloudBot} className={classNames(styles.cloud, styles.botFront)} />
-          <img src={cloudBot} className={classNames(styles.cloud, styles.botFront)} />
-          <div style={{ maxWidth: "100vw", overflow: "hidden" }} className={styles.cloud}>
-            <img src={cloudBig} className={classNames(styles.cloudR, styles.bigFront)} />
-          </div>
-          <div style={{ maxWidth: "100vw", overflow: "hidden" }} className={styles.cloud}>
-            <img src={cloudBig} className={classNames(styles.cloudR, styles.bigFront)} />
-          </div>
-          <ScrollForAction containerClassNames={styles.scrollForAction} callText={"SCROLL FOR MORE"} />
-        </div>
+    <div className={styles.cloudsMountainYesContainer}>
+      <div className={classNames(styles.container, styles.yesBackground)}>YES</div>
+      <div className={classNames(styles.container, styles.cloudsBackground)}>
+        <img src={cloudBig} className={classNames(styles.cloud, styles.bigBack)} />
       </div>
-      <div className={classNames(styles.content, "column")}>
-        <Content />
+      <div className={classNames(styles.container, styles.mountain)} />
+      <div className={styles.cloudsFront}>
+        <img src={cloudBot} className={classNames(styles.cloud, styles.botFront)} />
+        <img src={cloudBot} className={classNames(styles.cloud, styles.botFront)} />
+        <div style={{ maxWidth: "100vw", overflow: "hidden" }} className={styles.cloud}>
+          <img src={cloudBig} className={classNames(styles.cloudR, styles.bigFront)} />
+        </div>
+        <div style={{ maxWidth: "100vw", overflow: "hidden" }} className={styles.cloud}>
+          <img src={cloudBig} className={classNames(styles.cloudR, styles.bigFront)} />
+        </div>
       </div>
     </div>
   );
 };
+
+const BottomContent: React.FC = () => {
+  return (
+    <div className={classNames(styles.content, "column")}>
+      <Content />
+    </div>
+  );
+};
+
+const Home: React.FC = () => (
+  <CommonLayout
+    TopComponent={TopContent}
+    BottomComponent={BottomContent}
+    scrollForActionText={"SCROLL FOR MORE"}
+    scrollForActionClassName={styles.scrollForAction}
+    topMargin={false}
+  />
+);
 
 export default Home;

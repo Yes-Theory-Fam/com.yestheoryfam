@@ -63,11 +63,6 @@
     position: relative;
     width: 100vw;
     height: 100vh;
-
-    .scroll-for-action {
-      position: absolute;
-      bottom: 10px;
-    }
   }
 }
 
@@ -136,4 +131,9 @@
 
 .footer {
   z-index: 0;
+}
+
+.scroll-for-action {
+  position: absolute;
+  bottom: 0;
 }

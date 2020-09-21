@@ -1,0 +1,23 @@
+@use 'src/common';
+
+.top-container {
+  margin-top: 65px;
+
+  //tablet, pl
+  @include common.tablet-specific {
+    margin-top: 100px;
+  }
+
+  @include common.phone-landscape-specific {
+    margin-top: 65px;
+  }
+
+  @include common.desktop-specific {
+    margin-top: 100px;
+  }
+}
+
+.top-component-container {
+  // Leaves enough room for the scroll to action on desktop screens.
+  min-height: calc(100vh - 160px);
+}

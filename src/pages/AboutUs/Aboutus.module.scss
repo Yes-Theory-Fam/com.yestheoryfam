@@ -1,26 +1,9 @@
 @use '../../common';
 
 .about-us {
-  width: 100%;
-
   &-top {
-    margin-top: 80px;
-
-    @include common.tablet-specific {
-      margin-top: 100px;
-    }
-
-    @include common.phone-landscape-specific {
-      margin-top: 80px;
-    }
-
-    @include common.desktop-specific {
-      margin-top: 100px;
-    }
-
     justify-content: space-between;
     width: 90%;
-    min-height: calc(100vh - 100px);
 
     &-content {
       @include common.desktop-specific {

@@ -12,6 +12,7 @@ import BackendApi from "../../apis/backend";
 import { SuccessModalToDiscord } from "./SuccessfulSignUpModal";
 import { Link } from "react-router-dom";
 import ScrollForAction from "../../components/ScrollForAction/ScrollForAction";
+import CommonLayout from "../../components/CommonLayout/CommonLayout";
 
 enum SIGNED_UP_STATE {
   NOT_LOADED,
@@ -37,8 +38,7 @@ const registerToDiscord = async () => {
   return response.status === 200;
 };
 
-const BuddyProject: React.FC = () => {
-  const signupRef = React.createRef() as React.RefObject<HTMLDivElement>;
+const BuddyProjectProcess: React.FC = () => {
   const [bpStatus, setBPStatus] = React.useState(SIGNED_UP_STATE.LOADING);
 
   const { user } = React.useContext(UserContext);
@@ -53,17 +53,19 @@ const BuddyProject: React.FC = () => {
   }, [user, setBPStatus]);
 
   return (
-    <div className="column-center">
-      <div className={classNames(styles.buddyProjectTop, "column-center")}>
-        <div />
-        {/* div required here to have space-between sort everything out */}
-        <InitialContent />
-        <ScrollForAction callText={"GET INVOLVED"} scrollToRef={signupRef} />
-      </div>
-      <div ref={signupRef} className={classNames(styles.buddyProjectBottom, "column-center")}>
-        <SignupProcess user={user} bpSignupStatus={bpStatus} setSignupStatus={setBPStatus} />
-      </div>
+    <div className={classNames(styles.buddyProjectBottom, "column-center")}>
+      <SignupProcess user={user} bpSignupStatus={bpStatus} setSignupStatus={setBPStatus} />
     </div>
+  );
+};
+
+const BuddyProject: React.FC = () => {
+  return (
+    <CommonLayout
+      TopComponent={InitialContent}
+      BottomComponent={BuddyProjectProcess}
+      scrollForActionText={"GET INVOLVED"}
+    />
   );
 };
 
