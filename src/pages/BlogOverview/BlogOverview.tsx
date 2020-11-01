@@ -42,7 +42,7 @@ const FeaturedArticle: React.FC<{ blog: IBlogProps }> = ({ blog }) => {
     <div className={classNames(styles.featuredArticle, "column")}>
       <div className={styles.blogOverviewSectionHeader}>Latest article</div>
       <div className={classNames(styles.featuredArticleBlog, "column")}>
-        <div className={classNames(styles.featuredImage, "centered-content")}>
+        <div className={styles.featuredImageContainer}>
           <img src={titleImage} className={styles.featuredImage} />
         </div>
         <div className={classNames(styles.featuredTextContent, "column")}>
@@ -142,7 +142,7 @@ const BlogOverview: React.FC = () => {
   const [featured, ...other] = blogs;
 
   return (
-    <div className="column-center">
+    <div className={classNames(styles.blogOverview, "column-center")}>
       <BlogOverviewHeader />
       <div className={classNames(styles.blogOverviewArticles, "column")}>
         <FeaturedArticle blog={featured} />

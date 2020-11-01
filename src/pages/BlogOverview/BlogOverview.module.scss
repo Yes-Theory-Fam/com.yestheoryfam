@@ -2,6 +2,20 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap");
 
 .blog-overview {
+  margin-top: 80px;
+
+  @include common.tablet-specific {
+    margin-top: 120px;
+  }
+
+  @include common.phone-landscape-specific {
+    margin-top: 80px;
+  }
+
+  @include common.desktop-specific {
+    margin-top: 120px;
+  }
+
   &-header {
     margin-bottom: 50px;
   }
@@ -49,14 +63,7 @@
     width: 100%;
 
     &-container {
-      width: 50%;
-    }
-    flex: 1;
-
-    img {
-      width: 100%;
-      height: auto;
-      box-shadow: 15px 15px 60px #0067ff40;
+      flex: 1;
     }
   }
 
@@ -64,8 +71,8 @@
     justify-content: space-evenly;
     padding-left: 150px;
     padding-right: 50px;
-    width: 50%;
     min-height: 400px;
+    flex: 1;
 
     @include common.phone-landscape-specific {
       min-height: 300px;
@@ -76,7 +83,6 @@
     }
 
     @include common.desktop-specific {
-      margin-left: 10%;
       margin-right: 3%;
     }
 
@@ -146,6 +152,7 @@
       margin-bottom: 20px;
 
       &-container {
+        margin-bottom: .5rem;
         height: 260px;
       }
     }
