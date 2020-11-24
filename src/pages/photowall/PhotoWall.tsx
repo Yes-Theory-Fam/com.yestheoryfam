@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 
 import layouts, { OneFourLayout } from "../../components/PhotoWallLayouts";
 import { randomInt } from "../../utils";
@@ -12,6 +13,7 @@ import Footer from "../../components/Footer/Footer";
 import UploadDropzone from "../../components/UploadDropzone/UploadDropzone";
 
 import { IoIosArrowDown } from "react-icons/io";
+import BackendApi from "../../apis/backend";
 
 const UploadModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return (
@@ -41,13 +43,66 @@ const InitialContent: React.FC<{ onButtonClick: () => void }> = ({
   );
 };
 
-const PhotoWall: React.FC<{}> = () => {
-  // This should be temporary until state management is done properly. I am just pretty sure I need a state here to handle loading of the images.
-  const [builtLayouts, setLayouts] = React.useState<Array<React.ReactNode>>([]);
-  const [showModal, setShowModal] = React.useState(false);
+interface PhotowallPageResult {
+  page: number;
+  hasNext: boolean;
+  imageIds: string[];
+}
 
-  if (randomImages.length > 0) {
-    getNextBuiltLayout(randomImages)
+interface LastPhotowallPageResult {
+  page: number;
+  hasNext: boolean;
+}
+
+const PhotoWall: React.FC = () => {
+  const [showModal, setShowModal] = React.useState(false);
+  const [builtLayouts, setLayouts] = React.useState<Array<React.ReactNode>>([]);
+  const [isFetching, setIsFetching] = React.useState(false);
+  const [remainingImages, setRemainingImages] = React.useState<string[]>([]);
+  const [lastGetResult, setLastGetResult] = React.useState<
+    LastPhotowallPageResult
+  >();
+
+  useEffect(() => {
+    fetchData().catch((e) => console.log("Fuck", e));
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = () => {
+    if (
+      Math.ceil(window.innerHeight + document.documentElement.scrollTop) !==
+        document.documentElement.offsetHeight ||
+      isFetching
+    )
+      return;
+    setIsFetching(true);
+  };
+
+  const fetchData = async () => {
+    console.log(`lastGetResult:`, lastGetResult);
+    const pageToGet =
+      lastGetResult?.page !== null && lastGetResult?.page !== undefined
+        ? lastGetResult.page + 1
+        : 0;
+    console.log("pageToGet: ", pageToGet);
+    getPage(pageToGet).then((page) => {
+      const backend = process.env.REACT_APP_BACKEND_URL;
+      const urls = page.imageIds.map((id) => `${backend}files/download/${id}`);
+      setRemainingImages([...remainingImages, ...urls]);
+      console.log(page.page);
+      setLastGetResult(page);
+    });
+  };
+
+  // Initial load
+  useEffect(() => {
+    if (!isFetching || !lastGetResult?.hasNext) return;
+    fetchData().catch((e) => console.log("Fuck", e));
+  }, [isFetching]);
+
+  if (remainingImages.length > 0) {
+    getNextBuiltLayout(remainingImages, setRemainingImages)
       .then((newLayout) => {
         const newLayouts: Array<React.ReactNode> = Array.from(builtLayouts);
         newLayouts.push(newLayout);
@@ -76,6 +131,10 @@ const PhotoWall: React.FC<{}> = () => {
         <div className="photo-wall-list">
           <div className="column">{builtLayouts}</div>
         </div>
+        {isFetching && lastGetResult?.hasNext && (
+          <div>Finding awesome pictures!</div>
+        )}
+        {isFetching && !lastGetResult?.hasNext && <div>End of the wall!</div>}
       </div>
       <Footer />
     </>
@@ -83,14 +142,14 @@ const PhotoWall: React.FC<{}> = () => {
 };
 
 const getNextBuiltLayout = async (
-  images: Array<string>
+  images: Array<string>,
+  setImages: React.Dispatch<React.SetStateAction<string[]>>
 ): Promise<React.ReactNode> => {
+  // Shallow copy so we don't mess with the original array
+  images = [...images];
   const availableLayouts = layouts.filter(
     ({ props }) => props.totalImages <= images.length
   );
-
-  console.log("Filtered layouts: ");
-  console.log(availableLayouts);
 
   // Using that layout makes it easy to get a proper end to the list based on how the layout is structured
   // It also doesn't cause chaos or strange alignments because all of the images end up roughly square in the final layout anyway
@@ -100,7 +159,7 @@ const getNextBuiltLayout = async (
         images={images.map((src) => ({ src, orientation: "square" }))}
       />
     );
-    images.length = 0;
+    setImages([]);
     return restLayout;
   }
 
@@ -113,7 +172,7 @@ const getNextBuiltLayout = async (
       `availableLayouts: ${availableLayouts}, choice: ${choice}, images remaining: ${images.length}`
     );
     console.log("Cleaning images and returning to avoid issues downstream!");
-    images.length = 0;
+    setImages([]);
     return;
   }
 
@@ -129,10 +188,9 @@ const getNextBuiltLayout = async (
       orientation: "square",
       src: image,
     }));
+    setImages(images);
     return <LayoutComponent images={mockProps} />;
   }
-
-  console.log(`Loading orientations for ${pickedImages.length} images...`);
 
   const photoProps = await Promise.all(
     pickedImages.map((img) => getOrientation(img))
@@ -150,6 +208,7 @@ const getNextBuiltLayout = async (
     pickedHorizontal >= horizontalImages &&
     pickedVertical >= verticalImages
   ) {
+    setImages(images);
     return <LayoutComponent images={photoProps} />;
   }
 
@@ -161,56 +220,46 @@ const getNextBuiltLayout = async (
   // I don't think this should ever happen with the current set of layouts. But better be safe than sorry.
   if (availableOrientationLayouts.length === 0) {
     images.unshift(...pickedImages);
+    setImages(images);
     return <></>;
   }
 
   const orientationChoice = randomInt(0, availableOrientationLayouts.length);
   const orientationLayout = availableOrientationLayouts[orientationChoice];
 
+  setImages(images);
   return <orientationLayout.LayoutComponent images={photoProps} />;
 };
 
 // Data-use-wise I probably shouldn't just discard those loaded images.
 // Unless they are cached. In which case I would have won. Which would be nice.
 const getOrientation = (url: string): Promise<PhotoProps> => {
-  const orientationPromise: Promise<PhotoProps> = new Promise(
-    (resolve, reject) => {
-      const img = new Image();
+  return new Promise((resolve, reject) => {
+    const img = new Image();
 
-      img.addEventListener("load", function () {
-        const height = this.naturalHeight;
-        const width = this.naturalWidth;
+    img.addEventListener("load", function () {
+      const height = this.naturalHeight;
+      const width = this.naturalWidth;
 
-        if (height === width)
-          return resolve({ src: url, orientation: "square" });
-        if (height > width)
-          return resolve({ src: url, orientation: "vertical" });
-        if (height < width)
-          return resolve({ src: url, orientation: "horizontal" });
+      if (height === width) return resolve({ src: url, orientation: "square" });
+      if (height > width) return resolve({ src: url, orientation: "vertical" });
+      if (height < width)
+        return resolve({ src: url, orientation: "horizontal" });
 
-        console.log(`height: ${height} - width: ${width} - url: ${url}`);
-      });
+      console.log(`height: ${height} - width: ${width} - url: ${url}`);
+    });
 
-      img.src = url;
+    img.src = url;
 
-      // setTimeout(() => reject(`Timeout loading image with URL ${url}!`), 2000);
-    }
-  );
-
-  return orientationPromise;
+    // setTimeout(() => reject(`Timeout loading image with URL ${url}!`), 2000);
+  });
 };
 
-const randomImages = Array(27)
-  .fill(undefined)
-  .map(
-    () => `https://picsum.photos/${randomInt(260, 900)}/${randomInt(260, 900)}`
-  );
-
-// const randomImages = [
-//   "https://i.picsum.photos/id/425/431/619.jpg",
-//   "https://i.picsum.photos/id/856/697/434.jpg",
-//   "https://i.picsum.photos/id/409/393/621.jpg",
-//   "https://i.picsum.photos/id/551/806/760.jpg",
-// ];
+const getPage = async (page = 0): Promise<PhotowallPageResult> => {
+  const response = await BackendApi().get(`/photowall/images/${page}`);
+  const test = { ...response.data, page: Number(response.data.page) };
+  console.log(test);
+  return test;
+};
 
 export default PhotoWall;

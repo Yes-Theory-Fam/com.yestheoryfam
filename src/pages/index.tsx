@@ -87,7 +87,7 @@ const pages: Array<NavPage> = [
     path: "photowall",
     display: "photowall",
     component: { component: PhotoWall },
-    available: false,
+    available: true,
   },
   {
     isNew: false,
